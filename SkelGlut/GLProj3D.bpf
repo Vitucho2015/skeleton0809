@@ -1,0 +1,7 @@
+USEUNIT("GLSkel3D.cpp");
+USELIB("Glut32.lib");
+USEUNIT("UScene.cpp");
+//---------------------------------------------------------------------------
+This file is used by the project manager only and should be treated like the project file
+
+main
