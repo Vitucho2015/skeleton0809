@@ -2,7 +2,7 @@
 
 #ifndef UFPH
 #define UFPH
-//---------------------------------------------------------------------------
+//---------------
 #include <Classes.hpp>
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
