@@ -106,6 +106,7 @@ glClear(GL_COLOR_BUFFER_BIT);
 
 // comandos para dibujar la escena
 
+
 glFlush();
 SwapBuffers(hdc);
 }
@@ -124,4 +125,5 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
     // eliminar objetos creados
 }
 //---------------------------------------------------------------------------
+
 
