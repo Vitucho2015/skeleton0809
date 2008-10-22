@@ -7,6 +7,9 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
+#include <Menus.hpp>
+#include <ComCtrls.hpp>
+#include <Buttons.hpp>
 
 #include <gl\gl.h>
 #include <gl\glu.h>
@@ -15,6 +18,13 @@
 class TGLForm2D : public TForm
 {
 __published:	// IDE-managed Components
+        TMainMenu *MainMenu1;
+        TMenuItem *Anidar1;
+        TMenuItem *Acercar1;
+        TMenuItem *Alejar1;
+        TMenuItem *Trasladar1;
+        TMenuItem *Centrar1;
+        TMenuItem *Tilling1;
   void __fastcall FormCreate(TObject *Sender);
   void __fastcall FormResize(TObject *Sender);
   void __fastcall FormPaint(TObject *Sender);
