@@ -21,21 +21,27 @@ object GLForm2D: TGLForm2D
   object MainMenu1: TMainMenu
     object Anidar1: TMenuItem
       Caption = 'Anidar'
+      OnClick = Anidar1Click
     end
     object Acercar1: TMenuItem
       Caption = 'Acercar'
+      OnClick = Acercar1Click
     end
     object Alejar1: TMenuItem
       Caption = 'Alejar'
+      OnClick = Alejar1Click
     end
     object Trasladar1: TMenuItem
       Caption = 'Trasladar'
+      OnClick = Trasladar1Click
     end
     object Centrar1: TMenuItem
       Caption = 'Centrar'
+      OnClick = Centrar1Click
     end
     object Tilling1: TMenuItem
       Caption = 'Tilling'
+      OnClick = Tilling1Click
     end
   end
 end

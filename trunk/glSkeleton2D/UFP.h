@@ -29,6 +29,14 @@ __published:	// IDE-managed Components
   void __fastcall FormResize(TObject *Sender);
   void __fastcall FormPaint(TObject *Sender);
   void __fastcall FormDestroy(TObject *Sender);
+    void __fastcall Tilling1Click(TObject *Sender);
+    void __fastcall Acercar1Click(TObject *Sender);
+    void __fastcall Alejar1Click(TObject *Sender);
+    void __fastcall Trasladar1Click(TObject *Sender);
+    void __fastcall Centrar1Click(TObject *Sender);
+    void __fastcall Anidar1Click(TObject *Sender);
+    void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
+      TShiftState Shift);
 
 private:	// User declarations
  HDC hdc;
@@ -40,7 +48,19 @@ private:	// User declarations
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();
-
+ //Variables globales
+    int nTriangulos;
+    bool mEmbaldosado; //Indica si está en modo embaldosado
+    bool mDesplazar;   //Indica si está en modo desplazar
+    int nCol;          //Número de columnas para el embaldosado
+    int nFil;          //Número de filas para el embaldosado
+ //Funciones
+    void dibujarMotivo();
+    void pintarConBaldosas();
+    void pintarSinBaldosas();
+    void zoom(int porcentaje);
+    void zoomProgresivo(GLfloat porcentaje);
+    
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 };
