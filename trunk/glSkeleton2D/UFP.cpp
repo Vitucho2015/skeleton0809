@@ -214,37 +214,6 @@ void TGLForm2D::zoom(int porcentaje)
 
 //---------------------------------------------------------------------------
 
-void TGLForm2D::zoomProgresivo(GLfloat porcentaje)
-{
-    if (mEmbaldosado){
-        mEmbaldosado = false;
-        glViewport(0,0,ClientWidth,ClientHeight);
-    }
-
-    if (mDesplazar){
-        mDesplazar = false;
-    }
-
-    GLint nPasos = 10;         //Número de pasos a ejecutar
-    GLfloat f = (GLfloat)porcentaje/100;
-    float incF=(f - 1)/(float)nPasos;
-    float xL,xR,yT,yB;
-    for (int i=0;i<=nPasos;i++){
-        f=1+incF*i;
-        xL=xLeft*f;
-        xR=xRight*f;
-        yT=yTop*f;
-        yB=yBot*f;
-        gluOrtho2D(xL,xR,yT,yB);
-        GLScene();
-        Sleep(100);
-    }
-    //Actualizamos las variables globales
-    xLeft=xL;xRight=xR;yTop=yT;yBot=yB;
-}
-
-//---------------------------------------------------------------------------
-
 void TGLForm2D::dibujarMotivo()
 {
 
@@ -283,16 +252,15 @@ void TGLForm2D::pintarSinBaldosas()
 
         //Dibujamos el triángulo
         glLineWidth(2.0);
-        GLint x1,x2,x3,y1,y2,y3;
         //Primer vértice del triángulo
-        x1=(GLint)xLeft*0.9;
-        y1=(GLint)yBot*0.9;
+        x1=-180;
+        y1=-180;
         //Segundo vértice del triángulo
-        x2=(GLint)xRight*0.9;
-        y2=(GLint)yBot*0.9;
+        x2=180;
+        y2=-180;
         //Tercer vértice del triángulo
-        x3=(GLint)(xLeft+xRight)/2;
-        y3=(GLint)yTop*0.9;;
+        x3=0;
+        y3=180;
         glBegin(GL_LINE_LOOP);
             glColor3f(1,1,1);
             glVertex2i(x1,y1);
@@ -306,7 +274,11 @@ void TGLForm2D::pintarSinBaldosas()
             glColor3f(1,0,0);
             glVertex2i((GLint)(x1+x2+x3)/3,(GLint)(y1+y2+y3)/3);
         glEnd();
-        //Falta la parte de anidar nTriangulos        
+        //Falta la parte de anidar nTriangulos
+        for(int i=1;i<nTriangulos;i++){
+            calculaMedias();
+            dibujaTriangulo();
+        }
 }
 
 //---------------------------------------------------------------------------
@@ -317,16 +289,19 @@ void __fastcall TGLForm2D::Centrar1Click(TObject *Sender)
         mEmbaldosado = false;
         glViewport(0,0,ClientWidth,ClientHeight);
     }
-
-    xRight=(xRight-xLeft)/2; xLeft=-xRight;
-    yTop=(yBot-yTop)/2; yBot=-yTop;
+    GLint xR,yT;
+    xR=((GLint)(xLeft+xRight)/2)-((GLint)(x1+x2+x3)/3);
+    xRight=xRight-xR;
+    xLeft=xLeft-xR;
+    yT=((GLint)(yBot+yTop)/2)-((GLint)(y1+y2+y3)/3);
+    yTop=yTop-yT;
+    yBot=yBot-yT;
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(xLeft,xRight,yBot,yTop);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    FormResize(this);
     GLScene();
 }
 
@@ -389,5 +364,36 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
                 GLScene();
         }
  }
+
+//---------------------------------------------------------------------------
+
+void TGLForm2D::dibujaTriangulo()
+{
+    glBegin(GL_LINE_LOOP);
+        glColor3f(1,1,1);
+        glVertex2i(x1,y1);
+        glVertex2i(x2,y2);
+        glVertex2i(x3,y3);
+    glEnd();
+}
+
+//---------------------------------------------------------------------------
+
+void TGLForm2D::calculaMedias()
+{
+GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
+    x1_aux=(GLint)(x1+x2)/2;
+    x2_aux=(GLint)(x2+x3)/2;
+    x3_aux=(GLint)(x1+x3)/2;
+    y1_aux=(GLint)(y1+y2)/2;
+    y2_aux=(GLint)(y2+y3)/2;
+    y3_aux=(GLint)(y1+y3)/2;
+    x1=x1_aux;
+    x2=x2_aux;
+    x3=x3_aux;
+    y1=y1_aux;
+    y2=y2_aux;
+    y3=y3_aux;
+}
 
 //---------------------------------------------------------------------------

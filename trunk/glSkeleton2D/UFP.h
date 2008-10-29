@@ -49,17 +49,20 @@ private:	// User declarations
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();
  //Variables globales
-    int nTriangulos;
+    int nTriangulos;   //Número de triángulos
     bool mEmbaldosado; //Indica si está en modo embaldosado
     bool mDesplazar;   //Indica si está en modo desplazar
     int nCol;          //Número de columnas para el embaldosado
     int nFil;          //Número de filas para el embaldosado
+    GLint x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
+                                //dibujado
  //Funciones
     void dibujarMotivo();
     void pintarConBaldosas();
     void pintarSinBaldosas();
-    void zoom(int porcentaje);
-    void zoomProgresivo(GLfloat porcentaje);
+    void zoom(int porcentaje);  
+    void calculaMedias();
+    void dibujaTriangulo();
     
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
