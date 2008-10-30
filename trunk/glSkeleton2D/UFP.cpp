@@ -26,7 +26,9 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     	ShowMessage("Could not MakeCurrent");
     //Cor de fondo de la ventana
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
+    color1=1;
+    color2=1;
+    color3=1;
     //inicialización del volumen de vista
     xRight=200.0; xLeft=-xRight;
     yTop=xRight; yBot=-yTop;
@@ -277,7 +279,8 @@ void TGLForm2D::pintarSinBaldosas()
         //Falta la parte de anidar nTriangulos
         for(int i=1;i<nTriangulos;i++){
             calculaMedias();
-            dibujaTriangulo();
+
+            dibujaTriangulo(i);
         }
 }
 
@@ -310,6 +313,7 @@ void __fastcall TGLForm2D::Centrar1Click(TObject *Sender)
 void __fastcall TGLForm2D::Anidar1Click(TObject *Sender)
 {
     nTriangulos++;
+    
     mEmbaldosado=false;
     glViewport(0,0,ClientWidth,ClientHeight);
     GLScene();
@@ -367,10 +371,11 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
 
 //---------------------------------------------------------------------------
 
-void TGLForm2D::dibujaTriangulo()
+void TGLForm2D::dibujaTriangulo(int i)
 {
     glBegin(GL_LINE_LOOP);
-        glColor3f(1,1,1);
+        float j = (float(i)/10);
+        glColor3f(1-j,1-j,1-j);
         glVertex2i(x1,y1);
         glVertex2i(x2,y2);
         glVertex2i(x3,y3);
