@@ -375,6 +375,7 @@ void TGLForm2D::dibujaTriangulo(int i)
 {
     glBegin(GL_LINE_LOOP);
         float j = (float(i)/10);
+        
         glColor3f(1-j,1-j,1-j);
         glVertex2i(x1,y1);
         glVertex2i(x2,y2);
