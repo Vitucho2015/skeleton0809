@@ -56,13 +56,14 @@ private:	// User declarations
     int nFil;          //Número de filas para el embaldosado
     GLint x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
                                 //dibujado
+    float color1, color2, color3;                            
  //Funciones
     void dibujarMotivo();
     void pintarConBaldosas();
     void pintarSinBaldosas();
     void zoom(int porcentaje);  
     void calculaMedias();
-    void dibujaTriangulo();
+    void dibujaTriangulo(int i);
     
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
