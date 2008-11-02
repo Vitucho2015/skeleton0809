@@ -1,8 +1,8 @@
 Functions called:
  delete (35 times)
  SysReallocMem (28 times)
- SysFreeMem (647 times)
- SysGetMem (647 times)
+ SysFreeMem (635 times)
+ SysGetMem (635 times)
  realloc (1 times)
  memcpy (1 times)
  delete[] (2 times)
@@ -14,9 +14,9 @@ Functions called:
 Resource types used:
  object array (14 allocs, 13 max)
  object (40 allocs, 28 max)
- memory block (673 allocs, 340 max)
+ memory block (661 allocs, 340 max)
 Modules used:
- 00400000 11/01/2008 12:28:28 F:\IGR\glSkeleton2D\glSkeleton.exe
+ 00400000 11/02/2008 17:53:56 F:\IGR\Practica 1\glSkeleton.exe
  01660000 09/29/2006 09:03:22 C:\WINDOWS\system32\ATKOGL32.dll
  0CD00000 01/31/2000 04:00:00 f:\CBuilder5\Bin\CG32.DLL
  32500000 01/31/2000 04:00:00 f:\CBuilder5\Bin\CC3250MT.DLL
