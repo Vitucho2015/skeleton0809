@@ -163,7 +163,6 @@ void __fastcall TGLForm2D::Acercar1Click(TObject *Sender)
 
     //ZOOM: 110%
     zoom(110);
-    GLScene();
 }
 //---------------------------------------------------------------------------
 
@@ -180,7 +179,6 @@ void __fastcall TGLForm2D::Alejar1Click(TObject *Sender)
 
     //ZOOM: 90%
     zoom(90);
-    GLScene();
 }
 //---------------------------------------------------------------------------
 
@@ -212,6 +210,7 @@ void TGLForm2D::zoom(int porcentaje)
     gluOrtho2D(xLeft,xRight,yBot,yTop);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    GLScene();
 }
 
 //---------------------------------------------------------------------------
@@ -219,16 +218,16 @@ void TGLForm2D::zoom(int porcentaje)
 void TGLForm2D::dibujarMotivo()
 {
     //Dibujamos el triángulo
-    glLineWidth(2.0);
+    glLineWidth(1.0);
     //Primer vértice del triángulo
     x1=-180;
-    y1=-180;
+    y1=-160;
     //Segundo vértice del triángulo
     x2=180;
-    y2=-180;
+    y2=-160;
     //Tercer vértice del triángulo
     x3=0;
-    y3=180;
+    y3=160;
     glBegin(GL_LINE_LOOP);
         glColor3f(1,1,1);
         glVertex2i(x1,y1);
@@ -266,23 +265,23 @@ void TGLForm2D::pintarConBaldosas()
 void TGLForm2D::pintarSinBaldosas()
 {
     //Dibujamos el centro del área visible de la escena
-        glPointSize(5);
+        glPointSize(4);
         glBegin(GL_POINTS);
             glColor3f(0,0,1);
             glVertex2i((xLeft+xRight)/2,(yBot+yTop)/2);
         glEnd();
 
         //Dibujamos el triángulo
-        glLineWidth(2.0);
+        glLineWidth(1.0);
         //Primer vértice del triángulo
         x1=-180;
-        y1=-180;
+        y1=-160;
         //Segundo vértice del triángulo
         x2=180;
-        y2=-180;
+        y2=-160;
         //Tercer vértice del triángulo
         x3=0;
-        y3=180;
+        y3=160;
         glBegin(GL_LINE_LOOP);
             glColor3f(1,1,1);
             glVertex2i(x1,y1);
@@ -291,7 +290,7 @@ void TGLForm2D::pintarSinBaldosas()
         glEnd();
 
         //Dibujamos el centro de gravedad del triángulo
-        glPointSize(5);
+        glPointSize(4);
         glBegin(GL_POINTS);
             glColor3f(1,0,0);
             glVertex2i((GLint)(x1+x2+x3)/3,(GLint)(y1+y2+y3)/3);
@@ -393,8 +392,7 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
 void TGLForm2D::dibujaTriangulo(int i)
 {
     glBegin(GL_LINE_LOOP);
-        float j = (float(i)/10);
-        glColor3f(1-j,1-j,1-j);
+        glColor3f(1,1,1);
         glVertex2i(x1,y1);
         glVertex2i(x2,y2);
         glVertex2i(x3,y3);
