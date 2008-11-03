@@ -36,28 +36,11 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     B=1;
     tamlinea=1;
     tampunto=4;
-    listaVertices *listaV1 = new listaVertices[100];
-    listaVertices *listaV2 = new listaVertices[100];
-    listaVertices *listaV3 = new listaVertices[100];
 
 
 
-    /*listaV1[1].x=-180;
-    listaV1[1].y=-160;
-    listaV1[2].x=0;
-    listaV1[2].y=160;
 
-    listaV2[1].x=0;
-    listaV2[1].y=160;
-    listaV2[2].x=180;
-    listaV2[2].y=160;
 
-    listaV3[1].x=180;
-    listaV3[1].y=160;
-    listaV3[2].x=-180;
-    listaV3[2].y=-160;    */
-
-    
 
 
 
@@ -230,11 +213,11 @@ void __fastcall TGLForm2D::Trasladar1Click(TObject *Sender)
 
 void TGLForm2D::zoom(int porcentaje)
 {
-    GLfloat f = (GLfloat)porcentaje/100;
-    GLfloat xRight_aux = ((xRight+xLeft)/2)+(((xRight-xLeft)/f)/2);
-    GLfloat xLeft_aux = ((xRight+xLeft)/2)-(((xRight-xLeft)/f)/2);
-    GLfloat yTop_aux= ((yTop+yBot)/2)+(((yTop-yBot)/f)/2);
-    GLfloat yBot_aux= ((yTop+yBot)/2)-(((yTop-yBot)/f)/2);
+    GLfloat f = (GLfloat)porcentaje/(GLfloat)100;
+    GLfloat xRight_aux = ((xRight+xLeft)/2)+(((xRight-xLeft)/f)/(GLfloat)2);
+    GLfloat xLeft_aux = ((xRight+xLeft)/2)-(((xRight-xLeft)/f)/(GLfloat)2);
+    GLfloat yTop_aux= ((yTop+yBot)/2)+(((yTop-yBot)/f)/(GLfloat)2);
+    GLfloat yBot_aux= ((yTop+yBot)/2)-(((yTop-yBot)/f)/(GLfloat)2);
     xRight = xRight_aux;
     xLeft = xLeft_aux;
     yTop = yTop_aux;
@@ -334,15 +317,41 @@ void TGLForm2D::pintarSinBaldosas()
         
         //Parte de anidar nTriangulos
         if (anidamientoTotal==true){
-                
 
+        calculaMedios();
+        int n =  pow (2,(nTriangulos-1));
+
+        for (int a = 2;a<=n;a++)
+        {
+        glBegin(GL_LINE_LOOP);
+            glColor3f(R,G,B);
+            glVertex2i(listaV1[a].x,listaV1[a].y);
+            glVertex2i(listaV2[n-a+2].x,listaV2[n-a+2].y);
+
+        glEnd();
+
+        glBegin(GL_LINE_LOOP);
+            glColor3f(R,G,B);
+            glVertex2i(listaV1[a].x,listaV1[a].y);
+            glVertex2i(listaV3[n-a+2].x,listaV3[n-a+2].y);
+
+        glEnd();
+
+        glBegin(GL_LINE_LOOP);
+            glColor3f(R,G,B);
+            glVertex2i(listaV3[a].x,listaV3[a].y);
+            glVertex2i(listaV2[n-a+2].x,listaV2[n-a+2].y);
+
+        glEnd();
 
         }
 
+        }
+        else{
         for(int i=1;i<nTriangulos;i++){
             calculaMedias();
             dibujaTriangulo(i);
-        }
+        }     }
 }
 
 //---------------------------------------------------------------------------
@@ -374,7 +383,7 @@ void __fastcall TGLForm2D::Centrar1Click(TObject *Sender)
 void __fastcall TGLForm2D::Anidar1Click(TObject *Sender)
 {
     nTriangulos++;
-
+    //calculaMedios();
     mEmbaldosado=false;
     glViewport(0,0,ClientWidth,ClientHeight);
     GLScene();
@@ -461,13 +470,13 @@ void TGLForm2D::dibujaTriangulo(int i)
 
 void TGLForm2D::calculaMedias()
 {
-GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
-    x1_aux=(GLint)(x1+x2)/2;
-    x2_aux=(GLint)(x2+x3)/2;
-    x3_aux=(GLint)(x1+x3)/2;
-    y1_aux=(GLint)(y1+y2)/2;
-    y2_aux=(GLint)(y2+y3)/2;
-    y3_aux=(GLint)(y1+y3)/2;
+GLfloat x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
+    x1_aux=(GLfloat)(x1+x2)/(GLfloat)2;
+    x2_aux=(GLfloat)(x2+x3)/(GLfloat)2;
+    x3_aux=(GLfloat)(x1+x3)/(GLfloat)2;
+    y1_aux=(GLfloat)(y1+y2)/(GLfloat)2;
+    y2_aux=(GLfloat)(y2+y3)/(GLfloat)2;
+    y3_aux=(GLfloat)(y1+y3)/(GLfloat)2;
     x1=x1_aux;
     x2=x2_aux;
     x3=x3_aux;
@@ -480,12 +489,41 @@ GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
 
 void TGLForm2D::calculaMedios()
 {
-      int n = 2^(nTriangulos-1);
-      float i = 180 / n ;
-      float j= 320 / n;
+      int n =  pow (2,(nTriangulos-1));
+      float i = float(180 / float(n)) ;
+      float j= float(320 / float(n));
+      float k= float(360 / float(n));
+      listaV1 = new listaVertices[2*n];
+      listaV2 = new listaVertices[2*n];
+      listaV3 = new listaVertices[2*n];
 
-      for (int a = 1;a<2^(nTriangulos-1);a=a+i){
-         listaV1
+
+      listaV1[1].x=-180;
+      listaV1[1].y=-160;
+
+
+
+
+
+
+    listaV2[1].x=0;
+    listaV2[1].y=160;
+
+
+    listaV3[1].x=180;
+    listaV3[1].y=-160;
+
+
+      for (int a = 2;a<=n;a++){
+
+         listaV1[a].x=(listaV1[a-1].x)+i;
+         listaV1[a].y=(listaV1[a-1].y)+j;
+
+         listaV2[a].x=(listaV2[a-1].x)+i;
+         listaV2[a].y=(listaV2[a-1].y)-j;
+
+         listaV3[a].x=(listaV3[a-1].x)-k;
+         listaV3[a].y=-160;
       }
 
 
@@ -592,5 +630,8 @@ void __fastcall TGLForm2D::N8puntos1Click(TObject *Sender)
 tampunto=8;
 GLScene();
 }
+//---------------------------------------------------------------------------
+
+
 //---------------------------------------------------------------------------
 

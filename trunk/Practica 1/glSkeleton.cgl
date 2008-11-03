@@ -1,61 +1,374 @@
-Error 00088. 0x300010 (Thread 0x020C):
-Resource leak: The object array (0xD98BC8) was never deleted
+Error 00089. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA825C) was never deleted
 
-The object array (0x00D98BC8) [size: 800 bytes] was created with new[]
+The object array (0x00DA825C) [size: 16 bytes] was created with new[]
 Call Tree:
-   0x00401C8A(=glSkeleton.exe:0x01:000C8A) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#39
-   0x40053323(=VCL50.BPL:0x01:052323)
-   0x4005301F(=VCL50.BPL:0x01:05201F)
-   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
-   0x004015DD(=glSkeleton.exe:0x01:0005DD) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.cpp#14
-   0x3257DBEF(=CC3250MT.DLL:0x01:07CBEF)
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00404850(=glSkeleton.exe:0x01:003850) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#547
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
 
 ------------------------------------------
-Error 00089. 0x300010 (Thread 0x020C):
-Resource leak: The object array (0xD98EEC) was never deleted
+Error 00090. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAA248) was never deleted
 
-The object array (0x00D98EEC) [size: 800 bytes] was created with new[]
+The object array (0x00DAA248) [size: 256 bytes] was created with new[]
 Call Tree:
-   0x00401C98(=glSkeleton.exe:0x01:000C98) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#40
-   0x40053323(=VCL50.BPL:0x01:052323)
-   0x4005301F(=VCL50.BPL:0x01:05201F)
-   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
-   0x004015DD(=glSkeleton.exe:0x01:0005DD) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.cpp#14
-   0x3257DBEF(=CC3250MT.DLL:0x01:07CBEF)
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
 
 ------------------------------------------
-Error 00090. 0x300010 (Thread 0x020C):
-Resource leak: The object array (0xD99210) was never deleted
+Error 00091. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA6048) was never deleted
 
-The object array (0x00D99210) [size: 800 bytes] was created with new[]
+The object array (0x00DA6048) [size: 512 bytes] was created with new[]
 Call Tree:
-   0x00401CA6(=glSkeleton.exe:0x01:000CA6) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#41
-   0x40053323(=VCL50.BPL:0x01:052323)
-   0x4005301F(=VCL50.BPL:0x01:05201F)
-   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
-   0x004015DD(=glSkeleton.exe:0x01:0005DD) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.cpp#14
-   0x3257DBEF(=CC3250MT.DLL:0x01:07CBEF)
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00092. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA80C0) was never deleted
+
+The object array (0x00DA80C0) [size: 64 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00093. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAA768) was never deleted
+
+The object array (0x00DAA768) [size: 512 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00402176(=glSkeleton.exe:0x01:001176) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#124
+   0x400699AB(=VCL50.BPL:0x01:0689AB)
+   0x4006B7C4(=VCL50.BPL:0x01:06A7C4)
+
+------------------------------------------
+Error 00094. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA87E8) was never deleted
+
+The object array (0x00DA87E8) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00404A54(=glSkeleton.exe:0x01:003A54) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#575
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00095. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAAB30) was never deleted
+
+The object array (0x00DAAB30) [size: 512 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00402176(=glSkeleton.exe:0x01:001176) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#124
+   0x400699AB(=VCL50.BPL:0x01:0689AB)
+   0x4006B7C4(=VCL50.BPL:0x01:06A7C4)
+
+------------------------------------------
+Error 00096. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAAE74) was never deleted
+
+The object array (0x00DAAE74) [size: 512 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00402176(=glSkeleton.exe:0x01:001176) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#124
+   0x400699AB(=VCL50.BPL:0x01:0689AB)
+   0x4006B7C4(=VCL50.BPL:0x01:06A7C4)
+
+------------------------------------------
+Error 00097. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA72D4) was never deleted
+
+The object array (0x00DA72D4) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00404A54(=glSkeleton.exe:0x01:003A54) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#575
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00098. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA9378) was never deleted
+
+The object array (0x00DA9378) [size: 512 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00099. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA9078) was never deleted
+
+The object array (0x00DA9078) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00404A54(=glSkeleton.exe:0x01:003A54) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#575
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00100. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA9174) was never deleted
+
+The object array (0x00DA9174) [size: 512 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00101. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA710C) was never deleted
+
+The object array (0x00DA710C) [size: 16 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00404850(=glSkeleton.exe:0x01:003850) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#547
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00102. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDABA7C) was never deleted
+
+The object array (0x00DABA7C) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00103. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDABB00) was never deleted
+
+The object array (0x00DABB00) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00104. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA7B80) was never deleted
+
+The object array (0x00DA7B80) [size: 64 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00105. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB968) was never deleted
+
+The object array (0x00DAB968) [size: 32 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00106. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB944) was never deleted
+
+The object array (0x00DAB944) [size: 32 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00107. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB920) was never deleted
+
+The object array (0x00DAB920) [size: 32 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00108. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB9F8) was never deleted
+
+The object array (0x00DAB9F8) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00109. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB9D4) was never deleted
+
+The object array (0x00DAB9D4) [size: 32 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x0040227D(=glSkeleton.exe:0x01:00127D) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#146
+   0x40055A73(=VCL50.BPL:0x01:054A73)
+   0x4006E508(=VCL50.BPL:0x01:06D508)
+
+------------------------------------------
+Error 00110. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB9B0) was never deleted
+
+The object array (0x00DAB9B0) [size: 32 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x0040227D(=glSkeleton.exe:0x01:00127D) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#146
+   0x40055A73(=VCL50.BPL:0x01:054A73)
+   0x4006E508(=VCL50.BPL:0x01:06D508)
+
+------------------------------------------
+Error 00111. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDAB98C) was never deleted
+
+The object array (0x00DAB98C) [size: 32 bytes] was created with new[]
+Call Tree:
+   0x004043FB(=glSkeleton.exe:0x01:0033FB) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#497
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x0040227D(=glSkeleton.exe:0x01:00127D) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#146
+   0x40055A73(=VCL50.BPL:0x01:054A73)
+   0x4006E508(=VCL50.BPL:0x01:06D508)
+
+------------------------------------------
+Error 00112. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA5E34) was never deleted
+
+The object array (0x00DA5E34) [size: 256 bytes] was created with new[]
+Call Tree:
+   0x00404445(=glSkeleton.exe:0x01:003445) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#499
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00113. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA7F10) was never deleted
+
+The object array (0x00DA7F10) [size: 16 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00404850(=glSkeleton.exe:0x01:003850) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#547
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00114. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA5D30) was never deleted
+
+The object array (0x00DA5D30) [size: 256 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
+Error 00115. 0x300010 (Thread 0x0CAC):
+Resource leak: The object array (0xDA7D90) was never deleted
+
+The object array (0x00DA7D90) [size: 64 bytes] was created with new[]
+Call Tree:
+   0x00404420(=glSkeleton.exe:0x01:003420) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#498
+   0x00403189(=glSkeleton.exe:0x01:002189) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#321
+   0x00402208(=glSkeleton.exe:0x01:001208) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#136
+   0x00403969(=glSkeleton.exe:0x01:002969) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#389
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
 
 ------------------------------------------
 Functions called:
  delete (35 times)
- SysReallocMem (30 times)
- SysFreeMem (767 times)
- SysGetMem (767 times)
+ pow (18 times)
+ SysReallocMem (105 times)
+ SysFreeMem (1055 times)
+ SysGetMem (1055 times)
  realloc (1 times)
  memcpy (1 times)
  delete[] (2 times)
  free (26 times)
- new[] (17 times)
+ new[] (41 times)
  new (40 times)
  calloc (5 times)
  malloc (20 times)
 Resource types used:
- object array (17 allocs, 16 max)
+ object array (41 allocs, 40 max)
  object (40 allocs, 28 max)
- memory block (793 allocs, 384 max)
+ memory block (1081 allocs, 392 max)
 Modules used:
- 00400000 11/03/2008 16:06:32 F:\Documents and
+ 00400000 11/03/2008 18:52:28 F:\Documents and
  Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.exe
  010F0000 05/22/2001 00:00:00 F:\WINDOWS\system32\BORLNDMM.DLL
  0CD00000 01/31/2000 04:00:00 F:\Archivos de
