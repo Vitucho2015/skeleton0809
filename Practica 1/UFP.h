@@ -43,6 +43,8 @@ __published:	// IDE-managed Components
     void __fastcall Anidar1Click(TObject *Sender);
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift);
+        void __fastcall AnidamientoTotal1Click(TObject *Sender);
+        void __fastcall ColorAnidamiento1Click(TObject *Sender);
 
 private:	// User declarations
  HDC hdc;
@@ -57,6 +59,8 @@ private:	// User declarations
  //Variables globales
     int nTriangulos;   //Número de triángulos
     bool mEmbaldosado; //Indica si está en modo embaldosado
+    bool anidamientoTotal; //indica si hay que anidar todo o no
+    bool oscurecer;
     bool mDesplazar;   //Indica si está en modo desplazar
     int nCol;          //Número de columnas para el embaldosado
     int nFil;          //Número de filas para el embaldosado

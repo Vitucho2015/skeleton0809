@@ -1,6 +1,6 @@
 object GLForm2D: TGLForm2D
-  Left = 286
-  Top = 146
+  Left = 177
+  Top = 612
   Width = 408
   Height = 454
   Caption = 'Formulario Principal'
@@ -48,12 +48,14 @@ object GLForm2D: TGLForm2D
       Caption = 'Opcional'
       object ColorAnidamiento1: TMenuItem
         Caption = 'Color Anidamiento'
+        OnClick = ColorAnidamiento1Click
       end
       object ElegirColores1: TMenuItem
         Caption = 'Elegir Colores'
       end
       object AnidamientoTotal1: TMenuItem
         Caption = 'Anidamiento Total'
+        OnClick = AnidamientoTotal1Click
       end
     end
   end
