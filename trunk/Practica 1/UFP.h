@@ -31,6 +31,16 @@ __published:	// IDE-managed Components
     TMenuItem *ElegirColores1;
     TMenuItem *AnidamientoTotal1;
         TColorDialog *ColorDialog1;
+        TMenuItem *Tamaolnea1;
+        TMenuItem *Tamaopunto1;
+        TMenuItem *N1punto1;
+        TMenuItem *N2puntos1;
+        TMenuItem *N3puntos1;
+        TMenuItem *N4puntos1;
+        TMenuItem *N2puntos2;
+        TMenuItem *N4puntos2;
+        TMenuItem *N6puntos1;
+        TMenuItem *N8puntos1;
   void __fastcall FormCreate(TObject *Sender);
   void __fastcall FormResize(TObject *Sender);
   void __fastcall FormPaint(TObject *Sender);
@@ -46,6 +56,14 @@ __published:	// IDE-managed Components
         void __fastcall AnidamientoTotal1Click(TObject *Sender);
         void __fastcall ColorAnidamiento1Click(TObject *Sender);
         void __fastcall ElegirColores1Click(TObject *Sender);
+        void __fastcall N1punto1Click(TObject *Sender);
+        void __fastcall N2puntos1Click(TObject *Sender);
+        void __fastcall N3puntos1Click(TObject *Sender);
+        void __fastcall N4puntos1Click(TObject *Sender);
+        void __fastcall N2puntos2Click(TObject *Sender);
+        void __fastcall N4puntos2Click(TObject *Sender);
+        void __fastcall N6puntos1Click(TObject *Sender);
+        void __fastcall N8puntos1Click(TObject *Sender);
 
 private:	// User declarations
  HDC hdc;
@@ -68,7 +86,8 @@ private:	// User declarations
     GLint x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
                                 //dibujado
     float color1, color2, color3;
-    float R, G, B;                          
+    float R, G, B;
+    int tampunto,tamlinea;                    
  //Funciones
     void dibujarMotivo();
     void pintarConBaldosas();

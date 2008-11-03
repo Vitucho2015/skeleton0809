@@ -1,10 +1,10 @@
 Functions called:
  delete (35 times)
- SysReallocMem (69 times)
- SysFreeMem (957 times)
+ SysReallocMem (245 times)
+ SysFreeMem (1252 times)
+ SysGetMem (1252 times)
  realloc (1 times)
  memcpy (1 times)
- SysGetMem (957 times)
  delete[] (2 times)
  free (26 times)
  new[] (14 times)
@@ -14,19 +14,16 @@ Functions called:
 Resource types used:
  object array (14 allocs, 13 max)
  object (40 allocs, 28 max)
- memory block (983 allocs, 361 max)
+ memory block (1278 allocs, 395 max)
 Modules used:
- 00400000 11/03/2008 13:46:42 F:\Documents and
- Settings\Administrador\Escritorio\igr pr1\Practica 1\glSkeleton.exe
+ 00400000 11/03/2008 15:02:24 F:\Documents and
+ Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.exe
  010F0000 05/22/2001 00:00:00 F:\WINDOWS\system32\BORLNDMM.DLL
  0CD00000 01/31/2000 04:00:00 F:\Archivos de
  programa\Borland\CBuilder5\Bin\CG32.DLL
  32500000 01/31/2000 04:00:00 F:\Archivos de
  programa\Borland\CBuilder5\Bin\CC3250MT.DLL
  40000000 01/24/2000 04:01:00 F:\WINDOWS\system32\VCL50.BPL
- 402F0000 01/24/2000 04:01:00 F:\WINDOWS\system32\VCLX50.BPL
- 50600000 01/31/2000 04:00:00 F:\Archivos de
- programa\Borland\CBuilder5\Bin\BCBSMP50.BPL
  58C30000 04/14/2008 06:48:22 F:\WINDOWS\system32\comctl32.dll
  5B150000 05/11/2008 19:29:12 F:\WINDOWS\system32\uxtheme.dll
  5F120000 04/14/2008 06:48:34 F:\WINDOWS\system32\OPENGL32.dll
@@ -42,7 +39,6 @@ Modules used:
  75160000 04/14/2008 06:47:04 F:\WINDOWS\system32\msctfime.ime
  76340000 04/14/2008 06:48:24 F:\WINDOWS\system32\IMM32.DLL
  76360000 04/14/2008 06:48:22 F:\WINDOWS\system32\comdlg32.dll
- 76B00000 04/14/2008 06:48:48 F:\WINDOWS\system32\winmm.dll
  770F0000 04/14/2008 06:48:34 F:\WINDOWS\system32\oleaut32.dll
  773A0000 04/14/2008 06:46:16
  F:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.

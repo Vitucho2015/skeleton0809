@@ -1,6 +1,6 @@
 object GLForm2D: TGLForm2D
-  Left = 1313
-  Top = 219
+  Left = 833
+  Top = 131
   Width = 408
   Height = 454
   Caption = 'Formulario Principal'
@@ -57,6 +57,44 @@ object GLForm2D: TGLForm2D
       object AnidamientoTotal1: TMenuItem
         Caption = 'Anidamiento Total'
         OnClick = AnidamientoTotal1Click
+      end
+      object Tamaolnea1: TMenuItem
+        Caption = 'Tamaño línea'
+        object N1punto1: TMenuItem
+          Caption = '1 punto'
+          OnClick = N1punto1Click
+        end
+        object N2puntos1: TMenuItem
+          Caption = '2 puntos'
+          OnClick = N2puntos1Click
+        end
+        object N3puntos1: TMenuItem
+          Caption = '3 puntos'
+          OnClick = N3puntos1Click
+        end
+        object N4puntos1: TMenuItem
+          Caption = '4 puntos'
+          OnClick = N4puntos1Click
+        end
+      end
+      object Tamaopunto1: TMenuItem
+        Caption = 'Tamaño punto'
+        object N2puntos2: TMenuItem
+          Caption = '2 puntos'
+          OnClick = N2puntos2Click
+        end
+        object N4puntos2: TMenuItem
+          Caption = '4 puntos'
+          OnClick = N4puntos2Click
+        end
+        object N6puntos1: TMenuItem
+          Caption = '6 puntos'
+          OnClick = N6puntos1Click
+        end
+        object N8puntos1: TMenuItem
+          Caption = '8 puntos'
+          OnClick = N8puntos1Click
+        end
       end
     end
   end
