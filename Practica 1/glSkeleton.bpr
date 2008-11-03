@@ -4,12 +4,12 @@
   <MACROS>
     <VERSION value="BCB.05.03"/>
     <PROJECT value="glSkeleton.exe"/>
-    <OBJFILES value="glSkeleton.obj UFP.obj UFTiling.obj Unit1.obj"/>
+    <OBJFILES value="glSkeleton.obj UFP.obj UFTiling.obj"/>
     <RESFILES value="glSkeleton.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) UFP.dfm UFTiling.dfm Unit1.dfm"/>
+    <RESDEPEN value="$(RESFILES) UFP.dfm UFTiling.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value=""/>
     <SPARELIBS value="VCL50.lib bcbsmp50.lib VCLX50.lib"/>

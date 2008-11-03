@@ -32,6 +32,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     R=1;
     G=1;
     B=1;
+    tamlinea=1;
+    tampunto=4;
     oscurecer=false;
     anidamientoTotal=false;
     //inicialización del volumen de vista
@@ -270,7 +272,7 @@ void TGLForm2D::pintarConBaldosas()
 void TGLForm2D::pintarSinBaldosas()
 {
     //Dibujamos el centro del área visible de la escena
-        glPointSize(4);
+        glPointSize(tampunto);
         glBegin(GL_POINTS);
             glColor3f(0,0,1);
             glVertex2i((xLeft+xRight)/2,(yBot+yTop)/2);
@@ -278,7 +280,7 @@ void TGLForm2D::pintarSinBaldosas()
 
         //Dibujamos el triángulo
 
-        glLineWidth(1.0);
+        glLineWidth(tamlinea);
         //Primer vértice del triángulo
         x1=-180;
         y1=-160;
@@ -296,7 +298,7 @@ void TGLForm2D::pintarSinBaldosas()
         glEnd();
 
         //Dibujamos el centro de gravedad del triángulo
-        glPointSize(4);
+        glPointSize(tampunto);
         glBegin(GL_POINTS);
             glColor3f(1,0,0);
             glVertex2i((GLint)(x1+x2+x3)/3,(GLint)(y1+y2+y3)/3);
@@ -403,6 +405,7 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
 
 void TGLForm2D::dibujaTriangulo(int i)
 {
+        glLineWidth(tamlinea);
     if (oscurecer==true){
 
     glBegin(GL_LINE_LOOP);
@@ -456,6 +459,8 @@ void __fastcall TGLForm2D::AnidamientoTotal1Click(TObject *Sender)
 if (anidamientoTotal == true)  anidamientoTotal = false;
 else anidamientoTotal= true;
 ;
+
+GLScene();
 }
 //---------------------------------------------------------------------------
 
@@ -465,6 +470,8 @@ if (oscurecer ==true) {oscurecer =false; ColorAnidamiento1->Checked = false;}
 
 else {oscurecer = true;
       ColorAnidamiento1->Checked = true;}
+
+      GLScene();
 
 
 }
@@ -481,7 +488,64 @@ TColor micolor = ColorDialog1-> Color;
  R = (float)(GetRValue(micolor))/255;
  G = (float)(GetGValue(micolor))/255;
  B = (float)(GetBValue(micolor))/255;
+ GLScene();
 
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N1punto1Click(TObject *Sender)
+{
+tamlinea=1;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N2puntos1Click(TObject *Sender)
+{
+tamlinea=2;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N3puntos1Click(TObject *Sender)
+{
+tamlinea=3;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N4puntos1Click(TObject *Sender)
+{
+tamlinea=4;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N2puntos2Click(TObject *Sender)
+{
+tampunto=2;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N4puntos2Click(TObject *Sender)
+{
+tampunto=4;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N6puntos1Click(TObject *Sender)
+{
+tampunto=6;
+GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::N8puntos1Click(TObject *Sender)
+{
+tampunto=8;
+GLScene();
 }
 //---------------------------------------------------------------------------
 
