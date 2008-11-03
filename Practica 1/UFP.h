@@ -18,8 +18,8 @@
 //---------------------------------------------------------------------------
 class listaVertices {
 public:
-int x;
-int y;
+float x;
+float y;
 };
 
 class TGLForm2D : public TForm
@@ -89,11 +89,14 @@ private:	// User declarations
     bool mDesplazar;   //Indica si está en modo desplazar
     int nCol;          //Número de columnas para el embaldosado
     int nFil;          //Número de filas para el embaldosado
-    GLint x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
+    GLfloat x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
                                 //dibujado
     float color1, color2, color3;
     float R, G, B;
     int tampunto,tamlinea;
+    listaVertices *listaV1;
+    listaVertices *listaV2;
+    listaVertices *listaV3;
 
 
 
