@@ -26,11 +26,11 @@ __published:	// IDE-managed Components
         TMenuItem *Trasladar1;
         TMenuItem *Centrar1;
         TMenuItem *Tilling1;
-    TColorDialog *ColorDialog1;
     TMenuItem *Opcional1;
     TMenuItem *ColorAnidamiento1;
     TMenuItem *ElegirColores1;
     TMenuItem *AnidamientoTotal1;
+        TColorDialog *ColorDialog1;
   void __fastcall FormCreate(TObject *Sender);
   void __fastcall FormResize(TObject *Sender);
   void __fastcall FormPaint(TObject *Sender);
@@ -45,6 +45,7 @@ __published:	// IDE-managed Components
       TShiftState Shift);
         void __fastcall AnidamientoTotal1Click(TObject *Sender);
         void __fastcall ColorAnidamiento1Click(TObject *Sender);
+        void __fastcall ElegirColores1Click(TObject *Sender);
 
 private:	// User declarations
  HDC hdc;
@@ -66,7 +67,8 @@ private:	// User declarations
     int nFil;          //Número de filas para el embaldosado
     GLint x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
                                 //dibujado
-    float color1, color2, color3;                            
+    float color1, color2, color3;
+    float R, G, B;                          
  //Funciones
     void dibujarMotivo();
     void pintarConBaldosas();

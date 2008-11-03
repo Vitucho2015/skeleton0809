@@ -29,6 +29,9 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     color1=1;
     color2=1;
     color3=1;
+    R=1;
+    G=1;
+    B=1;
     oscurecer=false;
     anidamientoTotal=false;
     //inicialización del volumen de vista
@@ -274,6 +277,7 @@ void TGLForm2D::pintarSinBaldosas()
         glEnd();
 
         //Dibujamos el triángulo
+
         glLineWidth(1.0);
         //Primer vértice del triángulo
         x1=-180;
@@ -285,7 +289,7 @@ void TGLForm2D::pintarSinBaldosas()
         x3=0;
         y3=160;
         glBegin(GL_LINE_LOOP);
-            glColor3f(1,1,1);
+            glColor3f(R,G,B);
             glVertex2i(x1,y1);
             glVertex2i(x2,y2);
             glVertex2i(x3,y3);
@@ -413,7 +417,7 @@ void TGLForm2D::dibujaTriangulo(int i)
     else{
 
     glBegin(GL_LINE_LOOP);
-        glColor3f(1,1,1);
+        glColor3f(R,G,B);
         glVertex2i(x1,y1);
         glVertex2i(x2,y2);
         glVertex2i(x3,y3);
@@ -457,7 +461,27 @@ else anidamientoTotal= true;
 
 void __fastcall TGLForm2D::ColorAnidamiento1Click(TObject *Sender)
 {
-if (oscurecer ==true) oscurecer =false ; else oscurecer = true;      
+if (oscurecer ==true) {oscurecer =false; ColorAnidamiento1->Checked = false;}
+
+else {oscurecer = true;
+      ColorAnidamiento1->Checked = true;}
+
+
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TGLForm2D::ElegirColores1Click(TObject *Sender)
+{
+ColorDialog1->Execute();
+
+TColor micolor = ColorDialog1-> Color;
+
+ R = (float)(GetRValue(micolor))/255;
+ G = (float)(GetGValue(micolor))/255;
+ B = (float)(GetBValue(micolor))/255;
+
 }
 //---------------------------------------------------------------------------
 
