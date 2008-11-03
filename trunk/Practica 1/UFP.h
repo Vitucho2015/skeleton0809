@@ -16,6 +16,12 @@
 #include <gl\glu.h>
 
 //---------------------------------------------------------------------------
+class listaVertices {
+public:
+int x;
+int y;
+};
+
 class TGLForm2D : public TForm
 {
 __published:	// IDE-managed Components
@@ -87,13 +93,17 @@ private:	// User declarations
                                 //dibujado
     float color1, color2, color3;
     float R, G, B;
-    int tampunto,tamlinea;                    
+    int tampunto,tamlinea;
+
+
+
  //Funciones
     void dibujarMotivo();
     void pintarConBaldosas();
     void pintarSinBaldosas();
     void zoom(int porcentaje);  
     void calculaMedias();
+    void calculaMedios()   ;
     void dibujaTriangulo(int i);
 
  public:		// User declarations

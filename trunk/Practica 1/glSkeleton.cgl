@@ -1,22 +1,61 @@
+Error 00088. 0x300010 (Thread 0x020C):
+Resource leak: The object array (0xD98BC8) was never deleted
+
+The object array (0x00D98BC8) [size: 800 bytes] was created with new[]
+Call Tree:
+   0x00401C8A(=glSkeleton.exe:0x01:000C8A) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#39
+   0x40053323(=VCL50.BPL:0x01:052323)
+   0x4005301F(=VCL50.BPL:0x01:05201F)
+   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
+   0x004015DD(=glSkeleton.exe:0x01:0005DD) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.cpp#14
+   0x3257DBEF(=CC3250MT.DLL:0x01:07CBEF)
+
+------------------------------------------
+Error 00089. 0x300010 (Thread 0x020C):
+Resource leak: The object array (0xD98EEC) was never deleted
+
+The object array (0x00D98EEC) [size: 800 bytes] was created with new[]
+Call Tree:
+   0x00401C98(=glSkeleton.exe:0x01:000C98) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#40
+   0x40053323(=VCL50.BPL:0x01:052323)
+   0x4005301F(=VCL50.BPL:0x01:05201F)
+   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
+   0x004015DD(=glSkeleton.exe:0x01:0005DD) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.cpp#14
+   0x3257DBEF(=CC3250MT.DLL:0x01:07CBEF)
+
+------------------------------------------
+Error 00090. 0x300010 (Thread 0x020C):
+Resource leak: The object array (0xD99210) was never deleted
+
+The object array (0x00D99210) [size: 800 bytes] was created with new[]
+Call Tree:
+   0x00401CA6(=glSkeleton.exe:0x01:000CA6) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\UFP.cpp#41
+   0x40053323(=VCL50.BPL:0x01:052323)
+   0x4005301F(=VCL50.BPL:0x01:05201F)
+   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
+   0x004015DD(=glSkeleton.exe:0x01:0005DD) F:\Documents and Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.cpp#14
+   0x3257DBEF(=CC3250MT.DLL:0x01:07CBEF)
+
+------------------------------------------
 Functions called:
  delete (35 times)
- SysReallocMem (245 times)
- SysFreeMem (1252 times)
- SysGetMem (1252 times)
+ SysReallocMem (30 times)
+ SysFreeMem (767 times)
+ SysGetMem (767 times)
  realloc (1 times)
  memcpy (1 times)
  delete[] (2 times)
  free (26 times)
- new[] (14 times)
+ new[] (17 times)
  new (40 times)
  calloc (5 times)
  malloc (20 times)
 Resource types used:
- object array (14 allocs, 13 max)
+ object array (17 allocs, 16 max)
  object (40 allocs, 28 max)
- memory block (1278 allocs, 395 max)
+ memory block (793 allocs, 384 max)
 Modules used:
- 00400000 11/03/2008 15:02:24 F:\Documents and
+ 00400000 11/03/2008 16:06:32 F:\Documents and
  Settings\Administrador\Escritorio\igr v3\Practica 1\glSkeleton.exe
  010F0000 05/22/2001 00:00:00 F:\WINDOWS\system32\BORLNDMM.DLL
  0CD00000 01/31/2000 04:00:00 F:\Archivos de

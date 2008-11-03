@@ -2,6 +2,8 @@
 
 #include <vcl.h>
 #pragma hdrstop
+#include <iostream.h>
+
 
 #include "UFP.h"
 #include "UFTiling.h" //Formulario para el Tiling
@@ -34,6 +36,32 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     B=1;
     tamlinea=1;
     tampunto=4;
+    listaVertices *listaV1 = new listaVertices[100];
+    listaVertices *listaV2 = new listaVertices[100];
+    listaVertices *listaV3 = new listaVertices[100];
+
+
+
+    /*listaV1[1].x=-180;
+    listaV1[1].y=-160;
+    listaV1[2].x=0;
+    listaV1[2].y=160;
+
+    listaV2[1].x=0;
+    listaV2[1].y=160;
+    listaV2[2].x=180;
+    listaV2[2].y=160;
+
+    listaV3[1].x=180;
+    listaV3[1].y=160;
+    listaV3[2].x=-180;
+    listaV3[2].y=-160;    */
+
+    
+
+
+
+
     oscurecer=false;
     anidamientoTotal=false;
     //inicialización del volumen de vista
@@ -345,7 +373,8 @@ void __fastcall TGLForm2D::Centrar1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Anidar1Click(TObject *Sender)
 {
-    nTriangulos++;     
+    nTriangulos++;
+
     mEmbaldosado=false;
     glViewport(0,0,ClientWidth,ClientHeight);
     GLScene();
@@ -449,6 +478,22 @@ GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
 
 //---------------------------------------------------------------------------
 
+void TGLForm2D::calculaMedios()
+{
+      int n = 2^(nTriangulos-1);
+      float i = 180 / n ;
+      float j= 320 / n;
+
+      for (int a = 1;a<2^(nTriangulos-1);a=a+i){
+         listaV1
+      }
+
+
+
+}
+
+//---------------------------------------------------------------------------
+
 
 
 
@@ -456,8 +501,8 @@ GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
 
 void __fastcall TGLForm2D::AnidamientoTotal1Click(TObject *Sender)
 {
-if (anidamientoTotal == true)  anidamientoTotal = false;
-else anidamientoTotal= true;
+if (anidamientoTotal == true)  {anidamientoTotal = false; AnidamientoTotal1->Checked=false;}
+else {anidamientoTotal= true; AnidamientoTotal1->Checked=true;}
 ;
 
 GLScene();
