@@ -29,6 +29,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     color1=1;
     color2=1;
     color3=1;
+    oscurecer=false;
+    anidamientoTotal=false;
     //inicialización del volumen de vista
     xRight=200.0; xLeft=-xRight;
     yTop=xRight; yBot=-yTop;
@@ -297,6 +299,12 @@ void TGLForm2D::pintarSinBaldosas()
         glEnd();
         
         //Parte de anidar nTriangulos
+        if (anidamientoTotal==true){
+                
+
+
+        }
+
         for(int i=1;i<nTriangulos;i++){
             calculaMedias();
             dibujaTriangulo(i);
@@ -391,12 +399,26 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
 
 void TGLForm2D::dibujaTriangulo(int i)
 {
+    if (oscurecer==true){
+
+    glBegin(GL_LINE_LOOP);
+        float j = (float(i)/10);
+        glColor3f(1-j,1-j,1-j);
+        glVertex2i(x1,y1);
+        glVertex2i(x2,y2);
+        glVertex2i(x3,y3);
+    glEnd();
+    }
+
+    else{
+
     glBegin(GL_LINE_LOOP);
         glColor3f(1,1,1);
         glVertex2i(x1,y1);
         glVertex2i(x2,y2);
         glVertex2i(x3,y3);
     glEnd();
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -420,4 +442,22 @@ GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
 
 //---------------------------------------------------------------------------
 
+
+
+
+
+
+void __fastcall TGLForm2D::AnidamientoTotal1Click(TObject *Sender)
+{
+if (anidamientoTotal == true)  anidamientoTotal = false;
+else anidamientoTotal= true;
+;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::ColorAnidamiento1Click(TObject *Sender)
+{
+if (oscurecer ==true) oscurecer =false ; else oscurecer = true;      
+}
+//---------------------------------------------------------------------------
 
