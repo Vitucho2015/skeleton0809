@@ -1,12 +1,12 @@
-Error 00090. 0x300010 (Thread 0x0B6C):
-Resource leak: The object array (0x13A650C) was never deleted
+Error 00091. 0x300010 (Thread 0x0ED0):
+Resource leak: The object array (0x13A8448) was never deleted
 
-The object array (0x013A650C) [size: 128 bytes] was created with new[]
+The object array (0x013A8448) [size: 16 bytes] was created with new[]
 Call Tree:
-   0x004056F1(=glSkeleton.exe:0x01:0046F1) F:\IGR\Practica 1 Final\UFP.cpp#600
-   0x00403B6F(=glSkeleton.exe:0x01:002B6F) F:\IGR\Practica 1 Final\UFP.cpp#317
-   0x00402B54(=glSkeleton.exe:0x01:001B54) F:\IGR\Practica 1 Final\UFP.cpp#125
-   0x00404349(=glSkeleton.exe:0x01:003349) F:\IGR\Practica 1 Final\UFP.cpp#379
+   0x00405767(=glSkeleton.exe:0x01:004767) F:\IGR\Practica 1 Final\UFP.cpp#606
+   0x00403B9F(=glSkeleton.exe:0x01:002B9F) F:\IGR\Practica 1 Final\UFP.cpp#318
+   0x00402B84(=glSkeleton.exe:0x01:001B84) F:\IGR\Practica 1 Final\UFP.cpp#126
+   0x004054E9(=glSkeleton.exe:0x01:0044E9) F:\IGR\Practica 1 Final\UFP.cpp#568
    0x4006203A(=VCL50.BPL:0x01:06103A)
    0x40054117(=VCL50.BPL:0x01:053117)
 

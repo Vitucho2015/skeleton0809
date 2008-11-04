@@ -6,6 +6,7 @@
 #include "UFP.h"
 #include <math.h>
 #include "UFTiling.h" //Formulario para el Tiling
+#include "UFGrosor.h" //Formulario para el Grosor
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -552,21 +553,28 @@ void __fastcall TGLForm2D::Reiniciar1Click(TObject *Sender)
 void __fastcall TGLForm2D::CentroAVE2Click(TObject *Sender)
 {
   //Elegir el grosor del centro AVE
-  GLScene();
+    if(UFG->pedirGrosor(grosorCentro)){
+        GLScene();
+    }
+
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::CentroGravedad2Click(TObject *Sender)
 {
-  //Elegir el grosor de gravedad
-  GLScene();
+  //Elegir el grosor del centro Gravedad
+    if(UFG->pedirGrosor(grosorGravedad)){
+        GLScene();
+    }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::Triangulos2Click(TObject *Sender)
 {
   //Elegir el grosor de las lineas del triangulo
-  GLScene();
+    if(UFG->pedirGrosor(grosorLinea)){
+        GLScene();
+    }
 }
 //---------------------------------------------------------------------------
 
