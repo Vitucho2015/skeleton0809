@@ -1,0 +1,13 @@
+Error 00090. 0x300010 (Thread 0x0B6C):
+Resource leak: The object array (0x13A650C) was never deleted
+
+The object array (0x013A650C) [size: 128 bytes] was created with new[]
+Call Tree:
+   0x004056F1(=glSkeleton.exe:0x01:0046F1) F:\IGR\Practica 1 Final\UFP.cpp#600
+   0x00403B6F(=glSkeleton.exe:0x01:002B6F) F:\IGR\Practica 1 Final\UFP.cpp#317
+   0x00402B54(=glSkeleton.exe:0x01:001B54) F:\IGR\Practica 1 Final\UFP.cpp#125
+   0x00404349(=glSkeleton.exe:0x01:003349) F:\IGR\Practica 1 Final\UFP.cpp#379
+   0x4006203A(=VCL50.BPL:0x01:06103A)
+   0x40054117(=VCL50.BPL:0x01:053117)
+
+------------------------------------------
