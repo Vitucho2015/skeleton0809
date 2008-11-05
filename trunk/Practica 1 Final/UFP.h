@@ -111,7 +111,7 @@ private:	// User declarations
     void pintarSinBaldosas();
     void zoom(int porcentaje);
     void calculaMedias();
-	void calculaMedios();
+    void calculaMedios();
     void dibujaTriangulo(int i);
 
  public:		// User declarations

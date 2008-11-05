@@ -100,17 +100,15 @@ void __fastcall TGLForm2D::FormResize(TObject *Sender)
   if (RatioViewPort<=RatioVolVista){//hemos hecho la ventana mas alta que ancha
      //Aumentamos yTop-yBot
      GLdouble altoNew= (xRight-xLeft)/RatioViewPort;
-     GLdouble xCentro= (xRight+xLeft)/2.0; //=0;
-     GLdouble yCentro= (yTop+yBot)/2.0; //=0;
+     GLdouble yCentro= (yTop+yBot)/2.0;
      yTop= yCentro + altoNew/2.0;
      yBot= yCentro - altoNew/2.0;
 
      }
-  else{                //    hemos hecho la ventana mas ancha que alta
+  else{                //hemos hecho la ventana mas ancha que alta
      //Aumentamos xRight-xLeft
      GLdouble anchoNew= RatioViewPort*(yTop-yBot);
-     GLdouble xCentro= (xRight+xLeft)/2.0; //=0;
-     GLdouble yCentro= (yTop+yBot)/2.0; //=0;
+     GLdouble xCentro= (xRight+xLeft)/2.0;
      xRight= xCentro + anchoNew/2.0;
      xLeft= xCentro - anchoNew/2.0;
   }
@@ -297,7 +295,7 @@ void TGLForm2D::pintarSinBaldosas()
         glPointSize(grosorCentro);
         glBegin(GL_POINTS);
             glColor3f(colorCentro1,colorCentro2,colorCentro3);
-            glVertex2f((xLeft+xRight)/2,(yBot+yTop)/2);
+            glVertex2f((xLeft+xRight)/2.0,(yBot+yTop)/2.0);
         glEnd();
 
         //Dibujamos el triángulo
@@ -322,7 +320,7 @@ void TGLForm2D::pintarSinBaldosas()
         glPointSize(grosorGravedad);
         glBegin(GL_POINTS);
             glColor3f(colorGravedad1,colorGravedad2,colorGravedad3);
-            glVertex2f((x1+x2+x3)/3,(y1+y2+y3)/3);
+            glVertex2f((x1+x2+x3)/3.0,(y1+y2+y3)/3.0);
         glEnd();
 
         //Parte de anidar nTriangulos
@@ -408,11 +406,11 @@ void __fastcall TGLForm2D::Centrar1Click(TObject *Sender)
         mEmbaldosado = false;
         glViewport(0,0,ClientWidth,ClientHeight);
     }
-    GLint xR,yT;
-    xR=((GLint)(xLeft+xRight)/2)-((GLint)(x1+x2+x3)/3);
+    GLfloat xR,yT;
+    xR=((xLeft+xRight)/2.0)-((x1+x2+x3)/3.0);
     xRight=xRight-xR;
     xLeft=xLeft-xR;
-    yT=((GLint)(yBot+yTop)/2)-((GLint)(y1+y2+y3)/3);
+    yT=((yBot+yTop)/2.0)-((y1+y2+y3)/3.0);
     yTop=yTop-yT;
     yBot=yBot-yT;
 
@@ -442,9 +440,11 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
     if (mDesplazar){
  	    switch (Key){        //Izquierda
             case 37:{
-                xRight = xRight - (xRight-xLeft)*0.05;
-                xLeft = xLeft - (xRight-xLeft)*0.05;
-
+            
+                GLfloat xRight_aux = xRight - (xRight-xLeft)*0.05;
+                GLfloat xLeft_aux = xLeft - (xRight-xLeft)*0.05;
+                xRight = xRight_aux;
+                xLeft = xLeft_aux;
                 break;
             }
         //Abajo
