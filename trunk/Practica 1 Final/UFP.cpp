@@ -285,7 +285,7 @@ void TGLForm2D::pintarSinBaldosas()
         glPointSize(grosorCentro);
         glBegin(GL_POINTS);
             glColor3f(colorCentro1,colorCentro2,colorCentro3);
-            glVertex2i((xLeft+xRight)/2,(yBot+yTop)/2);
+            glVertex2f((xLeft+xRight)/2,(yBot+yTop)/2);
         glEnd();
 
         //Dibujamos el triángulo
@@ -301,16 +301,16 @@ void TGLForm2D::pintarSinBaldosas()
         y3=160;
         glBegin(GL_LINE_LOOP);
             glColor3f(colorLinea1,colorLinea2,colorLinea3);
-            glVertex2i(x1,y1);
-            glVertex2i(x2,y2);
-            glVertex2i(x3,y3);
+            glVertex2f(x1,y1);
+            glVertex2f(x2,y2);
+            glVertex2f(x3,y3);
         glEnd();
 
         //Dibujamos el centro de gravedad del triángulo
         glPointSize(grosorGravedad);
         glBegin(GL_POINTS);
             glColor3f(colorGravedad1,colorGravedad2,colorGravedad3);
-            glVertex2i((GLint)(x1+x2+x3)/3,(GLint)(y1+y2+y3)/3);
+            glVertex2f((x1+x2+x3)/3,(y1+y2+y3)/3);
         glEnd();
 
         //Parte de anidar nTriangulos
@@ -350,20 +350,20 @@ void TGLForm2D::pintarSinBaldosas()
 			for (int a = 2;a<=n;a++){
 				glBegin(GL_LINE_LOOP);
 					glColor3f(colorLinea1,colorLinea2,colorLinea3);
-					glVertex2i(listaV1[a].x,listaV1[a].y);
-					glVertex2i(listaV2[n-a+2].x,listaV2[n-a+2].y);
+					glVertex2f(listaV1[a].x,listaV1[a].y);
+					glVertex2f(listaV2[n-a+2].x,listaV2[n-a+2].y);
 				glEnd();
 
 				glBegin(GL_LINE_LOOP);
 					glColor3f(colorLinea1,colorLinea2,colorLinea3);
-					glVertex2i(listaV1[a].x,listaV1[a].y);
-					glVertex2i(listaV3[n-a+2].x,listaV3[n-a+2].y);
+					glVertex2f(listaV1[a].x,listaV1[a].y);
+					glVertex2f(listaV3[n-a+2].x,listaV3[n-a+2].y);
 				glEnd();
 
                                 glBegin(GL_LINE_LOOP);
 		                        glColor3f(colorLinea1,colorLinea2,colorLinea3);
-		                        glVertex2i(listaV3[a].x,listaV3[a].y);
-		                        glVertex2i(listaV2[n-a+2].x,listaV2[n-a+2].y);
+		                        glVertex2f(listaV3[a].x,listaV3[a].y);
+		                        glVertex2f(listaV2[n-a+2].x,listaV2[n-a+2].y);
 		                glEnd();
 
 			}
@@ -483,17 +483,17 @@ void TGLForm2D::dibujaTriangulo(int i)
                 b=0;
             }
             glColor3f(r,g,b);
-            glVertex2i(x1,y1);
-            glVertex2i(x2,y2);
-            glVertex2i(x3,y3);
+            glVertex2f(x1,y1);
+            glVertex2f(x2,y2);
+            glVertex2f(x3,y3);
         glEnd();
     }
     else{
         glBegin(GL_LINE_LOOP);
             glColor3f(colorLinea1,colorLinea2,colorLinea3);
-            glVertex2i(x1,y1);
-            glVertex2i(x2,y2);
-            glVertex2i(x3,y3);
+            glVertex2f(x1,y1);
+            glVertex2f(x2,y2);
+            glVertex2f(x3,y3);
         glEnd();
     }
 }
@@ -502,13 +502,13 @@ void TGLForm2D::dibujaTriangulo(int i)
 
 void TGLForm2D::calculaMedias()
 {
-GLint x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
-    x1_aux=(GLint)(x1+x2)/2;
-    x2_aux=(GLint)(x2+x3)/2;
-    x3_aux=(GLint)(x1+x3)/2;
-    y1_aux=(GLint)(y1+y2)/2;
-    y2_aux=(GLint)(y2+y3)/2;
-    y3_aux=(GLint)(y1+y3)/2;
+GLfloat x1_aux,x2_aux,x3_aux,y1_aux,y2_aux,y3_aux;
+    x1_aux=(GLfloat)(x1+x2)/(GLfloat)2;
+    x2_aux=(GLfloat)(x2+x3)/(GLfloat)2;
+    x3_aux=(GLfloat)(x1+x3)/(GLfloat)2;
+    y1_aux=(GLfloat)(y1+y2)/(GLfloat)2;
+    y2_aux=(GLfloat)(y2+y3)/(GLfloat)2;
+    y3_aux=(GLfloat)(y1+y3)/(GLfloat)2;
     x1=x1_aux;
     x2=x2_aux;
     x3=x3_aux;
@@ -532,6 +532,7 @@ void __fastcall TGLForm2D::AnidamientoTotal1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Activar1Click(TObject *Sender)
 {
+    
     oscurecer=true;
     anidamientoTotal = false;
     GLScene();

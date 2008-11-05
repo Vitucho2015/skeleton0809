@@ -95,7 +95,7 @@ private:	// User declarations
     bool mDesplazar;   //Indica si está en modo desplazar
     int nCol;          //Número de columnas para el embaldosado
     int nFil;          //Número de filas para el embaldosado
-    GLint x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
+    GLfloat x1,x2,x3,y1,y2,y3;    //Coordenadas de los vértices del último triangulo
                                 //dibujado
     float colorGravedad1,colorGravedad2,colorGravedad3; //Colores para el centro de gravedad
     float colorCentro1,colorCentro2,colorCentro3; //Colores para el centro del AVE

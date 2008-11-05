@@ -1,6 +1,6 @@
-Error 00088. 0x310000 (Thread 0x0FE4):
-Bad parameter: A bad object array (0xDABFF4) has been passed to the function.
-delete[](0x00DABFF4) 
+Error 00088. 0x310030 (Thread 0x0F10):
+Reference to freed resource:
+delete[](0x00DB01F8) 
 
 Call Tree:
    0x004023DD(=glSkeleton.exe:0x01:0013DD) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#146
@@ -10,10 +10,28 @@ Call Tree:
    0x3257D9D3(=CC3250MT.DLL:0x01:07C9D3)
    0x3257DA22(=CC3250MT.DLL:0x01:07CA22)
 
+The object array (0x00DB01F8) [size: 256 bytes] was created with new[]
+Call Tree:
+   0x0040339D(=glSkeleton.exe:0x01:00239D) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#324
+   0x00402298(=glSkeleton.exe:0x01:001298) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#126
+   0x00404345(=glSkeleton.exe:0x01:003345) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#462
+   0x4006F6D9(=VCL50.BPL:0x01:06E6D9)
+   0x40054117(=VCL50.BPL:0x01:053117)
+   0x4006DF7B(=VCL50.BPL:0x01:06CF7B)
+
+The object array (0x00DB01F8) was deleted with delete[]
+Call Tree:
+   0x00403A41(=glSkeleton.exe:0x01:002A41) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#370
+   0x00402298(=glSkeleton.exe:0x01:001298) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#126
+   0x00404345(=glSkeleton.exe:0x01:003345) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#462
+   0x4006F6D9(=VCL50.BPL:0x01:06E6D9)
+   0x40054117(=VCL50.BPL:0x01:053117)
+   0x4006DF7B(=VCL50.BPL:0x01:06CF7B)
+
 ------------------------------------------
-Error 00089. 0x310000 (Thread 0x0FE4):
-Bad parameter: A bad object array (0xDD0004) has been passed to the function.
-delete[](0x00DD0004) 
+Error 00089. 0x310030 (Thread 0x0F10):
+Reference to freed resource:
+delete[](0x00DB02FC) 
 
 Call Tree:
    0x00402412(=glSkeleton.exe:0x01:001412) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#149
@@ -23,10 +41,28 @@ Call Tree:
    0x3257D9D3(=CC3250MT.DLL:0x01:07C9D3)
    0x3257DA22(=CC3250MT.DLL:0x01:07CA22)
 
+The object array (0x00DB02FC) [size: 256 bytes] was created with new[]
+Call Tree:
+   0x004033C2(=glSkeleton.exe:0x01:0023C2) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#325
+   0x00402298(=glSkeleton.exe:0x01:001298) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#126
+   0x00404345(=glSkeleton.exe:0x01:003345) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#462
+   0x4006F6D9(=VCL50.BPL:0x01:06E6D9)
+   0x40054117(=VCL50.BPL:0x01:053117)
+   0x4006DF7B(=VCL50.BPL:0x01:06CF7B)
+
+The object array (0x00DB02FC) was deleted with delete[]
+Call Tree:
+   0x00403A5D(=glSkeleton.exe:0x01:002A5D) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#371
+   0x00402298(=glSkeleton.exe:0x01:001298) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#126
+   0x00404345(=glSkeleton.exe:0x01:003345) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#462
+   0x4006F6D9(=VCL50.BPL:0x01:06E6D9)
+   0x40054117(=VCL50.BPL:0x01:053117)
+   0x4006DF7B(=VCL50.BPL:0x01:06CF7B)
+
 ------------------------------------------
-Error 00090. 0x310000 (Thread 0x0FE4):
-Bad parameter: A bad object array (0xDF0008) has been passed to the function.
-delete[](0x00DF0008) 
+Error 00090. 0x310030 (Thread 0x0F10):
+Reference to freed resource:
+delete[](0x00DB0400) 
 
 Call Tree:
    0x00402447(=glSkeleton.exe:0x01:001447) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#152
@@ -36,27 +72,45 @@ Call Tree:
    0x3257D9D3(=CC3250MT.DLL:0x01:07C9D3)
    0x3257DA22(=CC3250MT.DLL:0x01:07CA22)
 
+The object array (0x00DB0400) [size: 256 bytes] was created with new[]
+Call Tree:
+   0x004033E7(=glSkeleton.exe:0x01:0023E7) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#326
+   0x00402298(=glSkeleton.exe:0x01:001298) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#126
+   0x00404345(=glSkeleton.exe:0x01:003345) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#462
+   0x4006F6D9(=VCL50.BPL:0x01:06E6D9)
+   0x40054117(=VCL50.BPL:0x01:053117)
+   0x4006DF7B(=VCL50.BPL:0x01:06CF7B)
+
+The object array (0x00DB0400) was deleted with delete[]
+Call Tree:
+   0x00403A79(=glSkeleton.exe:0x01:002A79) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#372
+   0x00402298(=glSkeleton.exe:0x01:001298) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#126
+   0x00404345(=glSkeleton.exe:0x01:003345) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#462
+   0x4006F6D9(=VCL50.BPL:0x01:06E6D9)
+   0x40054117(=VCL50.BPL:0x01:053117)
+   0x4006DF7B(=VCL50.BPL:0x01:06CF7B)
+
 ------------------------------------------
 Functions called:
  delete (35 times)
- pow (63 times)
+ pow (36 times)
  SysReallocMem (45 times)
  SysFreeMem (1041 times)
  SysGetMem (1041 times)
  realloc (1 times)
  memcpy (1 times)
- delete[] (197 times)
+ delete[] (116 times)
  free (26 times)
- new[] (203 times)
+ new[] (122 times)
  new (40 times)
  calloc (5 times)
  malloc (20 times)
 Resource types used:
- object array (203 allocs, 16 max)
+ object array (122 allocs, 16 max)
  object (40 allocs, 28 max)
  memory block (1067 allocs, 453 max)
 Modules used:
- 00400000 11/05/2008 09:17:40 F:\Documents and
+ 00400000 11/05/2008 09:42:38 F:\Documents and
  Settings\Administrador\Escritorio\igr pr1 final\Practica 1
  Final\glSkeleton.exe
  010F0000 05/22/2001 00:00:00 F:\WINDOWS\system32\BORLNDMM.DLL
