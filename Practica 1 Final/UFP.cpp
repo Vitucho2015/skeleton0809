@@ -171,7 +171,7 @@ void __fastcall TGLForm2D::Tiling1Click(TObject *Sender)
 
     if(UFT->pedirNumColumnas(nCol)){
         mEmbaldosado = true;
-        nFil=(nCol*ClientHeight*(xRight-xLeft))/(ClientWidth*(yTop-yBot));
+        nFil=((nCol+1)*ClientHeight*(xRight-xLeft))/(ClientWidth*(yTop-yBot));
         GLScene();
     }
 }
@@ -257,15 +257,83 @@ void TGLForm2D::dibujarMotivo()
     y3=160;
     glBegin(GL_LINE_LOOP);
         glColor3f(colorLinea1,colorLinea2,colorLinea3);
-        glVertex2i(x1,y1);
-        glVertex2i(x2,y2);
-        glVertex2i(x3,y3);
+        glVertex2f(x1,y1);
+        glVertex2f(x2,y2);
+        glVertex2f(x3,y3);
     glEnd();
 
-    for(int i=1;i<nTriangulos;i++){
-        calculaMedias();
-        dibujaTriangulo(i);
-    }
+    if (anidamientoTotal){
+			//calculaMedios();
+                                int n =  pow (2,(nTriangulos-1));
+                                float i = float(180 / float(n)) ;
+                                 float j= float(320 / float(n));
+                                 float k= float(360 / float(n));
+
+                                 listaV1 = new listaVertices[2*n];
+                                 listaV2 = new listaVertices[2*n];
+                                 listaV3 = new listaVertices[2*n];
+
+                                 listaV1[1].x=-180;
+                                listaV1[1].y=-160;
+
+                                listaV2[1].x=0;
+                                listaV2[1].y=160;
+
+                                 listaV3[1].x=180;
+                                 listaV3[1].y=-160;
+
+                                  for (int a = 2;a<=n;a++){
+	                                listaV1[a].x=(listaV1[a-1].x)+i;
+                                        listaV1[a].y=(listaV1[a-1].y)+j;
+
+                                        listaV2[a].x=(listaV2[a-1].x)+i;
+                                        listaV2[a].y=(listaV2[a-1].y)-j;
+
+                                        listaV3[a].x=(listaV3[a-1].x)-k;
+                                        listaV3[a].y=-160;
+                                }
+
+			//int n =  pow (2,(nTriangulos-1));
+
+			for (int a = 2;a<=n;a++){
+				glBegin(GL_LINE_LOOP);
+					glColor3f(colorLinea1,colorLinea2,colorLinea3);
+					glVertex2f(listaV1[a].x,listaV1[a].y);
+					glVertex2f(listaV2[n-a+2].x,listaV2[n-a+2].y);
+				glEnd();
+
+				glBegin(GL_LINE_LOOP);
+					glColor3f(colorLinea1,colorLinea2,colorLinea3);
+					glVertex2f(listaV1[a].x,listaV1[a].y);
+					glVertex2f(listaV3[n-a+2].x,listaV3[n-a+2].y);
+				glEnd();
+
+                                glBegin(GL_LINE_LOOP);
+		                        glColor3f(colorLinea1,colorLinea2,colorLinea3);
+		                        glVertex2f(listaV3[a].x,listaV3[a].y);
+		                        glVertex2f(listaV2[n-a+2].x,listaV2[n-a+2].y);
+		                glEnd();
+
+			}
+            if (listaV1!=NULL){
+                delete [] listaV1;
+                listaV1=NULL;
+            }
+            if (listaV2!=NULL){
+                delete [] listaV2;
+                listaV2=NULL;
+            }
+            if (listaV3!=NULL){
+                delete [] listaV3;
+                listaV3=NULL;
+            }                         
+        }
+        else{
+			for(int i=1;i<nTriangulos;i++){
+				calculaMedias();
+				dibujaTriangulo(i);
+			}
+		}
 }
 
 //---------------------------------------------------------------------------
@@ -276,12 +344,12 @@ void TGLForm2D::pintarConBaldosas()
     GLfloat alto = ClientHeight /(GLfloat)nFil;
 
     glClear(GL_COLOR_BUFFER_BIT);
-    GLint x,y;
+    GLfloat x,y;
     for (int i=0;i<nCol;i++){
-        y= (GLint)alto*i;
+        y= alto*i;
         for (int j=0;j<nFil;j++){
-            x=(GLint)ancho*j;
-            glViewport(x,y,(GLint)ancho,(GLint)alto);
+            x=ancho*j;
+            glViewport(x,y,ancho,alto);
             dibujarMotivo();
         }
     }
@@ -394,7 +462,7 @@ void TGLForm2D::pintarSinBaldosas()
 			for(int i=1;i<nTriangulos;i++){
 				calculaMedias();
 				dibujaTriangulo(i);
-			}     
+			}
 		}
 }
 
