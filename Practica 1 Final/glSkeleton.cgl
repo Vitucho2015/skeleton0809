@@ -1,22 +1,25 @@
 Functions called:
  delete (35 times)
- SysReallocMem (31 times)
- SysFreeMem (975 times)
- SysGetMem (975 times)
+ pow (31 times)
+ SysReallocMem (112 times)
+ SysFreeMem (1353 times)
+ SysGetMem (1353 times)
  realloc (1 times)
  memcpy (1 times)
- delete[] (2 times)
+ delete[] (95 times)
  free (26 times)
- new[] (14 times)
+ new[] (107 times)
  new (40 times)
  calloc (5 times)
  malloc (20 times)
 Resource types used:
- object array (14 allocs, 13 max)
+ object array (107 allocs, 16 max)
  object (40 allocs, 28 max)
- memory block (1001 allocs, 453 max)
+ memory block (1379 allocs, 472 max)
 Modules used:
- 00400000 11/05/2008 13:44:22 C:\hlocal\Practica 1\glSkeleton.exe
+ 00400000 11/05/2008 15:01:08 C:\hlocal\Practica 1\glSkeleton.exe
+ 01060000 06/06/2004 04:59:38 C:\WINDOWS\system32\ialmgicd.dll
+ 01350000 06/06/2004 05:01:18 C:\WINDOWS\system32\ialmgdev.dll
  0CD00000 01/31/2000 04:00:00 C:\Archivos de
  programa\Borland\CBuilder5\Bin\CG32.DLL
  32500000 01/31/2000 04:00:00 C:\Archivos de
@@ -28,7 +31,6 @@ Modules used:
  5B150000 04/14/2008 03:18:46 C:\WINDOWS\system32\uxtheme.dll
  5F120000 04/14/2008 03:18:34 C:\WINDOWS\system32\OPENGL32.dll
  5FEA0000 04/14/2008 03:18:22 C:\WINDOWS\system32\GLU32.DLL
- 69500000 12/05/2007 00:41:00 C:\WINDOWS\system32\nvoglnt.dll
  71A20000 04/14/2008 03:18:48 C:\WINDOWS\system32\WS2HELP.dll
  71A30000 04/14/2008 03:18:48 C:\WINDOWS\system32\WS2_32.dll
  71A50000 04/14/2008 03:18:48 C:\WINDOWS\system32\wsock32.dll
