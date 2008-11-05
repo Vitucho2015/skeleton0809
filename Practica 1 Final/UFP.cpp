@@ -86,25 +86,34 @@ void __fastcall TGLForm2D::FormResize(TObject *Sender)
      ClientHeight=400;
      RatioViewPort=1.0;
      }
-  else RatioViewPort= (float)ClientWidth/(float)ClientHeight;
+  else
+
+
+  RatioViewPort= (float)ClientWidth/(float)ClientHeight;
 
   glViewport(0,0,ClientWidth,ClientHeight);
 
   // se actualiza el volumen de vista
   // para que su radio coincida con ratioViewPort
-  GLfloat RatioVolVista=xRight/yTop;
+  GLfloat RatioVolVista=(xRight-xLeft)/(yTop-yBot);
 
-  if (RatioVolVista>=RatioViewPort){
+  if (RatioViewPort<=RatioVolVista){//hemos hecho la ventana mas alta que ancha
      //Aumentamos yTop-yBot
-     yTop= xRight/RatioViewPort;
-     yBot=-yTop;
-     }
-  else{
-     //Aumentamos xRight-xLeft
-     xRight=RatioViewPort*yTop;
-     xLeft=-xRight;
-     }
+     GLdouble altoNew= (xRight-xLeft)/RatioViewPort;
+     GLdouble xCentro= (xRight+xLeft)/2.0; //=0;
+     GLdouble yCentro= (yTop+yBot)/2.0; //=0;
+     yTop= yCentro + altoNew/2.0;
+     yBot= yCentro - altoNew/2.0;
 
+     }
+  else{                //    hemos hecho la ventana mas ancha que alta
+     //Aumentamos xRight-xLeft
+     GLdouble anchoNew= RatioViewPort*(yTop-yBot);
+     GLdouble xCentro= (xRight+xLeft)/2.0; //=0;
+     GLdouble yCentro= (yTop+yBot)/2.0; //=0;
+     xRight= xCentro + anchoNew/2.0;
+     xLeft= xCentro - anchoNew/2.0;
+  }
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(xLeft,xRight, yBot,yTop);
@@ -144,12 +153,15 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
     // eliminar objetos creados
     if (listaV1!=NULL){
                  delete [] listaV1;
+                 listaV1=NULL;
     }
     if (listaV2!=NULL){
                  delete [] listaV2;
+                 listaV2=NULL;
     }
     if (listaV3!=NULL){
                   delete [] listaV3;
+                  listaV3=NULL;
     }
 }
 //---------------------------------------------------------------------------
@@ -320,7 +332,7 @@ void TGLForm2D::pintarSinBaldosas()
                                 float i = float(180 / float(n)) ;
                                  float j= float(320 / float(n));
                                  float k= float(360 / float(n));
-	  
+
                                  listaV1 = new listaVertices[2*n];
                                  listaV2 = new listaVertices[2*n];
                                  listaV3 = new listaVertices[2*n];
@@ -367,9 +379,18 @@ void TGLForm2D::pintarSinBaldosas()
 		                glEnd();
 
 			}
-                        delete [] listaV1;
-                        delete [] listaV2;
-                        delete [] listaV3;
+            if (listaV1!=NULL){
+                delete [] listaV1;
+                listaV1=NULL;
+            }
+            if (listaV2!=NULL){
+                delete [] listaV2;
+                listaV2=NULL;
+            }
+            if (listaV3!=NULL){
+                delete [] listaV3;
+                listaV3=NULL;
+            }                         
         }
         else{
 			for(int i=1;i<nTriangulos;i++){
@@ -421,10 +442,9 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
     if (mDesplazar){
  	    switch (Key){        //Izquierda
             case 37:{
-                GLfloat xRight_aux = xRight - (xRight-xLeft)*0.05;
-                GLfloat xLeft_aux = xLeft - (xRight-xLeft)*0.05;
-                xRight = xRight_aux;
-                xLeft = xLeft_aux;
+                xRight = xRight - (xRight-xLeft)*0.05;
+                xLeft = xLeft - (xRight-xLeft)*0.05;
+
                 break;
             }
         //Abajo
