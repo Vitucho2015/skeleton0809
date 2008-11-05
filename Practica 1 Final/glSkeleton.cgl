@@ -1,13 +1,100 @@
-Error 00091. 0x300010 (Thread 0x0ED0):
-Resource leak: The object array (0x13A8448) was never deleted
+Error 00088. 0x310000 (Thread 0x0FE4):
+Bad parameter: A bad object array (0xDABFF4) has been passed to the function.
+delete[](0x00DABFF4) 
 
-The object array (0x013A8448) [size: 16 bytes] was created with new[]
 Call Tree:
-   0x00405767(=glSkeleton.exe:0x01:004767) F:\IGR\Practica 1 Final\UFP.cpp#606
-   0x00403B9F(=glSkeleton.exe:0x01:002B9F) F:\IGR\Practica 1 Final\UFP.cpp#318
-   0x00402B84(=glSkeleton.exe:0x01:001B84) F:\IGR\Practica 1 Final\UFP.cpp#126
-   0x004054E9(=glSkeleton.exe:0x01:0044E9) F:\IGR\Practica 1 Final\UFP.cpp#568
-   0x4006203A(=VCL50.BPL:0x01:06103A)
-   0x40054117(=VCL50.BPL:0x01:053117)
+   0x004023DD(=glSkeleton.exe:0x01:0013DD) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#146
+   0x40053397(=VCL50.BPL:0x01:052397)
+   0x40053205(=VCL50.BPL:0x01:052205)
+   0x4003096D(=VCL50.BPL:0x01:02F96D)
+   0x3257D9D3(=CC3250MT.DLL:0x01:07C9D3)
+   0x3257DA22(=CC3250MT.DLL:0x01:07CA22)
 
 ------------------------------------------
+Error 00089. 0x310000 (Thread 0x0FE4):
+Bad parameter: A bad object array (0xDD0004) has been passed to the function.
+delete[](0x00DD0004) 
+
+Call Tree:
+   0x00402412(=glSkeleton.exe:0x01:001412) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#149
+   0x40053397(=VCL50.BPL:0x01:052397)
+   0x40053205(=VCL50.BPL:0x01:052205)
+   0x4003096D(=VCL50.BPL:0x01:02F96D)
+   0x3257D9D3(=CC3250MT.DLL:0x01:07C9D3)
+   0x3257DA22(=CC3250MT.DLL:0x01:07CA22)
+
+------------------------------------------
+Error 00090. 0x310000 (Thread 0x0FE4):
+Bad parameter: A bad object array (0xDF0008) has been passed to the function.
+delete[](0x00DF0008) 
+
+Call Tree:
+   0x00402447(=glSkeleton.exe:0x01:001447) F:\Documents and Settings\Administrador\Escritorio\igr pr1 final\Practica 1 Final\UFP.cpp#152
+   0x40053397(=VCL50.BPL:0x01:052397)
+   0x40053205(=VCL50.BPL:0x01:052205)
+   0x4003096D(=VCL50.BPL:0x01:02F96D)
+   0x3257D9D3(=CC3250MT.DLL:0x01:07C9D3)
+   0x3257DA22(=CC3250MT.DLL:0x01:07CA22)
+
+------------------------------------------
+Functions called:
+ delete (35 times)
+ pow (63 times)
+ SysReallocMem (45 times)
+ SysFreeMem (1041 times)
+ SysGetMem (1041 times)
+ realloc (1 times)
+ memcpy (1 times)
+ delete[] (197 times)
+ free (26 times)
+ new[] (203 times)
+ new (40 times)
+ calloc (5 times)
+ malloc (20 times)
+Resource types used:
+ object array (203 allocs, 16 max)
+ object (40 allocs, 28 max)
+ memory block (1067 allocs, 453 max)
+Modules used:
+ 00400000 11/05/2008 09:17:40 F:\Documents and
+ Settings\Administrador\Escritorio\igr pr1 final\Practica 1
+ Final\glSkeleton.exe
+ 010F0000 05/22/2001 00:00:00 F:\WINDOWS\system32\BORLNDMM.DLL
+ 0CD00000 01/31/2000 04:00:00 F:\Archivos de
+ programa\Borland\CBuilder5\Bin\CG32.DLL
+ 32500000 01/31/2000 04:00:00 F:\Archivos de
+ programa\Borland\CBuilder5\Bin\CC3250MT.DLL
+ 40000000 01/24/2000 04:01:00 F:\WINDOWS\system32\VCL50.BPL
+ 58C30000 04/14/2008 06:48:22 F:\WINDOWS\system32\comctl32.dll
+ 5B150000 05/11/2008 19:29:12 F:\WINDOWS\system32\uxtheme.dll
+ 5F120000 04/14/2008 06:48:34 F:\WINDOWS\system32\OPENGL32.dll
+ 5FEA0000 04/14/2008 06:48:22 F:\WINDOWS\system32\GLU32.DLL
+ 71A20000 04/14/2008 06:48:48 F:\WINDOWS\system32\WS2HELP.dll
+ 71A30000 04/14/2008 06:48:48 F:\WINDOWS\system32\WS2_32.dll
+ 71A50000 04/14/2008 06:48:48 F:\WINDOWS\system32\wsock32.dll
+ 71AA0000 04/14/2008 06:48:26 F:\WINDOWS\system32\mpr.dll
+ 72F80000 04/14/2008 06:49:20 F:\WINDOWS\system32\winspool.drv
+ 736E0000 04/14/2008 06:48:22 F:\WINDOWS\system32\DDRAW.dll
+ 73B40000 04/14/2008 06:48:22 F:\WINDOWS\system32\DCIMAN32.dll
+ 746B0000 04/14/2008 06:48:26 F:\WINDOWS\system32\MSCTF.dll
+ 75160000 04/14/2008 06:47:04 F:\WINDOWS\system32\msctfime.ime
+ 76340000 04/14/2008 06:48:24 F:\WINDOWS\system32\IMM32.DLL
+ 76360000 04/14/2008 06:48:22 F:\WINDOWS\system32\comdlg32.dll
+ 770F0000 04/14/2008 06:48:34 F:\WINDOWS\system32\oleaut32.dll
+ 773A0000 04/14/2008 06:46:16
+ F:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.
+2600.5512_x-ww_35d4ce83\comctl32.dll
+ 774B0000 04/14/2008 06:48:34 F:\WINDOWS\system32\ole32.dll
+ 77BD0000 04/14/2008 06:48:46 F:\WINDOWS\system32\version.dll
+ 77BE0000 04/14/2008 06:48:30 F:\WINDOWS\system32\msvcrt.dll
+ 77DA0000 04/14/2008 06:48:20 F:\WINDOWS\system32\advapi32.dll
+ 77E50000 04/14/2008 06:48:36 F:\WINDOWS\system32\RPCRT4.dll
+ 77EF0000 04/14/2008 06:48:22 F:\WINDOWS\system32\GDI32.dll
+ 77F40000 04/14/2008 06:48:38 F:\WINDOWS\system32\SHLWAPI.dll
+ 77FC0000 04/14/2008 06:48:36 F:\WINDOWS\system32\Secur32.dll
+ 7C800000 04/14/2008 06:48:26 F:\WINDOWS\system32\kernel32.dll
+ 7C910000 04/14/2008 06:48:00 F:\WINDOWS\system32\ntdll.dll
+ 7E1E0000 04/14/2008 06:48:34 F:\WINDOWS\system32\oledlg.dll
+ 7E390000 04/14/2008 06:48:46 F:\WINDOWS\system32\user32.dll
+ 7E6A0000 04/14/2008 06:48:38 F:\WINDOWS\system32\SHELL32.dll
+==========================================
