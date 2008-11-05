@@ -143,13 +143,13 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
     wglDeleteContext(hrc);
     // eliminar objetos creados
     if (listaV1!=NULL){
-    
+                 delete [] listaV1;
     }
     if (listaV2!=NULL){
-
+                 delete [] listaV2;
     }
     if (listaV3!=NULL){
-
+                  delete [] listaV3;
     }
 }
 //---------------------------------------------------------------------------
@@ -315,8 +315,37 @@ void TGLForm2D::pintarSinBaldosas()
 
         //Parte de anidar nTriangulos
         if (anidamientoTotal){
-			calculaMedios();
-			int n =  pow (2,(nTriangulos-1));
+			//calculaMedios();
+                                int n =  pow (2,(nTriangulos-1));
+                                float i = float(180 / float(n)) ;
+                                 float j= float(320 / float(n));
+                                 float k= float(360 / float(n));
+	  
+                                 listaV1 = new listaVertices[2*n];
+                                 listaV2 = new listaVertices[2*n];
+                                 listaV3 = new listaVertices[2*n];
+
+                                 listaV1[1].x=-180;
+                                listaV1[1].y=-160;
+
+                                listaV2[1].x=0;
+                                listaV2[1].y=160;
+
+                                 listaV3[1].x=180;
+                                 listaV3[1].y=-160;
+
+                                  for (int a = 2;a<=n;a++){
+	                                listaV1[a].x=(listaV1[a-1].x)+i;
+                                        listaV1[a].y=(listaV1[a-1].y)+j;
+
+                                        listaV2[a].x=(listaV2[a-1].x)+i;
+                                        listaV2[a].y=(listaV2[a-1].y)-j;
+
+                                        listaV3[a].x=(listaV3[a-1].x)-k;
+                                        listaV3[a].y=-160;
+                                }
+
+			//int n =  pow (2,(nTriangulos-1));
 
 			for (int a = 2;a<=n;a++){
 				glBegin(GL_LINE_LOOP);
@@ -331,12 +360,16 @@ void TGLForm2D::pintarSinBaldosas()
 					glVertex2i(listaV3[n-a+2].x,listaV3[n-a+2].y);
 				glEnd();
 
-		        glBegin(GL_LINE_LOOP);
-		            glColor3f(colorLinea1,colorLinea2,colorLinea3);
-		            glVertex2i(listaV3[a].x,listaV3[a].y);
-		            glVertex2i(listaV2[n-a+2].x,listaV2[n-a+2].y);
-		        glEnd();
+                                glBegin(GL_LINE_LOOP);
+		                        glColor3f(colorLinea1,colorLinea2,colorLinea3);
+		                        glVertex2i(listaV3[a].x,listaV3[a].y);
+		                        glVertex2i(listaV2[n-a+2].x,listaV2[n-a+2].y);
+		                glEnd();
+
 			}
+                        delete [] listaV1;
+                        delete [] listaV2;
+                        delete [] listaV3;
         }
         else{
 			for(int i=1;i<nTriangulos;i++){
@@ -616,7 +649,7 @@ void TGLForm2D::calculaMedios()
     listaV3[1].y=-160;
 
     for (int a = 2;a<=n;a++){
-		listaV1[a].x=(listaV1[a-1].x)+i;
+	listaV1[a].x=(listaV1[a-1].x)+i;
         listaV1[a].y=(listaV1[a-1].y)+j;
 
         listaV2[a].x=(listaV2[a-1].x)+i;
