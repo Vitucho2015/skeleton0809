@@ -76,18 +76,23 @@ void __fastcall TGLForm2D::FormResize(TObject *Sender)
 
   // se actualiza el volumen de vista
   // para que su radio coincida con ratioViewPort
-  GLfloat RatioVolVista=xRight/yTop;
+  GLfloat RatioVolVista=(xRight-xLeft)/(yTop-yBot);
 
-  if (RatioVolVista>=RatioViewPort){
+  if (RatioViewPort<=RatioVolVista){//hemos hecho la ventana mas alta que ancha
      //Aumentamos yTop-yBot
-     yTop= xRight/RatioViewPort;
-     yBot=-yTop;
+     GLdouble altoNew= (xRight-xLeft)/RatioViewPort;
+     GLdouble yCentro= (yTop+yBot)/2.0;
+     yTop= yCentro + altoNew/2.0;
+     yBot= yCentro - altoNew/2.0;
+
      }
-  else{
+  else{                //hemos hecho la ventana mas ancha que alta
      //Aumentamos xRight-xLeft
-     xRight=RatioViewPort*yTop;
-     xLeft=-xRight;
-     }
+     GLdouble anchoNew= RatioViewPort*(yTop-yBot);
+     GLdouble xCentro= (xRight+xLeft)/2.0;
+     xRight= xCentro + anchoNew/2.0;
+     xLeft= xCentro - anchoNew/2.0;
+  }
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -125,3 +130,117 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
+{
+//Dibujar poli_lineas    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Poligono1Click(TObject *Sender)
+{
+//Dibujar Poligonos    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Espiral1Click(TObject *Sender)
+{
+//Dibujar espiral    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Seleccionar1Click(TObject *Sender)
+{
+//Seleccionar poli_linea
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Borrar1Click(TObject *Sender)
+{
+// Borrar poli_linea    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Zoom1Click(TObject *Sender)
+{
+//Zoom progresivo    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Traslacion1Click(TObject *Sender)
+{
+//Trasladar el AVE
+    mDesplazar = true; 
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::K1Click(TObject *Sender)
+{
+//fractal Koch1    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Koch21Click(TObject *Sender)
+{
+// Fractal Koch2    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Dragon1Click(TObject *Sender)
+{
+//Fractal dragon    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Cortar1Click(TObject *Sender)
+{
+//Selecionar un area y borrar lo que haya dentro    
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+ if (mDesplazar){
+ 	    switch (Key){        //Izquierda
+            case 37:{
+            
+                GLfloat xRight_aux = xRight - (xRight-xLeft)*0.05;
+                GLfloat xLeft_aux = xLeft - (xRight-xLeft)*0.05;
+                xRight = xRight_aux;
+                xLeft = xLeft_aux;
+                break;
+            }
+        //Abajo
+   		    case 38:{
+                GLfloat yBot_aux = yBot - (yBot-yTop)*0.05;
+                GLfloat yTop_aux = yTop - (yBot-yTop)*0.05;
+                yBot = yBot_aux;
+                yTop = yTop_aux;
+                break;
+            }
+        //Derecha
+   		    case 39:{
+               GLfloat xRight_aux = xRight + (xRight-xLeft)*0.05;
+               GLfloat xLeft_aux = xLeft + (xRight-xLeft)*0.05;
+               xRight = xRight_aux;
+               xLeft = xLeft_aux;
+               break;
+            }
+        //Arriba
+   		    case 40:{
+                GLfloat yBot_aux = yBot + (yBot-yTop)*0.05;
+                GLfloat yTop_aux = yTop + (yBot-yTop)*0.05;
+                yBot = yBot_aux;
+                yTop = yTop_aux;
+                break;
+            }
+        }
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluOrtho2D(xLeft,xRight,yBot,yTop);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        GLScene();
+    }
+}
