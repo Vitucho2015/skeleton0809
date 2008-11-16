@@ -37,6 +37,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     RatioViewPort=1.0;
 
     // inicialización de las variables del programa
+
+    mDesplazar = false;
 }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm2D::SetPixelFormatDescriptor()
@@ -243,4 +245,21 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
         glLoadIdentity();
         GLScene();
     }
+}
+//--------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+// Detectar click
+}
+//---------------------------------------------------------------------------
+
+void TGLForm2D::procesarCoor(int X, int Y)
+{
+       //Transforma a coordenadas en la escena
+       GLfloat xAux = X*((xRight-xLeft)/ClientWidth) + xLeft;
+       GLfloat yAux = -Y*((yTop - yBot)/ClientHeight) + yTop;
+       //tPV* punto = new tPV(xAux,yAux);
+       //return punto; cambiar el tipo devuelto por tPV*
 }

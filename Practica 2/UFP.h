@@ -50,6 +50,8 @@ __published:	// IDE-managed Components
     void __fastcall Cortar1Click(TObject *Sender);
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift);
+    void __fastcall FormMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
 
 private:	// User declarations
  HDC hdc;
@@ -58,8 +60,12 @@ private:	// User declarations
  GLfloat xLeft,xRight,yTop,yBot;
  //guarda el radio del puerto de vista
  GLfloat RatioViewPort;
+
  //Variables
+
  bool mDesplazar; //indica si estamos en el modo Desplazar
+
+
 
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
@@ -67,6 +73,8 @@ private:	// User declarations
 
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
+
+   void procesarCoor(int X, int Y);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TGLForm2D *GLForm2D;

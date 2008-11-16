@@ -1,8 +1,8 @@
 Functions called:
  delete (35 times)
- SysReallocMem (40 times)
- SysFreeMem (596 times)
- SysGetMem (596 times)
+ SysReallocMem (23 times)
+ SysFreeMem (529 times)
+ SysGetMem (529 times)
  realloc (1 times)
  memcpy (1 times)
  delete[] (2 times)
@@ -14,10 +14,10 @@ Functions called:
 Resource types used:
  object array (14 allocs, 13 max)
  object (40 allocs, 28 max)
- memory block (622 allocs, 330 max)
+ memory block (555 allocs, 330 max)
 Modules used:
- 00400000 11/13/2008 21:11:14 F:\IGR\Practica 2\glSkeleton.exe
- 01610000 09/29/2006 09:03:22 C:\WINDOWS\system32\ATKOGL32.dll
+ 00400000 11/16/2008 19:01:14 F:\IGR\Practica 2\glSkeleton.exe
+ 01660000 09/29/2006 09:03:22 C:\WINDOWS\system32\ATKOGL32.dll
  0CD00000 01/31/2000 04:00:00 f:\CBuilder5\Bin\CG32.DLL
  32500000 01/31/2000 04:00:00 f:\CBuilder5\Bin\CC3250MT.DLL
  40000000 01/24/2000 04:01:00 C:\WINDOWS\system32\VCL50.BPL
@@ -34,6 +34,7 @@ Modules used:
  72F80000 04/14/2008 06:49:20 C:\WINDOWS\system32\winspool.drv
  736E0000 04/14/2008 06:48:22 C:\WINDOWS\system32\DDRAW.dll
  73B40000 04/14/2008 06:48:22 C:\WINDOWS\system32\DCIMAN32.dll
+ 746B0000 04/14/2008 06:48:26 C:\WINDOWS\system32\MSCTF.dll
  75160000 04/14/2008 06:47:04 C:\WINDOWS\system32\msctfime.ime
  76340000 04/14/2008 06:48:24 C:\WINDOWS\system32\IMM32.DLL
  76360000 04/14/2008 06:48:22 C:\WINDOWS\system32\comdlg32.dll
