@@ -4,6 +4,12 @@
 #pragma hdrstop
 USERES("glSkeleton.res");
 USEFORM("UFP.cpp", GLForm2D);
+USEUNIT("DibujoLineas.cpp");
+USEUNIT("Lapiz.cpp");
+USEUNIT("Linea.cpp");
+USEUNIT("Lista.cpp");
+USEUNIT("Nodo.cpp");
+USEUNIT("Punto.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

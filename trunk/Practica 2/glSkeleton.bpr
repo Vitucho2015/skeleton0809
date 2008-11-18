@@ -4,7 +4,8 @@
   <MACROS>
     <VERSION value="BCB.05.03"/>
     <PROJECT value="glSkeleton.exe"/>
-    <OBJFILES value="glSkeleton.obj UFP.obj"/>
+    <OBJFILES value="glSkeleton.obj UFP.obj DibujoLineas.obj Lapiz.obj Linea.obj Lista.obj 
+      Nodo.obj Punto.obj"/>
     <RESFILES value="glSkeleton.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
