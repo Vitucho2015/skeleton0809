@@ -11,6 +11,8 @@
 
 #include <gl\gl.h>
 #include <gl\glu.h>
+#include "UFZoom.h"
+#include "Escena.h"
 
 //---------------------------------------------------------------------------
 class TGLForm2D : public TForm
@@ -64,9 +66,10 @@ private:	// User declarations
  //Variables
 
  bool mDesplazar; //indica si estamos en el modo Desplazar
+ Escena* escena;
 
-
-
+ int zoom;
+ int iteraciones;
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();

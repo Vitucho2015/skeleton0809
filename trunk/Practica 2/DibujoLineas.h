@@ -15,23 +15,25 @@
                 DibujoLineas();
                 DibujoLineas(DibujoLineas* dL);
                 //Para crear espirales
-                DibujoLineas(Punto* p, int numIteraciones,int longIni,int incrLado,int incrAng);
+                DibujoLineas(PuntoV2F* p, int numIteraciones,int longIni,int incrLado,int incrAng);
                 //Para crear poligonos regulares
-                DibujoLineas(Punto* c,int nlados,int lado);
+                DibujoLineas(PuntoV2F* c,int nlados,int lado);
                 //Para crear arcos
-                DibujoLineas(Punto* centro,float angIni, float angArco, float radio, int nLados);
+                DibujoLineas(PuntoV2F* centro,float angIni, float angArco, float radio, int nLados);
                 ~DibujoLineas();
                 void insertaLinea(Linea* linea);
                 void draw();
-                bool recorte(Punto* puntoA, Punto* puntoB);
-                bool seleccionar(Punto* punto);
+                bool recorte(PuntoV2F* puntoA, PuntoV2F* puntoB);
+                bool seleccionar(PuntoV2F* punto);
                 bool getSeleccionado();
                 void setSeleccionado(bool selec);
-                bool estaPuntoDentro(Punto* punto);
+                bool estaPuntoV2FDentro(PuntoV2F* punto);
                 Lista<Linea>* getSegmentos();
-                void girarConCentro(Punto* centro, float ang);
-                void mover(Punto* desplazamiento);
-                void buscarInfIzqYSupDer(Punto*& sd,Punto*& ii);
+                void girarConCentro(PuntoV2F* centro, float ang);
+                void mover(PuntoV2F* desplazamiento);
+                void buscarInfIzqYSupDer(PuntoV2F*& sd,PuntoV2F*& ii);
+                bool vacia();
+                void dibujaCortado();
  };
 
 //---------------------------------------------------------------------------

@@ -8,14 +8,14 @@
 
  Lapiz::Lapiz()
  {
-        Punto* punto = new Punto();
+        PuntoV2F* punto = new PuntoV2F();
         posicion = punto;
         direccion = 0;
  }
 
 //-------------------------------------------------
 
- Lapiz::Lapiz(Punto* pos)
+ Lapiz::Lapiz(PuntoV2F* pos)
  {
         posicion = pos;
         direccion = 0;
@@ -23,7 +23,7 @@
 
 //-------------------------------------------------
 
- Lapiz::Lapiz(Punto* pos, float dir)
+ Lapiz::Lapiz(PuntoV2F* pos, float dir)
  {
         posicion = pos;
         direccion = dir;
@@ -41,14 +41,14 @@
 
 //-------------------------------------------------
 
- Punto* Lapiz::getPosicion()
+ PuntoV2F* Lapiz::getPosicion()
  {
         return posicion;
  }
 
 //-------------------------------------------------
 
- void Lapiz::lineTo(Punto* punto)
+ void Lapiz::lineTo(PuntoV2F* punto)
  {
         glBegin(GL_LINES);
                 glVertex2f(posicion->getX(),posicion->getY());
@@ -60,7 +60,7 @@
 
 //-------------------------------------------------
 
- void Lapiz::moveTo(Punto* punto)
+ void Lapiz::moveTo(PuntoV2F* punto)
  {
         delete posicion;
         posicion = punto;
@@ -98,7 +98,7 @@
         //Operamos en radiones
         float incrX = distancia * cos((direccion*3.141592)/180);
         float incrY = distancia * sin((direccion*3.141592)/180);
-        Punto* punto = new Punto(posicion->getX()+incrX,
+        PuntoV2F* punto = new PuntoV2F(posicion->getX()+incrX,
                 posicion->getY()+incrY);
 
         if (traza){
