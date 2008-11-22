@@ -14,7 +14,7 @@
 
 //-------------------------------------------------
 
- Linea::Linea(Punto* puntoOrigen, Punto* puntoDestino)
+ Linea::Linea(PuntoV2F* puntoOrigen, PuntoV2F* puntoDestino)
  {
         origen = puntoOrigen;
         destino = puntoDestino;
@@ -24,8 +24,8 @@
 
  Linea::Linea(Linea* linea)
  {
-        origen = new Punto(linea->origen);
-        destino = new Punto(linea->destino);
+        origen = new PuntoV2F(linea->origen);
+        destino = new PuntoV2F(linea->destino);
  }
 
 
@@ -47,7 +47,7 @@
 
 //-------------------------------------------------
 
- void Linea::setOrigen(Punto* punto)
+ void Linea::setOrigen(PuntoV2F* punto)
  {
         if (origen != NULL){
                 delete origen;
@@ -57,14 +57,14 @@
 
 //-------------------------------------------------
 
- Punto* Linea::getOrigen()
+ PuntoV2F* Linea::getOrigen()
  {
         return origen;
  }
 
 //-------------------------------------------------
 
- void Linea::setDestino(Punto* punto)
+ void Linea::setDestino(PuntoV2F* punto)
  {
         if (destino != NULL){
                 delete destino;
@@ -74,7 +74,7 @@
 
 //-------------------------------------------------
 
- Punto* Linea::getDestino()
+ PuntoV2F* Linea::getDestino()
  {
         return destino;
  }
@@ -83,8 +83,8 @@
 
  void Linea::draw()
  {
-        Punto* o = new Punto(origen);
-        Punto* d = new Punto(destino);
+        PuntoV2F* o = new PuntoV2F(origen);
+        PuntoV2F* d = new PuntoV2F(destino);
         Lapiz* lapiz = new Lapiz(o, 0);
         lapiz->lineTo(d);
         delete lapiz;
@@ -92,14 +92,14 @@
 
 //-------------------------------------------------
 
- bool Linea::recorte(Punto* ii, Punto* sd)
+ bool Linea::recorte(PuntoV2F* ii, PuntoV2F* sd)
  {
         return CS(origen,destino,ii,sd);
  }
 
 //-------------------------------------------------
 
- bool Linea::CS(Punto* p1, Punto* p2, Punto* ii, Punto* sd)
+ bool Linea::CS(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* ii, PuntoV2F* sd)
  {
         //Si se borra: devolver falso
         bool control;
@@ -117,8 +117,8 @@
                         control = false; //BORRAR
         //CASO RECURSIVO
                 }else{
-                        Punto* pFuera;
-                        Punto* pAux;
+                        PuntoV2F* pFuera;
+                        PuntoV2F* pAux;
                         GLbyte codFuera;
                         if(codP1!=0){//P1 está fuera de alguna frontera?
                                 pFuera = p1;
@@ -160,7 +160,7 @@
 
 //-------------------------------------------------
 
- bool Linea::estaPuntoVertices(Punto* punto)
+ bool Linea::estaPuntoV2FVertices(PuntoV2F* punto)
  {
         bool encontrado = false;
         if  ((punto->getX()+5>=origen->getX())&&(punto->getX()-5<=origen->getX())){
@@ -183,7 +183,7 @@
 
 //-------------------------------------------------
 
- bool Linea::estaPuntoIzq(Punto* punto)
+ bool Linea::estaPuntoV2FIzq(PuntoV2F* punto)
  {
         bool estaIzq = false;
         GLfloat Ox = getOrigen()->getX();
@@ -205,7 +205,7 @@
 
 //-------------------------------------------------
 
- void Linea::girar(Punto* centro, float ang)
+ void Linea::girar(PuntoV2F* centro, float ang)
  {
         origen->rotaP(centro,ang);
         destino->rotaP(centro,ang);
@@ -215,7 +215,7 @@
 
 //-------------------------------------------------
 
- GLbyte Linea::codigoCS(Punto* punto, Punto* ii, Punto* sd)
+ GLbyte Linea::codigoCS(PuntoV2F* punto, PuntoV2F* ii, PuntoV2F* sd)
  {
          GLbyte codP;
 
@@ -243,7 +243,7 @@
 
 //-------------------------------------------------
 
- void Linea::recortarDer(Punto*& p1, Punto* p2, Punto* sd)
+ void Linea::recortarDer(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd)
  //P1 fuera de la región derecha
  {
         float d = (p1->getX() - sd->getX())*((p1->getY()-p2->getY())/(p1->getX()-p2->getX()));
@@ -253,7 +253,7 @@
 
 //-------------------------------------------------
 
- void Linea::recortarIzq(Punto*& p1, Punto* p2, Punto* ii)
+ void Linea::recortarIzq(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii)
  //P1 fuera de la región izquierda
  {
         float d = (p1->getX() - ii->getX())*((p1->getY()-p2->getY())/(p1->getX()-p2->getX()));
@@ -263,7 +263,7 @@
 
 //-------------------------------------------------
 
- void Linea::recortarSup(Punto*& p1, Punto* p2, Punto* sd)
+ void Linea::recortarSup(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd)
  //P1 fuera de la región superior
  {
         float d = (p1->getY() - sd->getY())*((p1->getX()-p2->getX())/(p1->getY()-p2->getY()));
@@ -273,7 +273,7 @@
 
 //-------------------------------------------------
 
- void Linea::recortarInf(Punto*& p1, Punto* p2, Punto* ii)
+ void Linea::recortarInf(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii)
  //P1 fuera de la región inferior
  {
         float d = (p1->getY() - ii->getY())*((p1->getX()-p2->getX())/(p1->getY()-p2->getY()));
@@ -283,7 +283,7 @@
 
 //-------------------------------------------------
 
- void Linea::mover(Punto* desplazamiento)
+ void Linea::mover(PuntoV2F* desplazamiento)
  {
         origen->sumar(desplazamiento);
         destino->sumar(desplazamiento);
@@ -291,7 +291,7 @@
 
 //-------------------------------------------------
 
- void Linea::buscarInfIzqYSupDer(Punto*& a,Punto*& b)
+ void Linea::buscarInfIzqYSupDer(PuntoV2F*& a,PuntoV2F*& b)
  {
         //Comprobamos coordenadas del origen
         if(origen->getX()<a->getX()){
@@ -327,6 +327,15 @@
                 b->setY(origen->getY());
         }
  }
+
+void Linea::dibujaCortado()
+{
+   glColor3f(0,1,0);
+   glBegin(GL_LINES);
+      glVertex2f(origen->getX(),origen->getY());
+      glVertex2f(destino->getX(),destino->getY());
+   glEnd();
+}
 
 //---------------------------------------------------------------------------
 

@@ -2,12 +2,12 @@
 
  #include <vcl.h>
  #pragma hdrstop
- #include "Punto.h"
+ #include "PuntoV2F.h"
  #include<math.h>
 
 //---------------------------------------------------------------------------
 
- Punto::Punto()
+ PuntoV2F::PuntoV2F()
  {
         x = 0;
         y = 0;
@@ -16,7 +16,7 @@
  
 //-------------------------------------------------
 
- Punto::Punto(float coorX, float coorY)
+ PuntoV2F::PuntoV2F(float coorX, float coorY)
  {
         x = coorX;
         y = coorY;
@@ -24,49 +24,54 @@
 
 //-------------------------------------------------
 
- Punto::Punto(Punto*& p)
+ PuntoV2F::PuntoV2F(PuntoV2F*& p)
  {
         x = p->getX();
         y = p->getY();
  }
-
+//-------------------------------------------------
+ PuntoV2F::PuntoV2F(PuntoV2F* p1, PuntoV2F* p2)
+ {
+    x=(float)p2->getX()-(float)p1->getX();
+    y=(float)p2->getY()-(float)p1->getY();
+ }
 //-------------------------------------------------
 
- Punto::~Punto()
+ PuntoV2F::~PuntoV2F()
  {
  }
 
 //-------------------------------------------------
 
- float Punto::getX()
+ float PuntoV2F::getX()
  {
         return x;
  }
 
 //-------------------------------------------------
 
- void Punto::setX(float coorX)
+ void PuntoV2F::setX(float coorX)
  {
         x = coorX;
  }
 
 //-------------------------------------------------
 
- float Punto::getY()
+ float PuntoV2F::getY()
  {
         return y;
  }
 
 //-------------------------------------------------
 
- void Punto::setY(float coorY)
+ void PuntoV2F::setY(float coorY)
  {
         y = coorY;
  }
 
 //-------------------------------------------------
 
- void Punto::rotaP(Punto* centroRot, float ang)
+ void PuntoV2F::rotaP(PuntoV2F* centroRot, float ang)
  {
         float cx= centroRot->getX();
         float cy= centroRot->getY();
@@ -80,7 +85,7 @@
 
 //-------------------------------------------------
 
- void Punto::restar(Punto* pv)
+ void PuntoV2F::restar(PuntoV2F* pv)
  {
         x = x - pv->x;
         y = y - pv->y;
@@ -88,7 +93,7 @@
 
 //-------------------------------------------------
 
- void Punto::sumar(Punto* pv)
+ void PuntoV2F::sumar(PuntoV2F* pv)
  {
         x = x + pv->x;
         y = y + pv->y;
@@ -96,7 +101,7 @@
 
 //-------------------------------------------------
 
- void Punto::escalar(float valor)
+ void PuntoV2F::escalar(float valor)
  {
         x = x*valor;
         y = y*valor;
@@ -104,7 +109,7 @@
 
 //-------------------------------------------------
 
- void Punto::normalizar()
+ void PuntoV2F::normalizar()
  {
         x = x / sqrt((x*x)+(y*y));
         y = y / sqrt((x*x)+(y*y));
@@ -112,15 +117,27 @@
 
 //-------------------------------------------------
 
- float Punto::productoEscalar(Punto* v)
+ float PuntoV2F::productoEscalar(PuntoV2F* v)
  {
         float valor;
         valor = x*v->x + y*v->y;
         return valor;
  }
 
+//-------------------------------------------------
 
-
+ float PuntoV2F::longitud()
+ {
+        float valor;
+        valor = (sqrt(pow(x,2)+pow(y,2)));
+        return valor;
+ }
+//-------------------------------------------------
+void PuntoV2F::normalIzq(PuntoV2F *v)
+{
+    x=-v->getY();
+    y=v->getX();
+}
 //---------------------------------------------------------------------------
 
  #pragma package(smart_init)

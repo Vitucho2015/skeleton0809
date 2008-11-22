@@ -2,7 +2,7 @@
 
  #ifndef LineaH
  #define LineaH
- #include "Punto.h"
+ #include "PuntoV2F.h"
  #include <gl\gl.h>     //Librería OPENGL
  #include <gl\glu.h>
  #include "Lapiz.h"
@@ -10,35 +10,35 @@
  class Linea
  {
         private:
-                Punto* origen;             //Punto origen
-                Punto* destino;            //Punto destino
+                PuntoV2F* origen;             //PuntoV2F origen
+                PuntoV2F* destino;            //PuntoV2F destino
 
                 //Funciones de implementación interna del recorte
-                bool CS(Punto* p1, Punto* p2, Punto* ii, Punto* sd);
-                GLbyte codigoCS(Punto* punto, Punto* ii, Punto* sd);
-                void recortarDer(Punto*& p1, Punto* p2, Punto* sd);
-                void recortarIzq(Punto*& p1, Punto* p2, Punto* ii);
-                void recortarSup(Punto*& p1, Punto* p2, Punto* sd);
-                void recortarInf(Punto*& p1, Punto* p2, Punto* ii);
+                bool CS(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* ii, PuntoV2F* sd);
+                GLbyte codigoCS(PuntoV2F* punto, PuntoV2F* ii, PuntoV2F* sd);
+                void recortarDer(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd);
+                void recortarIzq(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii);
+                void recortarSup(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd);
+                void recortarInf(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii);
 
         public:
                 Linea();
                 Linea(Linea* linea);
                 Linea(ifstream& f);
-                Linea(Punto* puntoOrigen, Punto* puntoDestino);
+                Linea(PuntoV2F* puntoOrigen, PuntoV2F* puntoDestino);
                 ~Linea();
-                void setOrigen(Punto* punto);
-                Punto* getOrigen();
-                void setDestino(Punto* punto);
-                Punto* getDestino();
+                void setOrigen(PuntoV2F* punto);
+                PuntoV2F* getOrigen();
+                void setDestino(PuntoV2F* punto);
+                PuntoV2F* getDestino();
                 void draw();
-                bool recorte(Punto* puntoA, Punto* puntoB);
-                bool estaPuntoVertices(Punto* punto);
-                bool estaPuntoIzq(Punto* punto);
-                void girar(Punto* centro, float ang);
-                bool salvaTxt(ofstream& f);
-                void mover(Punto* desplazamiento);
-                void buscarInfIzqYSupDer(Punto*& sd,Punto*& ii);
+                bool recorte(PuntoV2F* puntoA, PuntoV2F* puntoB);
+                bool estaPuntoV2FVertices(PuntoV2F* punto);
+                bool estaPuntoV2FIzq(PuntoV2F* punto);
+                void girar(PuntoV2F* centro, float ang);
+                void mover(PuntoV2F* desplazamiento);
+                void buscarInfIzqYSupDer(PuntoV2F*& sd,PuntoV2F*& ii);
+                void dibujaCortado();
  };
 
 //---------------------------------------------------------------------------

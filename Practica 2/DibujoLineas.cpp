@@ -31,17 +31,17 @@
 
 //-------------------------------------------------
 
- DibujoLineas::DibujoLineas(Punto* p, int numIteraciones,int longIni,int incrLado,int incrAng)
+ DibujoLineas::DibujoLineas(PuntoV2F* p, int numIteraciones,int longIni,int incrLado,int incrAng)
  {
         segmentos = new Lista<Linea>;
-        Punto* pun = new Punto(p);
+        PuntoV2F* pun = new PuntoV2F(p);
         Lapiz* lapiz = new Lapiz(pun, 0);
         for(int i=1;i<=numIteraciones;i++){
-                Punto* z = lapiz->getPosicion();
-                Punto* a = new Punto(z);
+                PuntoV2F* z = lapiz->getPosicion();
+                PuntoV2F* a = new PuntoV2F(z);
                 lapiz->avanzar(longIni,false);
                 z = lapiz->getPosicion();
-                Punto* b = new Punto(z);
+                PuntoV2F* b = new PuntoV2F(z);
                 lapiz->turn(incrAng);
                 longIni+=incrLado;
                 Linea* linea = new Linea(a,b);
@@ -53,26 +53,26 @@
 
 //-------------------------------------------------
 
- DibujoLineas::DibujoLineas(Punto* centro,int nLados,int lado)
+ DibujoLineas::DibujoLineas(PuntoV2F* centro,int nLados,int lado)
  {
         segmentos = new Lista<Linea>;
         float alfa = 360/nLados;
         float radio = lado / sin((alfa*3.141592)/180);
 
-        Punto* origen = new Punto(centro->getX()+radio,centro->getY());
+        PuntoV2F* origen = new PuntoV2F(centro->getX()+radio,centro->getY());
         Lapiz* lapiz = new Lapiz(origen,0);
 
         for (int i=1;i<=nLados;i++){
-                Punto* z = lapiz->getPosicion();
-                Punto* a = new Punto(z);
+                PuntoV2F* z = lapiz->getPosicion();
+                PuntoV2F* a = new PuntoV2F(z);
                 //Calculamos el punto
-                Punto* punto = new Punto(
+                PuntoV2F* punto = new PuntoV2F(
                   centro->getX()+radio*cos((i*alfa*3.141592)/180),
                   centro->getY()+radio*sin((i*alfa*3.141592)/180));
                 //Trazamos linea hasta punto
                 lapiz->lineTo(punto);
                 z = lapiz->getPosicion();
-                Punto* b = new Punto(z);
+                PuntoV2F* b = new PuntoV2F(z);
                 Linea* linea = new Linea(a,b);
                 insertaLinea(linea);
         }
@@ -82,7 +82,7 @@
 
 //-------------------------------------------------
 
- DibujoLineas::DibujoLineas(Punto* centro,float angIni, float angArco, float radio, int nLados)
+ DibujoLineas::DibujoLineas(PuntoV2F* centro,float angIni, float angArco, float radio, int nLados)
  {
         segmentos = new Lista<Linea>;
         seleccionado = false;
@@ -94,10 +94,10 @@
         
         for (int i=1;i<=nLados;i++)
         {
-		Punto* a = new Punto(x,y);
+		PuntoV2F* a = new PuntoV2F(x,y);
                 x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.1416)/180));
                 y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.1416)/180));
-                Punto* b = new Punto(x,y);
+                PuntoV2F* b = new PuntoV2F(x,y);
                 Linea* linea = new Linea(a,b);
                 segmentos->inserta(linea);
         }
@@ -123,17 +123,18 @@
 
  void DibujoLineas::draw()
  {
-        segmentos->inicia();
-        for (int i=0;i<segmentos->getLongitud();i++){
-                Linea* linea = segmentos->getActual();
-                linea->draw();
-                segmentos->avanza();
-        }
+    Linea* linea;
+    segmentos->inicia();
+    for (int i=0;i<segmentos->getLongitud();i++){
+        linea = segmentos->getActual();
+        linea->draw();
+        segmentos->avanza();
+    }
  }
 
 //-------------------------------------------------
 
- bool DibujoLineas::recorte(Punto* puntoA, Punto* puntoB)
+ bool DibujoLineas::recorte(PuntoV2F* puntoA, PuntoV2F* puntoB)
  {
         bool borrado = true;
         segmentos->inicia();
@@ -155,7 +156,7 @@
 
 //-------------------------------------------------
 
- bool DibujoLineas::seleccionar(Punto* punto)
+ bool DibujoLineas::seleccionar(PuntoV2F* punto)
  {
         segmentos->inicia();
         int i = 0;
@@ -163,7 +164,7 @@
         seleccionado = false;
         while ((i<segmentos->getLongitud())&&(!encontrado)){
                 Linea* linea = segmentos->getActual();
-                if(linea->estaPuntoVertices(punto))
+                if(linea->estaPuntoV2FVertices(punto))
                 {
                         encontrado = true;
                         seleccionado = true;
@@ -191,14 +192,14 @@
 
 //-------------------------------------------------
 
- bool DibujoLineas::estaPuntoDentro(Punto* punto)
+ bool DibujoLineas::estaPuntoV2FDentro(PuntoV2F* punto)
  {
         segmentos->inicia();
         int i = 0;
         bool dentro = true;
         while ((i<segmentos->getLongitud())&&(dentro)){
                 Linea* linea = segmentos->getActual();
-                if(!linea->estaPuntoIzq(punto))
+                if(!linea->estaPuntoV2FIzq(punto))
                 {
                         dentro = false;
                 }
@@ -220,7 +221,7 @@
 
 //-------------------------------------------------
 
- void DibujoLineas::girarConCentro(Punto* centro,float ang)
+ void DibujoLineas::girarConCentro(PuntoV2F* centro,float ang)
  {
         Lista<Linea>* seg = getSegmentos();
         seg->inicia();
@@ -233,7 +234,7 @@
 
 //-------------------------------------------------
 
- void DibujoLineas::mover(Punto* desplazamiento)
+ void DibujoLineas::mover(PuntoV2F* desplazamiento)
  {
         segmentos->inicia();
         for (int i=0;i<segmentos->getLongitud();i++){
@@ -245,7 +246,7 @@
 
 //-------------------------------------------------
 
- void DibujoLineas::buscarInfIzqYSupDer(Punto*& sd,Punto*& ii)
+ void DibujoLineas::buscarInfIzqYSupDer(PuntoV2F*& sd,PuntoV2F*& ii)
  {
         Lista<Linea>* seg = getSegmentos();
         seg->inicia();
@@ -257,5 +258,27 @@
  }
 
 //---------------------------------------------------------------------------
+ bool DibujoLineas::vacia(){
+    if (segmentos==NULL){
+        return true;
+    }
+    else{
+        return segmentos->vacia();
+    }
+ }
 
+//---------------------------------------------------------------------------
+void DibujoLineas::dibujaCortado()
+{
+  Linea *l;
+  if(segmentos!=NULL && segmentos->getLongitud()>0){
+      segmentos->inicia();
+      for(int i=0;i<segmentos->getLongitud();i++){
+         l=segmentos->getActual();
+         l->dibujaCortado();
+         segmentos->avanza();  
+      }
+  }
+}
+//---------------------------------------------------------------------------
  #pragma package(smart_init)

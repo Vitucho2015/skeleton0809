@@ -27,8 +27,11 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     //inicialización del volumen de vista
-    xRight=200.0; xLeft=-xRight;
-    yTop=xRight; yBot=-yTop;
+    escena=new Escena();
+    xRight=escena->damexRight();
+    xLeft=escena->damexLeft();
+    yTop=escena->dameyTop();
+    yBot=escena->dameyBot();
     //Radio del volumen de vista == 1
 
     //inicialización del puerto de vista
@@ -39,6 +42,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     // inicialización de las variables del programa
 
     mDesplazar = false;
+    zoom = 0;
+    iteraciones = 0;
 }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm2D::SetPixelFormatDescriptor()
@@ -112,6 +117,12 @@ void __fastcall TGLForm2D::GLScene()
 glClear(GL_COLOR_BUFFER_BIT);
 
 // comandos para dibujar la escena
+    glBegin(GL_LINE_LOOP);
+        glColor3f(1.0,1.0,1.0);
+        glVertex2f(-180,-160);
+        glVertex2f(180,-160);
+        glVertex2f(0,160);
+    glEnd();
 
 glFlush();
 SwapBuffers(hdc);
@@ -129,6 +140,10 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(hrc);
     // eliminar objetos creados
+    if(escena != NULL){
+        delete escena;
+        escena = NULL;
+    }
 }
 //---------------------------------------------------------------------------
 
@@ -164,7 +179,37 @@ void __fastcall TGLForm2D::Borrar1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Zoom1Click(TObject *Sender)
 {
-//Zoom progresivo    
+//Zoom progresivo
+    if(FormZoom->pedirZoom(zoom,iteraciones)){
+        //Codigo del zoom progresivo
+        float der,izq,arriba,abajo;
+        der=xRight;
+        izq=xLeft;
+        arriba=yTop;
+        abajo=yBot;
+        GLdouble cx=(der+izq)/2.0;
+        GLdouble cy=(arriba+abajo)/2.0;
+        GLdouble incF=(((GLdouble)zoom/100)-1)/(GLdouble)iteraciones;
+        glMatrixMode(GL_PROJECTION);
+        for(GLint i=0;i<iteraciones;i++){
+            xRight= cx+0.5*(1/(i*incF+1))*(der-izq);
+            xLeft= cx+0.5*(1/(i*incF+1))*(izq-der);
+            yTop= cy+0.5*(1/(i*incF+1))*(arriba-abajo);
+            yBot= cy+0.5*(1/(i*incF+1))*(abajo-arriba);
+
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+            gluOrtho2D(xLeft,xRight,yBot,yTop);
+
+            escena->setXRight(xRight);
+            escena->setXLeft(xLeft);
+            escena->setYTop(yTop);
+            escena->setYBot(yBot);
+
+            GLScene();
+            Sleep(100);
+        }
+    }
 }
 //---------------------------------------------------------------------------
 
