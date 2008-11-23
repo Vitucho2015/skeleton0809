@@ -3,7 +3,7 @@ object FormZoom: TFormZoom
   Top = 141
   Width = 404
   Height = 237
-  Caption = 'Zoom'
+  Caption = 'Datos Zoom'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

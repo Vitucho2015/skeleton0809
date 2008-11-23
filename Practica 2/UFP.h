@@ -12,9 +12,11 @@
 #include <gl\gl.h>
 #include <gl\glu.h>
 #include "UFZoom.h"
+#include "UFEspiral.h"
 #include "Escena.h"
 
 //---------------------------------------------------------------------------
+typedef enum {linea,poligono,espiral,trasladar,seleccion,cortar,nada} tEstado;
 class TGLForm2D : public TForm
 {
 __published:	// IDE-managed Components
@@ -64,12 +66,22 @@ private:	// User declarations
  GLfloat RatioViewPort;
 
  //Variables
-
- bool mDesplazar; //indica si estamos en el modo Desplazar
  Escena* escena;
 
- int zoom;
- int iteraciones;
+ tEstado estado;
+ int zoom; //Valor del zoom en el zoom progresivo
+ int iteraciones; //Numero de iteraciones para el zoom progresivo
+ DibujoLineas* selecto; // Para seleccionar y borrar
+ Lista<PuntoV2F> *listaPuntos; // Para ir creando las poli Lineas
+ int num_iter; //Numero de iteraciones para la espiral
+ float lado_ini; //Lado inicial para la espiral
+ float incr_lado; //Incremento del lado para la espiral
+ int giro; //Angulo de giro para la espiral
+
+ PuntoV2F* origen;
+ PuntoV2F* destino;
+ PuntoV2F *puntoAnt;
+
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();
@@ -77,7 +89,6 @@ private:	// User declarations
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 
-   void procesarCoor(int X, int Y);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TGLForm2D *GLForm2D;
