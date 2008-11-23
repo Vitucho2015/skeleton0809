@@ -3,7 +3,8 @@
  #ifndef PuntoV2FH
  #define PuntoV2FH
  #include <math.h>      //Librería funciones matemáticas
- #include <fstream>     //Ficheros
+ #include <gl\gl.h>
+ #include <gl\glu.h>
  using namespace std;
 
  class PuntoV2F
@@ -33,6 +34,7 @@
                 float longitud();
                 float productoEscalar(PuntoV2F* v);
                 void normalIzq(PuntoV2F *v);
+                void dibuja();
  };
 
 //---------------------------------------------------------------------------

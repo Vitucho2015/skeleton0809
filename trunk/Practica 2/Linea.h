@@ -24,7 +24,6 @@
         public:
                 Linea();
                 Linea(Linea* linea);
-                Linea(ifstream& f);
                 Linea(PuntoV2F* puntoOrigen, PuntoV2F* puntoDestino);
                 ~Linea();
                 void setOrigen(PuntoV2F* punto);

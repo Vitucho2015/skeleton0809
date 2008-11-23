@@ -139,5 +139,13 @@ void PuntoV2F::normalIzq(PuntoV2F *v)
     y=v->getX();
 }
 //---------------------------------------------------------------------------
+void PuntoV2F::dibuja(){
+    glPointSize(3);
+    glColor3f(1,0,1);
+    glBegin(GL_POINTS);
+        glVertex2f(x,y);
+    glEnd();
+}
+//---------------------------------------------------------------------------
 
  #pragma package(smart_init)

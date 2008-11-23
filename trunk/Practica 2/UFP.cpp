@@ -23,7 +23,7 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     	ShowMessage(":-)~ hrc == NULL");
     if(wglMakeCurrent(hdc, hrc) == false)
     	ShowMessage("Could not MakeCurrent");
-    //Cor de fondo de la ventana
+    //Color de fondo de la ventana
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     //inicialización del volumen de vista
@@ -41,9 +41,19 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
 
     // inicialización de las variables del programa
 
-    mDesplazar = false;
+    estado = nada;
     zoom = 0;
     iteraciones = 0;
+    listaPuntos = NULL;
+
+    num_iter=0;
+    lado_ini=0.0;
+    incr_lado=0.0;
+    giro=0;
+
+    origen = NULL;
+    destino = NULL;
+    puntoAnt = NULL;
 }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm2D::SetPixelFormatDescriptor()
@@ -117,14 +127,18 @@ void __fastcall TGLForm2D::GLScene()
 glClear(GL_COLOR_BUFFER_BIT);
 
 // comandos para dibujar la escena
-    glBegin(GL_LINE_LOOP);
-        glColor3f(1.0,1.0,1.0);
-        glVertex2f(-180,-160);
-        glVertex2f(180,-160);
-        glVertex2f(0,160);
-    glEnd();
-
 glFlush();
+    if(escena != NULL){
+        escena->dibuja();
+    }
+    if(listaPuntos != NULL){
+        listaPuntos->inicia();
+        for(int i=0;i<listaPuntos->getLongitud();i++){
+            PuntoV2F* aux=listaPuntos->getActual();
+            aux->dibuja();
+            listaPuntos->avanza();
+        }
+    }
 SwapBuffers(hdc);
 }
 
@@ -144,12 +158,32 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
         delete escena;
         escena = NULL;
     }
+    if(puntoAnt != NULL){
+        delete puntoAnt;
+        puntoAnt = NULL;
+    }
+    if(origen != NULL){
+        delete origen;
+        origen = NULL;
+    }
+    if(destino != NULL){
+        delete destino;
+        destino = NULL;
+    }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
 {
-//Dibujar poli_lineas    
+//Dibujar poli_lineas
+    if(estado == linea){
+        if(puntoAnt != NULL){
+            delete puntoAnt;
+            puntoAnt = NULL;
+            escena->insertaPoliLinea();
+        }
+    }
+    estado=linea;
 }
 //---------------------------------------------------------------------------
 
@@ -161,7 +195,12 @@ void __fastcall TGLForm2D::Poligono1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Espiral1Click(TObject *Sender)
 {
-//Dibujar espiral    
+//Dibujar espiral
+    if (FormEspiral->pedirEspiral(num_iter,lado_ini,incr_lado,giro)){
+        ShowMessage("Selecciona el centro");
+        estado = espiral;
+        //Falta el codigo de crear la espiral
+    }
 }
 //---------------------------------------------------------------------------
 
@@ -181,7 +220,6 @@ void __fastcall TGLForm2D::Zoom1Click(TObject *Sender)
 {
 //Zoom progresivo
     if(FormZoom->pedirZoom(zoom,iteraciones)){
-        //Codigo del zoom progresivo
         float der,izq,arriba,abajo;
         der=xRight;
         izq=xLeft;
@@ -216,7 +254,7 @@ void __fastcall TGLForm2D::Zoom1Click(TObject *Sender)
 void __fastcall TGLForm2D::Traslacion1Click(TObject *Sender)
 {
 //Trasladar el AVE
-    mDesplazar = true; 
+    estado = trasladar; 
 }
 //---------------------------------------------------------------------------
 
@@ -247,7 +285,7 @@ void __fastcall TGLForm2D::Cortar1Click(TObject *Sender)
 void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
- if (mDesplazar){
+ if (estado == trasladar){
  	    switch (Key){        //Izquierda
             case 37:{
             
@@ -297,14 +335,31 @@ void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
 // Detectar click
+    GLfloat xAux = -X*((xLeft-xRight)/(GLfloat)ClientWidth)+xLeft;
+    GLfloat yAux = -Y*((yTop-yBot)/(GLfloat)ClientHeight)+yTop;
+
+    if(estado == linea){
+        PuntoV2F *posInicial=new PuntoV2F(xAux,yAux);
+        if(listaPuntos != NULL){
+            delete listaPuntos;
+            listaPuntos=NULL;
+        }
+        if(puntoAnt == NULL){
+            puntoAnt =posInicial;
+        }
+        else{
+          escena->lineas(puntoAnt,posInicial);
+          delete puntoAnt;
+          puntoAnt = posInicial;
+        }
+    }
+    if(estado == poligono){
+
+    }
+    if(estado == espiral){
+
+    }
+
 }
 //---------------------------------------------------------------------------
 
-void TGLForm2D::procesarCoor(int X, int Y)
-{
-       //Transforma a coordenadas en la escena
-       GLfloat xAux = X*((xRight-xLeft)/ClientWidth) + xLeft;
-       GLfloat yAux = -Y*((yTop - yBot)/ClientHeight) + yTop;
-       //tPV* punto = new tPV(xAux,yAux);
-       //return punto; cambiar el tipo devuelto por tPV*
-}
