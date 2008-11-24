@@ -3,7 +3,7 @@
  #include <vcl.h>
  #pragma hdrstop
  #include "Linea.h"
-
+ //#include "DibujoLineas.h"
 //---------------------------------------------------------------------------
 
  Linea::Linea()
@@ -289,7 +289,33 @@
         destino->sumar(desplazamiento);
  }
 
-//-------------------------------------------------
+
+
+ void Linea::fractalizaK1(DibujoLineas*  nuevaLista){
+
+          int i = 2;
+ }
+
+
+
+
+float Linea::calculoAngulo(PuntoV2F A, PuntoV2F B)   {
+
+      float hipo = sqrt(pow(B.getX()-A.getX(),2) + pow(B.getY()-A.getY(),2));
+
+      float altura = B.getY()-A.getY();
+
+      float angulo = cosh(altura/hipo);
+
+      if ( (B.getY()>=A.getY()) && (B.getX()>=A.getX()) ) return angulo;
+      else if ((B.getY()<A.getY()) && (B.getX()>=A.getX())) return -angulo;
+      else if ((B.getY()<A.getY()) && (B.getX()<A.getX())) return angulo+180;
+      else if ((B.getY()>=A.getY()) && (B.getX()<A.getX())) return 180-angulo;
+ }
+
+
+
+ //-------------------------------------------------
 
  void Linea::buscarInfIzqYSupDer(PuntoV2F*& a,PuntoV2F*& b)
  {

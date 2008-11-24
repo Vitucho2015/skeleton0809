@@ -210,6 +210,24 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
         GLScene();
  }
 
+
+
+ //---------------------------------------------------------------------------
+
+ float TGLForm2D::calculoAngulo(PuntoV2F A, PuntoV2F B)   {
+
+      float hipo = sqrt(pow(B.getX()-A.getX(),2) + pow(B.getY()-A.getY(),2));
+
+      float altura = B.getY()-A.getY();
+
+      float angulo = cosh(altura/hipo);
+
+      if ( (B.getY()>=A.getY()) && (B.getX()>=A.getX()) ) return angulo;
+      else if ((B.getY()<A.getY()) && (B.getX()>=A.getX())) return -angulo;
+      else if ((B.getY()<A.getY()) && (B.getX()<A.getX())) return angulo+180;
+      else if ((B.getY()>=A.getY()) && (B.getX()<A.getX())) return 180-angulo;
+ }
+
  //---------------------------------------------------------------------------
 
  void TGLForm2D::modoLinea(int X, int Y)
@@ -369,11 +387,44 @@ void __fastcall TGLForm2D::Traslacion1Click(TObject *Sender)
 //Trasladar el AVE
     estado = trasladar; 
 }
+
+
+//---------------------------------------------------------------------------
+
+void  TGLForm2D::fractalizarK1(DibujoLineas* dibujselec){
+
+         DibujoLineas*  nuevaLista= new DibujoLineas();
+
+         if(dibujselec != NULL){
+                dibujselec->getSegmentos()->inicia();
+                for(int i=0;i<dibujselec->getSegmentos()->getLongitud();i++){
+                        Linea* Laux=dibujselec->getSegmentos()->getActual();
+                        Laux->fractalizaK1(nuevaLista);
+                        dibujselec->getSegmentos()->avanza();
+        }
+    }
+
+
+
+}
+
+
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::K1Click(TObject *Sender)
 {
-//fractal Koch1    
+       // if (seleccionado) {
+        //           selecto
+
+
+
+
+
+       // }
+
+
+
+//fractal Koch1
 }
 //---------------------------------------------------------------------------
 

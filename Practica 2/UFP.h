@@ -98,7 +98,9 @@ private:	// User declarations
  void modoLinea(int X, int Y) ;
  void modoPoligono(int X, int Y)   ;
  void modoEspiral(int X, int Y)   ;
+ void  fractalizarK1(DibujoLineas* dibujselec) ;
  void desactivarModos();
+ float calculoAngulo(PuntoV2F X, PuntoV2F Y)  ;
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 

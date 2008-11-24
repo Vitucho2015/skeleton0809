@@ -56,8 +56,8 @@
  DibujoLineas::DibujoLineas(PuntoV2F* centro,int nLados,int lado)
  {
         segmentos = new Lista<Linea>;
-        float alfa = 360/nLados;
-        float radio = lado / sin((alfa*3.141592)/180);
+        float alfa = 360.0/(float)nLados;
+        float radio = (float)lado / sin((alfa*3.141592)/180.0);
 
         PuntoV2F* origen = new PuntoV2F(centro->getX()+radio,centro->getY());
         Lapiz* lapiz = new Lapiz(origen,0);

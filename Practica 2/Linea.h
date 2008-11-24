@@ -2,11 +2,17 @@
 
  #ifndef LineaH
  #define LineaH
- #include "PuntoV2F.h"
+  #include "PuntoV2F.h"
+ #include "DibujoLineas.h"
+ #include "Lapiz.h"
+  #include "Lista.h"
+    #include "Linea.h"
+    #include "Linea.h"
  #include <gl\gl.h>     //Librería OPENGL
  #include <gl\glu.h>
- #include "Lapiz.h"
 
+   //
+   //#include "DibujoLineas.cpp"
  class Linea
  {
         private:
@@ -38,6 +44,10 @@
                 void mover(PuntoV2F* desplazamiento);
                 void buscarInfIzqYSupDer(PuntoV2F*& sd,PuntoV2F*& ii);
                 void dibujaCortado();
+                void fractalizaK1(DibujoLineas *  nuevaLista);
+
+                float calculoAngulo(PuntoV2F A, PuntoV2F B)  ;
+                //void fractalizaK1(DibujoLineas* d);
  };
 
 //---------------------------------------------------------------------------

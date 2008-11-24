@@ -75,7 +75,7 @@ ProductVersion=1.0.0.0
 Comments=
 
 [Excluded Packages]
-C:\WINDOWS\system32\ibsmp50.bpl=Borland C++ InterBase Alerter Component
+C:\Windows\system32\ibsmp50.bpl=Borland C++ InterBase Alerter Component
 $(BCB)\Bin\dclsmpedit50.bpl=Borland Editor Script Enhancements
 
 [HistoryLists\hlIncludePath]
