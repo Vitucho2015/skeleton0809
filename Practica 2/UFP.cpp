@@ -52,6 +52,9 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     incr_lado=0;
     giro=0;
 
+    numLados=0;
+    longLados=0;
+
     origen = NULL;
     destino = NULL;
     puntoAnt = NULL;
@@ -199,10 +202,10 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
         //Transforma a coordenadas en la escena
         puntoAnt = devCoordenada(X,Y);
 
-        //Creamos el calidoscopio
-        DibujoLineas*polig = new DibujoLineas(puntoAnt,5,10);
+        //Creamos el poligono
+        DibujoLineas*polig = new DibujoLineas(puntoAnt,numLados,longLados);
 
-        //Añadimos a la lista de calidoscopios
+        //Añadimos el poligono
         escena->inserta(polig);
         GLScene();
  }
@@ -296,9 +299,11 @@ void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Poligono1Click(TObject *Sender)
 {
-        estado=poligono;
-
 //Dibujar Poligonos
+    if (FormPoligono->pedirPoligono(numLados,longLados)){
+        ShowMessage("Selecciona el centro");
+        estado = poligono;
+    }  
 }
 //---------------------------------------------------------------------------
 
@@ -308,7 +313,6 @@ void __fastcall TGLForm2D::Espiral1Click(TObject *Sender)
     if (FormEspiral->pedirEspiral(num_iter,lado_ini,incr_lado,giro)){
         ShowMessage("Selecciona el centro");
         estado = espiral;
-             //Falta el codigo de crear la espiral
     }
 }
 //---------------------------------------------------------------------------

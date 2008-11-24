@@ -13,6 +13,7 @@
 #include <gl\glu.h>
 #include "UFZoom.h"
 #include "UFEspiral.h"
+#include "UFPoligono.h"
 #include "Escena.h"
 
 //---------------------------------------------------------------------------
@@ -79,6 +80,8 @@ private:	// User declarations
  int lado_ini; //Lado inicial para la espiral
  int incr_lado; //Incremento del lado para la espiral
  int giro; //Angulo de giro para la espiral
+ int numLados; // Numero de lados para el poligono
+ int longLados; //Longitud del lado para el poligono
 
  bool esOrigen;
  DibujoLineas* poliLinea;
