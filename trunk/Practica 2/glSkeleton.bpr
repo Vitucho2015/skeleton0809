@@ -5,12 +5,12 @@
     <VERSION value="BCB.05.03"/>
     <PROJECT value="glSkeleton.exe"/>
     <OBJFILES value="glSkeleton.obj UFP.obj DibujoLineas.obj Lapiz.obj Linea.obj Lista.obj 
-      Nodo.obj PuntoV2F.obj Escena.obj UFZoom.obj UFEspiral.obj"/>
+      Nodo.obj PuntoV2F.obj Escena.obj UFZoom.obj UFEspiral.obj UFPoligono.obj"/>
     <RESFILES value="glSkeleton.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) UFP.dfm UFZoom.dfm UFEspiral.dfm"/>
+    <RESDEPEN value="$(RESFILES) UFP.dfm UFZoom.dfm UFEspiral.dfm UFPoligono.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value=""/>
     <SPARELIBS value="VCL50.lib"/>
