@@ -28,6 +28,7 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
 
     //inicialización del volumen de vista
     escena=new Escena();
+    esOrigen=false;
     xRight=escena->damexRight();
     xLeft=escena->damexLeft();
     yTop=escena->dameyTop();
@@ -47,8 +48,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     listaPuntos = NULL;
 
     num_iter=0;
-    lado_ini=0.0;
-    incr_lado=0.0;
+    lado_ini=0;
+    incr_lado=0;
     giro=0;
 
     origen = NULL;
@@ -147,6 +148,106 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
 {
   GLScene();
 }
+
+//---------------------------------------------------------------------------
+
+ PuntoV2F* TGLForm2D::devCoordenada(int X, int Y)
+ {
+        //Transforma a coordenadas en la escena
+        GLfloat xAux = X*((xRight-xLeft)/ClientWidth) + xLeft;
+        GLfloat yAux = -Y*((yTop - yBot)/ClientHeight) + yTop;
+        PuntoV2F* punto = new PuntoV2F(xAux,yAux);
+        return punto;
+ }
+
+
+ void TGLForm2D::desactivarModos(){
+
+        estado=nada;
+
+
+
+ }
+   //---------------------------------------------------------------------------
+
+ void TGLForm2D::modoEspiral(int X, int Y)  {
+        if (puntoAnt!=NULL)
+        {
+                delete puntoAnt;
+        }
+
+        //Transforma a coordenadas en la escena
+        puntoAnt = devCoordenada(X,Y);
+
+        //Creamos la espiral
+        DibujoLineas* espiral = new DibujoLineas(puntoAnt,num_iter,lado_ini,incr_lado,giro);
+
+        //Añadimos a la lista
+        escena->inserta(espiral);
+        GLScene();
+ }
+  //---------------------------------------------------------------------------
+
+ void TGLForm2D::modoPoligono(int X, int Y)  {
+
+
+        if (puntoAnt!=NULL)
+        {
+                delete puntoAnt;
+        }
+
+        //Transforma a coordenadas en la escena
+        puntoAnt = devCoordenada(X,Y);
+
+        //Creamos el calidoscopio
+        DibujoLineas*polig = new DibujoLineas(puntoAnt,5,10);
+
+        //Añadimos a la lista de calidoscopios
+        escena->inserta(polig);
+        GLScene();
+ }
+
+ //---------------------------------------------------------------------------
+
+ void TGLForm2D::modoLinea(int X, int Y)
+ {
+              if (!esOrigen){ //Primer punto de la linea
+
+                if (puntoAnt!=NULL)
+                {
+                        delete puntoAnt;
+                }
+
+                //Transforma a coordenadas en la escena
+                puntoAnt = devCoordenada(X,Y);
+                esOrigen = true;
+
+        }else{ //No es primer punto de la linea/
+
+                PuntoV2F*or = new PuntoV2F(puntoAnt);
+                delete puntoAnt;
+
+                //Transforma a coordenadas en la escena
+
+                PuntoV2F*dest = devCoordenada(X,Y);
+                //destino = new PuntoV2F(dest);
+                puntoAnt = new PuntoV2F(dest);
+                Linea* linea = new Linea(or,dest);
+
+                //Creamos una polilinea si no está creada
+                if (!PLCreada){
+                        poliLinea = new DibujoLineas();
+                        PLCreada = true;
+                        escena->inserta(poliLinea);
+                }
+
+                //Añadimos la linea
+                poliLinea->insertaLinea(linea);
+                GLScene();
+        }
+
+
+ }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
 {
@@ -175,7 +276,13 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
 
 void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
 {
-//Dibujar poli_lineas
+
+      estado=linea;
+      esOrigen=false;
+
+
+
+/*//Dibujar poli_lineas
     if(estado == linea){
         if(puntoAnt != NULL){
             delete puntoAnt;
@@ -183,13 +290,15 @@ void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
             escena->insertaPoliLinea();
         }
     }
-    estado=linea;
+    estado=linea; */
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::Poligono1Click(TObject *Sender)
 {
-//Dibujar Poligonos    
+        estado=poligono;
+
+//Dibujar Poligonos
 }
 //---------------------------------------------------------------------------
 
@@ -199,7 +308,7 @@ void __fastcall TGLForm2D::Espiral1Click(TObject *Sender)
     if (FormEspiral->pedirEspiral(num_iter,lado_ini,incr_lado,giro)){
         ShowMessage("Selecciona el centro");
         estado = espiral;
-        //Falta el codigo de crear la espiral
+             //Falta el codigo de crear la espiral
     }
 }
 //---------------------------------------------------------------------------
@@ -334,32 +443,18 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
 void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-// Detectar click
-    GLfloat xAux = -X*((xLeft-xRight)/(GLfloat)ClientWidth)+xLeft;
-    GLfloat yAux = -Y*((yTop-yBot)/(GLfloat)ClientHeight)+yTop;
 
-    if(estado == linea){
-        PuntoV2F *posInicial=new PuntoV2F(xAux,yAux);
-        if(listaPuntos != NULL){
-            delete listaPuntos;
-            listaPuntos=NULL;
-        }
-        if(puntoAnt == NULL){
-            puntoAnt =posInicial;
-        }
-        else{
-          escena->lineas(puntoAnt,posInicial);
-          delete puntoAnt;
-          puntoAnt = posInicial;
-        }
-    }
     if(estado == poligono){
-
+           modoPoligono(X,Y);
+    }
+    if(estado == linea){
+           modoLinea(X,Y);
     }
     if(estado == espiral){
-
+           modoEspiral(X,Y);
     }
 
 }
 //---------------------------------------------------------------------------
+
 

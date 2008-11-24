@@ -1,6 +1,6 @@
 object GLForm2D: TGLForm2D
-  Left = 214
-  Top = 112
+  Left = 70
+  Top = 661
   Width = 408
   Height = 434
   Caption = 'Formulario Principal'
