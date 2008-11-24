@@ -42,6 +42,7 @@ __published:	// IDE-managed Components
   void __fastcall FormPaint(TObject *Sender);
   void __fastcall FormDestroy(TObject *Sender);
     void __fastcall Lineas1Click(TObject *Sender);
+
     void __fastcall Poligono1Click(TObject *Sender);
     void __fastcall Espiral1Click(TObject *Sender);
     void __fastcall Seleccionar1Click(TObject *Sender);
@@ -56,6 +57,7 @@ __published:	// IDE-managed Components
       TShiftState Shift);
     void __fastcall FormMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
+
 
 private:	// User declarations
  HDC hdc;
@@ -74,9 +76,13 @@ private:	// User declarations
  DibujoLineas* selecto; // Para seleccionar y borrar
  Lista<PuntoV2F> *listaPuntos; // Para ir creando las poli Lineas
  int num_iter; //Numero de iteraciones para la espiral
- float lado_ini; //Lado inicial para la espiral
- float incr_lado; //Incremento del lado para la espiral
+ int lado_ini; //Lado inicial para la espiral
+ int incr_lado; //Incremento del lado para la espiral
  int giro; //Angulo de giro para la espiral
+
+ bool esOrigen;
+ DibujoLineas* poliLinea;
+ bool PLCreada;
 
  PuntoV2F* origen;
  PuntoV2F* destino;
@@ -85,7 +91,11 @@ private:	// User declarations
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();
-
+ PuntoV2F* devCoordenada(int x, int y);
+ void modoLinea(int X, int Y) ;
+ void modoPoligono(int X, int Y)   ;
+ void modoEspiral(int X, int Y)   ;
+ void desactivarModos();
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 

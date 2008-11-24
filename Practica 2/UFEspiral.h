@@ -21,12 +21,17 @@ __published:	// IDE-managed Components
     TEdit *Edit4;
     TButton *ButtonAceptar;
     TButton *ButtonCancelar;
+
     void __fastcall ButtonCancelarClick(TObject *Sender);
     void __fastcall ButtonAceptarClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
+        int num_iter;
+    int lado_ini;
+    int incr_lado;
+    int giro;
     __fastcall TFormEspiral(TComponent* Owner);
-    bool pedirEspiral(int& num_iter,float& lado_ini,float& incr_lado,int& giro);
+    bool pedirEspiral(int& num_iter,int& lado_ini,int& incr_lado,int& giro);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TFormEspiral *FormEspiral;

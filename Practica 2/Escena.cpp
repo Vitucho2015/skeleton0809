@@ -62,8 +62,10 @@ void Escena::poliEspiral(PuntoV2F *posInicial,float incrAng,float angInicial,flo
 void Escena::dibuja()
 {
   DibujoLineas *aux;
+
   if(dibujos!=NULL && dibujos->getLongitud()>0){
       dibujos->inicia();
+
       for(int i=0;i<dibujos->getLongitud();i++){
             aux=dibujos->getActual();
             aux->draw();
