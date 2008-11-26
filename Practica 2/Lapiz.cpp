@@ -23,7 +23,7 @@
 
 //-------------------------------------------------
 
- Lapiz::Lapiz(PuntoV2F* pos, float dir)
+ Lapiz::Lapiz(PuntoV2F* pos, double dir)
  {
         posicion = pos;
         direccion = dir;
@@ -68,7 +68,7 @@
 
 //-------------------------------------------------
 
- void Lapiz::moveToRel(float incrX, float incrY)
+ void Lapiz::moveToRel(double incrX, double incrY)
  {
         posicion->setX(posicion->getX()+incrX);
         posicion->setY(posicion->getY()+incrY);
@@ -76,7 +76,7 @@
 
 //-------------------------------------------------
 
- void Lapiz::turn(float dir)
+ void Lapiz::turn(double dir)
  {
         direccion = direccion + dir;
         while (direccion>=360){
@@ -86,18 +86,18 @@
 
 //-------------------------------------------------
 
- void Lapiz::turnTo(float dir)
+ void Lapiz::turnTo(double dir)
  {
         direccion = dir;
  }
 
 //-------------------------------------------------
 
- void Lapiz::avanzar(float distancia, bool traza)
+ void Lapiz::avanzar(double distancia, bool traza)
  {
         //Operamos en radiones
-        float incrX = distancia * cos((direccion*3.141592)/180);
-        float incrY = distancia * sin((direccion*3.141592)/180);
+        double incrX = distancia * cos((direccion*3.1415926535)/180.0);
+        double incrY = distancia * sin((direccion*3.1415926535)/180.0);
         PuntoV2F* punto = new PuntoV2F(posicion->getX()+incrX,
                 posicion->getY()+incrY);
 

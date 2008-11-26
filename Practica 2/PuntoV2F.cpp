@@ -16,7 +16,7 @@
  
 //-------------------------------------------------
 
- PuntoV2F::PuntoV2F(float coorX, float coorY)
+ PuntoV2F::PuntoV2F(double coorX, double coorY)
  {
         x = coorX;
         y = coorY;
@@ -32,8 +32,8 @@
 //-------------------------------------------------
  PuntoV2F::PuntoV2F(PuntoV2F* p1, PuntoV2F* p2)
  {
-    x=(float)p2->getX()-(float)p1->getX();
-    y=(float)p2->getY()-(float)p1->getY();
+    x=(double)p2->getX()-(double)p1->getX();
+    y=(double)p2->getY()-(double)p1->getY();
  }
 //-------------------------------------------------
 
@@ -43,42 +43,42 @@
 
 //-------------------------------------------------
 
- float PuntoV2F::getX()
+ double PuntoV2F::getX()
  {
         return x;
  }
 
 //-------------------------------------------------
 
- void PuntoV2F::setX(float coorX)
+ void PuntoV2F::setX(double coorX)
  {
         x = coorX;
  }
 
 //-------------------------------------------------
 
- float PuntoV2F::getY()
+ double PuntoV2F::getY()
  {
         return y;
  }
 
 //-------------------------------------------------
 
- void PuntoV2F::setY(float coorY)
+ void PuntoV2F::setY(double coorY)
  {
         y = coorY;
  }
 
 //-------------------------------------------------
 
- void PuntoV2F::rotaP(PuntoV2F* centroRot, float ang)
+ void PuntoV2F::rotaP(PuntoV2F* centroRot, double ang)
  {
-        float cx= centroRot->getX();
-        float cy= centroRot->getY();
-        float dx=(1.0-cos(ang))*cx + sin(ang)*cy;
-        float dy=-sin(ang)*cx + (1.0-cos(ang))*cy;
-        float x1= x*cos(ang)-y*sin(ang)+dx;
-        float y1= x*sin(ang)+y*cos(ang)+dy;
+        double cx= centroRot->getX();
+        double cy= centroRot->getY();
+        double dx=(1.0-cos(ang))*cx + sin(ang)*cy;
+        double dy=-sin(ang)*cx + (1.0-cos(ang))*cy;
+        double x1= x*cos(ang)-y*sin(ang)+dx;
+        double y1= x*sin(ang)+y*cos(ang)+dy;
         x=x1;
         y=y1;
  }
@@ -101,7 +101,7 @@
 
 //-------------------------------------------------
 
- void PuntoV2F::escalar(float valor)
+ void PuntoV2F::escalar(double valor)
  {
         x = x*valor;
         y = y*valor;
@@ -117,18 +117,18 @@
 
 //-------------------------------------------------
 
- float PuntoV2F::productoEscalar(PuntoV2F* v)
+ double PuntoV2F::productoEscalar(PuntoV2F* v)
  {
-        float valor;
+        double valor;
         valor = x*v->x + y*v->y;
         return valor;
  }
 
 //-------------------------------------------------
 
- float PuntoV2F::longitud()
+ double PuntoV2F::longitud()
  {
-        float valor;
+        double valor;
         valor = (sqrt(pow(x,2)+pow(y,2)));
         return valor;
  }

@@ -34,14 +34,14 @@
                 bool recorte(PuntoV2F* puntoA, PuntoV2F* puntoB);
                 bool estaPuntoV2FVertices(PuntoV2F* punto);
                 bool estaPuntoV2FIzq(PuntoV2F* punto);
-                void girar(PuntoV2F* centro, float ang);
+                void girar(PuntoV2F* centro, double ang);
                 void mover(PuntoV2F* desplazamiento);
                 void dibujaCortado();
                 void fractalizaK1(void *&nuevaLista);
                 void fractalizaK2(void *&nuevaLista);
                 void fractalizaDRAGON(void *&nuevaLista);
-                float calculoLongitud();
-                float calculoAngulo(PuntoV2F *A, PuntoV2F* B);
+                double calculoLongitud();
+                double calculoAngulo(PuntoV2F *A, PuntoV2F* B);
  };
 
 //---------------------------------------------------------------------------

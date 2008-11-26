@@ -12,24 +12,24 @@ class Escena{
     private:
         Lista<DibujoLineas>* dibujos; //guarda los dibujos de la escena
         DibujoLineas* cortado;
-        float xRight,xLeft,yTop,yBot;
-        float wLeft,wRight,wBot,wTop;
+        double xRight,xLeft,yTop,yBot;
+        double wLeft,wRight,wBot,wTop;
 
     public:
         Escena();
         ~Escena();
-        void poliEspiral(PuntoV2F *posInicial,float incrAng,float angInicial,float incrLong,float longInicial,int nPasos);
+        void poliEspiral(PuntoV2F *posInicial,double incrAng,double angInicial,double incrLong,double longInicial,int nPasos);
         void dibuja();
-        float damexRight(){return xRight;};
-        float damexLeft(){return xLeft;};
-        float dameyTop(){return yTop;};
-        float dameyBot(){return yBot;};
-        void setXRight(float a){xRight=a;};
-        void setXLeft(float a){xLeft=a;};
-        void setYTop(float a){yTop=a;};
-        void setYBot(float a){yBot=a;};
+        double damexRight(){return xRight;};
+        double damexLeft(){return xLeft;};
+        double dameyTop(){return yTop;};
+        double dameyBot(){return yBot;};
+        void setXRight(double a){xRight=a;};
+        void setXLeft(double a){xLeft=a;};
+        void setYTop(double a){yTop=a;};
+        void setYBot(double a){yBot=a;};
         void inserta(DibujoLineas *dibujo);
-        void seleccion(float x,float y);
+        void seleccion(double x,double y);
         void borraDibujo(DibujoLineas *d);
         void enMarca(PuntoV2F* p,PuntoV2F* l);
         bool vacio(){return dibujos->vacia();};

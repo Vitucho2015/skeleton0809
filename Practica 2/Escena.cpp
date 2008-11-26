@@ -39,7 +39,7 @@ return dibujos;
 
 //---------------------------------------------------------------------------
 
-void Escena::poliEspiral(PuntoV2F *posInicial,float incrAng,float angInicial,float incrLong,float longInicial,int nPasos)
+void Escena::poliEspiral(PuntoV2F *posInicial,double incrAng,double angInicial,double incrLong,double longInicial,int nPasos)
 {
   Lapiz *l=new Lapiz(posInicial,angInicial);
   DibujoLineas *nuevoDibujo= new DibujoLineas();
@@ -90,9 +90,8 @@ void Escena::inserta(DibujoLineas *dibujo)
 
 //---------------------------------------------------------------------------
 
-void Escena::seleccion(float x,float y)
+void Escena::seleccion(double x,double y)
 {
-  DibujoLineas *selecto=NULL;
   bool encontrado=false;
   dibujos->inicia();
   DibujoLineas *actual;
@@ -104,14 +103,12 @@ void Escena::seleccion(float x,float y)
         encontrado=actual->seleccionar(punto);
         if(encontrado) {
             actual->setSeleccionado(true);
-            selecto=actual;
         }
      }
      dibujos->avanza();
   }
   delete punto;
   punto = NULL;
-  //return selecto;
 }
 
 //---------------------------------------------------------------------------

@@ -54,8 +54,8 @@
  DibujoLineas::DibujoLineas(PuntoV2F* centro,int nLados,int lado)
  {
         segmentos = new Lista<Linea>;
-        float alfa = 360.0/(float)nLados;
-        float radio = (float)lado / sin((alfa*3.1415926535)/180.0);
+        double alfa = 360.0/(double)nLados;
+        double radio = (double)lado / (double)sin((alfa*3.1415926535)/180.0);
 
         PuntoV2F* origen = new PuntoV2F(centro->getX()+radio,centro->getY());
         Lapiz* lapiz = new Lapiz(origen,0);
@@ -65,14 +65,14 @@
                 PuntoV2F* a = new PuntoV2F(z);
                 //Calculamos el punto
                 PuntoV2F* punto = new PuntoV2F(
-                  centro->getX()+radio*cos((i*alfa*3.1415926535)/180),
-                  centro->getY()+radio*sin((i*alfa*3.1415926535)/180));
+                  centro->getX()+radio*cos((i*alfa*3.1415926535)/180.0),
+                  centro->getY()+radio*sin((i*alfa*3.1415926535)/180.0));
                 //Trazamos linea hasta punto
                 lapiz->lineTo(punto);
                 z = lapiz->getPosicion();
                 PuntoV2F* b = new PuntoV2F(z);
                 Linea* linea = new Linea(a,b);
-                insertaLinea(linea);
+                insertaLinea(linea); 
         }
         delete lapiz;
         seleccionado = false;
@@ -106,12 +106,12 @@
             glPointSize(5);
             glColor3f(1,0,0);
             glBegin(GL_POINTS);
-                glVertex2f((GLfloat)linea->getOrigen()->getX(),(GLfloat)linea->getOrigen()->getY());
-                glVertex2f((GLfloat)linea->getDestino()->getX(),(GLfloat)linea->getDestino()->getY());
+                glVertex2f((GLdouble)linea->getOrigen()->getX(),(GLdouble)linea->getOrigen()->getY());
+                glVertex2f((GLdouble)linea->getDestino()->getX(),(GLdouble)linea->getDestino()->getY());
             glEnd();
             glColor3f(1,1,1);
         }
-        linea->draw();
+        linea->draw();        
         segmentos->avanza();
     }
  }
@@ -138,7 +138,7 @@
  }
 //---------------------------------------------------------------------------
 
- void DibujoLineas::recorte(float wLeft,float wRight,float wTop,float wBot)
+ void DibujoLineas::recorte(double wLeft,double wRight,double wTop,double wBot)
  {
    segmentos->inicia();
    int j=segmentos->getLongitud();
@@ -219,7 +219,7 @@
 
 //---------------------------------------------------------------------------
 
- void DibujoLineas::girarConCentro(PuntoV2F* centro,float ang)
+ void DibujoLineas::girarConCentro(PuntoV2F* centro,double ang)
  {
         Lista<Linea>* seg = getSegmentos();
         seg->inicia();
@@ -265,8 +265,8 @@ void DibujoLineas::dibujaCortado()
          glPointSize(5);
          glColor3f(1,0,0);
          glBegin(GL_POINTS);
-            glVertex2f((GLfloat)linea->getOrigen()->getX(),(GLfloat)linea->getOrigen()->getY());
-            glVertex2f((GLfloat)linea->getDestino()->getX(),(GLfloat)linea->getDestino()->getY());
+            glVertex2f((GLdouble)linea->getOrigen()->getX(),(GLdouble)linea->getOrigen()->getY());
+            glVertex2f((GLdouble)linea->getDestino()->getX(),(GLdouble)linea->getDestino()->getY());
          glEnd();
          glColor3f(1,1,1);
          linea->dibujaCortado();

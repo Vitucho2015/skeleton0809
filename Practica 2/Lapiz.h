@@ -11,20 +11,20 @@
  {
         private:
                 PuntoV2F* posicion;     //PuntoV2F donde se encuentra el lapiz
-                float direccion;        //Dirección (ángulo en grados): 0º a 359º
+                double direccion;        //Dirección (ángulo en grados): 0º a 359º
         public:
                 Lapiz();    //Constructores
                 Lapiz(PuntoV2F* pos);
-                Lapiz(PuntoV2F* pos, float dir);
+                Lapiz(PuntoV2F* pos, double dir);
                 ~Lapiz();   //Destructor
                 //Accesores y mutadores
                 PuntoV2F* getPosicion();
                 void lineTo(PuntoV2F* punto);
                 void moveTo(PuntoV2F* punto);
-                void moveToRel(float incrX, float incrY);
-                void turn(float dir);
-                void turnTo(float dir);
-                void avanzar(float distancia, bool traza);
+                void moveToRel(double incrX, double incrY);
+                void turn(double dir);
+                void turnTo(double dir);
+                void avanzar(double distancia, bool traza);
  };
 
 //---------------------------------------------------------------------------
