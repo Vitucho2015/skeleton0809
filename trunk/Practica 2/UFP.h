@@ -58,6 +58,10 @@ __published:	// IDE-managed Components
       TShiftState Shift);
     void __fastcall FormMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
+    void __fastcall FormMouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y);
+    void __fastcall FormMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
 
 
 private:	// User declarations
@@ -75,7 +79,6 @@ private:	// User declarations
  int zoom; //Valor del zoom en el zoom progresivo
  int iteraciones; //Numero de iteraciones para el zoom progresivo
  DibujoLineas* selecto; // Para seleccionar y borrar
- Lista<PuntoV2F> *listaPuntos; // Para ir creando las poli Lineas
  int num_iter; //Numero de iteraciones para la espiral
  int lado_ini; //Lado inicial para la espiral
  int incr_lado; //Incremento del lado para la espiral
@@ -84,23 +87,26 @@ private:	// User declarations
  int longLados; //Longitud del lado para el poligono
 
  bool esOrigen;
- DibujoLineas* poliLinea;
+ DibujoLineas* poliLinea;//para pintar poli Lineas
  bool PLCreada;
 
  PuntoV2F* origen;
  PuntoV2F* destino;
- PuntoV2F *puntoAnt;
+ PuntoV2F* puntoAnt;
 
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();
  PuntoV2F* devCoordenada(int x, int y);
  void modoLinea(int X, int Y) ;
- void modoPoligono(int X, int Y)   ;
- void modoEspiral(int X, int Y)   ;
- void  fractalizarK1(DibujoLineas* dibujselec) ;
+ void modoPoligono(int X, int Y);
+ void modoEspiral(int X, int Y);
+ void modoSeleccion(int X, int Y);
+ void fractalizarK1(DibujoLineas* &dibujselec);
+ void fractalizarK2(DibujoLineas* &dibujselec);
+ void fractalizarDRAGON(DibujoLineas* &dibujselec);
  void desactivarModos();
- float calculoAngulo(PuntoV2F X, PuntoV2F Y)  ;
+ float calculoAngulo(PuntoV2F X, PuntoV2F Y);
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 
