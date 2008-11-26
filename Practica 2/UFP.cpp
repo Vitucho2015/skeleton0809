@@ -184,7 +184,8 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
     }
     //Transforma a coordenadas en la escena
     puntoAnt = devCoordenada(X,Y);
-    selecto = escena->seleccion(puntoAnt->getX(),puntoAnt->getY());
+    //selecto = escena->seleccion(puntoAnt->getX(),puntoAnt->getY());
+    escena->seleccion(puntoAnt->getX(),puntoAnt->getY());
     GLScene();
  }
 
@@ -314,6 +315,7 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
 void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
 {
 //Dibujar poli_lineas
+        desactivarModos();
     estado=linea;
     esOrigen=false;
     PLCreada=false;
@@ -353,13 +355,37 @@ void __fastcall TGLForm2D::Seleccionar1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Borrar1Click(TObject *Sender)
 {
-// Borrar poli_linea
-    if(selecto != NULL){
-        escena->borraDibujo(selecto);
-        selecto = NULL;
-    }
-    GLScene();
+
+    {
+
+
+       bool encontrado = false;
+        DibujoLineas* djaux= new DibujoLineas();
+
+        escena->getDibujos()->inicia();
+
+        while (!encontrado&&(escena->getDibujos()->getActual()!=NULL))
+        {
+
+             if (escena->getDibujos()->getActual()->getSeleccionado()){
+                        encontrado=true;
+
+
+                        escena->getDibujos()->eliminaActual();
+
+                }
+             escena->getDibujos()->avanza();
+         }
+         if (!encontrado)ShowMessage("Seleccione algo!");
+
+        GLScene();
+
 }
+
+
+
+
+}   
 
 //---------------------------------------------------------------------------
 
@@ -410,59 +436,86 @@ void __fastcall TGLForm2D::Traslacion1Click(TObject *Sender)
 void __fastcall TGLForm2D::K1Click(TObject *Sender)
 {
 //fractal Koch1
-    if(selecto != NULL){
-        //DibujoLineas * ddd=escena->damePrueba();
-        //fractalizarK1(ddd);
-        fractalizarK1(selecto);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glFlush();
-        //ddd->draw();
-        selecto->draw();
-        SwapBuffers(hdc);
-    }
-    else{
-        ShowMessage("Seleccione algo!");
-    }
+
+       bool encontrado = false;
+        DibujoLineas* djaux= new DibujoLineas();
+
+        escena->getDibujos()->inicia();
+
+        while (!encontrado&&(escena->getDibujos()->getActual()!=NULL))
+        {
+
+             if (escena->getDibujos()->getActual()->getSeleccionado()){
+                        encontrado=true;
+                        djaux = new DibujoLineas(escena->getDibujos()->getActual());
+                        fractalizarK1(djaux);
+                        escena->getDibujos()->eliminaActual();
+                        escena->getDibujos()->inserta(djaux);
+                }
+             escena->getDibujos()->avanza();
+         }
+         if (!encontrado)ShowMessage("Seleccione algo!");
+
+        GLScene();
+
 }
 
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::Koch21Click(TObject *Sender)
 {
-// Fractal Koch2
-    if(selecto != NULL){
-        //DibujoLineas * ddd=escena->damePrueba();
-        //fractalizarK1(ddd);
-        fractalizarK2(selecto);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glFlush();
-        //ddd->draw();
-        selecto->draw();
-        SwapBuffers(hdc);
-    }
-    else{
-        ShowMessage("Seleccione algo!");
-    }
+//fractal Koch1
+
+       bool encontrado = false;
+        DibujoLineas* djaux= new DibujoLineas();
+
+        escena->getDibujos()->inicia();
+
+        while (!encontrado&&(escena->getDibujos()->getActual()!=NULL))
+        {
+
+             if (escena->getDibujos()->getActual()->getSeleccionado()){
+                        encontrado=true;
+                        djaux = new DibujoLineas(escena->getDibujos()->getActual());
+                        fractalizarK2(djaux);
+                        escena->getDibujos()->eliminaActual();
+                        escena->getDibujos()->inserta(djaux);
+                }
+             escena->getDibujos()->avanza();
+         }
+         if (!encontrado)ShowMessage("Seleccione algo!");
+
+        GLScene();
+
 }
 
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::Dragon1Click(TObject *Sender)
 {
-//Fractal dragon
-    if(selecto != NULL){
-        //DibujoLineas * ddd=escena->damePrueba();
-        //fractalizarK1(ddd);
-        fractalizarDRAGON(selecto);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glFlush();
-        //ddd->draw();
-        selecto->draw();
-        SwapBuffers(hdc);
-    }
-    else{
-        ShowMessage("Seleccione algo!");
-    }
+//fractal Koch1
+
+       bool encontrado = false;
+        DibujoLineas* djaux= new DibujoLineas();
+
+        escena->getDibujos()->inicia();
+
+        while (!encontrado&&(escena->getDibujos()->getActual()!=NULL))
+        {
+
+             if (escena->getDibujos()->getActual()->getSeleccionado()){
+                        encontrado=true;
+                        djaux = new DibujoLineas(escena->getDibujos()->getActual());
+                        fractalizarDRAGON(djaux);
+                        escena->getDibujos()->eliminaActual();
+                        escena->getDibujos()->inserta(djaux);
+                }
+             escena->getDibujos()->avanza();
+         }
+         if (!encontrado)ShowMessage("Seleccione algo!");
+
+        GLScene();
+
 }
 
 //---------------------------------------------------------------------------
@@ -470,7 +523,9 @@ void __fastcall TGLForm2D::Dragon1Click(TObject *Sender)
 void __fastcall TGLForm2D::Cortar1Click(TObject *Sender)
 {
 //Selecionar un area y borrar lo que haya dentro
-    estado = cortar;   
+    desactivarModos();
+    estado = cortar;
+    esOrigen=false;
 }
 
 //---------------------------------------------------------------------------
@@ -545,7 +600,7 @@ void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
         if(origen != NULL){
             delete origen;
         }
-        origen = devCoordenada(X,Y);
+        origenCorte = devCoordenada(X,Y);
     }
     if(estado != seleccion){
         if(selecto != NULL){
@@ -560,13 +615,14 @@ void __fastcall TGLForm2D::FormMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     if(Shift.Contains(ssLeft)){
-        if(estado == cortar && origen != NULL){
-             if (destino != NULL){
-                delete destino;
+        if(estado == cortar && origenCorte!=NULL){
+             if (destinoCorte != NULL){
+                delete destinoCorte;
              }
              //Transforma a coordenadas en la escena
-            destino = devCoordenada(X,Y);
-            escena->enMarca(origen,destino);
+            destinoCorte = devCoordenada(X,Y);
+            escena->enMarca(origenCorte,destinoCorte);
+
             GLScene();
         }
     }
@@ -576,16 +632,45 @@ void __fastcall TGLForm2D::FormMouseMove(TObject *Sender,
 void __fastcall TGLForm2D::FormMouseUp(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
+
+    bool noVacio = true;
     if(estado == cortar){
         estado = nada;
-        if(!escena->hayCortado()){
-            escena->enMarca(origen,destino);
-        }
-        escena->recorte();
-        if (escena->vacio()){
-            ShowMessage("La escena se ha vaciado completamente");
-        }
-        escena->borraCortado();
+
+        if ((origenCorte->getX()<destinoCorte->getX())&&(origenCorte->getY()<destinoCorte->getY()))
+                {
+                        noVacio = escena->recorte(origenCorte,destinoCorte);
+                }
+
+                if ((origenCorte->getX()>destinoCorte->getX())&&(origenCorte->getY()>destinoCorte->getY()))
+                {
+                        noVacio = escena->recorte(destinoCorte,origenCorte);
+                }
+
+                if ((origenCorte->getX()>destinoCorte->getX())&&(origenCorte->getY()<destinoCorte->getY()))
+                {
+                        float y1 = origenCorte->getY();
+                        float y2 = destinoCorte->getY();
+                        destinoCorte->setY(y1);
+                        origenCorte->setY(y2);
+                        noVacio = escena->recorte(destinoCorte,origenCorte);
+                }
+
+                if ((origenCorte->getX()<destinoCorte->getX())&&(origenCorte->getY()>destinoCorte->getY()))
+                {
+                        float y1 = origenCorte->getY();
+                        float y2 = destinoCorte->getY();
+                        destinoCorte->setY(y1);
+                        origenCorte->setY(y2);
+                        noVacio = escena->recorte(origenCorte,destinoCorte);
+                }
+
+                if(!noVacio)
+                {
+                        ShowMessage("La escena se ha vaciado por completo");
+                }
+         esOrigen=false;
+        glFlush();
         GLScene();
     }
 }

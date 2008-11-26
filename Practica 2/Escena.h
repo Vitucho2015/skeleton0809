@@ -29,13 +29,14 @@ class Escena{
         void setYTop(float a){yTop=a;};
         void setYBot(float a){yBot=a;};
         void inserta(DibujoLineas *dibujo);
-        DibujoLineas* seleccion(float x,float y);
+        void seleccion(float x,float y);
         void borraDibujo(DibujoLineas *d);
         void enMarca(PuntoV2F* p,PuntoV2F* l);
         bool vacio(){return dibujos->vacia();};
         void borraCortado();
-        void recorte();
+        bool recorte(PuntoV2F *a,PuntoV2F *b);
         bool hayCortado(){return cortado!=NULL;};
+        Lista<DibujoLineas>* getDibujos();
         //Borrarlo ya que solo sirver para probar los fractales
         DibujoLineas* damePrueba();
 };

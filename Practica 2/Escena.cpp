@@ -31,6 +31,12 @@ Escena::~Escena()
     } 
 }
 
+
+Lista<DibujoLineas>* Escena::getDibujos(){
+return dibujos;
+}
+
+
 //---------------------------------------------------------------------------
 
 void Escena::poliEspiral(PuntoV2F *posInicial,float incrAng,float angInicial,float incrLong,float longInicial,int nPasos)
@@ -84,7 +90,7 @@ void Escena::inserta(DibujoLineas *dibujo)
 
 //---------------------------------------------------------------------------
 
-DibujoLineas* Escena::seleccion(float x,float y)
+void Escena::seleccion(float x,float y)
 {
   DibujoLineas *selecto=NULL;
   bool encontrado=false;
@@ -105,7 +111,7 @@ DibujoLineas* Escena::seleccion(float x,float y)
   }
   delete punto;
   punto = NULL;
-  return selecto;
+  //return selecto;
 }
 
 //---------------------------------------------------------------------------
@@ -167,17 +173,25 @@ void Escena::borraCortado()
 
 //---------------------------------------------------------------------------
 
-void Escena::recorte()
+bool Escena::recorte(PuntoV2F *orig,PuntoV2F *dest)
 {
+        bool borrado = true;
   dibujos->inicia();
   for(int i=0;i<dibujos->getLongitud();i++){
      DibujoLineas* d=dibujos->getActual();
-     d->recorte(wLeft,wRight,wTop,wBot);
-     if(d->vacia()){
+     if (!d->recorte(orig,dest))
+
         dibujos->eliminaActual();
-     }
+     else
      dibujos->avanza();
   }
+
+  if ((dibujos->getLongitud()==0)){
+                borrado = false;
+        }
+
+
+  return borrado;
 }
 
 //---------------------------------------------------------------------------

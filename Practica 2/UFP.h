@@ -91,7 +91,9 @@ private:	// User declarations
  bool PLCreada;
 
  PuntoV2F* origen;
+ PuntoV2F* origenCorte;
  PuntoV2F* destino;
+ PuntoV2F* destinoCorte;
  PuntoV2F* puntoAnt;
 
  // métodos privados
