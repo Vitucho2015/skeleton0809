@@ -63,6 +63,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
 
     origen = NULL;
     destino = NULL;
+    origenCorte = NULL;
+    destinoCorte = NULL;
     puntoAnt = NULL;
 }
 
@@ -101,13 +103,13 @@ void __fastcall TGLForm2D::FormResize(TObject *Sender)
      ClientHeight=400;
      RatioViewPort=1.0;
      }
-  else RatioViewPort= (float)ClientWidth/(float)ClientHeight;
+  else RatioViewPort= (double)ClientWidth/(double)ClientHeight;
 
   glViewport(0,0,ClientWidth,ClientHeight);
 
   // se actualiza el volumen de vista
   // para que su radio coincida con ratioViewPort
-  GLfloat RatioVolVista=(xRight-xLeft)/(yTop-yBot);
+  GLdouble RatioVolVista=(xRight-xLeft)/(yTop-yBot);
 
   if (RatioViewPort<=RatioVolVista){//hemos hecho la ventana mas alta que ancha
      //Aumentamos yTop-yBot
@@ -144,7 +146,7 @@ glClear(GL_COLOR_BUFFER_BIT);
 
 // comandos para dibujar la escena
 glFlush();
-
+   glLineWidth(2.0);
     if(escena != NULL){
         escena->dibuja();
     }
@@ -164,8 +166,8 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
  PuntoV2F* TGLForm2D::devCoordenada(int X, int Y)
  {
         //Transforma a coordenadas en la escena
-        GLfloat xAux = X*((xRight-xLeft)/ClientWidth) + xLeft;
-        GLfloat yAux = -Y*((yTop - yBot)/ClientHeight) + yTop;
+        GLdouble xAux = X*((xRight-xLeft)/ClientWidth) + xLeft;
+        GLdouble yAux = -Y*((yTop - yBot)/ClientHeight) + yTop;
         PuntoV2F* punto = new PuntoV2F(xAux,yAux);
         return punto;
  }
@@ -184,7 +186,6 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
     }
     //Transforma a coordenadas en la escena
     puntoAnt = devCoordenada(X,Y);
-    //selecto = escena->seleccion(puntoAnt->getX(),puntoAnt->getY());
     escena->seleccion(puntoAnt->getX(),puntoAnt->getY());
     GLScene();
  }
@@ -226,24 +227,6 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
         //Añadimos el poligono
         escena->inserta(polig);
         GLScene();
- }
-
-//---------------------------------------------------------------------------
-
- float TGLForm2D::calculoAngulo(PuntoV2F A, PuntoV2F B)   {
-
-      float hipo = sqrt(pow(B.getX()-A.getX(),2) + pow(B.getY()-A.getY(),2));
-
-      float altura = B.getY()-A.getY();
-
-      float angulo = cosh(altura/hipo);
-
-      if ( (B.getY()>=A.getY()) && (B.getX()>=A.getX()) ) return angulo;
-      else if ((B.getY()<A.getY()) && (B.getX()>=A.getX())) return -angulo;
-      else if ((B.getY()<A.getY()) && (B.getX()<A.getX())) return angulo+180;
-      else if ((B.getY()>=A.getY()) && (B.getX()<A.getX())) return 180-angulo;
-
-      return angulo;
  }
 
 //---------------------------------------------------------------------------
@@ -308,6 +291,14 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
         delete destino;
         destino = NULL;
     }
+    if(origenCorte != NULL){
+        delete origenCorte;
+        origenCorte = NULL;
+    }
+    if(destinoCorte != NULL){
+        delete destinoCorte;
+        destinoCorte = NULL;
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -315,7 +306,7 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
 void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
 {
 //Dibujar poli_lineas
-        desactivarModos();
+        //desactivarModos();
     estado=linea;
     esOrigen=false;
     PLCreada=false;
@@ -357,10 +348,7 @@ void __fastcall TGLForm2D::Borrar1Click(TObject *Sender)
 {
 
     {
-
-
        bool encontrado = false;
-        DibujoLineas* djaux= new DibujoLineas();
 
         escena->getDibujos()->inicia();
 
@@ -393,7 +381,7 @@ void __fastcall TGLForm2D::Zoom1Click(TObject *Sender)
 {
 //Zoom progresivo
     if(FormZoom->pedirZoom(zoom,iteraciones)){
-        float der,izq,arriba,abajo;
+        double der,izq,arriba,abajo;
         der=xRight;
         izq=xLeft;
         arriba=yTop;
@@ -513,7 +501,6 @@ void __fastcall TGLForm2D::Dragon1Click(TObject *Sender)
              escena->getDibujos()->avanza();
          }
          if (!encontrado)ShowMessage("Seleccione algo!");
-
         GLScene();
 
 }
@@ -523,9 +510,10 @@ void __fastcall TGLForm2D::Dragon1Click(TObject *Sender)
 void __fastcall TGLForm2D::Cortar1Click(TObject *Sender)
 {
 //Selecionar un area y borrar lo que haya dentro
-    desactivarModos();
+    //desactivarModos();
     estado = cortar;
     esOrigen=false;
+    PLCreada=false;
 }
 
 //---------------------------------------------------------------------------
@@ -537,32 +525,32 @@ void __fastcall TGLForm2D::FormKeyDown(TObject *Sender, WORD &Key,
  	    switch (Key){        //Izquierda
             case 37:{
             
-                GLfloat xRight_aux = xRight - (xRight-xLeft)*0.05;
-                GLfloat xLeft_aux = xLeft - (xRight-xLeft)*0.05;
+                GLdouble xRight_aux = xRight - (xRight-xLeft)*0.05;
+                GLdouble xLeft_aux = xLeft - (xRight-xLeft)*0.05;
                 xRight = xRight_aux;
                 xLeft = xLeft_aux;
                 break;
             }
         //Abajo
    		    case 38:{
-                GLfloat yBot_aux = yBot - (yBot-yTop)*0.05;
-                GLfloat yTop_aux = yTop - (yBot-yTop)*0.05;
+                GLdouble yBot_aux = yBot - (yBot-yTop)*0.05;
+                GLdouble yTop_aux = yTop - (yBot-yTop)*0.05;
                 yBot = yBot_aux;
                 yTop = yTop_aux;
                 break;
             }
         //Derecha
    		    case 39:{
-               GLfloat xRight_aux = xRight + (xRight-xLeft)*0.05;
-               GLfloat xLeft_aux = xLeft + (xRight-xLeft)*0.05;
+               GLdouble xRight_aux = xRight + (xRight-xLeft)*0.05;
+               GLdouble xLeft_aux = xLeft + (xRight-xLeft)*0.05;
                xRight = xRight_aux;
                xLeft = xLeft_aux;
                break;
             }
         //Arriba
    		    case 40:{
-                GLfloat yBot_aux = yBot + (yBot-yTop)*0.05;
-                GLfloat yTop_aux = yTop + (yBot-yTop)*0.05;
+                GLdouble yBot_aux = yBot + (yBot-yTop)*0.05;
+                GLdouble yTop_aux = yTop + (yBot-yTop)*0.05;
                 yBot = yBot_aux;
                 yTop = yTop_aux;
                 break;
@@ -597,10 +585,14 @@ void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
            modoSeleccion(X,Y);
     }
     if(estado == cortar){
-        if(origen != NULL){
-            delete origen;
+        if(origenCorte != NULL){
+            delete origenCorte;
         }
         origenCorte = devCoordenada(X,Y);
+        if(puntoAnt!=NULL){
+            delete puntoAnt;
+            puntoAnt = NULL;
+        }
     }
     if(estado != seleccion){
         if(selecto != NULL){
@@ -642,35 +634,35 @@ void __fastcall TGLForm2D::FormMouseUp(TObject *Sender,
                         noVacio = escena->recorte(origenCorte,destinoCorte);
                 }
 
-                if ((origenCorte->getX()>destinoCorte->getX())&&(origenCorte->getY()>destinoCorte->getY()))
+        if ((origenCorte->getX()>destinoCorte->getX())&&(origenCorte->getY()>destinoCorte->getY()))
                 {
                         noVacio = escena->recorte(destinoCorte,origenCorte);
                 }
 
-                if ((origenCorte->getX()>destinoCorte->getX())&&(origenCorte->getY()<destinoCorte->getY()))
+        if ((origenCorte->getX()>destinoCorte->getX())&&(origenCorte->getY()<destinoCorte->getY()))
                 {
-                        float y1 = origenCorte->getY();
-                        float y2 = destinoCorte->getY();
+                        double y1 = origenCorte->getY();
+                        double y2 = destinoCorte->getY();
                         destinoCorte->setY(y1);
                         origenCorte->setY(y2);
                         noVacio = escena->recorte(destinoCorte,origenCorte);
                 }
 
-                if ((origenCorte->getX()<destinoCorte->getX())&&(origenCorte->getY()>destinoCorte->getY()))
+        if ((origenCorte->getX()<destinoCorte->getX())&&(origenCorte->getY()>destinoCorte->getY()))
                 {
-                        float y1 = origenCorte->getY();
-                        float y2 = destinoCorte->getY();
+                        double y1 = origenCorte->getY();
+                        double y2 = destinoCorte->getY();
                         destinoCorte->setY(y1);
                         origenCorte->setY(y2);
                         noVacio = escena->recorte(origenCorte,destinoCorte);
                 }
 
-                if(!noVacio)
+        if(!noVacio)
                 {
                         ShowMessage("La escena se ha vaciado por completo");
                 }
-         esOrigen=false;
-        glFlush();
+        esOrigen=false;
+        escena->borraCortado();
         GLScene();
     }
 }
@@ -687,11 +679,9 @@ void  TGLForm2D::fractalizarK1(DibujoLineas* &dibujselec){
                 for(int i=0;i<dibujselec->getSegmentos()->getLongitud();i++){
 
                         Linea* Laux=dibujselec->getSegmentos()->getActual();
-
-
-                        float i = Laux->getOrigen()->getX();
-
-                        Laux->fractalizaK1(nuevaLista);
+                        
+                        void* aux = nuevaLista;
+                        Laux->fractalizaK1(aux);
 
                         dibujselec->getSegmentos()->avanza();
         }
@@ -715,11 +705,8 @@ void  TGLForm2D::fractalizarK2(DibujoLineas* &dibujselec){
                 for(int i=0;i<dibujselec->getSegmentos()->getLongitud();i++){
 
                         Linea* Laux=dibujselec->getSegmentos()->getActual();
-
-
-                        float i = Laux->getOrigen()->getX();
-
-                        Laux->fractalizaK2(nuevaLista);
+                        void* aux = nuevaLista;
+                        Laux->fractalizaK2(aux);
 
                         dibujselec->getSegmentos()->avanza();
         }
@@ -736,19 +723,58 @@ void  TGLForm2D::fractalizarDRAGON(DibujoLineas* &dibujselec){
 
          DibujoLineas*  nuevaLista= new DibujoLineas();
 
+         /* para debug
+         */
+
+         double x_a;
+         double y_a;
+         double x_b;
+         double y_b;
+
+         double x_ad;
+         double y_ad;
+         double x_bd;
+         double y_bd;
+         //
          if(dibujselec != NULL){
 
                 dibujselec->getSegmentos()->inicia();
 
                 for(int i=0;i<dibujselec->getSegmentos()->getLongitud();i++){
-
+                        //if ((i !=2)||(i!=3)){
                         Linea* Laux=dibujselec->getSegmentos()->getActual();
+                        void* aux = nuevaLista;
+                        //DibujoLineas* aux = nuevaLista;
+                        Laux->fractalizaDRAGON(aux);
+                        //}
+                       /* if(i == 2){
+                            Linea* Laux=dibujselec->getSegmentos()->getActual();
+                            //
+                            x_a = Laux->getOrigen()->getX();
+                            y_a = Laux->getOrigen()->getY();
 
+                            void* aux = nuevaLista;
+                            Laux->fractalizaDRAGON(aux);
 
-                        float i = Laux->getOrigen()->getX();
+                            x_ad = Laux->getOrigen()->getX();
+                            y_ad = Laux->getOrigen()->getY();
 
-                        Laux->fractalizaDRAGON(nuevaLista);
+                            //
+                        }
+                        if(i == 3){
+                            Linea* Laux=dibujselec->getSegmentos()->getActual();
+                            //
+                            x_b = Laux->getDestino()->getX();
+                            y_b = Laux->getDestino()->getY();
 
+                            void* aux = nuevaLista;
+                            Laux->fractalizaDRAGON(aux);
+
+                            (DibujoLineas)aux->
+                            x_bd = Laux->getDestino()->getX();
+                            y_bd = Laux->getDestino()->getY();
+                            //
+                        }*/
                         dibujselec->getSegmentos()->avanza();
         }
 

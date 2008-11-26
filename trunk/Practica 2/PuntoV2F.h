@@ -10,29 +10,29 @@
  class PuntoV2F
  {
         private:
-                float x;        //Valor de la coordenada X
-                float y;        //Valor de la coordenada Y
+                double x;        //Valor de la coordenada X
+                double y;        //Valor de la coordenada Y
         public:
                 PuntoV2F();    //Constructores
-                PuntoV2F(float coorX, float coorY);
+                PuntoV2F(double coorX, double coorY);
                 PuntoV2F(PuntoV2F*& p);
                 PuntoV2F(PuntoV2F* p1, PuntoV2F* p2);
                 ~PuntoV2F();   //Destructor
 
                 //Accesores y mutadores
-                float getX();
-                void setX(float coorY);
-                float getY();
-                void setY(float coorY);
+                double getX();
+                void setX(double coorY);
+                double getY();
+                void setY(double coorY);
 
                 //Operaciones
-                void rotaP(PuntoV2F* centroRot, float ang);
+                void rotaP(PuntoV2F* centroRot, double ang);
                 void restar(PuntoV2F* pv);
                 void sumar(PuntoV2F* pv);
-                void escalar(float valor);
+                void escalar(double valor);
                 void normalizar();
-                float longitud();
-                float productoEscalar(PuntoV2F* v);
+                double longitud();
+                double productoEscalar(PuntoV2F* v);
                 void normalIzq(PuntoV2F *v);
                 void dibuja();
  };

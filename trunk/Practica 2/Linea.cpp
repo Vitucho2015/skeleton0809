@@ -161,15 +161,15 @@
  bool Linea::estaPuntoV2FVertices(PuntoV2F* punto)
  {
         bool encontrado = false;
-        float incr = 5.0;
-        float x_punto = punto->getX();
-        float y_punto = punto->getY();
+        double incr = 5.0;
+        double x_punto = punto->getX();
+        double y_punto = punto->getY();
 
-        float x_origen = origen->getX();
-        float y_origen = origen->getY();
+        double x_origen = origen->getX();
+        double y_origen = origen->getY();
 
-        float x_destino = destino->getX();
-        float y_destino = destino->getY();
+        double x_destino = destino->getX();
+        double y_destino = destino->getY();
         
         if  ((x_punto+incr>=x_origen)&&(x_punto-incr<=x_origen)){
             if((y_punto+incr>=y_origen)&&(y_punto-incr<=y_origen)){
@@ -188,7 +188,7 @@
 
 //---------------------------------------------------------------------------
 
- void Linea::girar(PuntoV2F* centro, float ang)
+ void Linea::girar(PuntoV2F* centro, double ang)
  {
         origen->rotaP(centro,ang);
         destino->rotaP(centro,ang);
@@ -227,7 +227,7 @@
  void Linea::recortarDer(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd)
  //P1 fuera de la región derecha
  {
-        float d = (p1->getX() - sd->getX())*((p1->getY()-p2->getY())/(p1->getX()-p2->getX()));
+        double d = (p1->getX() - sd->getX())*((p1->getY()-p2->getY())/(p1->getX()-p2->getX()));
         p1->setX(sd->getX());
         p1->setY(p1->getY()-d);
  }
@@ -237,7 +237,7 @@
  void Linea::recortarIzq(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii)
  //P1 fuera de la región izquierda
  {
-        float d = (p1->getX() - ii->getX())*((p1->getY()-p2->getY())/(p1->getX()-p2->getX()));
+        double d = (p1->getX() - ii->getX())*((p1->getY()-p2->getY())/(p1->getX()-p2->getX()));
         p1->setX(ii->getX());
         p1->setY(p1->getY()-d);
  }
@@ -247,7 +247,7 @@
  void Linea::recortarSup(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd)
  //P1 fuera de la región superior
  {
-        float d = (p1->getY() - sd->getY())*((p1->getX()-p2->getX())/(p1->getY()-p2->getY()));
+        double d = (p1->getY() - sd->getY())*((p1->getX()-p2->getX())/(p1->getY()-p2->getY()));
         p1->setX(p1->getX()-d);
         p1->setY(sd->getY());
  }
@@ -257,7 +257,7 @@
  void Linea::recortarInf(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii)
  //P1 fuera de la región inferior
  {
-        float d = (p1->getY() - ii->getY())*((p1->getX()-p2->getX())/(p1->getY()-p2->getY()));
+        double d = (p1->getY() - ii->getY())*((p1->getX()-p2->getX())/(p1->getY()-p2->getY()));
         p1->setX(p1->getX()-d);
         p1->setY(ii->getY());
  }
@@ -282,7 +282,7 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
 
 
-          float angl = calculoAngulo(getOrigen(),getDestino());
+          double angl = calculoAngulo(getOrigen(),getDestino());
 
 
 
@@ -291,23 +291,21 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turnTo(angl);
 
-          float tercio = calculoLongitud() / 3.0;
+          double tercio = calculoLongitud() / 3.0;
 
-          PuntoV2F* orig = new PuntoV2F(getOrigen());
-          PuntoV2F* dest =new PuntoV2F(getDestino());
+          PuntoV2F* aux1 = getOrigen();
+          PuntoV2F* aux2 = getDestino();
+
+          PuntoV2F* orig = new PuntoV2F(aux1);
+          PuntoV2F* dest =new PuntoV2F(aux2);
 
 
 
 
           lz->avanzar(tercio,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          PuntoV2F* aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int a= orig->getX();
-          int b= orig->getY();
-          int c= dest->getX();
-          int d= dest->getY();
           Linea * linaux = new Linea(orig,dest);
 
 
@@ -326,14 +324,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
           
           lz->turn(60);
           lz->avanzar(tercio,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int aa= orig->getX();
-          int ba= orig->getY();
-          int ca= dest->getX();
-          int da= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -350,14 +343,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(240);
           lz->avanzar(tercio,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int aaa= orig->getX();
-          int baa= orig->getY();
-          int caa= dest->getX();
-          int daa= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -367,13 +355,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(60);
           lz->avanzar(tercio,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-          int aaaa= orig->getX();
-          int baaa= orig->getY();
-          int caaa= dest->getX();
-          int daaa= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -413,7 +397,7 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
 
 
-          float angl = calculoAngulo(getOrigen(),getDestino());
+          double angl = calculoAngulo(getOrigen(),getDestino());
 
 
 
@@ -422,23 +406,20 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turnTo(angl);
 
-          float cuarto = calculoLongitud() / 4.0;
+          double cuarto = calculoLongitud() / 4.0;
 
-          PuntoV2F* orig = new PuntoV2F(getOrigen());
-          PuntoV2F* dest =new PuntoV2F(getDestino());
+          PuntoV2F* aux1 = getOrigen();
+          PuntoV2F* aux2 = getDestino();
+          PuntoV2F* orig = new PuntoV2F(aux1);
+          PuntoV2F* dest =new PuntoV2F(aux2);
 
 
 
 
           lz->avanzar(cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          PuntoV2F* aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int a= orig->getX();
-          int b= orig->getY();
-          int c= dest->getX();
-          int d= dest->getY();
           Linea * linaux = new Linea(orig,dest);
 
 
@@ -457,14 +438,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
           
           lz->turn(90);
           lz->avanzar(cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int aa= orig->getX();
-          int ba= orig->getY();
-          int ca= dest->getX();
-          int da= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -481,14 +457,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(270);
           lz->avanzar(cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int aaa= orig->getX();
-          int baa= orig->getY();
-          int caa= dest->getX();
-          int daa= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -498,13 +469,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(270);
           lz->avanzar(2*cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-          int aaaa= orig->getX();
-          int baaa= orig->getY();
-          int caaa= dest->getX();
-          int daaa= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -514,13 +481,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(90);
           lz->avanzar(cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-          int aa2aa= orig->getX();
-          int ba2aa= orig->getY();
-          int ca2aa= dest->getX();
-          int da2aa= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -531,13 +494,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(90);
           lz->avanzar(cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-          int aa1aa= orig->getX();
-          int ba1aa= orig->getY();
-          int ca1aa= dest->getX();
-          int da1a= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -548,13 +507,9 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(270);
           lz->avanzar(cuarto,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-          int aaa4a= orig->getX();
-          int baa4a= orig->getY();
-          int ca4aa= dest->getX();
-          int da4aa= dest->getY();
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
@@ -594,7 +549,7 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
 
 
-          float angl = calculoAngulo(getOrigen(),getDestino());
+          double angl = calculoAngulo(this->origen,this->destino);
 
 
 
@@ -603,25 +558,20 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turnTo(angl);
 
-          float hipp = ((calculoLongitud() / 2.0) / 0.7071067811);
-
-          PuntoV2F* orig = new PuntoV2F(getOrigen());
-          PuntoV2F* dest =new PuntoV2F(getDestino());
+          double hipp = ((calculoLongitud() / 2.0) / 0.7071067811);
 
 
+          PuntoV2F* aux1 = getOrigen();
+          PuntoV2F* aux2 = getDestino();
+          PuntoV2F* orig = new PuntoV2F(aux1);
+          PuntoV2F* dest =new PuntoV2F(aux2);
 
           lz->turn(45);
           lz->avanzar(hipp,false);
-          dest = new PuntoV2F(lz->getPosicion());
-
-
-
-          int a= orig->getX();
-          int b= orig->getY();
-          int c= dest->getX();
-          int d= dest->getY();
+          PuntoV2F* aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
+                              
           Linea * linaux = new Linea(orig,dest);
-
 
           dj->insertaLinea(linaux);
           //primera linea de 4 metida
@@ -635,35 +585,21 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           lz->turn(270);
           lz->avanzar(hipp,false);
-          dest = new PuntoV2F(lz->getPosicion());
+          aux3 = lz->getPosicion();
+          dest = new PuntoV2F(aux3);
 
-
-
-          int a3= orig->getX();
-          int b3= orig->getY();
-          int c3= dest->getX();
-          int d3= dest->getY();
           linaux = new Linea(orig,dest);
 
-
           dj->insertaLinea(linaux);
-          //primera linea de 4 metida
-
-
-
-
-          orig = new PuntoV2F(dest);
-
-
 
 
  }
 
-  float Linea::calculoLongitud(){
-        float altura = abs(getDestino()->getY() - getOrigen()->getY());
-        float anchura = abs(getDestino()->getX() - getOrigen()->getX());
+  double Linea::calculoLongitud(){
+        double altura = abs(getDestino()->getY() - getOrigen()->getY());
+        double anchura = abs(getDestino()->getX() - getOrigen()->getX());
 
-        float longitud = sqrt(pow(altura,2)+pow(anchura,2));
+        double longitud = sqrt(pow(altura,2)+pow(anchura,2));
         return longitud;
 
  }
@@ -671,26 +607,24 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
 
 
-float Linea::calculoAngulo(PuntoV2F* A, PuntoV2F* B)   {
+double Linea::calculoAngulo(PuntoV2F* A, PuntoV2F* B)   {
 
-      float hipo = sqrt(pow(B->getX()-A->getX(),2) + pow(B->getY()-A->getY(),2));
+      double hipo = sqrt(pow(B->getX()-A->getX(),2) + pow(B->getY()-A->getY(),2));
 
-      float altura = B->getY()-A->getY();
+      double altura = B->getY()-A->getY();
 
       altura = abs (altura);
 
-      float division =   (altura/hipo) ;
+      double division =   (altura/hipo) ;
 
-      float angulo = asin(division);
+      double angulo = asin(division);
 
-      angulo = angulo * ( 180.0 / 3.1415926535 );
+      angulo = angulo * ( 180.0 / 3.1416 );
 
       if ( (B->getY()>=A->getY()) && (B->getX()>=A->getX()) ) return angulo;
       else if ((B->getY()<A->getY()) && (B->getX()>=A->getX())) return -angulo;
       else if ((B->getY()<A->getY()) && (B->getX()<A->getX())) return angulo+180;
       else if ((B->getY()>=A->getY()) && (B->getX()<A->getX())) return 180-angulo;
-
-      //Seguro que siempre entre por alguno??
       return angulo;
  }
 

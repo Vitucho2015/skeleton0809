@@ -22,13 +22,13 @@
                 void insertaLinea(Linea* linea);
                 void draw();
                 bool recorte(PuntoV2F* puntoA, PuntoV2F* puntoB);
-                void recorte(float wLeft,float wRight,float wTop,float wBot);
+                void recorte(double wLeft,double wRight,double wTop,double wBot);
                 bool seleccionar(PuntoV2F* punto);
                 bool getSeleccionado();
                 void setSeleccionado(bool selec);
                 bool estaPuntoV2FDentro(PuntoV2F* punto);
                 Lista<Linea>* getSegmentos();
-                void girarConCentro(PuntoV2F* centro, float ang);
+                void girarConCentro(PuntoV2F* centro, double ang);
                 void mover(PuntoV2F* desplazamiento);
                 bool vacia();
                 void dibujaCortado();

@@ -68,9 +68,9 @@ private:	// User declarations
  HDC hdc;
  HGLRC hrc;
  //definen el tamaño del volumen de vista
- GLfloat xLeft,xRight,yTop,yBot;
+ GLdouble xLeft,xRight,yTop,yBot;
  //guarda el radio del puerto de vista
- GLfloat RatioViewPort;
+ GLdouble RatioViewPort;
 
  //Variables
  Escena* escena;
@@ -108,7 +108,6 @@ private:	// User declarations
  void fractalizarK2(DibujoLineas* &dibujselec);
  void fractalizarDRAGON(DibujoLineas* &dibujselec);
  void desactivarModos();
- float calculoAngulo(PuntoV2F X, PuntoV2F Y);
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 

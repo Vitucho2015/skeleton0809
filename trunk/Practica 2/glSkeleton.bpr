@@ -75,8 +75,8 @@ ProductVersion=1.0.0.0
 Comments=
 
 [Excluded Packages]
-C:\WINDOWS\system32\ibsmp50.bpl=Borland C++ InterBase Alerter Component
 $(BCB)\Bin\dclsmpedit50.bpl=Borland Editor Script Enhancements
+C:\WINNT\System32\ibsmp50.bpl=Borland C++ InterBase Alerter Component
 
 [HistoryLists\hlIncludePath]
 Count=1
@@ -108,11 +108,6 @@ RemoteDebug=0
 ShowInfoMsgs=0
 LinkDebugVcl=0
 LinkCGLIB=0
-
-[CORBA]
-AddServerUnit=1
-AddClientUnit=1
-PrecompiledHeaders=1
 
 [Language]
 ActiveLang=
