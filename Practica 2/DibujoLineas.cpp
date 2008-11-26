@@ -126,6 +126,7 @@
         for (int i=0;i<longitud;i++){
                 Linea* linea = segmentos->getActual();
                 if(!linea->recorte(puntoA, puntoB)){
+
                     segmentos->eliminaActual();
                 }else{
                     segmentos->avanza();
@@ -133,7 +134,7 @@
         }
         if (segmentos->getLongitud()==0){
                 borrado = false;
-        }
+        }        else borrado = true;
         return borrado;
  }
 //---------------------------------------------------------------------------

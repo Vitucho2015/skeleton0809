@@ -35,6 +35,8 @@ void __fastcall TGLForm2D::FormCreate(TObject *Sender)
     //inicialización del volumen de vista
     escena=new Escena();
     esOrigen=false;
+    pulsarRaton = false;
+    PLCreada = false;
     xRight=escena->damexRight();
     xLeft=escena->damexLeft();
     yTop=escena->dameyTop();
@@ -145,12 +147,24 @@ void __fastcall TGLForm2D::GLScene()
 glClear(GL_COLOR_BUFFER_BIT);
 
 // comandos para dibujar la escena
-glFlush();
+
    glLineWidth(2.0);
     if(escena != NULL){
+    glColor3f(1,1,1);
         escena->dibuja();
-    }
 
+        if  ((estado==cortar)&&(pulsarRaton)){
+
+                        glColor3f(1,0,1);
+                        glBegin(GL_LINE_LOOP);
+                                glVertex2i(origenCorte->getX(),origenCorte->getY());
+                                glVertex2i(destinoCorte->getX(),origenCorte->getY());
+                                glVertex2i(destinoCorte->getX(),destinoCorte->getY());
+                                glVertex2i(origenCorte->getX(),destinoCorte->getY());
+                        glEnd();
+                }
+    }
+glFlush();
 SwapBuffers(hdc);
 }
 
@@ -513,6 +527,8 @@ void __fastcall TGLForm2D::Cortar1Click(TObject *Sender)
     //desactivarModos();
     estado = cortar;
     esOrigen=false;
+    origenCorte = NULL;
+    pulsarRaton=false;
     PLCreada=false;
 }
 
@@ -606,14 +622,17 @@ void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
 void __fastcall TGLForm2D::FormMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
-    if(Shift.Contains(ssLeft)){
+    //if(Shift.Contains(ssLeft))
+    {
         if(estado == cortar && origenCorte!=NULL){
              if (destinoCorte != NULL){
                 delete destinoCorte;
+                destinoCorte = NULL;
              }
              //Transforma a coordenadas en la escena
             destinoCorte = devCoordenada(X,Y);
-            escena->enMarca(origenCorte,destinoCorte);
+            pulsarRaton=true;
+            //escena->enMarca(origenCorte,destinoCorte);
 
             GLScene();
         }
@@ -662,7 +681,9 @@ void __fastcall TGLForm2D::FormMouseUp(TObject *Sender,
                         ShowMessage("La escena se ha vaciado por completo");
                 }
         esOrigen=false;
-        escena->borraCortado();
+        estado = nada;
+        pulsarRaton=false;
+        //escena->borraCortado();
         GLScene();
     }
 }
