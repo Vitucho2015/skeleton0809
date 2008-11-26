@@ -609,22 +609,8 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
 double Linea::calculoAngulo(PuntoV2F* A, PuntoV2F* B)   {
 
-      double hipo = sqrt(pow(B->getX()-A->getX(),2) + pow(B->getY()-A->getY(),2));
-
-      double altura = B->getY()-A->getY();
-
-      altura = abs (altura);
-
-      double division =   (altura/hipo) ;
-
-      double angulo = asin(division);
-
-      angulo = angulo * ( 180.0 / 3.1416 );
-
-      if ( (B->getY()>=A->getY()) && (B->getX()>=A->getX()) ) return angulo;
-      else if ((B->getY()<A->getY()) && (B->getX()>=A->getX())) return -angulo;
-      else if ((B->getY()<A->getY()) && (B->getX()<A->getX())) return angulo+180;
-      else if ((B->getY()>=A->getY()) && (B->getX()<A->getX())) return 180-angulo;
+      double angulo = atan2(B->getY()-A->getY(),B->getX()-A->getX());
+      angulo = angulo * ( 180.0 / 3.1415926535 );
       return angulo;
  }
 
