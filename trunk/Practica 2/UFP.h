@@ -76,6 +76,7 @@ private:	// User declarations
  Escena* escena;
 
  tEstado estado;
+ bool pulsarRaton;
  int zoom; //Valor del zoom en el zoom progresivo
  int iteraciones; //Numero de iteraciones para el zoom progresivo
  DibujoLineas* selecto; // Para seleccionar y borrar
