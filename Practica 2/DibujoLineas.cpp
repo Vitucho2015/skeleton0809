@@ -27,9 +27,7 @@
         seleccionado = false;
  }
 
-
-
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  DibujoLineas::DibujoLineas(PuntoV2F* p, int numIteraciones,int longIni,int incrLado,int incrAng)
  {
@@ -51,13 +49,13 @@
         seleccionado = false;
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  DibujoLineas::DibujoLineas(PuntoV2F* centro,int nLados,int lado)
  {
         segmentos = new Lista<Linea>;
         float alfa = 360.0/(float)nLados;
-        float radio = (float)lado / sin((alfa*3.141592)/180.0);
+        float radio = (float)lado / sin((alfa*3.1415926535)/180.0);
 
         PuntoV2F* origen = new PuntoV2F(centro->getX()+radio,centro->getY());
         Lapiz* lapiz = new Lapiz(origen,0);
@@ -67,8 +65,8 @@
                 PuntoV2F* a = new PuntoV2F(z);
                 //Calculamos el punto
                 PuntoV2F* punto = new PuntoV2F(
-                  centro->getX()+radio*cos((i*alfa*3.141592)/180),
-                  centro->getY()+radio*sin((i*alfa*3.141592)/180));
+                  centro->getX()+radio*cos((i*alfa*3.1415926535)/180),
+                  centro->getY()+radio*sin((i*alfa*3.1415926535)/180));
                 //Trazamos linea hasta punto
                 lapiz->lineTo(punto);
                 z = lapiz->getPosicion();
@@ -80,30 +78,7 @@
         seleccionado = false;
  }
 
-//-------------------------------------------------
-
- DibujoLineas::DibujoLineas(PuntoV2F* centro,float angIni, float angArco, float radio, int nLados)
- {
-        segmentos = new Lista<Linea>;
-        seleccionado = false;
-
-        float incrAng = angArco / float (nLados);
-
-        float x = centro->getX() + radio*cos((angIni*3.1416)/180);
-        float y = centro->getY() + radio*sin((angIni*3.1416)/180);
-        
-        for (int i=1;i<=nLados;i++)
-        {
-		PuntoV2F* a = new PuntoV2F(x,y);
-                x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.1416)/180));
-                y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.1416)/180));
-                PuntoV2F* b = new PuntoV2F(x,y);
-                Linea* linea = new Linea(a,b);
-                segmentos->inserta(linea);
-        }
- }
-
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  DibujoLineas::~DibujoLineas()
  {
@@ -112,14 +87,14 @@
         }
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  void DibujoLineas::insertaLinea(Linea* linea)
  {
          segmentos->inserta(linea);
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  void DibujoLineas::draw()
  {
@@ -127,12 +102,21 @@
     segmentos->inicia();
     for (int i=0;i<segmentos->getLongitud();i++){
         linea = segmentos->getActual();
+        if(seleccionado){ // si esta selecionado hay que pintar los puntos
+            glPointSize(5);
+            glColor3f(1,0,0);
+            glBegin(GL_POINTS);
+                glVertex2f((GLfloat)linea->getOrigen()->getX(),(GLfloat)linea->getOrigen()->getY());
+                glVertex2f((GLfloat)linea->getDestino()->getX(),(GLfloat)linea->getDestino()->getY());
+            glEnd();
+            glColor3f(1,1,1);
+        }
         linea->draw();
         segmentos->avanza();
     }
  }
-
-//-------------------------------------------------
+ 
+//---------------------------------------------------------------------------
 
  bool DibujoLineas::recorte(PuntoV2F* puntoA, PuntoV2F* puntoB)
  {
@@ -141,11 +125,10 @@
         int longitud = segmentos->getLongitud();
         for (int i=0;i<longitud;i++){
                 Linea* linea = segmentos->getActual();
-                if(!linea->recorte(puntoA, puntoB))
-                {
-                        segmentos->eliminaActual();
+                if(!linea->recorte(puntoA, puntoB)){
+                    segmentos->eliminaActual();
                 }else{
-                        segmentos->avanza();
+                    segmentos->avanza();
                 }
         }
         if (segmentos->getLongitud()==0){
@@ -153,8 +136,27 @@
         }
         return borrado;
  }
+//---------------------------------------------------------------------------
 
-//-------------------------------------------------
+ void DibujoLineas::recorte(float wLeft,float wRight,float wTop,float wBot)
+ {
+   segmentos->inicia();
+   int j=segmentos->getLongitud();
+   for(int i=0;i<j;i++){
+      Linea* linea=new Linea(segmentos->getActual());
+      segmentos->eliminaActual();
+      PuntoV2F* ii = new PuntoV2F(wLeft,wBot);
+      PuntoV2F* sd = new PuntoV2F(wRight,wTop);
+      if (linea->recorte(ii,sd)){ //si devuelve  true se vuelve a meter en la lista
+          segmentos->inserta(linea);
+      }
+      else{
+        delete linea;
+        linea = NULL;
+   }
+}}
+
+//---------------------------------------------------------------------------
 
  bool DibujoLineas::seleccionar(PuntoV2F* punto)
  {
@@ -164,33 +166,31 @@
         seleccionado = false;
         while ((i<segmentos->getLongitud())&&(!encontrado)){
                 Linea* linea = segmentos->getActual();
-                if(linea->estaPuntoV2FVertices(punto))
-                {
+                if(linea->estaPuntoV2FVertices(punto)){
                         encontrado = true;
                         seleccionado = true;
                 }
-
                 segmentos->avanza();
                 i++;
         }
         return encontrado;
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  bool DibujoLineas::getSeleccionado()
  {
         return seleccionado;
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  void DibujoLineas::setSeleccionado(bool selec)
  {
         seleccionado = selec;
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  bool DibujoLineas::estaPuntoV2FDentro(PuntoV2F* punto)
  {
@@ -210,16 +210,14 @@
         return dentro;
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  Lista<Linea>* DibujoLineas::getSegmentos()
  {
         return segmentos;
  }
 
-
-
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  void DibujoLineas::girarConCentro(PuntoV2F* centro,float ang)
  {
@@ -232,7 +230,7 @@
         }
  }
 
-//-------------------------------------------------
+//---------------------------------------------------------------------------
 
  void DibujoLineas::mover(PuntoV2F* desplazamiento)
  {
@@ -244,20 +242,8 @@
         }
  }
 
-//-------------------------------------------------
-
- void DibujoLineas::buscarInfIzqYSupDer(PuntoV2F*& sd,PuntoV2F*& ii)
- {
-        Lista<Linea>* seg = getSegmentos();
-        seg->inicia();
-        for (int i=0;i<seg->getLongitud();i++){
-                Linea* linea = seg->getActual();
-                linea->buscarInfIzqYSupDer(sd,ii);
-                seg->avanza();
-        }
- }
-
 //---------------------------------------------------------------------------
+
  bool DibujoLineas::vacia(){
     if (segmentos==NULL){
         return true;
@@ -268,17 +254,26 @@
  }
 
 //---------------------------------------------------------------------------
+
 void DibujoLineas::dibujaCortado()
 {
-  Linea *l;
-  if(segmentos!=NULL && segmentos->getLongitud()>0){
+  Linea *linea;
+  if(segmentos != NULL && segmentos->getLongitud()>0){
       segmentos->inicia();
       for(int i=0;i<segmentos->getLongitud();i++){
-         l=segmentos->getActual();
-         l->dibujaCortado();
-         segmentos->avanza();  
+         linea = segmentos->getActual();
+         glPointSize(5);
+         glColor3f(1,0,0);
+         glBegin(GL_POINTS);
+            glVertex2f((GLfloat)linea->getOrigen()->getX(),(GLfloat)linea->getOrigen()->getY());
+            glVertex2f((GLfloat)linea->getDestino()->getX(),(GLfloat)linea->getDestino()->getY());
+         glEnd();
+         glColor3f(1,1,1);
+         linea->dibujaCortado();
+         segmentos->avanza();
       }
   }
 }
+
 //---------------------------------------------------------------------------
  #pragma package(smart_init)

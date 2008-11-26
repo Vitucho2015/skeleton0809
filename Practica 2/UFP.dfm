@@ -1,6 +1,6 @@
 object GLForm2D: TGLForm2D
-  Left = 132
-  Top = 297
+  Left = 227
+  Top = 201
   Width = 408
   Height = 434
   Caption = 'Formulario Principal'
@@ -16,6 +16,8 @@ object GLForm2D: TGLForm2D
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
   OnPaint = FormPaint
   OnResize = FormResize
   PixelsPerInch = 96

@@ -12,10 +12,7 @@ class Escena{
     private:
         Lista<DibujoLineas>* dibujos; //guarda los dibujos de la escena
         DibujoLineas* cortado;
-        DibujoLineas* poliLineas;
         float xRight,xLeft,yTop,yBot;
-        bool modificada;
-        String *nombre;
         float wLeft,wRight,wBot,wTop;
 
     public:
@@ -31,19 +28,16 @@ class Escena{
         void setXLeft(float a){xLeft=a;};
         void setYTop(float a){yTop=a;};
         void setYBot(float a){yBot=a;};
-        void lineas(PuntoV2F *ant,PuntoV2F *sig);
-        void inserta(DibujoLineas *dibujo); // ver si este sobra
-        void insertaPoliLinea();
+        void inserta(DibujoLineas *dibujo);
         DibujoLineas* seleccion(float x,float y);
         void borraDibujo(DibujoLineas *d);
-        void dameCentro(PuntoV2F* p1,PuntoV2F*p2,PuntoV2F*p3,GLdouble& x,GLdouble& y);
-        bool dameAngulos(PuntoV2F* centro,PuntoV2F* p1,PuntoV2F* p2,GLdouble& ang,GLdouble& angIni);
-        void enMarca(PuntoV2F* p,PuntoV2F* l);  //Ver para que vale
+        void enMarca(PuntoV2F* p,PuntoV2F* l);
         bool vacio(){return dibujos->vacia();};
-        bool vacioPoli(){return poliLineas->vacia();};
         void borraCortado();
         void recorte();
         bool hayCortado(){return cortado!=NULL;};
+        //Borrarlo ya que solo sirver para probar los fractales
+        DibujoLineas* damePrueba();
 };
 //---------------------------------------------------------------------------
 #endif
