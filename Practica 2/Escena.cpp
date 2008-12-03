@@ -144,16 +144,16 @@ void Escena::enMarca(PuntoV2F* p1,PuntoV2F* p2)
     wTop=p1->getY();
     wBot=p2->getY();
    // cortado = new DibujoLineas();
-    Linea* lin;
-    PuntoV2F* aux=new PuntoV2F(p2->getX(),p1->getY());
-    PuntoV2F* aux2=new PuntoV2F(p1->getX(),p2->getY());
-    lin=new Linea(p1,aux);
+    //Linea* lin;
+    //PuntoV2F* aux=new PuntoV2F(p2->getX(),p1->getY());
+    //PuntoV2F* aux2=new PuntoV2F(p1->getX(),p2->getY());
+    //lin=new Linea(p1,aux);
     //cortado->insertaLinea(lin);
-    lin=new Linea(aux,p2);
+    //lin=new Linea(aux,p2);
     //cortado->insertaLinea(lin);
-    lin=new Linea(aux2,p2);
+    //lin=new Linea(aux2,p2);
     //cortado->insertaLinea(lin);
-    lin=new Linea(p1,aux2);
+    //lin=new Linea(p1,aux2);
     //cortado->insertaLinea(lin);
     dibuja();
 }
