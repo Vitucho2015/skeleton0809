@@ -10,7 +10,6 @@
 Escena::Escena()
 {
     dibujos = new Lista<DibujoLineas>();
-    //cortado = NULL;
     xRight=200;
     xLeft=-xRight;
     yTop=xRight;
@@ -25,10 +24,6 @@ Escena::~Escena()
         delete dibujos;
         dibujos = NULL;
     }
-    //if(cortado != NULL){
-    //    delete cortado;
-     //   cortado = NULL;
-    //}
 }
 
 
@@ -76,9 +71,6 @@ void Escena::dibuja()
             dibujos->avanza();
       }
   }
- // if(cortado != NULL){
-  //  cortado->dibujaCortado();
- // }
 }
 
 //---------------------------------------------------------------------------
@@ -143,29 +135,7 @@ void Escena::enMarca(PuntoV2F* p1,PuntoV2F* p2)
     wRight=p2->getX();
     wTop=p1->getY();
     wBot=p2->getY();
-   // cortado = new DibujoLineas();
-    //Linea* lin;
-    //PuntoV2F* aux=new PuntoV2F(p2->getX(),p1->getY());
-    //PuntoV2F* aux2=new PuntoV2F(p1->getX(),p2->getY());
-    //lin=new Linea(p1,aux);
-    //cortado->insertaLinea(lin);
-    //lin=new Linea(aux,p2);
-    //cortado->insertaLinea(lin);
-    //lin=new Linea(aux2,p2);
-    //cortado->insertaLinea(lin);
-    //lin=new Linea(p1,aux2);
-    //cortado->insertaLinea(lin);
     dibuja();
-}
-
-//---------------------------------------------------------------------------
-
-void Escena::borraCortado()
-{
-   // if(cortado != NULL){
-   //     delete cortado;
-   //     cortado = NULL;
-   // }
 }
 
 //---------------------------------------------------------------------------
@@ -189,14 +159,6 @@ bool Escena::recorte(PuntoV2F *orig,PuntoV2F *dest)
 
 
   return borrado;
-}
-
-//---------------------------------------------------------------------------
-DibujoLineas* Escena::damePrueba()
-{
-dibujos->inicia();
-return dibujos->getActual();
-
 }
 //---------------------------------------------------------------------------
 

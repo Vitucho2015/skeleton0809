@@ -108,7 +108,6 @@ private:	// User declarations
  void fractalizarK1(DibujoLineas* &dibujselec);
  void fractalizarK2(DibujoLineas* &dibujselec);
  void fractalizarDRAGON(DibujoLineas* &dibujselec);
- void desactivarModos();
  public:		// User declarations
    __fastcall TGLForm2D(TComponent* Owner);
 

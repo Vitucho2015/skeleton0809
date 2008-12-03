@@ -36,7 +36,6 @@
                 bool estaPuntoV2FIzq(PuntoV2F* punto);
                 void girar(PuntoV2F* centro, double ang);
                 void mover(PuntoV2F* desplazamiento);
-                void dibujaCortado();
                 void fractalizaK1(void *&nuevaLista);
                 void fractalizaK2(void *&nuevaLista);
                 void fractalizaDRAGON(void *&nuevaLista);

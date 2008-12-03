@@ -253,28 +253,5 @@
         return segmentos->vacia();
     }
  }
-
-//---------------------------------------------------------------------------
-
-void DibujoLineas::dibujaCortado()
-{
-  Linea *linea;
-  if(segmentos != NULL && segmentos->getLongitud()>0){
-      segmentos->inicia();
-      for(int i=0;i<segmentos->getLongitud();i++){
-         linea = segmentos->getActual();
-         glPointSize(5);
-         glColor3f(1,0,0);
-         glBegin(GL_POINTS);
-            glVertex2f((GLdouble)linea->getOrigen()->getX(),(GLdouble)linea->getOrigen()->getY());
-            glVertex2f((GLdouble)linea->getDestino()->getX(),(GLdouble)linea->getDestino()->getY());
-         glEnd();
-         glColor3f(1,1,1);
-         linea->dibujaCortado();
-         segmentos->avanza();
-      }
-  }
-}
-
 //---------------------------------------------------------------------------
  #pragma package(smart_init)
