@@ -188,12 +188,6 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
- void TGLForm2D::desactivarModos(){
-        estado = nada;
- }
-
-//---------------------------------------------------------------------------
-
  void TGLForm2D::modoSeleccion(int X, int Y){
     if (puntoAnt != NULL){
         delete puntoAnt;
@@ -265,7 +259,6 @@ void __fastcall TGLForm2D::FormPaint(TObject *Sender)
                 //Transforma a coordenadas en la escena
 
                 PuntoV2F*dest = devCoordenada(X,Y);
-                //destino = new PuntoV2F(dest);
                 puntoAnt = new PuntoV2F(dest);
                 Linea* linea = new Linea(or,dest);
 
@@ -320,7 +313,6 @@ void __fastcall TGLForm2D::FormDestroy(TObject *Sender)
 void __fastcall TGLForm2D::Lineas1Click(TObject *Sender)
 {
 //Dibujar poli_lineas
-        //desactivarModos();
     estado=linea;
     esOrigen=false;
     PLCreada=false;
@@ -379,13 +371,8 @@ void __fastcall TGLForm2D::Borrar1Click(TObject *Sender)
              escena->getDibujos()->avanza();
          }
          if (!encontrado)ShowMessage("Seleccione algo!");
-
-        GLScene();
-
-}
-
-
-
+                GLScene();
+         }
 
 }   
 
@@ -466,7 +453,7 @@ void __fastcall TGLForm2D::K1Click(TObject *Sender)
 
 void __fastcall TGLForm2D::Koch21Click(TObject *Sender)
 {
-//fractal Koch1
+//fractal Koch1                 
 
        bool encontrado = false;
         DibujoLineas* djaux= new DibujoLineas();
@@ -524,7 +511,6 @@ void __fastcall TGLForm2D::Dragon1Click(TObject *Sender)
 void __fastcall TGLForm2D::Cortar1Click(TObject *Sender)
 {
 //Selecionar un area y borrar lo que haya dentro
-    //desactivarModos();
     estado = cortar;
     esOrigen=false;
     origenCorte = NULL;
@@ -622,8 +608,7 @@ void __fastcall TGLForm2D::FormMouseDown(TObject *Sender,
 void __fastcall TGLForm2D::FormMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
-    //if(Shift.Contains(ssLeft))
-    {
+
         if(estado == cortar && origenCorte!=NULL){
              if (destinoCorte != NULL){
                 delete destinoCorte;
@@ -632,11 +617,9 @@ void __fastcall TGLForm2D::FormMouseMove(TObject *Sender,
              //Transforma a coordenadas en la escena
             destinoCorte = devCoordenada(X,Y);
             pulsarRaton=true;
-            //escena->enMarca(origenCorte,destinoCorte);
-
             GLScene();
         }
-    }
+
 }
 //---------------------------------------------------------------------------
 
@@ -683,7 +666,6 @@ void __fastcall TGLForm2D::FormMouseUp(TObject *Sender,
         esOrigen=false;
         estado = nada;
         pulsarRaton=false;
-        //escena->borraCortado();
         GLScene();
     }
 }
@@ -743,59 +725,14 @@ void  TGLForm2D::fractalizarK2(DibujoLineas* &dibujselec){
 void  TGLForm2D::fractalizarDRAGON(DibujoLineas* &dibujselec){
 
          DibujoLineas*  nuevaLista= new DibujoLineas();
-
-         /* para debug
-         */
-
-         double x_a;
-         double y_a;
-         double x_b;
-         double y_b;
-
-         double x_ad;
-         double y_ad;
-         double x_bd;
-         double y_bd;
-         //
          if(dibujselec != NULL){
 
                 dibujselec->getSegmentos()->inicia();
 
                 for(int i=0;i<dibujselec->getSegmentos()->getLongitud();i++){
-                        //if ((i !=2)||(i!=3)){
                         Linea* Laux=dibujselec->getSegmentos()->getActual();
                         void* aux = nuevaLista;
-                        //DibujoLineas* aux = nuevaLista;
                         Laux->fractalizaDRAGON(aux);
-                        //}
-                       /* if(i == 2){
-                            Linea* Laux=dibujselec->getSegmentos()->getActual();
-                            //
-                            x_a = Laux->getOrigen()->getX();
-                            y_a = Laux->getOrigen()->getY();
-
-                            void* aux = nuevaLista;
-                            Laux->fractalizaDRAGON(aux);
-
-                            x_ad = Laux->getOrigen()->getX();
-                            y_ad = Laux->getOrigen()->getY();
-
-                            //
-                        }
-                        if(i == 3){
-                            Linea* Laux=dibujselec->getSegmentos()->getActual();
-                            //
-                            x_b = Laux->getDestino()->getX();
-                            y_b = Laux->getDestino()->getY();
-
-                            void* aux = nuevaLista;
-                            Laux->fractalizaDRAGON(aux);
-
-                            (DibujoLineas)aux->
-                            x_bd = Laux->getDestino()->getX();
-                            y_bd = Laux->getDestino()->getY();
-                            //
-                        }*/
                         dibujselec->getSegmentos()->avanza();
         }
 

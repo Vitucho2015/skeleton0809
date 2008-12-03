@@ -31,7 +31,6 @@
                 void girarConCentro(PuntoV2F* centro, double ang);
                 void mover(PuntoV2F* desplazamiento);
                 bool vacia();
-                void dibujaCortado();
  };
 
 //---------------------------------------------------------------------------

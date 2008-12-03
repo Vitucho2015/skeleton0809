@@ -362,25 +362,6 @@ void Linea::fractalizaK1(void* & nuevaLista){
 
           dj->insertaLinea(linaux);
 
-
-
-          //int add= dj->getSegmentos()->getLongitud();
-
-          //int adsads= dj->getSegmentos()->getActual()->getOrigen()->getX();
-
-          //dj->getSegmentos()->inicia();
-
-          //int adsdsdads= dj->getSegmentos()->getActual()->getOrigen()->getX();
-
-
-
-          //SwapBuffers(hdc);
-          //delete lz;
-          //delete orig;
-          //delete dest;
-          //delete linaux;
-
-
           //cuarta linea metida
 
 
@@ -513,24 +494,7 @@ void Linea::fractalizaK1(void* & nuevaLista){
           linaux = new Linea(orig,dest);
 
           dj->insertaLinea(linaux);
-
-          //int add= dj->getSegmentos()->getLongitud();
-
-          //int adsads= dj->getSegmentos()->getActual()->getOrigen()->getX();
-
-          //dj->getSegmentos()->inicia();
-
-          //int adsdsdads= dj->getSegmentos()->getActual()->getOrigen()->getX();
-
-
-
-          //SwapBuffers(hdc);
-          //delete lz;
-          //delete orig;
-          //delete dest;
-          //delete linaux;
-
-
+          
           //cuarta linea metida
 
 
@@ -613,22 +577,6 @@ double Linea::calculoAngulo(PuntoV2F* A, PuntoV2F* B)   {
       angulo = angulo * ( 180.0 / 3.1415926535 );
       return angulo;
  }
-
-
-
-
- 
-//---------------------------------------------------------------------------
-
-void Linea::dibujaCortado()
-{
-    glColor3f(0,1,1);
-    glBegin(GL_LINES);
-        glVertex2f(origen->getX(),origen->getY());
-        glVertex2f(destino->getX(),destino->getY());
-    glEnd();
-    glColor3f(1,1,1);
-}
 
 //---------------------------------------------------------------------------
 

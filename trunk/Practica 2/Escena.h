@@ -11,7 +11,6 @@ class Escena{
 
     private:
         Lista<DibujoLineas>* dibujos; //guarda los dibujos de la escena
-        //DibujoLineas* cortado;
         double xRight,xLeft,yTop,yBot;
         double wLeft,wRight,wBot,wTop;
         
@@ -34,12 +33,8 @@ class Escena{
         void borraDibujo(DibujoLineas *d);
         void enMarca(PuntoV2F* p,PuntoV2F* l);
         bool vacio(){return dibujos->vacia();};
-        void borraCortado();
         bool recorte(PuntoV2F *a,PuntoV2F *b);
-  //      bool hayCortado(){return cortado!=NULL;};
         Lista<DibujoLineas>* getDibujos();
-        //Borrarlo ya que solo sirver para probar los fractales
-        DibujoLineas* damePrueba();
 };
 //---------------------------------------------------------------------------
 #endif
