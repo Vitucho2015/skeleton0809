@@ -8,6 +8,7 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 #include <Menus.hpp>
+#include <Dialogs.hpp>
 
 #include <gl\gl.h>
 #include <gl\glu.h>
@@ -38,6 +39,8 @@ __published:	// IDE-managed Components
     TMenuItem *Dragon1;
     TMenuItem *Cortar1;
     TMenuItem *Opcional1;
+    TMenuItem *Salvar1;
+    TSaveDialog *SaveDialog1;
   void __fastcall FormCreate(TObject *Sender);
   void __fastcall FormResize(TObject *Sender);
   void __fastcall FormPaint(TObject *Sender);
@@ -62,6 +65,7 @@ __published:	// IDE-managed Components
           int X, int Y);
     void __fastcall FormMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
+    void __fastcall Salvar1Click(TObject *Sender);
 
 
 private:	// User declarations

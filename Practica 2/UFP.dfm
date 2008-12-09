@@ -23,7 +23,7 @@ object GLForm2D: TGLForm2D
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
-    Left = 368
+    Left = 336
     object Dibujar1: TMenuItem
       Caption = 'Dibujar'
       object Lineas1: TMenuItem
@@ -82,6 +82,13 @@ object GLForm2D: TGLForm2D
     end
     object Opcional1: TMenuItem
       Caption = 'Opcional'
+      object Salvar1: TMenuItem
+        Caption = 'Salvar'
+        OnClick = Salvar1Click
+      end
     end
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 368
   end
 end
