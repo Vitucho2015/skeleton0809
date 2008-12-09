@@ -739,7 +739,30 @@ void  TGLForm2D::fractalizarDRAGON(DibujoLineas* &dibujselec){
       dibujselec=nuevaLista;
     }
 }
+//---------------------------------------------------------------------------
+ // Create a 24-bit-per-pixel surface.
+HBITMAP Create24BPPDIBSection(HDC hDC, int iWidth, int iHeight)
+   {
+       BITMAPINFO bmi;
+       HBITMAP hbm;
+       LPBYTE pBits;
 
+       // Initialize to 0s.
+       ZeroMemory(&bmi, sizeof(bmi));
+
+       // Initialize the header.
+       bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+       bmi.bmiHeader.biWidth = iWidth;
+       bmi.bmiHeader.biHeight = iHeight;
+       bmi.bmiHeader.biPlanes = 1;
+       bmi.bmiHeader.biBitCount = 24;
+       bmi.bmiHeader.biCompression = BI_RGB;
+
+       // Create the surface.
+       hbm = CreateDIBSection(hDC, &bmi, DIB_RGB_COLORS, (void**)&pBits, NULL, 0);
+
+       return(hbm);
+}
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm2D::Salvar1Click(TObject *Sender)
@@ -748,7 +771,14 @@ void __fastcall TGLForm2D::Salvar1Click(TObject *Sender)
     if(SaveDialog1->Execute()){
         AnsiString nombre = SaveDialog1->FileName;
         nombre = nombre+".bmp";
+        HBITMAP hBitMap = Create24BPPDIBSection(hdc,xRight-xLeft,yTop-yBot);
+        
     }
 }
 //---------------------------------------------------------------------------
+
+
+
+
+
 

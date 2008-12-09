@@ -101,6 +101,8 @@ private:	// User declarations
  PuntoV2F* destinoCorte;
  PuntoV2F* puntoAnt;
 
+
+
  // métodos privados
  void __fastcall SetPixelFormatDescriptor();
  void __fastcall GLScene();
@@ -120,3 +122,7 @@ private:	// User declarations
 extern PACKAGE TGLForm2D *GLForm2D;
 //---------------------------------------------------------------------------
 #endif
+
+
+
+
