@@ -740,4 +740,15 @@ void  TGLForm2D::fractalizarDRAGON(DibujoLineas* &dibujselec){
     }
 }
 
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Salvar1Click(TObject *Sender)
+{
+//Salvar la escena en un bmp
+    if(SaveDialog1->Execute()){
+        AnsiString nombre = SaveDialog1->FileName;
+        nombre = nombre+".bmp";
+    }
+}
+//---------------------------------------------------------------------------
 
