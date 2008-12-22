@@ -14,7 +14,6 @@
  #include <gl\gl.h>
  #include <gl\glu.h>
  #include "tPelota.h"
- #include "tCirculo.h"
  #include "tConvexo.h"
  #include <stdlib.h>   //Librería Random
 
@@ -23,19 +22,22 @@
  class TGLForm2D : public TForm
  {
         __published:
-                TMainMenu *MMenu;     
-                TMenuItem *MInicio;
+                TMainMenu *MMenu;
                 TMenuItem *MSalir;
                 //Reloj de juego
                 TTimer *reloj;
+    TMenuItem *Modo1;
+    TMenuItem *Tonto1;
+    TMenuItem *Listo1;
 
                 void __fastcall FormCreate(TObject *Sender);
                 void __fastcall FormResize(TObject *Sender);
                 void __fastcall FormPaint(TObject *Sender);
                 void __fastcall FormDestroy(TObject *Sender);
                 void __fastcall MSalirClick(TObject *Sender);
-                void __fastcall MInicioClick(TObject *Sender);
                 void __fastcall relojTimer(TObject *Sender);
+    void __fastcall Tonto1Click(TObject *Sender);
+    void __fastcall Listo1Click(TObject *Sender);
 
         private:
                 HDC hdc;
@@ -51,6 +53,7 @@
                 int numRebotes;//Contador del número de rebotes
                 Lista<tObstaculo>* obstaculos; //Lista de obstaculos
                 PuntoV2F* pSalida; //Punto de salida
+                bool modoListo;
 
                 //Métodos privados
                 
@@ -58,9 +61,9 @@
                 void __fastcall GLScene();
 
                 void crearEscenario();
-                void crearParedes();
+                void crearParedes(bool modo);
                 void crearPelota();
-                void crearObstaculos();
+                void crearObstaculos(bool modo);
                 void avanzar();
 
         public:	

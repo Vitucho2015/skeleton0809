@@ -22,9 +22,16 @@ object GLForm2D: TGLForm2D
   TextHeight = 13
   object MMenu: TMainMenu
     Left = 440
-    object MInicio: TMenuItem
-      Caption = '&Inicio'
-      OnClick = MInicioClick
+    object Modo1: TMenuItem
+      Caption = 'Inicio'
+      object Tonto1: TMenuItem
+        Caption = 'Tonto'
+        OnClick = Tonto1Click
+      end
+      object Listo1: TMenuItem
+        Caption = 'Listo'
+        OnClick = Listo1Click
+      end
     end
     object MSalir: TMenuItem
       Caption = '&Salir'

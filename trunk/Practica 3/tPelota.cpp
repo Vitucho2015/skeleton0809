@@ -21,8 +21,8 @@
 	sentido = paso;
 	posicion = pos;
 	radio = r;
-	//Aproximamos un circulo con 60 lineas
-	int nVertices = 60;
+	//Aproximamos un circulo con 40 lineas
+	int nVertices = 40;
 	double alfa = 360/nVertices;
 
 	//Calculamos los vértices
@@ -75,7 +75,8 @@
  void tPelota::draw()
  {
 	glColor3f(0,0,1);
-	glBegin(GL_POLYGON);
+	//glBegin(GL_POLYGON);
+    glBegin(GL_LINE_LOOP);
 	circulo->inicia();
 	for (int i=0;i<circulo->getLongitud();i++){
 		PuntoV2F* vertice = circulo->getActual();
@@ -83,6 +84,10 @@
 		circulo->avanza();
 	}
 	glEnd();
+    
+    glBegin(GL_POINTS);
+        	glVertex2f(posicion->getX(),posicion->getY());
+    glEnd();
  }
 
 //-------------------------------------------------
@@ -106,6 +111,7 @@
 	normal->escalar(valor);
 	v->restar(normal);
 	delete normal;
+    normal = NULL;
 	delete sentido;
 	sentido = v;
  }

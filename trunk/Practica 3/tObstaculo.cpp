@@ -36,6 +36,9 @@
 		PuntoV2F* normal = new PuntoV2F(destino->getY()/2.0,-(destino->getX())/2.0);
 		delete destino;
 		destino = NULL;
+        //Prueba
+        //normal->normalizar();
+        //
 		normales[i] = normal;
 	}
  }
@@ -113,7 +116,7 @@
 			//Calculamos la normal
 			PuntoV2F* origen = vertices[i];
 			PuntoV2F* destino;
-			if (i==numVertices-1){
+			if (i ==(numVertices-1)){
 				destino = new PuntoV2F(vertices[0]);
 			}
 			else{

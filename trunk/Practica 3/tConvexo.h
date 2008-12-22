@@ -10,7 +10,7 @@
 
         public:
                 tConvexo();
-                tConvexo(PuntoV2F* c,int nVertices,int lado);
+                tConvexo(PuntoV2F* centro,int nVertices,int lado);
                 tConvexo(int nVertices,PuntoV2F** vertices);
                 ~tConvexo();
                 void draw();
