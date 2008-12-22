@@ -389,6 +389,24 @@
 		tConvexo* poligono6 = new tConvexo(centro,4,50);
 		obstaculos->inserta(poligono6);
 		delete centro;
+
+        //Segmento
+        PuntoV2F** verticesAux = new PuntoV2F*[2];
+		PuntoV2F* p1Aux = new PuntoV2F(0,-160);
+		PuntoV2F* p2Aux = new PuntoV2F(100,-150);
+        verticesAux[0] = p1Aux;
+        verticesAux[1] = p2Aux;
+        tSegmento* segmento1 = new tSegmento(2,verticesAux);
+        obstaculos->inserta(segmento1);
+
+        //Segmento
+        verticesAux = new PuntoV2F*[2];
+		p1Aux = new PuntoV2F(100,40);
+		p2Aux = new PuntoV2F(150,-100);
+        verticesAux[0] = p1Aux;
+        verticesAux[1] = p2Aux;
+        tSegmento* segmento2 = new tSegmento(2,verticesAux);
+        obstaculos->inserta(segmento2);
 	}
 	else{//Modo no penetracion
 		ShowMessage("Aun en construcción");

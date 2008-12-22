@@ -15,7 +15,6 @@
                 ~tConvexo();
                 void draw();
                 bool colisionVsPelota(tPelota* pelota, double& tIn, PuntoV2F*& normal);
-                void rotar(PuntoV2F* c, double angulo);
  };
 
 //---------------------------------------------------------------------------
