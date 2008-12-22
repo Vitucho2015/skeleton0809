@@ -15,6 +15,7 @@
  #include <gl\glu.h>
  #include "tPelota.h"
  #include "tConvexo.h"
+ #include "tSegmento.h"
  #include <stdlib.h>   //Librería Random
 
 //---------------------------------------------------------------------------

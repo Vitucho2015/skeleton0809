@@ -5,7 +5,7 @@
     <VERSION value="BCB.05.03"/>
     <PROJECT value="glSkeleton.exe"/>
     <OBJFILES value="glSkeleton.obj UFP.obj Nodo.obj Lista.obj PuntoV2F.obj tPelota.obj 
-      tObstaculo.obj tConvexo.obj"/>
+      tObstaculo.obj tConvexo.obj tSegmento.obj"/>
     <RESFILES value="glSkeleton.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>

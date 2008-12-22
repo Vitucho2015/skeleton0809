@@ -152,20 +152,6 @@
 	return corte;
  }
 
-//-------------------------------------------------
-
- void tConvexo::rotar(PuntoV2F* c, double angulo)
- {
-	PuntoV2F** v = new PuntoV2F*[getNumVertices()];
-	for (int i=0;i<getNumVertices();i++){
-		PuntoV2F* vOriginal = getVertice(i);
-		PuntoV2F* vRotado = new PuntoV2F(vOriginal);
-		vRotado->rotaP(c, angulo);
-		v[i] = vRotado;
-	}
-	setVertices(getNumVertices(),v);
- }
-
 //---------------------------------------------------------------------------
 
  #pragma package(smart_init)

@@ -10,6 +10,7 @@ USEUNIT("PuntoV2F.cpp");
 USEUNIT("tPelota.cpp");
 USEUNIT("tObstaculo.cpp");
 USEUNIT("tConvexo.cpp");
+USEUNIT("tSegmento.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
