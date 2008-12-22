@@ -41,16 +41,18 @@
 	ClientHeight=500;
 	RatioViewPort=1.0;
 
+	//Iniciamos el sistema en modo Tonto
+    modoListo = false;
 	//Inicialmente el reloj desactivado
 	reloj->Enabled = false;
 	//Creamos la lista de obstaculos
 	obstaculos = new Lista<tObstaculo>();
 	//Creamos y colocamos los obstaculos
 	crearEscenario();
-	//Creamos punto de salida
+	//Creamos punto de salida     
 	pSalida = new PuntoV2F(-150,150);
 	//Inicializamos el sistema aleatorio
-	randomize();
+	randomize();    
  }
 
 //---------------------------------------------------------------------------
@@ -83,8 +85,8 @@
  {
 	//Se actualiza puerto de vista y su radio
 	if ((ClientWidth<=1)||(ClientHeight<=1)){
-			ClientWidth=400;
-			ClientHeight=400;
+			ClientWidth=500;
+			ClientHeight=500;
 			RatioViewPort=1.0;
 	}else RatioViewPort= (float)ClientWidth/(float)ClientHeight;
 
@@ -193,73 +195,68 @@
  
 //---------------------------------------------------------------------------
 
- void __fastcall TGLForm2D::MInicioClick(TObject *Sender)
- {
-	//Creamos la pelota
-	crearPelota();
-	//Iniciamos contador y lo mostramos
-	numRebotes = 0;
-	Caption=" Rebotes Num: "+numRebotes;
-	//Activamos el reloj
-	reloj->Enabled = true;
-	//Repintamos
-	GLScene();
- }
-
-//---------------------------------------------------------------------------
 
  void TGLForm2D::crearEscenario()
  {
+    if(obstaculos != NULL){
+        delete obstaculos;
+    }
+    
+    obstaculos = new Lista<tObstaculo>();
 	//Creamos las paredes
-	crearParedes();
+   	crearParedes(modoListo);
 
 	//Creamos los obstaculos
-	crearObstaculos();
+	crearObstaculos(modoListo);
  }
 
 //---------------------------------------------------------------------------
 
- void TGLForm2D::crearParedes()
+ void TGLForm2D::crearParedes(bool modo)
  {
 	//Creamos paredes
+	if(modo == false){ // Modo penetracion
+		//Izquierda
+		PuntoV2F** verIzq = new PuntoV2F*[4];
+	    verIzq[0] = new PuntoV2F(-250,-250);
+	    verIzq[1] = new PuntoV2F(-250,250);
+	    verIzq[2] = new PuntoV2F(-260,250);
+	    verIzq[3] = new PuntoV2F(-260,-250);
+		tConvexo* paredIzq = new tConvexo(4,verIzq);
+		obstaculos->inserta(paredIzq);
 
-	//Izquierda
-	PuntoV2F** verIzq = new PuntoV2F*[4];
-	verIzq[0] = new PuntoV2F(-250,-250);
-	verIzq[1] = new PuntoV2F(-250,250);
-	verIzq[2] = new PuntoV2F(-260,250);
-	verIzq[3] = new PuntoV2F(-260,-250);
-	tConvexo* paredIzq = new tConvexo(4,verIzq);
-	obstaculos->inserta(paredIzq);
+		//Superior
+		PuntoV2F** verSup = new PuntoV2F*[4];
+		verSup[0] = new PuntoV2F(-250,250);
+		verSup[1] = new PuntoV2F(250,250);
+		verSup[2] = new PuntoV2F(250,260);
+		verSup[3] = new PuntoV2F(-250,260);
 
-	//Superior
-	PuntoV2F** verSup = new PuntoV2F*[4];
-	verSup[0] = new PuntoV2F(-250,250);
-	verSup[1] = new PuntoV2F(250,250);
-	verSup[2] = new PuntoV2F(250,260);
-	verSup[3] = new PuntoV2F(-250,260);
+		tConvexo* paredSup = new tConvexo(4,verSup);
+		obstaculos->inserta(paredSup);
 
-	tConvexo* paredSup = new tConvexo(4,verSup);
-	obstaculos->inserta(paredSup);
+		//Inferior
+		PuntoV2F** verInf = new PuntoV2F*[4];
+		verInf[0] = new PuntoV2F(-250,-260);
+		verInf[1] = new PuntoV2F(250,-260);
+		verInf[2] = new PuntoV2F(250,-250);
+		verInf[3] = new PuntoV2F(-250,-250);
 
-	//Inferior
-	PuntoV2F** verInf = new PuntoV2F*[4];
-	verInf[0] = new PuntoV2F(-250,-260);
-	verInf[1] = new PuntoV2F(250,-260);
-	verInf[2] = new PuntoV2F(250,-250);
-	verInf[3] = new PuntoV2F(-250,-250);
+		tConvexo* paredInf = new tConvexo(4,verInf);
+		obstaculos->inserta(paredInf);
 
-	tConvexo* paredInf = new tConvexo(4,verInf);
-	obstaculos->inserta(paredInf);
-
-	//Derecha
-	PuntoV2F** verDer = new PuntoV2F*[4];
-	verDer[0] = new PuntoV2F(260,-250);
-	verDer[1] = new PuntoV2F(260,250);
-	verDer[2] = new PuntoV2F(250,250);
-	verDer[3] = new PuntoV2F(250,-250);
-	tConvexo* paredDer = new tConvexo(4,verDer);
-	obstaculos->inserta(paredDer);
+		//Derecha
+		PuntoV2F** verDer = new PuntoV2F*[4];
+		verDer[0] = new PuntoV2F(260,-250);
+		verDer[1] = new PuntoV2F(260,250);
+		verDer[2] = new PuntoV2F(250,250);
+		verDer[3] = new PuntoV2F(250,-250);
+		tConvexo* paredDer = new tConvexo(4,verDer);
+		obstaculos->inserta(paredDer);
+	}
+	else{ // Modo no penetracion
+		ShowMessage("Aun en construcción");
+	}
  }
 
 //---------------------------------------------------------------------------
@@ -271,15 +268,15 @@
 		pelota = NULL;
 	}
 
-	double radio = 15;
+	double radio = 10;
 
 	//Indicamos posicion inicial
 	PuntoV2F* posicion = new PuntoV2F(pSalida);
 
 	//Sentido inicial de la pelota aleatorio
-	//(valores con rango entre [-20,20])
-	int x = random(41)-20;
-	int y = random(41)-20;
+	//(valores con rango entre [-10,10])
+	int x = random(21)-10;
+	int y = random(21)-10;
     
 	PuntoV2F* sentido = new PuntoV2F(x,y);
 
@@ -316,7 +313,7 @@
 	}
 
 	//Procesamos los obstaculos restantes por si se produce una colision a la vez
-	int j = i;
+   	int j = i;
 	bool otroCorte = false;
 	double tIn2;
 	PuntoV2F* normal2;
@@ -326,7 +323,6 @@
 		obstaculos->avanza();
 		j++;
 	}
-
 	if(!corte){ //No hay colisión
 		pelota->avanza();
 	}
@@ -337,8 +333,8 @@
 			pelota->avanzaYRebota(tIn2,normal2);
 			delete normal;
 		}
-		else{ //Colision simple
-			pelota->avanzaYRebota(tIn,normal);
+		else{ //Colision simple */
+        	pelota->avanzaYRebota(tIn,normal);
 		}
 		numRebotes++;
 	}
@@ -346,74 +342,94 @@
 
 //---------------------------------------------------------------------------
 
- void TGLForm2D::crearObstaculos()
+ void TGLForm2D::crearObstaculos(bool modo)
  {
-	PuntoV2F* centro;
+    if(modo == false){ //Modo penetración
+		PuntoV2F* centro;
 
-	//Hexágono
-	centro = new PuntoV2F(130,130);
-	tConvexo* poligono1 = new tConvexo(centro,6,45);
-	obstaculos->inserta(poligono1);
-	delete centro;
+		//Hexágono
+		centro = new PuntoV2F(130,130);
+		tConvexo* poligono1 = new tConvexo(centro,6,45);
+		obstaculos->inserta(poligono1);
+		delete centro;
 
-	//Triangulo
-	centro = new PuntoV2F(-200,100);
-	tConvexo* poligono2 = new tConvexo(centro,3,40);
-	obstaculos->inserta(poligono2);
-	delete centro;
+		//Triangulo
+		centro = new PuntoV2F(-250,100);
+		tConvexo* poligono2 = new tConvexo(centro,3,40);
+		obstaculos->inserta(poligono2);
+		delete centro;
 
-	//Rectangulo
-	PuntoV2F** vertices = new PuntoV2F*[4];
-	PuntoV2F* p1 = new PuntoV2F(-40,-200);
-	PuntoV2F* p2 = new PuntoV2F(70,-200);
-	PuntoV2F* p3 = new PuntoV2F(70,-180);
-	PuntoV2F* p4 = new PuntoV2F(-40,-180);
-	vertices[0]=p1;
-	vertices[1]=p2;
-	vertices[2]=p3;
-	vertices[3]=p4;
-	tConvexo* poligono3 = new tConvexo(4,vertices);
-	obstaculos->inserta(poligono3);
+		//Rectangulo
+		PuntoV2F** vertices = new PuntoV2F*[4];
+		PuntoV2F* p1 = new PuntoV2F(-160,-160);
+		PuntoV2F* p2 = new PuntoV2F(-100,-160);
+		PuntoV2F* p3 = new PuntoV2F(-100,-130);
+		PuntoV2F* p4 = new PuntoV2F(-160,-130);
+		vertices[0]=p1;
+		vertices[1]=p2;
+		vertices[2]=p3;
+		vertices[3]=p4;
+		tConvexo* poligono3 = new tConvexo(4,vertices);
+		obstaculos->inserta(poligono3);
 
-	//Cuadrado
-	centro = new PuntoV2F(0,250);
-	tConvexo* poligono4 = new tConvexo(centro,4,50);
-	obstaculos->inserta(poligono4);
-	delete centro;
+		//Cuadrado
+		centro = new PuntoV2F(0,250);
+		tConvexo* poligono4 = new tConvexo(centro,4,50);
+		obstaculos->inserta(poligono4);
+		delete centro;
 
-	//Cuadrado
-	centro = new PuntoV2F(250,250);
-	tConvexo* poligono5 = new tConvexo(centro,6,50);
-	obstaculos->inserta(poligono5);
-	delete centro;
+		//Cuadrado
+		centro = new PuntoV2F(250,250);
+		tConvexo* poligono5 = new tConvexo(centro,6,50);
+		obstaculos->inserta(poligono5);
+		delete centro;
 
-	//Cuadrado
-	centro = new PuntoV2F(-250,-250);
-	tConvexo* poligono6 = new tConvexo(centro,4,50);
-	obstaculos->inserta(poligono6);
-	delete centro;
+		//Cuadrado
+		centro = new PuntoV2F(-250,-250);
+		tConvexo* poligono6 = new tConvexo(centro,4,50);
+		obstaculos->inserta(poligono6);
+		delete centro;
+	}
+	else{//Modo no penetracion
+		ShowMessage("Aun en construcción");
+	}
 
-	//Circulo
-	centro = new PuntoV2F(-250,250);
-	tCirculo* circulo1 = new tCirculo(40,centro);
-	obstaculos->inserta(circulo1);
-
-	//Circulo
-	centro = new PuntoV2F(150,-80);
-	tCirculo* circulo2 = new tCirculo(30,centro);
-	obstaculos->inserta(circulo2);
-
-	//Circulo
-	centro = new PuntoV2F(-150,-120);
-	tCirculo* circulo3 = new tCirculo(50,centro);
-	obstaculos->inserta(circulo3);
-
-	//Circulo
-	centro = new PuntoV2F(250,-250);
-	tCirculo* circulo4 = new tCirculo(50,centro);
-	obstaculos->inserta(circulo4);
  }
 
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Tonto1Click(TObject *Sender)
+{
+    modoListo = false;
+	//Creamos la pelota
+	crearPelota();
+	//Creamos el escenario
+	crearEscenario();
+	//Iniciamos contador y lo mostramos
+	numRebotes = 0;
+	Caption=" Rebotes Num: "+numRebotes;
+	//Activamos el reloj
+	reloj->Enabled = true;
+	//Repintamos
+	GLScene();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm2D::Listo1Click(TObject *Sender)
+{
+    modoListo = true;  
+	//Creamos la pelota
+	crearPelota();
+	//Creamos el escenario
+	crearEscenario();
+	//Iniciamos contador y lo mostramos
+	numRebotes = 0;
+	Caption=" Rebotes Num: "+numRebotes;
+	//Activamos el reloj
+	reloj->Enabled = true;
+	//Repintamos
+	GLScene();	
+}
 //---------------------------------------------------------------------------
 
 
