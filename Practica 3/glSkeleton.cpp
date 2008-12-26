@@ -11,6 +11,7 @@ USEUNIT("tPelota.cpp");
 USEUNIT("tObstaculo.cpp");
 USEUNIT("tConvexo.cpp");
 USEUNIT("tSegmento.cpp");
+USEUNIT("tObstaculoRecubierto.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
