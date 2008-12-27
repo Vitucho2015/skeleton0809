@@ -74,6 +74,13 @@
     return numVertices;
  }
 
+ //-------------------------------------------------
+
+ void tObstaculo::setNumVertices(int num)
+ {
+    numVertices = num;
+ }
+
 //-------------------------------------------------
 
  void tObstaculo::draw(){}
