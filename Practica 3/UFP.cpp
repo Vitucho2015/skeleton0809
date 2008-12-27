@@ -42,7 +42,10 @@
 	RatioViewPort=1.0;
 
 	//Iniciamos el sistema en modo Tonto
-    modoListo = false;
+    //modoListo = false;
+    modoListo = true;
+    //Radio de la pelota;
+    radio = 10;
 	//Inicialmente el reloj desactivado
 	reloj->Enabled = false;
 	//Creamos la lista de obstaculos
@@ -255,7 +258,44 @@
 		obstaculos->inserta(paredDer);
 	}
 	else{ // Modo no penetracion
-		ShowMessage("Aun en construcción");
+        //Izquierda
+		PuntoV2F** verIzq = new PuntoV2F*[4];
+	    verIzq[0] = new PuntoV2F(-250,-250);
+	    verIzq[1] = new PuntoV2F(-250,250);
+	    verIzq[2] = new PuntoV2F(-260,250);
+	    verIzq[3] = new PuntoV2F(-260,-250);
+		tObstaculoRecubierto* paredIzq = new tObstaculoRecubierto(4,verIzq,0,radio);
+		obstaculos->inserta(paredIzq);
+
+		//Superior
+		PuntoV2F** verSup = new PuntoV2F*[4];
+		verSup[0] = new PuntoV2F(-250,250);
+		verSup[1] = new PuntoV2F(250,250);
+		verSup[2] = new PuntoV2F(250,260);
+		verSup[3] = new PuntoV2F(-250,260);
+
+		tObstaculoRecubierto* paredSup = new tObstaculoRecubierto(4,verSup,0,radio);
+		obstaculos->inserta(paredSup);
+
+		//Inferior
+		PuntoV2F** verInf = new PuntoV2F*[4];
+		verInf[0] = new PuntoV2F(-250,-260);
+		verInf[1] = new PuntoV2F(250,-260);
+		verInf[2] = new PuntoV2F(250,-250);
+		verInf[3] = new PuntoV2F(-250,-250);
+
+		tObstaculoRecubierto* paredInf = new tObstaculoRecubierto(4,verInf,0,radio);
+		obstaculos->inserta(paredInf);
+
+		//Derecha
+		PuntoV2F** verDer = new PuntoV2F*[4];
+		verDer[0] = new PuntoV2F(260,-250);
+		verDer[1] = new PuntoV2F(260,250);
+		verDer[2] = new PuntoV2F(250,250);
+		verDer[3] = new PuntoV2F(250,-250);
+		tObstaculoRecubierto* paredDer = new tObstaculoRecubierto(4,verDer,0,radio);
+		obstaculos->inserta(paredDer);
+
 	}
  }
 
@@ -267,8 +307,6 @@
 		delete pelota;
 		pelota = NULL;
 	}
-
-	double radio = 10;
 
 	//Indicamos posicion inicial
 	PuntoV2F* posicion = new PuntoV2F(pSalida);
@@ -409,7 +447,83 @@
         obstaculos->inserta(segmento2);
 	}
 	else{//Modo no penetracion
-		ShowMessage("Aun en construcción");
+		//ShowMessage("Aun en construcción");
+        //Rectangulo
+	   /*	PuntoV2F** vertices = new PuntoV2F*[4];
+		PuntoV2F* p1 = new PuntoV2F(-160,-160);
+		PuntoV2F* p2 = new PuntoV2F(-100,-160);
+		PuntoV2F* p3 = new PuntoV2F(-100,-130);
+		PuntoV2F* p4 = new PuntoV2F(-160,-130);
+		vertices[0]=p1;
+		vertices[1]=p2;
+		vertices[2]=p3;
+		vertices[3]=p4;
+		tObstaculoRecubierto* poligono3 = new tObstaculoRecubierto(4,vertices, 0,radio);
+		obstaculos->inserta(poligono3);
+        //ShowMessage(poligono3->getNumVertices());
+        */
+        PuntoV2F* centro;
+
+		//Hexágono
+		centro = new PuntoV2F(130,130);
+		tObstaculoRecubierto* poligono1 = new tObstaculoRecubierto(centro,6,45,radio);
+		obstaculos->inserta(poligono1);
+		delete centro;
+
+		//Triangulo
+		centro = new PuntoV2F(-250,100);
+		tObstaculoRecubierto* poligono2 = new tObstaculoRecubierto(centro,3,40,radio);
+		obstaculos->inserta(poligono2);
+		delete centro;
+
+		//Rectangulo
+		PuntoV2F** vertices = new PuntoV2F*[4];
+		PuntoV2F* p1 = new PuntoV2F(-160,-160);
+		PuntoV2F* p2 = new PuntoV2F(-100,-160);
+		PuntoV2F* p3 = new PuntoV2F(-100,-130);
+		PuntoV2F* p4 = new PuntoV2F(-160,-130);
+		vertices[0]=p1;
+		vertices[1]=p2;
+		vertices[2]=p3;
+		vertices[3]=p4;
+		tObstaculoRecubierto* poligono3 = new tObstaculoRecubierto(4,vertices,0,radio);
+		obstaculos->inserta(poligono3);
+
+		//Cuadrado
+		centro = new PuntoV2F(0,250);
+		tObstaculoRecubierto* poligono4 = new tObstaculoRecubierto(centro,4,50,radio);
+		obstaculos->inserta(poligono4);
+		delete centro;
+
+		//Cuadrado
+		centro = new PuntoV2F(250,250);
+		tObstaculoRecubierto* poligono5 = new tObstaculoRecubierto(centro,6,50,radio);
+		obstaculos->inserta(poligono5);
+		delete centro;
+
+		//Cuadrado
+		centro = new PuntoV2F(-250,-250);
+		tObstaculoRecubierto* poligono6 = new tObstaculoRecubierto(centro,4,50,radio);
+		obstaculos->inserta(poligono6);
+		delete centro;
+
+        //Segmento
+        PuntoV2F** verticesAux = new PuntoV2F*[2];
+		PuntoV2F* p1Aux = new PuntoV2F(0,-160);
+		PuntoV2F* p2Aux = new PuntoV2F(100,-150);
+        verticesAux[0] = p1Aux;
+        verticesAux[1] = p2Aux;
+        tObstaculoRecubierto* segmento1 = new tObstaculoRecubierto(2,verticesAux, 1,radio);
+        obstaculos->inserta(segmento1);
+
+        //Segmento
+        verticesAux = new PuntoV2F*[2];
+		p1Aux = new PuntoV2F(100,40);
+		p2Aux = new PuntoV2F(150,-100);
+        verticesAux[0] = p1Aux;
+        verticesAux[1] = p2Aux;
+        tObstaculoRecubierto* segmento2 = new tObstaculoRecubierto(2,verticesAux, 2,radio);
+        obstaculos->inserta(segmento2);
 	}
 
  }

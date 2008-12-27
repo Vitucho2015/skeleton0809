@@ -19,11 +19,13 @@
                 tObstaculo(int nVertices,PuntoV2F** vVertices);
                 virtual ~tObstaculo();
                 int getNumVertices();
+                void setNumVertices(int num);
                 virtual void draw();
                 virtual bool colisionVsPelota(tPelota* pelota, double& tIn, PuntoV2F*& normal);
                 void setVertices(int nVertices, PuntoV2F** vVertices);
                 PuntoV2F* getVertice(int i);
                 PuntoV2F* getNormal(int i);
+
  };
 
 //---------------------------------------------------------------------------

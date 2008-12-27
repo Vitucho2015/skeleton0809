@@ -16,6 +16,7 @@
  #include "tPelota.h"
  #include "tConvexo.h"
  #include "tSegmento.h"
+ #include "tObstaculoRecubierto.h"
  #include <stdlib.h>   //Librería Random
 
 //---------------------------------------------------------------------------
@@ -51,6 +52,7 @@
                 //variables
 
                 tPelota* pelota;//Pelota
+                double radio;//radio de la pelota
                 int numRebotes;//Contador del número de rebotes
                 Lista<tObstaculo>* obstaculos; //Lista de obstaculos
                 PuntoV2F* pSalida; //Punto de salida
