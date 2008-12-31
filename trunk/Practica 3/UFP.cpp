@@ -449,7 +449,7 @@
 	else{//Modo no penetracion
 		//ShowMessage("Aun en construcción");
         //Rectangulo
-	   /*	PuntoV2F** vertices = new PuntoV2F*[4];
+	   	PuntoV2F** vertices = new PuntoV2F*[4];
 		PuntoV2F* p1 = new PuntoV2F(-160,-160);
 		PuntoV2F* p2 = new PuntoV2F(-100,-160);
 		PuntoV2F* p3 = new PuntoV2F(-100,-130);
@@ -461,8 +461,8 @@
 		tObstaculoRecubierto* poligono3 = new tObstaculoRecubierto(4,vertices, 0,radio);
 		obstaculos->inserta(poligono3);
         //ShowMessage(poligono3->getNumVertices());
-        */
-        PuntoV2F* centro;
+
+        /*PuntoV2F* centro;
 
 		//Hexágono
 		centro = new PuntoV2F(130,130);
@@ -524,6 +524,7 @@
         verticesAux[1] = p2Aux;
         tObstaculoRecubierto* segmento2 = new tObstaculoRecubierto(2,verticesAux, 2,radio);
         obstaculos->inserta(segmento2);
+        */
 	}
 
  }

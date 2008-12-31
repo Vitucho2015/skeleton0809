@@ -110,8 +110,13 @@
     PuntoV2F* origen = NULL;
     PuntoV2F* destino = NULL;
     PuntoV2F* normal = NULL;
+    PuntoV2F* centro = NULL;
+    double angIni = 0.0;
+    double angFin = 0.0;
+    nLados = 10;
     //Prueba: El numero de vertices va a ser los del interior*2+interior*numeroPuntosArco( que van a ser 10)
         setNumVertices(interior->getNumVertices()*2);//falta sumar los arcos
+        //setNumVertices(interior->getNumVertices()*10);//ya estan sumados los puntos del arco
         PuntoV2F** verticesAux = new PuntoV2F*[getNumVertices()];
         int num = 0;
     //
@@ -134,6 +139,16 @@
         destino->sumar(normal);
         verticesAux[num] = origen;
         num++;
+        /*if(i>0){//Si no es el primer vertice entonces calcular los arcos
+            centro = interior->getVertice(i);
+            angIni = calculoAngulo(centro,verticesAux[num-2]);
+            angFin = calculoAngulo(centro,origen);
+            PuntoV2F** puntosArco = calculaArco(centro,angIni,angFin,radio,nLados);
+            for(int j=0;j<nLados-2;j++){
+                verticesAux[num] = puntosArco[j];
+                num++;
+            }
+        } */
         verticesAux[num] = destino;
         num++;
         delete normal;
@@ -192,6 +207,34 @@
  bool tObstaculoRecubierto::colisionVsPelota(tPelota* pelota, double& tIn, PuntoV2F*& normal)
  {
 	return corteza->colisionVsPelota(pelota, tIn, normal);
+ }
+
+//---------------------------------------------------------------------------
+
+ PuntoV2F** tObstaculoRecubierto::calculaArco(PuntoV2F* centro,double angIni, double angArco, double radio, int nLados)
+ {
+        PuntoV2F** puntosArco = new PuntoV2F*[nLados-2];//El origen y el destino ya estan añadidos antes
+        double incrAng = angArco / double (nLados);
+
+        double x = centro->getX() + radio*cos(((angIni*3.1416)/180));
+        double y = centro->getY() + radio*sin(((angIni*3.1416)/180));
+        for (int i=1;i<nLados-1;i++){
+            x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.1416)/180));
+            y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.1416)/180));
+            PuntoV2F* b = new PuntoV2F(x,y);
+            puntosArco[i-1] = b;
+
+        }
+        return puntosArco;
+ }
+
+//---------------------------------------------------------------------------
+
+double tObstaculoRecubierto::calculoAngulo(PuntoV2F* A, PuntoV2F* B)   {
+
+      double angulo = atan2(B->getY()-A->getY(),B->getX()-A->getX());
+      angulo = angulo * ( 180.0 / 3.1415926535 );
+      return angulo;
  }
 
 //---------------------------------------------------------------------------
