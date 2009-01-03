@@ -37,6 +37,7 @@
     /*if (corteza != NULL){
         delete corteza;
     }*/
+    
      PuntoV2F* origen = NULL;
     PuntoV2F* destino = NULL;
     PuntoV2F* normal = NULL;

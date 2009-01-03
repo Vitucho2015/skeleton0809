@@ -100,7 +100,7 @@
  }
 
 //-------------------------------------------------
-
+//realiza el producto escalar de un punto
  void PuntoV2F::escalar(double valor)
  {
         x = x*valor;
