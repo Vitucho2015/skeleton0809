@@ -33,7 +33,9 @@
 			destino = new PuntoV2F(vertices[i+1]);
 		}
 		destino->restar(origen);
+                //CALCULO DE NORMAL
 		PuntoV2F* normal = new PuntoV2F(destino->getY()/2.0,-(destino->getX())/2.0);
+
 		delete destino;
 		destino = NULL;
 		normales[i] = normal;
@@ -89,6 +91,8 @@
 
  void tObstaculo::setVertices(int nVertices, PuntoV2F** vVertices)
  {
+
+        //borramos vértices y normales actuales...
         if(vertices != NULL){
             for(int i=0;i<numVertices;i++){
 				if (vertices[i] != NULL){

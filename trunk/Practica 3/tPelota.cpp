@@ -21,6 +21,7 @@
 	sentido = paso;
 	posicion = pos;
 	radio = r;
+        
 	//Aproximamos un circulo con 40 lineas
 	int nVertices = 40;
 	double alfa = 360/nVertices;
@@ -61,6 +62,7 @@
 
  void tPelota::avanza()
  {
+        //avanzamos su centro y después avanzamos todos sus puntos
 	posicion->sumar(sentido);
 	circulo->inicia();
 	for (int i=0;i<circulo->getLongitud();i++){
@@ -78,6 +80,7 @@
 	//glBegin(GL_POLYGON);
     glBegin(GL_LINE_LOOP);
 	circulo->inicia();
+
 	for (int i=0;i<circulo->getLongitud();i++){
 		PuntoV2F* vertice = circulo->getActual();
 		glVertex2f(vertice->getX(),vertice->getY());
@@ -93,7 +96,7 @@
 //-------------------------------------------------
 
  void tPelota::avanzaYRebota(double tIn, PuntoV2F* normal)
- {;
+ {
 	PuntoV2F* sAux = new PuntoV2F(sentido);
 	sAux->escalar(tIn);
 	posicion->sumar(sAux);
@@ -105,7 +108,7 @@
 	}
 	delete sAux;
 
-	//Calcular nuevo sentido (choque, refelexion)
+	//Calcular nuevo sentido (choque, reflexión)
 	PuntoV2F* v = new PuntoV2F(sentido);
 	double valor = 2*((v->productoEscalar(normal))/(normal->productoEscalar(normal)));
 	normal->escalar(valor);
