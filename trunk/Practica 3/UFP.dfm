@@ -1,6 +1,6 @@
 object GLForm2D: TGLForm2D
-  Left = 536
-  Top = 182
+  Left = 1384
+  Top = 136
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Rebotes '

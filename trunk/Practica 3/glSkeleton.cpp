@@ -12,6 +12,7 @@ USEUNIT("tObstaculo.cpp");
 USEUNIT("tConvexo.cpp");
 USEUNIT("tSegmento.cpp");
 USEUNIT("tObstaculoRecubierto.cpp");
+USEUNIT("tArco.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -19,7 +20,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         {
                  Application->Initialize();
                  Application->CreateForm(__classid(TGLForm2D), &GLForm2D);
-         Application->Run();
+                 Application->Run();
         }
         catch (Exception &exception)
         {

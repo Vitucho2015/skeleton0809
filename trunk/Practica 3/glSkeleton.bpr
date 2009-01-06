@@ -5,7 +5,7 @@
     <VERSION value="BCB.05.03"/>
     <PROJECT value="glSkeleton.exe"/>
     <OBJFILES value="glSkeleton.obj UFP.obj Nodo.obj Lista.obj PuntoV2F.obj tPelota.obj 
-      tObstaculo.obj tConvexo.obj tSegmento.obj tObstaculoRecubierto.obj"/>
+      tObstaculo.obj tConvexo.obj tSegmento.obj tObstaculoRecubierto.obj tArco.obj"/>
     <RESFILES value="glSkeleton.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
@@ -28,11 +28,12 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
     <MAINSOURCE value="glSkeleton.cpp"/>
-    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl"/>
-    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib"/>
+    <INCLUDEPATH value="..\..;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
   </MACROS>
   <OPTIONS>
+    <IDLCFLAGS value="-I..\.. -I$(BCB)\include -I$(BCB)\include\vcl -boa"/>
     <CFLAG1 value="-vGc -vGt -vGd -Od -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k 
       -y -v -vi- -c -tW -tWM"/>
     <PFLAGS value="-$YD -$W -$O- -v -JPHNE -M"/>

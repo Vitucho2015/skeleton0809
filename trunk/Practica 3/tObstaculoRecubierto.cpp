@@ -6,7 +6,7 @@
 
 //---------------------------------------------------------------------------
 
- const double epsilon = 0.0000000001;
+ const double epsilon = 0.0001;
 
 //---------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@
         delete corteza;
     }*/
     
-     PuntoV2F* origen = NULL;
+    PuntoV2F* origen = NULL;
     PuntoV2F* destino = NULL;
     PuntoV2F* normal = NULL;
     //Prueba: El numero de vertices va a ser los del interior*2+interior*numeroPuntosArco( que van a ser 10)
@@ -114,24 +114,28 @@
     PuntoV2F* centro = NULL;
     double angIni = 0.0;
     double angFin = 0.0;
-    nLados = 10;
+
+
     //Prueba: El numero de vertices va a ser los del interior*2+interior*numeroPuntosArco( que van a ser 10)
-        setNumVertices(interior->getNumVertices()*2);//falta sumar los arcos
-        //setNumVertices(interior->getNumVertices()*10);//ya estan sumados los puntos del arco
+        //setNumVertices(interior->getNumVertices()*2);//falta sumar los arcos
+        setNumVertices(interior->getNumVertices()*10);//ya estan sumados los puntos del arco
         PuntoV2F** verticesAux = new PuntoV2F*[getNumVertices()];
         int num = 0;
     //
     for(int i=0;i<interior->getNumVertices();i++){
         origen = interior->getVertice(i);
         origen = new PuntoV2F(origen);
-        if( i == interior->getNumVertices()-1){
-            destino = interior->getVertice(0);
+
+        if( i == interior->getNumVertices()-1){//si estamos en el ultimo vertice
+            destino = interior->getVertice(0); //cogemos el primer vertice como destino del ultimo segmento
             destino = new PuntoV2F(destino);
         }
         else{
-            destino = interior->getVertice(i+1);
+            destino = interior->getVertice(i+1);  //sino cogemos el siguiente vertice
             destino = new PuntoV2F(destino);
         }
+
+
         normal = interior->getNormal(i);
         normal = new PuntoV2F(normal);
         normal->normalizar();
@@ -140,7 +144,9 @@
         destino->sumar(normal);
         verticesAux[num] = origen;
         num++;
-        /*if(i>0){//Si no es el primer vertice entonces calcular los arcos
+
+        nLados = 10;
+        if(i>0){//Si no es el primer vertice entonces calcular los arcos
             centro = interior->getVertice(i);
             angIni = calculoAngulo(centro,verticesAux[num-2]);
             angFin = calculoAngulo(centro,origen);
@@ -149,7 +155,9 @@
                 verticesAux[num] = puntosArco[j];
                 num++;
             }
-        } */
+        }
+
+
         verticesAux[num] = destino;
         num++;
         delete normal;
@@ -217,11 +225,11 @@
         PuntoV2F** puntosArco = new PuntoV2F*[nLados-2];//El origen y el destino ya estan añadidos antes
         double incrAng = angArco / double (nLados);
 
-        double x = centro->getX() + radio*cos(((angIni*3.1416)/180));
-        double y = centro->getY() + radio*sin(((angIni*3.1416)/180));
+        double x = centro->getX() + radio*cos(((angIni*3.141592)/180));
+        double y = centro->getY() + radio*sin(((angIni*3.141592)/180));
         for (int i=1;i<nLados-1;i++){
-            x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.1416)/180));
-            y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.1416)/180));
+            x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.141592)/180));
+            y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.141592)/180));
             PuntoV2F* b = new PuntoV2F(x,y);
             puntosArco[i-1] = b;
 
