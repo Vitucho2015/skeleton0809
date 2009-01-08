@@ -59,7 +59,7 @@
             delete sentido;
             PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
             PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
-            
+
             colision = CS(posicion,sentido,getVertice(1),getVertice(0));
             if(colision){
                 normal = getNormal(1);
