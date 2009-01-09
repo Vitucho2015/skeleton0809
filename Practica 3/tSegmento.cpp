@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 
  tSegmento::tSegmento():tObstaculo(){
- 
+
  }
 //-------------------------------------------------
  tSegmento::tSegmento(int nVertices,PuntoV2F** vertices):tObstaculo(nVertices, vertices){}
@@ -47,7 +47,8 @@
  {
       PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
       PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
-      bool colision = CS(posicion,sentido,getVertice(0),getVertice(1));
+      //bool colision = CS(posicion,sentido,getVertice(0),getVertice(1));
+      bool colision = cortaSegmento(posicion,sentido,getVertice(0),getVertice(1));
       if(colision){
             normal = getNormal(0);
             normal = new PuntoV2F(normal);
@@ -60,7 +61,7 @@
             PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
             PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
 
-            colision = CS(posicion,sentido,getVertice(1),getVertice(0));
+            colision = cortaSegmento(posicion,sentido,getVertice(1),getVertice(0));
             if(colision){
                 normal = getNormal(1);
                 normal = new PuntoV2F(normal);
@@ -69,6 +70,83 @@
 
       return colision;
  }
+
+
+
+
+bool tSegmento::cortaSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4) {
+
+double             z1,
+                   z2,
+                   z3,
+                   z4;
+
+int                s1,
+                   s2,
+                   s3,
+                   s4;
+
+/*****************************************************************************
+*                                                                            *
+*  comprueba el caso trivial de que no cortan.                               *
+*                                                                            *
+*****************************************************************************/
+
+if (!(max(p1->getX(), p2->getX()) >= min(p3->getX(), p4->getX()) && max(p3->getX(), p4->getX())
+   >= min(p1->getX(), p2->getX()) && max(p1->getY(), p2->getY()) >= min(p3->getY(), p4->getY())
+   && max(p3->getY(), p4->getY()) >= min(p1->getY(), p2->getY()))) { {
+   return false;
+
+}
+
+/*****************************************************************************
+*                                                                            *
+*  casos no triviales                                     .                  *
+*                                                                            *
+*****************************************************************************/
+
+if ((z1 = ((p3->getX() - p1->getX())*(p2->getY() - p1->getY())) - ((p3->getY() - p1->getY())*(p2->getX() - p1->getX()))) < 0)
+   s1 = -1;
+else if (z1 > 0)
+   s1 = 1;
+else
+   s1 = 0;
+
+if ((z2 = ((p4->getX() - p1->getX())*(p2->getY() - p1->getY())) - ((p4->getY() - p1->getY())*(p2->getX() - p1->getX()))) < 0)
+   s2 = -1;
+else if (z2 > 0)
+   s2 = 1;
+else
+   s2 = 0;
+
+if ((z3 = ((p1->getX() - p3->getX())*(p4->getY() - p3->getY())) - ((p1->getY() - p3->getY())*(p4->getX() - p3->getX()))) < 0)
+   s3 = -1;
+else if (z3 > 0)
+   s3 = 1;
+else
+   s3 = 0;
+
+if ((z4 = ((p2->getX() - p3->getX())*(p4->getY() - p3->getY())) - ((p2->getY() - p3->getY())*(p4->getX() - p3->getX()))) < 0)
+   s4 = -1;
+else if (z4 > 0)
+   s4 = 1;
+else
+   s4 = 0;
+
+if ((s1 * s2 <= 0) && (s3 * s4 <= 0))
+   return true;
+
+/*****************************************************************************
+*                                                                            *
+*  sino, no cortan                                                           *
+*                                                                            *
+*****************************************************************************/
+
+return false;
+
+}
+}
+
 
 //-------------------------------------------------
   bool tSegmento::CS(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* ii, PuntoV2F* sd)
