@@ -52,9 +52,10 @@
       PuntoV2F *puntocolision = new PuntoV2F();
       double tinpre;
       double modulototal;
-      if(colision){
+      puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+      if(puntocolision!=NULL){
 
-            puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+           // puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
 
             tinpre=(sqrt(pow((puntocolision->getX() - posicion->getX()),2)+pow((puntocolision->getY() - posicion->getY()),2))) ;
             modulototal =(sqrt(pow((sentido->getX() - posicion->getX()),2)+pow((sentido->getY() - posicion->getY()),2))) ;
@@ -70,9 +71,10 @@
             PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
             PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
 
-            colision = cortaSegmento(posicion,sentido,getVertice(1),getVertice(0));
-            if(colision){
-                puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+            //colision = cortaSegmento(posicion,sentido,getVertice(1),getVertice(0));
+            puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+            if(puntocolision!=NULL){
+                //puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
                 tinpre=(sqrt(pow((puntocolision->getX() - posicion->getX()),2)+pow((puntocolision->getY() - posicion->getY()),2))) ;
                 modulototal =(sqrt(pow((sentido->getX() - posicion->getX()),2)+pow((sentido->getY() - posicion->getY()),2))) ;
                 tIn = tinpre / modulototal;   
@@ -81,8 +83,8 @@
             }
             
       }
-      delete posicion;
-      delete sentido;
+      //delete posicion;
+      //delete sentido;
       
       return colision;
  }

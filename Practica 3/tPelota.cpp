@@ -117,7 +117,7 @@
 
 	//Calcular nuevo sentido (choque, reflexión)
 	PuntoV2F* v = new PuntoV2F(sentido);
-	double valor = 2*((v->productoEscalar(normal))/(normal->productoEscalar(normal)));
+	double valor = 2*((v->productoEscalar(normal))/(normal->productoEscalar(normal))); //division por cero?
 	normal->escalar(valor);
 	v->restar(normal);
 	delete normal;
