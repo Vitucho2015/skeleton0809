@@ -50,10 +50,12 @@
       //bool colision = CS(posicion,sentido,getVertice(0),getVertice(1));
       bool colision = cortaSegmento(posicion,sentido,getVertice(0),getVertice(1));
       if(colision){
+
+            tIn =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
             normal = getNormal(0);
             normal = new PuntoV2F(normal);
       }
-      tIn = 0.1;
+      //tIn = 0.1;
 
       if(colision == false){
             delete posicion;
@@ -63,6 +65,7 @@
 
             colision = cortaSegmento(posicion,sentido,getVertice(1),getVertice(0));
             if(colision){
+                tIn =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
                 normal = getNormal(1);
                 normal = new PuntoV2F(normal);
             }
@@ -148,6 +151,27 @@ return false;
 }
 
 
+double tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4) {
+
+
+   double dx = p2->getX() - p1->getX();
+   double dy =p2->getY() - p1->getY();
+   double da = p3->getX() - p4->getX();
+   double db = p2->getY() - p1->getY();
+    If ((da * dy - db * dx) == 0) return null; //los segmentos son paralelos
+
+    
+    double s = (dx * (p1->getY() - p1->getY()) + dy * (p1->getX() - p4->getX())) / (da * dy - db * dx);
+    double t = (da * (p1->getY() - p1->getY()) + db * (p4->getX() - p1->getX())) / (db * dx - da * dy);
+    //SegmentsIntersect = ((s >= 0) && (s <= 1) && (t >= 0) && (t <= 1))
+
+    //' If it exists, the point of intersection is:
+    //' (x1 + t * dx, y1 + t * dy)
+        return s;
+
+
+
+}
 //-------------------------------------------------
   bool tSegmento::CS(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* ii, PuntoV2F* sd)
  {
