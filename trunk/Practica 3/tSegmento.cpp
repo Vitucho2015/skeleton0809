@@ -57,7 +57,7 @@
       }
       //tIn = 0.1;
 
-      /*if(colision == false){
+      if(colision == false){
             delete posicion;
             delete sentido;
             PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
@@ -70,7 +70,7 @@
                 normal = new PuntoV2F(normal);
             }
             
-      } */
+      }
       delete posicion;
       delete sentido;
       
