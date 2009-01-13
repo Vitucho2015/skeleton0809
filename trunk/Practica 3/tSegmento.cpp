@@ -158,7 +158,7 @@ double tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, 
    double dy =p2->getY() - p1->getY();
    double da = p3->getX() - p4->getX();
    double db = p2->getY() - p1->getY();
-    If ((da * dy - db * dx) == 0) return null; //los segmentos son paralelos
+    if ((da * dy - db * dx) == 0) return 999; //los segmentos son paralelos
 
     
     double s = (dx * (p1->getY() - p1->getY()) + dy * (p1->getX() - p4->getX())) / (da * dy - db * dx);
