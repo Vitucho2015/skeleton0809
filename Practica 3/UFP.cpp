@@ -46,16 +46,32 @@
     modoListo = true;
     //Radio de la pelota;
     radio = 10;
+
+    /*
+    PuntoV2F* p1 = new PuntoV2F(1,1);
+    PuntoV2F* p2 = new PuntoV2F(2,1);
+    PuntoV2F* p3 = new PuntoV2F(2,2);
+    PuntoV2F* p4 = new PuntoV2F(3,2);
+
+    bool ttt;
+    tSegmento* tg = new tSegmento();
+
+    PuntoV2F* ccc = new PuntoV2F();
+
+    ccc = tg->inteseccionSegmento(p1,p2,p3,p4);
+    ttt = tg->cortaSegmento(p1,p2,p3,p4);
+           */
+
 	//Inicialmente el reloj desactivado
 	reloj->Enabled = false;
 	//Creamos la lista de obstaculos
 	obstaculos = new Lista<tObstaculo>();
 	//Creamos y colocamos los obstaculos
 	crearEscenario();
-	//Creamos punto de salida     
+	//Creamos punto de salida
 	pSalida = new PuntoV2F(-150,150);
 	//Inicializamos el sistema aleatorio
-	randomize();    
+	randomize();
  }
 
 //---------------------------------------------------------------------------

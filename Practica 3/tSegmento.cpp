@@ -49,9 +49,16 @@
       PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
       //bool colision = CS(posicion,sentido,getVertice(0),getVertice(1));
       bool colision = cortaSegmento(posicion,sentido,getVertice(0),getVertice(1));
+      PuntoV2F *puntocolision = new PuntoV2F();
+      double tinpre;
+      double modulototal;
       if(colision){
 
-            tIn =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+            puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+
+            tinpre=(sqrt(pow((puntocolision->getX() - posicion->getX()),2)+pow((puntocolision->getY() - posicion->getY()),2))) ;
+            modulototal =(sqrt(pow((sentido->getX() - posicion->getX()),2)+pow((sentido->getY() - posicion->getY()),2))) ;
+            tIn = tinpre / modulototal;
             normal = getNormal(0);
             normal = new PuntoV2F(normal);
       }
@@ -65,7 +72,10 @@
 
             colision = cortaSegmento(posicion,sentido,getVertice(1),getVertice(0));
             if(colision){
-                tIn =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+                puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+                tinpre=(sqrt(pow((puntocolision->getX() - posicion->getX()),2)+pow((puntocolision->getY() - posicion->getY()),2))) ;
+                modulototal =(sqrt(pow((sentido->getX() - posicion->getX()),2)+pow((sentido->getY() - posicion->getY()),2))) ;
+                tIn = tinpre / modulototal;   
                 normal = getNormal(1);
                 normal = new PuntoV2F(normal);
             }
@@ -154,9 +164,54 @@ return false;
 }
 
 
-double tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4) {
+PuntoV2F* tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4) {
 
 
+
+    double x1;double y1;double x2;double y2;
+    double x3; double y3; double x4;double y4;
+
+
+    x1 = p1->getX();
+    y1 = p1->getY();
+
+    x2 = p2->getX();
+    y2 = p2->getY();
+
+    x3 = p3->getX();
+    y3 = p3->getY();
+
+    x4 = p4->getX();
+    y4 = p4->getY();
+
+
+
+    double d = (x1-x2)*(y3-y4) - (y1-y2)*(x3-x4);
+    if (d == 0) return NULL;
+
+    double xi = ((x3-x4)*(x1*y2-y1*x2)-(x1-x2)*(x3*y4-y3*x4))/d;
+    double yi = ((y3-y4)*(x1*y2-y1*x2)-(y1-y2)*(x3*y4-y3*x4))/d;
+
+    PuntoV2F* p = new PuntoV2F(xi,yi);
+    if (xi < min(x1,x2) || xi > max(x1,x2)) return NULL;
+    if (xi < min(x3,x4) || xi > max(x3,x4)) return NULL;
+    return p;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*
    double dx = p2->getX() - p1->getX();
    double dy =p2->getY() - p1->getY();
    double da = p3->getX() - p4->getX();
@@ -172,9 +227,9 @@ double tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, 
     //' (x1 + t * dx, y1 + t * dy)
         return s;
 
+      */
 
 
-}
 //-------------------------------------------------
   bool tSegmento::CS(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* ii, PuntoV2F* sd)
  {
