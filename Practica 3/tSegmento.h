@@ -16,6 +16,7 @@ class tSegmento:public tObstaculo
                 void recortarSup(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* sd);
                 void recortarInf(PuntoV2F*& p1, PuntoV2F* p2, PuntoV2F* ii);
                 bool cortaSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4);
+                double inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4);
 
         public:
                 tSegmento();
