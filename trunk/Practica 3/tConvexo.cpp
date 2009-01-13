@@ -21,7 +21,7 @@
  {
         PuntoV2F** vVertices = new PuntoV2F*[nVertices];
         float alfa = 360/nVertices;
-        float radio = lado / sin((alfa*3.141592)/180);
+        float radio = lado / sin((alfa*3.1415926535)/180);
 
         //Calculamos los vértices
         PuntoV2F* origen = new PuntoV2F(centro->getX()+radio,centro->getY());
@@ -29,8 +29,8 @@
         for (int i=1;i<nVertices;i++){
                 //Calculamos el punto
                 PuntoV2F* punto = new PuntoV2F(
-                  centro->getX()+radio*cos((i*alfa*3.141592)/180.0),
-                  centro->getY()+radio*sin((i*alfa*3.141592)/180.0));
+                  centro->getX()+radio*cos((i*alfa*3.1415926535)/180.0),
+                  centro->getY()+radio*sin((i*alfa*3.1415926535)/180.0));
                 vVertices[i] = punto;
         }
 

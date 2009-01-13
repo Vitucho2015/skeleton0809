@@ -265,14 +265,14 @@
 
         angulo = abs(angulo);
 
-        if (angulo >180) {angulo = angulo -180;}
+        if (angulo >180) {angulo = angulo - 180;}
         double incrAng = angulo / double (nLados);
 
-        double x = centro->getX() + radio*cos(((angIni*3.141592)/180));
-        double y = centro->getY() + radio*sin(((angIni*3.141592)/180));
+        double x = centro->getX() + radio*cos(((angIni*3.1415926535)/180.0));
+        double y = centro->getY() + radio*sin(((angIni*3.1415926535)/180.0));
         for (int i=1;i<nLados-1;i++){
-            x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.141592)/180));
-            y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.141592)/180));
+            x = centro->getX() + radio*cos((((angIni+i*incrAng)*3.1415926535)/180.0));
+            y = centro->getY() + radio*sin((((angIni+i*incrAng)*3.1415926535)/180.0));
             PuntoV2F* b = new PuntoV2F(x,y);
             puntosArco[i-1] = b;
         }
