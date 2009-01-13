@@ -22,8 +22,8 @@
 	posicion = pos;
 	radio = r;
         
-	//Aproximamos un circulo con 40 lineas
-	int nVertices = 40;
+	//Aproximamos un circulo con 20 lineas
+	int nVertices = 20;
 	double alfa = 360/nVertices;
 
 	//Calculamos los vértices
@@ -93,7 +93,7 @@
     glEnd();
 
     glColor3f(0,1,0);
-    glBegin(GL_LINES);
+    glBegin(GL_LINE_LOOP);
 		glVertex2f(posicion->getX(),posicion->getY());
         glVertex2f(sentido->getX(),sentido->getY());
     glEnd();

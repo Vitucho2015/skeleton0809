@@ -385,9 +385,9 @@
     if(modo == false){ //Modo penetración
 		PuntoV2F* centro;
 
-		//Hexágono
+		//Triangulo
 		centro = new PuntoV2F(130,130);
-		tConvexo* poligono1 = new tConvexo(centro,6,45);
+		tConvexo* poligono1 = new tConvexo(centro,3,45);
 		obstaculos->inserta(poligono1);
 		delete centro;
 
@@ -464,9 +464,9 @@
         */
         PuntoV2F* centro;
 
-		//Hexágono
+		//Triangulo
 		centro = new PuntoV2F(130,130);
-		tObstaculoRecubierto* poligono1 = new tObstaculoRecubierto(centro,6,45,radio);
+		tObstaculoRecubierto* poligono1 = new tObstaculoRecubierto(centro,3,45,radio);
 		obstaculos->inserta(poligono1);
 		delete centro;
 
