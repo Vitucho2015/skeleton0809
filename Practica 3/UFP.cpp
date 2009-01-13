@@ -416,7 +416,7 @@
 		obstaculos->inserta(poligono4);
 		delete centro;
 
-		//Cuadrado
+		//Hexagono
 		centro = new PuntoV2F(250,250);
 		tConvexo* poligono5 = new tConvexo(centro,6,50);
 		obstaculos->inserta(poligono5);
@@ -495,12 +495,12 @@
 		obstaculos->inserta(poligono4);
 		delete centro;
 
-		//Cuadrado
+   		//Cuadrado
 		centro = new PuntoV2F(250,250);
 		tObstaculoRecubierto* poligono5 = new tObstaculoRecubierto(centro,6,50,radio);
 		obstaculos->inserta(poligono5);
 		delete centro;
-
+   
 		//Cuadrado
 		centro = new PuntoV2F(-250,-250);
 		tObstaculoRecubierto* poligono6 = new tObstaculoRecubierto(centro,4,50,radio);

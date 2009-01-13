@@ -32,8 +32,8 @@
 	for (int i=1;i<nVertices;i++){
 		//Calculamos el punto
 		PuntoV2F* punto = new PuntoV2F(
-			posicion->getX()+radio*cos((i*alfa*3.141592)/180.0),
-			posicion->getY()+radio*sin((i*alfa*3.141592)/180.0));
+			posicion->getX()+radio*cos((i*alfa*3.1415926535)/180.0),
+			posicion->getY()+radio*sin((i*alfa*3.1415926535)/180.0));
 		circulo->inserta(punto);
 	}
  }
@@ -91,6 +91,13 @@
     glBegin(GL_POINTS);
         	glVertex2f(posicion->getX(),posicion->getY());
     glEnd();
+
+    glColor3f(0,1,0);
+    glBegin(GL_LINES);
+		glVertex2f(posicion->getX(),posicion->getY());
+        glVertex2f(sentido->getX(),sentido->getY());
+    glEnd();
+
  }
 
 //-------------------------------------------------
