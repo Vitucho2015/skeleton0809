@@ -231,7 +231,7 @@
  {
 	interior->draw();
 
-    //Para las pruebas, dibujar las normales
+    /*//Para las pruebas, dibujar las normales
     glColor3f(0.5,0.1,0.5);
 	glBegin(GL_POINTS);
 		for (int i=0;i<corteza->getNumVertices();i++){
@@ -240,13 +240,14 @@
 	glEnd();
 
     //Mas pruebas, dibujar la corteza
+    */
     glColor3f(0,1,1);
 	glBegin(GL_LINE_LOOP);
 		for (int i=0;i<corteza->getNumVertices();i++){
 			glVertex2f(corteza->getVertice(i)->getX(),corteza->getVertice(i)->getY());
 		}
 	glEnd();
-
+      /**/
  }
 
 //-------------------------------------------------

@@ -77,8 +77,8 @@
  void tPelota::draw()
  {
 	glColor3f(0,0,1);
-	//glBegin(GL_POLYGON);
-    glBegin(GL_LINE_LOOP);
+	glBegin(GL_POLYGON);
+    //glBegin(GL_LINE_LOOP);
 	circulo->inicia();
 
 	for (int i=0;i<circulo->getLongitud();i++){
@@ -87,17 +87,17 @@
 		circulo->avanza();
 	}
 	glEnd();
-    
+    /*
     glBegin(GL_POINTS);
         	glVertex2f(posicion->getX(),posicion->getY());
     glEnd();
 
     glColor3f(0,1,0);
-    glBegin(GL_LINE_LOOP);
+    glBegin(GL_LINES);
 		glVertex2f(posicion->getX(),posicion->getY());
-        glVertex2f(sentido->getX(),sentido->getY());
+        glVertex2f(sentido->getX()+posicion->getX(),sentido->getY()+posicion->getY());
     glEnd();
-
+      */
  }
 
 //-------------------------------------------------
