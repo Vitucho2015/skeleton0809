@@ -367,7 +367,7 @@
 	}
 
 	//Procesamos los obstaculos restantes por si se produce una colision a la vez
-   	int j = i;
+   	/*int j = i;
 	bool otroCorte = false;
 	double tIn2;
 	PuntoV2F* normal2;
@@ -376,12 +376,12 @@
 		otroCorte = obstaculo2->colisionVsPelota(pelota,tIn2,normal2);
 		obstaculos->avanza();
 		j++;
-	}
+	} */
 	if(!corte){ //No hay colisión
 		pelota->avanza();
 	}
 	else{
-		if ((corte)&&(otroCorte)){ //Doble colision
+		/*if ((corte)&&(otroCorte)){ //Doble colision
 			normal2->restar(normal);
 			normal2->escalar(0.5);
 			pelota->avanzaYRebota(tIn2,normal2);
@@ -389,7 +389,7 @@
 		}
 		else{ //Colision simple */
         	pelota->avanzaYRebota(tIn,normal);
-		}
+		//}
 		numRebotes++;
 	}
  }
@@ -443,11 +443,13 @@
 		tConvexo* poligono6 = new tConvexo(centro,4,50);
 		obstaculos->inserta(poligono6);
 		delete centro;
-
+        
         //Segmento
         PuntoV2F** verticesAux = new PuntoV2F*[2];
-		PuntoV2F* p1Aux = new PuntoV2F(0,-160);
+			PuntoV2F* p1Aux = new PuntoV2F(0,-160);
 		PuntoV2F* p2Aux = new PuntoV2F(100,-150);
+        //PuntoV2F* p1Aux = new PuntoV2F(100,0);
+		//PuntoV2F* p2Aux = new PuntoV2F(100,-160);
         verticesAux[0] = p1Aux;
         verticesAux[1] = p2Aux;
         tSegmento* segmento1 = new tSegmento(2,verticesAux);
@@ -455,12 +457,12 @@
 
         //Segmento
         verticesAux = new PuntoV2F*[2];
-		p1Aux = new PuntoV2F(100,40);
+        p1Aux = new PuntoV2F(100,40);
 		p2Aux = new PuntoV2F(150,-100);
         verticesAux[0] = p1Aux;
         verticesAux[1] = p2Aux;
         tSegmento* segmento2 = new tSegmento(2,verticesAux);
-        obstaculos->inserta(segmento2);
+        obstaculos->inserta(segmento2);    
 	}
 	else{//Modo no penetracion
 		//ShowMessage("Aun en construcción");

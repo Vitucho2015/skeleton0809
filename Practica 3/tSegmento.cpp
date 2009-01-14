@@ -31,14 +31,14 @@
 			glVertex2f(getVertice(i)->getX(),getVertice(i)->getY());
 		}
 	glEnd();
-
+    /*
     //Para las pruebas, dibujar las normales
     glColor3f(0.5,0.5,0.5);
 	glBegin(GL_POINTS);
 		for (int i=0;i<getNumVertices();i++){
 			glVertex2f(getNormal(i)->getX(),getNormal(i)->getY());
 		}
-	glEnd();
+	glEnd();*/
  }
 
 //-------------------------------------------------
@@ -47,15 +47,16 @@
  {
       PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
       PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
+      sentido->sumar(posicion);
       //bool colision = CS(posicion,sentido,getVertice(0),getVertice(1));
-      bool colision = cortaSegmento(posicion,sentido,getVertice(0),getVertice(1));
+      //bool colision = cortaSegmento(posicion,sentido,getVertice(0),getVertice(1));
       PuntoV2F *puntocolision = new PuntoV2F();
       double tinpre;
       double modulototal;
       puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
       if(puntocolision!=NULL){
 
-           // puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
+            //puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
 
             tinpre=(sqrt(pow((puntocolision->getX() - posicion->getX()),2)+pow((puntocolision->getY() - posicion->getY()),2))) ;
             modulototal =(sqrt(pow((sentido->getX() - posicion->getX()),2)+pow((sentido->getY() - posicion->getY()),2))) ;
@@ -65,19 +66,20 @@
       }
       //tIn = 0.1;
 
-      if(puntocolision == NULL){
-            delete posicion;
+      if(puntocolision==NULL){
+            /*delete posicion;
             delete sentido;
             PuntoV2F* posicion = new PuntoV2F(pelota->getPosicion());
             PuntoV2F* sentido = new PuntoV2F(pelota->getSentido());
-
+            sentido->sumar(posicion);
+              */
             //colision = cortaSegmento(posicion,sentido,getVertice(1),getVertice(0));
             puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(1),getVertice(0));
-            if(puntocolision != NULL){
+            if(puntocolision!=NULL){
                 //puntocolision =  inteseccionSegmento(posicion,sentido,getVertice(0),getVertice(1));
                 tinpre=(sqrt(pow((puntocolision->getX() - posicion->getX()),2)+pow((puntocolision->getY() - posicion->getY()),2))) ;
                 modulototal =(sqrt(pow((sentido->getX() - posicion->getX()),2)+pow((sentido->getY() - posicion->getY()),2))) ;
-                tIn = tinpre / modulototal;   
+                tIn = tinpre / modulototal;
                 normal = getNormal(1);
                 normal = new PuntoV2F(normal);
             }
@@ -85,7 +87,7 @@
       }
       //delete posicion;
       //delete sentido;
-      
+
       return (puntocolision != NULL);
  }
 
@@ -112,7 +114,7 @@ int                s1,
 
 if (!(max(p1->getX(), p2->getX()) >= min(p3->getX(), p4->getX()) && max(p3->getX(), p4->getX())
    >= min(p1->getX(), p2->getX()) && max(p1->getY(), p2->getY()) >= min(p3->getY(), p4->getY())
-   && max(p3->getY(), p4->getY()) >= min(p1->getY(), p2->getY()))) { {
+   && max(p3->getY(), p4->getY()) >= min(p1->getY(), p2->getY()))) { 
    return false;
 
 }
@@ -163,7 +165,6 @@ if ((s1 * s2 <= 0) && (s3 * s4 <= 0))
 return false;
 
 }
-}
 
 
 PuntoV2F* tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4) {
@@ -195,8 +196,8 @@ PuntoV2F* tSegmento::inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p
     double yi = ((y3-y4)*(x1*y2-y1*x2)-(y1-y2)*(x3*y4-y3*x4))/d;
 
     PuntoV2F* p = new PuntoV2F(xi,yi);
-    if (xi < min(x1,x2) || xi > max(x1,x2)) return NULL;
-    if (xi < min(x3,x4) || xi > max(x3,x4)) return NULL;
+    if (xi-epsilon < min(x1,x2) || xi+epsilon > max(x1,x2)) return NULL;
+    if (xi-epsilon < min(x3,x4) || xi+epsilon > max(x3,x4)) return NULL;
     return p;
   }
 

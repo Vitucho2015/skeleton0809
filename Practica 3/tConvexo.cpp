@@ -55,14 +55,14 @@
 			glVertex2f(getVertice(i)->getX(),getVertice(i)->getY());
 		}
 	glEnd();
-
+    /*
     //Para las pruebas, dibujar las normales
     glColor3f(0.5,0.1,0.5);
 	glBegin(GL_POINTS);
 		for (int i=0;i<getNumVertices();i++){
 			glVertex2f(getNormal(i)->getX(),getNormal(i)->getY());
 		}
-	glEnd();
+	glEnd();*/
  }
 
 //-------------------------------------------------
