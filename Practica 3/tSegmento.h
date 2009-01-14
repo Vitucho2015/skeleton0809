@@ -21,7 +21,6 @@ class tSegmento:public tObstaculo
                 tSegmento(int nVertices,PuntoV2F** vertices);
                 ~tSegmento();
                 void draw();
-                bool cortaSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4);
                 PuntoV2F* inteseccionSegmento(PuntoV2F* p1, PuntoV2F* p2, PuntoV2F* p3, PuntoV2F* p4);
 
                 bool colisionVsPelota(tPelota* pelota, double& tIn, PuntoV2F*& normal);
