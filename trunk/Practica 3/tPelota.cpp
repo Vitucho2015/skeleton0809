@@ -87,17 +87,7 @@
 		circulo->avanza();
 	}
 	glEnd();
-    /*
-    glBegin(GL_POINTS);
-        	glVertex2f(posicion->getX(),posicion->getY());
-    glEnd();
-
-    glColor3f(0,1,0);
-    glBegin(GL_LINES);
-		glVertex2f(posicion->getX(),posicion->getY());
-        glVertex2f(sentido->getX()+posicion->getX(),sentido->getY()+posicion->getY());
-    glEnd();
-      */
+   
  }
 
 //-------------------------------------------------

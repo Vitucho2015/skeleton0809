@@ -47,20 +47,7 @@
     //Radio de la pelota;
     radio = 10;
 
-    /*
-    PuntoV2F* p1 = new PuntoV2F(1,1);
-    PuntoV2F* p2 = new PuntoV2F(2,1);
-    PuntoV2F* p3 = new PuntoV2F(2,2);
-    PuntoV2F* p4 = new PuntoV2F(3,2);
 
-    bool ttt;
-    tSegmento* tg = new tSegmento();
-
-    PuntoV2F* ccc = new PuntoV2F();
-
-    ccc = tg->inteseccionSegmento(p1,p2,p3,p4);
-    ttt = tg->cortaSegmento(p1,p2,p3,p4);
-           */
 
 	//Inicialmente el reloj desactivado
 	reloj->Enabled = false;
@@ -329,8 +316,12 @@
 
 	//Sentido inicial de la pelota aleatorio
 	//(valores con rango entre [-10,10])
-	int x = random(21)-10;
-	int y = random(21)-10;
+
+
+	int x = random(18)-8;
+
+    int y = sqrt(100-pow(x,2));
+	//int y = random(21)-10;
     
 	PuntoV2F* sentido = new PuntoV2F(x,y);
 
@@ -366,30 +357,15 @@
 		i++;
 	}
 
-	//Procesamos los obstaculos restantes por si se produce una colision a la vez
-   	/*int j = i;
-	bool otroCorte = false;
-	double tIn2;
-	PuntoV2F* normal2;
-	while(((corte)&&(!otroCorte))&&(j<obstaculos->getLongitud())){
-		tObstaculo* obstaculo2 = obstaculos->getActual();
-		otroCorte = obstaculo2->colisionVsPelota(pelota,tIn2,normal2);
-		obstaculos->avanza();
-		j++;
-	} */
+
 	if(!corte){ //No hay colisión
 		pelota->avanza();
 	}
 	else{
-		/*if ((corte)&&(otroCorte)){ //Doble colision
-			normal2->restar(normal);
-			normal2->escalar(0.5);
-			pelota->avanzaYRebota(tIn2,normal2);
-			delete normal;
-		}
-		else{ //Colision simple */
+
+
         	pelota->avanzaYRebota(tIn,normal);
-		//}
+	
 		numRebotes++;
 	}
  }
@@ -433,7 +409,7 @@
 		delete centro;
 
 		//Hexagono
-		centro = new PuntoV2F(250,250);
+	   	centro = new PuntoV2F(250,250);
 		tConvexo* poligono5 = new tConvexo(centro,6,50);
 		obstaculos->inserta(poligono5);
 		delete centro;
@@ -448,8 +424,6 @@
         PuntoV2F** verticesAux = new PuntoV2F*[2];
 			PuntoV2F* p1Aux = new PuntoV2F(0,-160);
 		PuntoV2F* p2Aux = new PuntoV2F(100,-150);
-        //PuntoV2F* p1Aux = new PuntoV2F(100,0);
-		//PuntoV2F* p2Aux = new PuntoV2F(100,-160);
         verticesAux[0] = p1Aux;
         verticesAux[1] = p2Aux;
         tSegmento* segmento1 = new tSegmento(2,verticesAux);
@@ -464,22 +438,7 @@
         tSegmento* segmento2 = new tSegmento(2,verticesAux);
         obstaculos->inserta(segmento2);    
 	}
-	else{//Modo no penetracion
-		//ShowMessage("Aun en construcción");
-        //Rectangulo
-	   	/*PuntoV2F** vertices = new PuntoV2F*[4];
-		PuntoV2F* p1 = new PuntoV2F(-160,-160);
-		PuntoV2F* p2 = new PuntoV2F(-100,-160);
-		PuntoV2F* p3 = new PuntoV2F(-100,-130);
-		PuntoV2F* p4 = new PuntoV2F(-160,-130);
-		vertices[0]=p1;
-		vertices[1]=p2;
-		vertices[2]=p3;
-		vertices[3]=p4;
-		tObstaculoRecubierto* poligono3 = new tObstaculoRecubierto(4,vertices, 0,radio);
-		obstaculos->inserta(poligono3);
-        //ShowMessage(poligono3->getNumVertices());
-        */
+	else{
         PuntoV2F* centro;
 
 		//Triangulo
@@ -513,7 +472,7 @@
 		obstaculos->inserta(poligono4);
 		delete centro;
 
-   		//Cuadrado
+   		//Hexagono
 		centro = new PuntoV2F(250,250);
 		tObstaculoRecubierto* poligono5 = new tObstaculoRecubierto(centro,6,50,radio);
 		obstaculos->inserta(poligono5);
