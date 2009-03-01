@@ -4,6 +4,10 @@
 #pragma hdrstop
 USERES("GLProj3D.res");
 USEFORM("GLSkel3D.cpp", GLForm3D);
+USEUNIT("VerticeNormal.cpp");
+USEUNIT("Cara.cpp");
+USEUNIT("Malla.cpp");
+USEUNIT("PV3D.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
