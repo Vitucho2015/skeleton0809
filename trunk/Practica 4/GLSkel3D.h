@@ -29,6 +29,8 @@ private:        // User declarations
     void crearObjetosEscena();
     void liberarObjetosEscena();
 
+    GLUquadricObj* bola;
+
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
 };
