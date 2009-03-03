@@ -20,7 +20,7 @@ PV3D::PV3D() {
     x = 0;
     y = 0;
     z = 0;
-    PoV = 1;
+    PoV = 1;   // 1 para indicar que es un punto, 0 para indicar que es un vector
 }
 
 PV3D::PV3D(PV3D* punto){

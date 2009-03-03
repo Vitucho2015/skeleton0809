@@ -43,7 +43,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   glEnable(GL_NORMALIZE);
   glShadeModel(GL_SMOOTH);   //Defecto
 
-  //crearObjetosEscena();
+  crearObjetosEscena();
 
   //Cámara
   eyeX=100.0,
@@ -129,6 +129,8 @@ void __fastcall TGLForm3D::GLScene()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
 
+
+  glMatrixMode(GL_MODELVIEW);
   //Dibujar la escena
 
   //Ejemplo: dibujo de los ejes
@@ -146,7 +148,21 @@ void __fastcall TGLForm3D::GLScene()
         glVertex3d(0,0,10);
   glEnd();
 
-  //glFlush();
+
+
+  glPushMatrix();
+        if (bola!=NULL)
+        {
+                //Situamos bola
+                glRotatef(90,1,0,0);
+                //Color azul
+                glColor3f(0,0,1);
+                //Modo lineas
+                gluQuadricDrawStyle(bola,GLU_LINE);
+                gluSphere(bola,2,30,30);
+        }
+
+  glFlush();
   SwapBuffers(hdc);
 }
 //---------------------------------------------------------------------------
@@ -165,10 +181,14 @@ void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
 //---------------------------------------------------------------------------
 void TGLForm3D::crearObjetosEscena()
 {
+           bola = gluNewQuadric();
+
 }
 //---------------------------------------------------------------------------
 void TGLForm3D::liberarObjetosEscena()
 {
+
+
 }
 
 
