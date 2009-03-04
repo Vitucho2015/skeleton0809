@@ -9,6 +9,7 @@
 #include <Menus.hpp>
 #include <gl\gl.h>
 #include <gl\glu.h>
+#include "Espiral.h"
 
 //---------------------------------------------------------------------------
 class TGLForm3D : public TForm
@@ -23,9 +24,11 @@ __published:	// IDE-managed Components
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
+    void __fastcall FormKeyDown(TObject *Sender, WORD &Key,TShiftState Shift);
    void __fastcall Parte11Click(TObject *Sender);
    void __fastcall Parte21Click(TObject *Sender);
    void __fastcall Parte31Click(TObject *Sender);
+
 
 private:        // User declarations
     HDC hdc;
@@ -41,6 +44,7 @@ private:        // User declarations
     int version;// sirve para saber que version tiene que pintar
     GLUquadricObj* bola;
     Espiral* trayectoria;  //por donde va a ir la bola
+
     //Tecla Q pulsada
         bool qPulsada;
         //Tecla W pulsada
@@ -58,6 +62,7 @@ private:        // User declarations
     void pintaCopa();
     void pintaEspiral();
     void pintaEsfera();
+    void crearMallaTrayectoria(PV3D* origenCoor, int nLados, int nCapas, double radio, Espiral*& malla);
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
 };

@@ -16,6 +16,7 @@ class PV3D{
 
     public:
         PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ, int valor);
+        PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ);
         PV3D();
         PV3D(PV3D* punto);
         GLfloat getX();
@@ -23,6 +24,7 @@ class PV3D{
         GLfloat getZ();
         int getValor();
         void setPV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ, int valor);
+        void setPV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ);
         void setX(GLfloat coordX);
         void setY(GLfloat coordY);
         void setZ(GLfloat coordZ);
@@ -31,6 +33,7 @@ class PV3D{
         GLfloat distancia(PV3D* punto); //devuelve el módulo entre dos puntos
         GLfloat prodEscalar(PV3D* punto);
         PV3D* prodVectorial(PV3D* punto);
+        void  normalizar() ;
 
 };
 

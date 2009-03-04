@@ -193,7 +193,7 @@ void __fastcall TGLForm3D::GLScene()
         {
         //Color: verde
         glColor3f(0,1,0);
-        trayectoria->dibujar();
+        trayectoria->dibuja();
         }
       pintaEjes();
       pintaEspiral();
@@ -260,9 +260,9 @@ void TGLForm3D::crearObjetosEscena()
 {
            bola = gluNewQuadric();
            //Configuración de la trayectoria
-        double nPT = 20;
-        double nQT = 110;
-        double radioT = 2;
+        GLfloat nPT = 20;
+        GLfloat nQT = 110;
+        GLfloat radioT = 2;
         PV3D* origenCoor = new PV3D();
         //Creamos la trayectoria
         crearMallaTrayectoria(origenCoor,nPT,nQT,radioT,trayectoria);
@@ -274,6 +274,118 @@ void TGLForm3D::liberarObjetosEscena()
 
 
 }
+
+
+
+
+void TGLForm3D::crearMallaTrayectoria(PV3D* origenCoor, int nP, int nQ, double radio, Espiral*& malla)
+ {
+        //Elementos de la malla
+        int nVertices = nP*(nQ+1);
+        int nNormales = nP*nQ;
+        int nCaras = nP*nQ;
+        PV3D** vertices = new PV3D*[nVertices];
+        PV3D** normales = new PV3D*[nNormales];
+        Cara** caras = new Cara*[nCaras];
+
+        //Calculamos los vértices iniciales del polígono
+        double alfa = 360/nP;
+        PV3D* origen = new PV3D(origenCoor->getX()+radio,origenCoor->getY(),origenCoor->getZ());
+        vertices[0] = origen;
+        for (int i=1;i<nP;i++){
+                //Calculamos vertice
+                PV3D* v = new PV3D(
+                  origenCoor->getX()+radio*cos((i*alfa*3.141592)/180),
+                  origenCoor->getY()+radio*sin((i*alfa*3.141592)/180),
+                  origenCoor->getZ());
+                vertices[i] = v;
+        }
+
+        //Calculamos siguientes vértices por extrusión (Marco de Frenet)
+        //moviendo el polígono inicial
+        double t = 0;
+        for (int i=1;i<=nQ;i++)
+        {
+                for (int j=0;j<nP;j++)
+                {
+                        PV3D* vBase = vertices[j];
+                        //Extruir vBase obteniendo vExt
+                        double x = vBase->getX();
+                        double y = vBase->getY();
+                        double z = vBase->getZ();
+                        PV3D* vExt = new PV3D((sin(t))*(t-x)+cos(t)*((z+1)),y,(sin(t))*(z+1)+cos(t)*((x-t)));
+                        vertices[nP*i+j] = vExt;
+                }
+                t = t + 0.2;
+        }
+
+        //Calculamos las caras
+        for (int i=1;i<=nQ;i++)
+        {
+                for (int j=0;j<nP;j++)
+                {
+                        //Calculamos los vertices de la cara
+                        VerticeNormal** vN = new VerticeNormal*[4];
+                        vN[0]=new VerticeNormal(nP*(i-1)+j,nP*(i-1)+j);
+                        vN[1]=new VerticeNormal(nP*(i-1)+((j+1)%nP),nP*(i-1)+j);
+                        vN[2]=new VerticeNormal(nP*(i)+((j+1)%nP),nP*(i-1)+j);
+                        vN[3]=new VerticeNormal(nP*(i)+j,nP*(i-1)+j);
+                        Cara* cara=new Cara(4,vN);
+                        caras[nP*(i-1)+j]=cara;
+
+                        //Calculamos la normal de la cara
+                        double nx = 0;
+                        double ny = 0;
+                        double nz = 0;
+ 		        for (int k=0;k<4;k++)
+ 		        {
+			        PV3D* v1 = vertices[vN[k]->getVertice()];
+			        PV3D* v2 = vertices[vN[(k+1)%4]->getVertice()];
+ 			        nx = nx + (v1->getY()-v2->getY())*(v1->getZ()+v2->getZ());
+			        ny = ny + (v1->getZ()-v2->getZ())*(v1->getX()+v2->getX());
+			        nz = nz + (v1->getX()-v2->getX())*(v1->getY()+v2->getY());
+ 		        }
+		        PV3D* n = new PV3D(nx,ny,nz);
+		        n->normalizar();
+		        normales[nP*(i-1)+j]=n;
+                }
+        }
+
+        malla = new Espiral(nVertices, vertices, nNormales, normales, nCaras, caras, nP, nQ, radio);
+ }
+
+
+
+void __fastcall TGLForm3D::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+
+ {
+        switch (Key)
+        {
+        //Q
+        case 81:{
+        qPulsada = true;
+        GLScene();
+        break;
+        }
+        //W
+        case 87:{
+        wPulsada = true;
+        GLScene();
+        break;
+        }
+        //T
+        case 84:{
+        if (tPulsada)
+        tPulsada = false;
+        else
+        tPulsada = true;
+        GLScene();
+        break;
+        }
+
+}
+
+ }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm3D::Parte11Click(TObject *Sender)
 {

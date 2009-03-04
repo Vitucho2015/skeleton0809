@@ -33,6 +33,12 @@ Cara::Cara(int numV, int n[], int numNormal) {
         tabla[i] = new VerticeNormal(n[i], numNormal);
 }
 
+Cara::Cara(int nVertices, VerticeNormal** vN)
+ {
+        numVertices = nVertices;
+        tabla = vN;
+ }
+
 int Cara::getIndiceVertice(int n){
     return ((VerticeNormal*)tabla[n])->getVertice();
 }
@@ -44,5 +50,7 @@ int Cara::getIndiceNormal(int n){
 int Cara::getNumVertices(){
     return numVertices;
 }
+
+
 
 
