@@ -189,12 +189,9 @@ void __fastcall TGLForm3D::GLScene()
 
         //Dibujar trayectoria
 
-        if ((trayectoria!=NULL)&&(tPulsada))
-        {
-        //Color: verde
-        glColor3f(0,1,0);
+        if (trayectoria!=NULL)
         trayectoria->dibuja();
-        }
+
       pintaEjes();
       pintaEspiral();
       pintaEsfera();
@@ -390,18 +387,21 @@ void __fastcall TGLForm3D::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
 void __fastcall TGLForm3D::Parte11Click(TObject *Sender)
 {
    version = 0;
+   GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Parte21Click(TObject *Sender)
 {
    version = 1;
+   GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::Parte31Click(TObject *Sender)
 {
    version = 2;
+   GLScene();
 }
 //---------------------------------------------------------------------------
 
