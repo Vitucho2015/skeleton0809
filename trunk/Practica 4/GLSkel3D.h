@@ -6,6 +6,7 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
+#include <Menus.hpp>
 #include <gl\gl.h>
 #include <gl\glu.h>
 
@@ -13,10 +14,18 @@
 class TGLForm3D : public TForm
 {
 __published:	// IDE-managed Components
+   TMainMenu *MainMenu1;
+   TMenuItem *Version1;
+   TMenuItem *Parte11;
+   TMenuItem *Parte21;
+   TMenuItem *Parte31;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
+   void __fastcall Parte11Click(TObject *Sender);
+   void __fastcall Parte21Click(TObject *Sender);
+   void __fastcall Parte31Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
@@ -28,9 +37,12 @@ private:        // User declarations
     void __fastcall GLScene();
     void crearObjetosEscena();
     void liberarObjetosEscena();
-
+    int version;// sirve para saber que version tiene que pintar
     GLUquadricObj* bola;
-
+    void pintaEjes();
+    void pintaCopa();
+    void pintaEspiral();
+    void pintaEsfera();
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
 };

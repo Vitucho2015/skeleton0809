@@ -67,6 +67,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   //ClientWidth=400;
   //ClientHeight=400;
   RatioViewPort=1.0;
+  version = 10;// No pinta nada
 }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm3D::SetPixelFormatDescriptor()
@@ -129,39 +130,23 @@ void __fastcall TGLForm3D::GLScene()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
 
-
   glMatrixMode(GL_MODELVIEW);
   //Dibujar la escena
-
-  //Ejemplo: dibujo de los ejes
-  glBegin(GL_LINES);
-        glColor4f(1.0,0.0,0.0,1.0);
-        glVertex3d(0,0,0);
-        glVertex3d(10,0,0);
-
-        glColor4f(0.0,1.0,0.0,1.0);
-        glVertex3d(0,0,0);
-        glVertex3d(0,10,0);
-
-        glColor4f(0.0,0.0,1.0,1.0);
-        glVertex3d(0,0,0);
-        glVertex3d(0,0,10);
-  glEnd();
-
-
-
-  glPushMatrix();
-        if (bola!=NULL)
-        {
-                //Situamos bola
-                glRotatef(90,1,0,0);
-                //Color azul
-                glColor3f(0,0,1);
-                //Modo lineas
-                gluQuadricDrawStyle(bola,GLU_LINE);
-                gluSphere(bola,2,30,30);
-        }
-
+  switch(version){
+   case 0: //Se pinta la copa
+      pintaCopa();
+      break;
+   case 1: //Se pinta la espiral
+      pintaEjes();
+      pintaEspiral();
+      break;
+   case 2: //Se pinta la espiral con la esfera
+      pintaEjes();
+      pintaEspiral();
+      pintaEsfera();
+      break;
+   default:;
+  }
   glFlush();
   SwapBuffers(hdc);
 }
@@ -169,6 +154,43 @@ void __fastcall TGLForm3D::GLScene()
 void __fastcall TGLForm3D::FormPaint(TObject *Sender)
 {
   GLScene();
+}
+//---------------------------------------------------------------------------
+void TGLForm3D::pintaEjes(){
+   glBegin(GL_LINES);
+      glColor4f(1.0,0.0,0.0,1.0);
+      glVertex3d(0,0,0);
+      glVertex3d(10,0,0);
+
+      glColor4f(0.0,1.0,0.0,1.0);
+      glVertex3d(0,0,0);
+      glVertex3d(0,10,0);
+
+      glColor4f(0.0,0.0,1.0,1.0);
+      glVertex3d(0,0,0);
+      glVertex3d(0,0,10);
+   glEnd();
+}
+//---------------------------------------------------------------------------
+void TGLForm3D::pintaEspiral(){
+
+}
+//---------------------------------------------------------------------------
+void TGLForm3D::pintaEsfera(){
+   glPushMatrix();
+        if (bola != NULL){
+         //Situamos bola
+         glRotatef(90,1,0,0);
+         //Color azul
+         glColor3f(0,0,1);
+         //Modo lineas
+         gluQuadricDrawStyle(bola,GLU_LINE);
+         gluSphere(bola,2,30,30);
+   }
+}
+//---------------------------------------------------------------------------
+void TGLForm3D::pintaCopa(){
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
@@ -190,7 +212,22 @@ void TGLForm3D::liberarObjetosEscena()
 
 
 }
+//---------------------------------------------------------------------------
+void __fastcall TGLForm3D::Parte11Click(TObject *Sender)
+{
+   version = 0;
+}
+//---------------------------------------------------------------------------
 
+void __fastcall TGLForm3D::Parte21Click(TObject *Sender)
+{
+   version = 1;
+}
+//---------------------------------------------------------------------------
 
-
+void __fastcall TGLForm3D::Parte31Click(TObject *Sender)
+{
+   version = 2;
+}
+//---------------------------------------------------------------------------
 
