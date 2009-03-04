@@ -9,9 +9,22 @@
 
 #pragma package(smart_init)
 
-Cara::Cara(){}
+Cara::Cara(){
+        numVertices = 0;
+        tabla = NULL;
+}
 
-Cara::~Cara(){}
+Cara::~Cara(){
+        if (tabla!=NULL)
+        {
+        for (int i=0;i<numVertices;i++)
+        {
+        delete tabla[i];
+        }
+        delete []tabla;
+        tabla = NULL;
+        }
+}
 
 Cara::Cara(int numV, int n[], int numNormal) {
     numVertices = numV;

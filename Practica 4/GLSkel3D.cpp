@@ -45,6 +45,18 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
 
   crearObjetosEscena();
 
+
+  //Inicialmente ninguna tecla pulsada
+        qPulsada = false;
+        wPulsada = false;
+        tPulsada = false;
+
+
+  //Inicializamos la variable de tiempo
+        tiempo = 0;
+  //Inicializamos el valor para los giros
+        giroPanel = 0;
+        giro = 0;
   //Cámara
   eyeX=100.0,
   eyeY=100.0,
@@ -131,20 +143,63 @@ void __fastcall TGLForm3D::GLScene()
   glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
 
   glMatrixMode(GL_MODELVIEW);
-  //Dibujar la escena
+
+  //Incremento de tiempo en cada movimiento
+        double incrTiempo = 0.03;
+
+  //Incremento del ángulo de giro en cada movimiento
+
+        double incrGiro = 5;
+
+        glPushMatrix(); //guardamos una copia de la matriz superior en la pila
+
   switch(version){
+
    case 0: //Se pinta la copa
       pintaCopa();
       break;
+
    case 1: //Se pinta la espiral
       pintaEjes();
       pintaEspiral();
       break;
+
    case 2: //Se pinta la espiral con la esfera
+      if (qPulsada)
+        {
+        tiempo = tiempo + incrTiempo;
+        giro = giro + incrGiro;
+        giroPanel = giroPanel+incrGiro;
+        qPulsada = false;
+        }
+
+      if (wPulsada)
+        {
+        tiempo = tiempo - incrTiempo;
+        giro = giro - incrGiro;
+        giroPanel = giroPanel - incrGiro;
+        wPulsada = false;
+        }
+
+        //Movemos según órbita
+        glTranslatef(cos(tiempo)+tiempo*sin(tiempo),0,sin(tiempo)-tiempo*cos(tiempo));
+        glRotatef(giro,0,1,0);
+
+        glPopMatrix();
+
+        //Dibujar trayectoria
+
+        if ((trayectoria!=NULL)&&(tPulsada))
+        {
+        //Color: verde
+        glColor3f(0,1,0);
+        trayectoria->dibujar();
+        }
       pintaEjes();
       pintaEspiral();
       pintaEsfera();
       break;
+
    default:;
   }
   glFlush();
@@ -204,6 +259,13 @@ void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
 void TGLForm3D::crearObjetosEscena()
 {
            bola = gluNewQuadric();
+           //Configuración de la trayectoria
+        double nPT = 20;
+        double nQT = 110;
+        double radioT = 2;
+        PV3D* origenCoor = new PV3D();
+        //Creamos la trayectoria
+        crearMallaTrayectoria(origenCoor,nPT,nQT,radioT,trayectoria);
 
 }
 //---------------------------------------------------------------------------

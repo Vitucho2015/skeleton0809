@@ -8,6 +8,8 @@ USEUNIT("VerticeNormal.cpp");
 USEUNIT("Cara.cpp");
 USEUNIT("Malla.cpp");
 USEUNIT("PV3D.cpp");
+USEUNIT("Espiral.cpp");
+USEUNIT("Espiral.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

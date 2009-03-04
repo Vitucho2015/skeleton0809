@@ -37,8 +37,23 @@ private:        // User declarations
     void __fastcall GLScene();
     void crearObjetosEscena();
     void liberarObjetosEscena();
+
     int version;// sirve para saber que version tiene que pintar
     GLUquadricObj* bola;
+    Espiral* trayectoria;  //por donde va a ir la bola
+    //Tecla Q pulsada
+        bool qPulsada;
+        //Tecla W pulsada
+        bool wPulsada;
+        //Tecla T pulsada
+        bool tPulsada;
+        //Tiempo
+        double tiempo;
+        //Angulo giro paneles
+        double giroPanel;
+        //Angulo giro satélite
+        double giro;
+
     void pintaEjes();
     void pintaCopa();
     void pintaEspiral();
