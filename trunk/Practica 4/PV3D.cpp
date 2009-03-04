@@ -16,6 +16,14 @@ PV3D::PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ, int valor){
     PoV = valor;
 }
 
+
+PV3D::PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ){
+    x = coordX;
+    y = coordY;
+    z = coordZ;
+    PoV = 0;
+}
+
 PV3D::PV3D() {
     x = 0;
     y = 0;
@@ -88,3 +96,11 @@ PV3D* PV3D::prodVectorial(PV3D* punto){
     PV3D* solucion = new PV3D(i,j,k,0);
     return solucion;
 }
+
+ void PV3D::normalizar()
+ {
+        double modulo = this->modulo();
+        x = x / modulo;
+        y = y / modulo;
+        z = z / modulo;
+ }
