@@ -10,6 +10,7 @@
 #include <gl\gl.h>
 #include <gl\glu.h>
 #include "Espiral.h"
+#include "Copa.h"
 
 //---------------------------------------------------------------------------
 class TGLForm3D : public TForm
@@ -44,7 +45,7 @@ private:        // User declarations
     int version;// sirve para saber que version tiene que pintar
     GLUquadricObj* bola;
     Espiral* trayectoria;  //por donde va a ir la bola
-
+    Copa* copa;
     //Tecla Q pulsada
         bool qPulsada;
         //Tecla W pulsada

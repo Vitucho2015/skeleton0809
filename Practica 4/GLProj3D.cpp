@@ -9,7 +9,7 @@ USEUNIT("Cara.cpp");
 USEUNIT("Malla.cpp");
 USEUNIT("PV3D.cpp");
 USEUNIT("Espiral.cpp");
-USEUNIT("Espiral.cpp");
+USEUNIT("Copa.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -17,7 +17,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         {
                  Application->Initialize();
                  Application->CreateForm(__classid(TGLForm3D), &GLForm3D);
-                 Application->Run();
+         Application->Run();
         }
         catch (Exception &exception)
         {

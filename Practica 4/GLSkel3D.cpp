@@ -247,7 +247,7 @@ void TGLForm3D::pintaCopa(){
 //---------------------------------------------------------------------------
 void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
 {
-  //liberarObjetosEscena();
+  liberarObjetosEscena();
   ReleaseDC(Handle,hdc);
   wglMakeCurrent(NULL,NULL);
   wglDeleteContext(hrc);
@@ -255,7 +255,7 @@ void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
 //---------------------------------------------------------------------------
 void TGLForm3D::crearObjetosEscena()
 {
-           bola = gluNewQuadric();
+        bola = gluNewQuadric();
            //Configuración de la trayectoria
         GLfloat nPT = 20;
         GLfloat nQT = 110;
@@ -263,13 +263,20 @@ void TGLForm3D::crearObjetosEscena()
         PV3D* origenCoor = new PV3D();
         //Creamos la trayectoria
         crearMallaTrayectoria(origenCoor,nPT,nQT,radioT,trayectoria);
+        copa=NULL;
 
 }
 //---------------------------------------------------------------------------
 void TGLForm3D::liberarObjetosEscena()
 {
-
-
+    if(trayectoria != NULL){
+        delete trayectoria;
+        trayectoria = NULL;
+    }
+    if(copa != NULL){
+        delete copa;
+        copa = NULL;
+    }
 }
 
 
