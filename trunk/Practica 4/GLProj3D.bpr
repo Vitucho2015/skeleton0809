@@ -5,7 +5,7 @@
     <VERSION value="BCB.05.03"/>
     <PROJECT value="GLProj3D.exe"/>
     <OBJFILES value="GLProj3D.obj GLSkel3D.obj VerticeNormal.obj Cara.obj Malla.obj PV3D.obj 
-      Espiral.obj Espiral.obj"/>
+      Espiral.obj Copa.obj"/>
     <RESFILES value="GLProj3D.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
