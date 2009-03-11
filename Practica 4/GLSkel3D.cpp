@@ -189,16 +189,18 @@ void __fastcall TGLForm3D::GLScene()
 
         //Dibujar trayectoria
 
-        if (trayectoria!=NULL)
+        if (trayectoria!=NULL){
         trayectoria->dibuja();
-
+        }
       pintaEjes();
       pintaEspiral();
       pintaEsfera();
+      
       break;
 
    default:;
   }
+  glPopMatrix();
   glFlush();
   SwapBuffers(hdc);
 }
@@ -263,6 +265,7 @@ void TGLForm3D::crearObjetosEscena()
         PV3D* origenCoor = new PV3D();
         //Creamos la trayectoria
         crearMallaTrayectoria(origenCoor,nPT,nQT,radioT,trayectoria);
+        //crearMallaCopa();
         copa=NULL;
 
 }
@@ -363,7 +366,7 @@ void TGLForm3D::crearMallaTrayectoria(PV3D* origenCoor, int nP, int nQ, double r
 void __fastcall TGLForm3D::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 
  {
-        switch (Key)
+         switch (Key)
         {
         //Q
         case 81:{
