@@ -10,7 +10,6 @@
 #include <gl\gl.h>
 #include <gl\glu.h>
 #include "Espiral.h"
-#include "Copa.h"
 
 //---------------------------------------------------------------------------
 class TGLForm3D : public TForm
@@ -65,7 +64,7 @@ private:        // User declarations
     void pintaEjes();
     void pintaEsfera();
     void crearMallaTrayectoria(PV3D* origenCoor, int nLados, int nCapas, double radio, Espiral*& malla);
-    //void crearMallaCopa(...);
+    void crearMallaCopa(PV3D* origenCoor,int nP,int nQ,double radio, Malla*& malla);
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
 };
