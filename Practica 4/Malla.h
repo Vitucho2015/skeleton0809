@@ -22,8 +22,8 @@ class Malla {
         Malla();
         Malla(int nVertices, PV3D** v, int nNormales, PV3D** n, int nCaras, Cara** c);
         ~Malla();
-        void dibuja();
+        void dibuja(int modo);
 
 };
-
+//---------------------------------------------------------------------------
 #endif

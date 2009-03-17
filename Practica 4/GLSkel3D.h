@@ -21,6 +21,9 @@ __published:	// IDE-managed Components
    TMenuItem *Parte11;
    TMenuItem *Parte21;
    TMenuItem *Parte31;
+    TMenuItem *Modo1;
+    TMenuItem *Lineas1;
+    TMenuItem *Relleno1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -29,6 +32,8 @@ __published:	// IDE-managed Components
    void __fastcall Parte11Click(TObject *Sender);
    void __fastcall Parte21Click(TObject *Sender);
    void __fastcall Parte31Click(TObject *Sender);
+    void __fastcall Lineas1Click(TObject *Sender);
+    void __fastcall Relleno1Click(TObject *Sender);
 
 
 private:        // User declarations
@@ -43,27 +48,24 @@ private:        // User declarations
     void liberarObjetosEscena();
 
     int version;// sirve para saber que version tiene que pintar
+    int modo;//indica como tiene que pintar los objetos
     GLUquadricObj* bola;
-    Espiral* trayectoria;  //por donde va a ir la bola
-    Copa* copa;
+    Espiral* trayectoria;//por donde va a ir la bola
+    Malla* copa;// malla que tiene definida una copa
     //Tecla Q pulsada
-        bool qPulsada;
-        //Tecla W pulsada
-        bool wPulsada;
-        //Tecla T pulsada
-        bool tPulsada;
-        //Tiempo
-        double tiempo;
-        //Angulo giro paneles
-        double giroPanel;
-        //Angulo giro satélite
-        double giro;
-
+    bool qPulsada;
+    //Tecla W pulsada
+    bool wPulsada;
+    //Tiempo
+    double tiempo;
+    //Angulo giro paneles
+    double giroPanel;
+    double giro;
+    PV3D* origenCoor;
     void pintaEjes();
-    void pintaCopa();
-    void pintaEspiral();
     void pintaEsfera();
     void crearMallaTrayectoria(PV3D* origenCoor, int nLados, int nCapas, double radio, Espiral*& malla);
+    //void crearMallaCopa(...);
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
 };
