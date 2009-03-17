@@ -395,7 +395,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
         int nP = 50; //las circunferencias tienen 100 lados
         int nQ = 1; //la base solo tiene dos circunferencias
-        int radio = 10;
+        int radio = 1;
 
 
 
@@ -425,7 +425,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
 	//Calculamos la otra circunferencia
 
-        radio = 5;   //tiene un radio mas pequeño
+        //radio = 5;   //tiene un radio mas pequeño
 
 
        for (int i=1;i<=nQ;i++){
@@ -434,7 +434,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 			double x = vBase->getX();
 			double y = vBase->getY();
 			double z = vBase->getZ();
-			PV3D* vExt = new PV3D(x+radio*cos((i*alfa*3.141592)/180),y+radio*sin((i*alfa*3.141592)/180),z);
+			PV3D* vExt = new PV3D(x+radio*cos((i*alfa*3.141592)/180),y+radio*sin((i*alfa*3.141592)/180),z+10);
 			vertices[nP*i+j] = vExt;
 		}
 
