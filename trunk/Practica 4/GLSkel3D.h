@@ -64,7 +64,7 @@ private:        // User declarations
     void pintaEjes();
     void pintaEsfera();
     void crearMallaTrayectoria(PV3D* origenCoor, int nLados, int nCapas, double radio, Espiral*& malla);
-    void crearMallaCopa(PV3D* origenCoor,int nP,int nQ,double radio, Malla*& malla);
+    void crearMallaCopa(PV3D* origenCoor,Malla*& malla);
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
 };

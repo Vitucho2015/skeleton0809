@@ -164,7 +164,7 @@ void __fastcall TGLForm3D::GLScene()
             }
             	//Creamos la copa
             centro= new PV3D(0,0,4);
-            crearMallaCopa(centro,111,0,5,copa);
+            crearMallaCopa(centro,copa);
             //centro->setY(2);
             //crearMallaCopa(centro,20,0,0.5,copa);
         break;
@@ -310,6 +310,10 @@ void TGLForm3D::liberarObjetosEscena()
 
 void TGLForm3D::crearMallaTrayectoria(PV3D* origenCoor, int nP, int nQ, double radio, Espiral*& malla)
  {
+        //circunferencias de NP lados
+        //NQ pasos
+
+
 	//Elementos de la malla
 	int nVertices = nP*(nQ+1);
 	int nNormales = nP*nQ;
@@ -381,7 +385,102 @@ void TGLForm3D::crearMallaTrayectoria(PV3D* origenCoor, int nP, int nQ, double r
 
 //---------------------------------------------------------------------------
 
-void TGLForm3D::crearMallaCopa(PV3D* origenCoor,int nP,int nQ,GLdouble radio, Malla*& malla){
+void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
+ {
+        //circunferencias de NP lados
+        //NQ pasos
+
+
+        //primero definimos la base de la copa
+
+        int nP = 20; //las circunferencias tienen 20 lados
+        int nQ = 2; //la base solo tiene dos circunferencias
+        int radio = 5;
+
+
+
+	//Elementos de la malla
+	int nVertices = nP*(nQ+1);
+	int nNormales = nP*nQ;
+	int nCaras = nP*nQ;
+
+
+	PV3D** vertices = new PV3D*[nVertices];
+	PV3D** normales = new PV3D*[nNormales];
+	Cara** caras = new Cara*[nCaras];
+
+	//Calculamos los vértices iniciales del polígono
+	double alfa = 360/nP;
+	PV3D* origen = new PV3D(origenCoor->getX()+radio,origenCoor->getY(),origenCoor->getZ());
+	vertices[0] = origen;
+
+	for (int i=1;i<nP;i++){
+		//Calculamos vertice
+		PV3D* v = new PV3D(
+		  origenCoor->getX()+radio*cos((i*alfa*3.141592)/180),
+		  origenCoor->getY()+radio*sin((i*alfa*3.141592)/180),
+		  origenCoor->getZ());
+		vertices[i] = v;
+	}
+
+	//Calculamos la otra circunferencia
+
+        radio = 2;   //tiene un radio mas pequeño
+
+
+       for (int i=1;i<=nQ;i++){
+		for (int j=0;j<nP;j++){
+			PV3D* vBase = vertices[j];
+			double x = vBase->getX();
+			double y = vBase->getY();
+			double z = vBase->getZ();
+			PV3D* vExt = new PV3D(x+radio*cos((i*alfa*3.141592)/180),y+radio*sin((i*alfa*3.141592)/180),z);
+			vertices[nP*i+j] = vExt;
+		}
+
+	}
+
+
+
+
+	//Calculamos las caras
+	for (int i=1;i<=nQ;i++){
+		for (int j=0;j<nP;j++){
+			//Calculamos los vertices de la cara
+			VerticeNormal** vN = new VerticeNormal*[4];
+			vN[0]=new VerticeNormal(nP*(i-1)+j,nP*(i-1)+j);
+			vN[1]=new VerticeNormal(nP*(i-1)+((j+1)%nP),nP*(i-1)+j);
+			vN[2]=new VerticeNormal(nP*(i)+((j+1)%nP),nP*(i-1)+j);
+			vN[3]=new VerticeNormal(nP*(i)+j,nP*(i-1)+j);
+			Cara* cara=new Cara(4,vN);
+			caras[nP*(i-1)+j]=cara;
+
+			//Calculamos la normal de la cara
+			double nx = 0;
+			double ny = 0;
+			double nz = 0;
+			for (int k=0;k<4;k++){
+				PV3D* v1 = vertices[vN[k]->getVertice()];
+				PV3D* v2 = vertices[vN[(k+1)%4]->getVertice()];
+
+				nx = nx + (v1->getY()-v2->getY())*(v1->getZ()+v2->getZ());
+				ny = ny + (v1->getZ()-v2->getZ())*(v1->getX()+v2->getX());
+				nz = nz + (v1->getX()-v2->getX())*(v1->getY()+v2->getY());
+			}
+			PV3D* n = new PV3D(nx,ny,nz);
+			n->normalizar();
+			normales[nP*(i-1)+j]=n;
+		}
+	}
+
+	malla = new Espiral(nVertices, vertices, nNormales, normales, nCaras, caras, nP, nQ, radio);
+ }
+
+
+
+
+
+/*{
     //Primero construimos la base de la copa
     //Elementos de la malla
 	int nVertices = nP;
@@ -433,7 +532,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor,int nP,int nQ,GLdouble radio, Ma
     //malla = new Malla(nVertices,vertices,nNormales,normales,nCaras,caras);
 
 
-}
+
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
