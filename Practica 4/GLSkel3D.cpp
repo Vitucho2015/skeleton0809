@@ -163,7 +163,7 @@ void __fastcall TGLForm3D::GLScene()
             copa->dibuja(modo);
             }
             	//Creamos la copa
-            centro= new PV3D(0,0,4);
+            centro= new PV3D(0,0,10);
             crearMallaCopa(centro,copa);
             //centro->setY(2);
             //crearMallaCopa(centro,20,0,0.5,copa);
@@ -394,7 +394,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
         //primero definimos la base de la copa
 
         int nP = 50; //las circunferencias tienen 100 lados
-        int nQ = 2; //la base solo tiene dos circunferencias
+        int nQ = 12; //la base solo tiene dos circunferencias
         double radio = 4;
 
 
@@ -437,12 +437,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
         PV3D* origen2 = new PV3D(origenCoor->getX(),origenCoor->getY(),origenCoor->getZ()-2);
 
 
-
-
-
-
-
-		for (int j=0;j<nP;j++){
+        for (int j=0;j<nP;j++){
 		//Calculamos vertice
 		PV3D* v = new PV3D(
 		  origen2->getX()+radio*cos((j*alfa*3.141592)/180),
@@ -452,10 +447,10 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 		vertices[nP+j] = v;
                 }
 
+        radio = 0.2;
 
-
-
-        PV3D* origen3 = new PV3D(origen2->getX(),origen2->getY(),origen2->getZ()-5);
+        //calculamos el otro lado del cilindro
+        PV3D* origen3 = new PV3D(origen2->getX(),origen2->getY(),origen2->getZ()-12);
 
                 for (int j=0;j<nP;j++){
 		//Calculamos vertice
@@ -466,6 +461,33 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
 		vertices[2*nP+j] = v2;
                 }
+
+
+
+
+        //ahora hacemos la parte de arriba de la copa
+
+        for (int k=0;k<10;k++){
+        origen3 = new PV3D(origen3->getX(),origen3->getY(),origen3->getZ()-1);
+
+                for (int j=0;j<nP;j++){
+		//Calculamos vertice
+		PV3D* v2 = new PV3D(
+		  origen3->getX()+radio*cos((j*alfa*3.141592)/180),
+		  origen3->getY()+radio*sin((j*alfa*3.141592)/180),
+		  origen3->getZ());
+
+		vertices[(k+3)*nP+j] = v2;
+                radio= radio+log(k+2)/100;
+                }
+
+
+
+
+
+
+        }
+
 
 
 
