@@ -394,7 +394,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
         //primero definimos la base de la copa
 
         int nP = 50; //las circunferencias tienen 100 lados
-        int nQ = 1; //la base solo tiene dos circunferencias
+        int nQ = 2; //la base solo tiene dos circunferencias
         double radio = 4;
 
 
@@ -460,9 +460,9 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
                 for (int j=0;j<nP;j++){
 		//Calculamos vertice
 		PV3D* v2 = new PV3D(
-		  origen2->getX()+radio*cos((j*alfa*3.141592)/180),
-		  origen2->getY()+radio*sin((j*alfa*3.141592)/180),
-		  origen2->getZ());
+		  origen3->getX()+radio*cos((j*alfa*3.141592)/180),
+		  origen3->getY()+radio*sin((j*alfa*3.141592)/180),
+		  origen3->getZ());
 
 		vertices[2*nP+j] = v2;
                 }
