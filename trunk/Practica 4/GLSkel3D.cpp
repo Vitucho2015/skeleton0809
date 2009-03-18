@@ -276,7 +276,7 @@ void TGLForm3D::crearObjetosEscena()
 	//Creamos la trayectoria
 	crearMallaTrayectoria(origenCoor,nPT,nQT,radioT,trayectoria);
 	//Creamos la copa
-    origenCoor->setZ(10);
+    origenCoor->setZ(-10);
     crearMallaCopa(origenCoor,copa);
 
 }
@@ -419,14 +419,14 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
     radio = 1;
 
-        PV3D* origen2 = new PV3D(origenCoor->getX(),origenCoor->getY(),origenCoor->getZ()-2);
+        PV3D* origen2 = new PV3D(origenCoor->getX(),origenCoor->getY(),origenCoor->getZ()+2);
 
 
         for (int j=0;j<nP;j++){
 		    //Calculamos vertice
 		    PV3D* v = new PV3D(
 		        origen2->getX()+radio*cos((j*alfa*3.141592)/180),
-                origen2->getY()+radio*sin((j*alfa*3.141592)/180),
+                         origen2->getY()+radio*sin((j*alfa*3.141592)/180),
 		        origen2->getZ());
 
 	    	vertices[nP+j] = v;
@@ -434,8 +434,10 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
         radio = 0.2;
 
-        //calculamos el otro lado del cilindro
-        PV3D* origen3 = new PV3D(origen2->getX(),origen2->getY(),origen2->getZ()-12);
+        //calculamos el otro lado del pie del cilindro
+
+
+        PV3D* origen3 = new PV3D(origen2->getX(),origen2->getY(),origen2->getZ()+12);
 
         delete origen2;
         origen2 = NULL;
@@ -455,7 +457,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
         //ahora hacemos la parte de arriba de la copa
 
         for (int k=1;k<=50;k++){
-        origen3->setZ(origen3->getZ()-0.2);
+        origen3->setZ(origen3->getZ()+0.2);
 
             for (int j=0;j<nP;j++){
 		        //Calculamos vertice
