@@ -393,8 +393,8 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
         //primero definimos la base de la copa
 
-        int nP = 50; //las circunferencias tienen 100 lados
-        int nQ = 12; //la base solo tiene dos circunferencias
+        int nP = 100; //las circunferencias tienen 100 lados
+        int nQ = 52; //la base solo tiene dos circunferencias
         double radio = 4;
 
 
@@ -410,7 +410,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 	Cara** caras = new Cara*[nCaras];
 
 	//Calculamos los vértices iniciales del polígono
-	double alfa = 360/nP;
+	double alfa = 360.0/(double)nP;
 	PV3D* origen = new PV3D(origenCoor->getX()+radio,origenCoor->getY(),origenCoor->getZ());
 	vertices[0] = origen;
 
@@ -467,8 +467,8 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
         //ahora hacemos la parte de arriba de la copa
 
-        for (int k=0;k<10;k++){
-        origen3 = new PV3D(origen3->getX(),origen3->getY(),origen3->getZ()-1);
+        for (int k=1;k<=50;k++){
+        origen3 = new PV3D(origen3->getX(),origen3->getY(),origen3->getZ()-0.2);
 
                 for (int j=0;j<nP;j++){
 		//Calculamos vertice
@@ -477,8 +477,9 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 		  origen3->getY()+radio*sin((j*alfa*3.141592)/180),
 		  origen3->getZ());
 
-		vertices[(k+3)*nP+j] = v2;
-                radio= radio+log(k+2)/100;
+		vertices[(k+2)*nP+j] = v2;
+                //radio= radio+log(k+2)/100;
+                radio= radio+0.001;
                 }
 
 
