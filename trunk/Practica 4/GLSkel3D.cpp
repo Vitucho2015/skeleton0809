@@ -159,7 +159,11 @@ void __fastcall TGLForm3D::GLScene()
 
         case 0: //Se pinta la copa
             if(copa !=NULL){
+                glColor3f(1,1,0);
+                glPushMatrix();
+                glRotatef(90,0,1,0);
                 copa->dibuja(modo);
+                glPopMatrix();
             }
         break;
 
@@ -269,17 +273,17 @@ void TGLForm3D::crearObjetosEscena()
 {
 	bola = gluNewQuadric();
 	//Configuración de la trayectoria
-	GLfloat nPT = 20;
+	GLfloat nPT = 10;
 	GLfloat nQT = 110;
 	GLfloat radioT = 2;
 	origenCoor = new PV3D();
 	//Creamos la trayectoria
 	crearMallaTrayectoria(origenCoor,nPT,nQT,radioT,trayectoria);
 	//Creamos la copa
-    origenCoor->setZ(-10);
-    crearMallaCopa(origenCoor,copa);
-
+        origenCoor->setZ(-10);
+        crearMallaCopa(origenCoor,copa);
 }
+
 //---------------------------------------------------------------------------
 
 void TGLForm3D::liberarObjetosEscena()
@@ -385,7 +389,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
         //primero definimos la base de la copa
 
-        int nP = 100; //las circunferencias tienen 100 lados
+        int nP = 20; //las circunferencias tienen 100 lados
         int nQ = 52; //la base solo tiene dos circunferencias
         double radio = 4;
 
@@ -463,12 +467,11 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 		        //Calculamos vertice
 		        PV3D* v2 = new PV3D(
 		            origen3->getX()+radio*cos((j*alfa*3.141592)/180),
-                    origen3->getY()+radio*sin((j*alfa*3.141592)/180),
+                            origen3->getY()+radio*sin((j*alfa*3.141592)/180),
 		            origen3->getZ());
 
 		        vertices[(k+2)*nP+j] = v2;
-                //radio= radio+log(k+2)/100;
-                radio= radio+0.001;
+                radio= log(k+2)*1.5;
             }
         }
         

@@ -70,10 +70,12 @@ void Malla::dibuja(int modo) {
             int iV = caras[i]->getIndiceVertice(j);
             int iN = caras[i]->getIndiceNormal(j);
             //
+            glNormal3f(normales[iN]->getX(),normales[iN]->getY(), normales[iN]->getZ());
+       
+
             glVertex3f(vertices[iV]->getX(),vertices[iV]->getY(), vertices[iV]->getZ());
             //creamos la normal de este polígono
-            glNormal3f(normales[iN]->getX(),normales[iN]->getY(), normales[iN]->getZ());
-        }
+             }
         glEnd();
     }
 }
