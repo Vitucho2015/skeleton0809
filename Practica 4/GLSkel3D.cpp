@@ -395,7 +395,7 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 
         int nP = 50; //las circunferencias tienen 100 lados
         int nQ = 1; //la base solo tiene dos circunferencias
-        int radio = 1;
+        double radio = 4;
 
 
 
@@ -423,27 +423,56 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 		vertices[i] = v;
 	}
 
+
+
+
+
 	//Calculamos la otra circunferencia
 
-        //radio = 5;   //tiene un radio mas pequeño
 
 
-       for (int i=1;i<=nQ;i++){
+        radio = 1;
+
+
+        PV3D* origen2 = new PV3D(origenCoor->getX(),origenCoor->getY(),origenCoor->getZ()-2);
+
+
+
+
+
+
+
 		for (int j=0;j<nP;j++){
-			PV3D* vBase = vertices[j];
-			double x = vBase->getX();
-			double y = vBase->getY();
-			double z = vBase->getZ();
-			PV3D* vExt = new PV3D(x+radio*cos((i*alfa*3.141592)/180),y+radio*sin((i*alfa*3.141592)/180),z+10);
-			vertices[nP*i+j] = vExt;
-		}
+		//Calculamos vertice
+		PV3D* v = new PV3D(
+		  origen2->getX()+radio*cos((j*alfa*3.141592)/180),
+		  origen2->getY()+radio*sin((j*alfa*3.141592)/180),
+		  origen2->getZ());
 
-	}
-
+		vertices[nP+j] = v;
+                }
 
 
 
-	//Calculamos las caras
+
+        PV3D* origen3 = new PV3D(origen2->getX(),origen2->getY(),origen2->getZ()-5);
+
+                for (int j=0;j<nP;j++){
+		//Calculamos vertice
+		PV3D* v2 = new PV3D(
+		  origen2->getX()+radio*cos((j*alfa*3.141592)/180),
+		  origen2->getY()+radio*sin((j*alfa*3.141592)/180),
+		  origen2->getZ());
+
+		vertices[2*nP+j] = v2;
+                }
+
+
+
+           
+
+
+         //Calculamos las caras
 	for (int i=1;i<=nQ;i++){
 		for (int j=0;j<nP;j++){
 			//Calculamos los vertices de la cara
@@ -459,13 +488,9 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 			double nx = 0;
 			double ny = 0;
 			double nz = 0;
-
-
-
 			for (int k=0;k<4;k++){
 				PV3D* v1 = vertices[vN[k]->getVertice()];
 				PV3D* v2 = vertices[vN[(k+1)%4]->getVertice()];
-
 				nx = nx + (v1->getY()-v2->getY())*(v1->getZ()+v2->getZ());
 				ny = ny + (v1->getZ()-v2->getZ())*(v1->getX()+v2->getX());
 				nz = nz + (v1->getX()-v2->getX())*(v1->getY()+v2->getY());
@@ -475,6 +500,17 @@ void TGLForm3D::crearMallaCopa(PV3D* origenCoor, Malla*& malla)
 			normales[nP*(i-1)+j]=n;
 		}
 	}
+	
+
+
+
+
+
+
+
+
+
+
 
 	malla = new Malla(nVertices,vertices,nNormales,normales,nCaras,caras);
 
