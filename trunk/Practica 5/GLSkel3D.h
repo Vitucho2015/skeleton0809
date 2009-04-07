@@ -12,6 +12,7 @@
 #include "Camara.h"
 #include "Escena.h"
 
+
 //---------------------------------------------------------------------------
 class TGLForm3D : public TForm
 {
@@ -64,16 +65,25 @@ private:        // User declarations
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
     Escena* escenario;
-    Malla* mallaActual;
+    //Malla* mallaActual;
     PV3D** perfil;
+
+    //b-splines
+    PV3D** puntos;
+    int numPuntos, numLados, contador, nCaras;
+    int flag;
+    GLenum mode;
 
     //camara
     PV3D* eye, * up, * look;
     PV3D* eye2, * up2, * look2;
     Camara *camara, *camara1, *camara2;
     int opcion, nCamara;
+
+    
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TGLForm3D *GLForm3D;
 //---------------------------------------------------------------------------
 #endif
+

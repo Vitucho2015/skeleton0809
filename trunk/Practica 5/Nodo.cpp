@@ -3,10 +3,10 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "ObjetoCompuesto3D.h"
+#include "Nodo.h"
 
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
 
-//---------------------------------------------------------------------------
+

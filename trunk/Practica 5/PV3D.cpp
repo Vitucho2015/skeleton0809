@@ -9,6 +9,8 @@
 
 #pragma package(smart_init)
 
+//---------------------------------------------------------------------------
+
 PV3D::PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ, int valor){
     x = coordX;
     y = coordY;
@@ -18,20 +20,11 @@ PV3D::PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ, int valor){
 
 //---------------------------------------------------------------------------
 
-PV3D::PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ){
-    x = coordX;
-    y = coordY;
-    z = coordZ;
-    PoV = 0;
-}
-
-//---------------------------------------------------------------------------
-
 PV3D::PV3D() {
     x = 0;
     y = 0;
     z = 0;
-    PoV = 1;   // 1 para indicar que es un punto, 0 para indicar que es un vector
+    PoV = 1;
 }
 
 //---------------------------------------------------------------------------
@@ -128,11 +121,15 @@ PV3D* PV3D::prodVectorial(PV3D* punto){
 
 //---------------------------------------------------------------------------
 
- void PV3D::normalizar(){
-    double modulo = this->modulo();
-    x = x / modulo;
-    y = y / modulo;
-    z = z / modulo;
- }
- 
+void PV3D::normalizar() {
+    GLdouble aux, xAux, yAux, zAux;
+    xAux = x;
+    yAux = y;
+    zAux = z;
+    aux = sqrt(xAux*xAux + yAux*yAux + zAux*zAux);
+    x = xAux /(GLdouble)aux;
+    y = yAux/(GLdouble)aux;
+    z = zAux/(GLdouble)aux;
+}
+
 //---------------------------------------------------------------------------

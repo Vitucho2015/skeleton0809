@@ -12,11 +12,11 @@
 //---------------------------------------------------------------------------
 
 TAfin::TAfin(){
-	glMatrixMode(GL_MODELVIEW);
-  glPushMatrix();
-    glLoadIdentity();
-    glGetDoublev(GL_MODELVIEW_MATRIX,matriz);
-  glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+        glLoadIdentity();
+        glGetDoublev(GL_MODELVIEW_MATRIX,matriz);
+    glPopMatrix();
 }
 
 //---------------------------------------------------------------------------

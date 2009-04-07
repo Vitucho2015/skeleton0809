@@ -5,12 +5,11 @@
 #include "PV3D.h"
 
 //---------------------------------------------------------------------------
+
 class Camara {
 
   private:
     PV3D* eye, * look, * up, * u, * v, * n;
-    //float l, r, b, t, N, F, angVision, proporcion;
-    //double matriz[16];
     void setModelViewMatrix();
     void setView(PV3D* ojo, PV3D* direccion, PV3D* arriba);
 

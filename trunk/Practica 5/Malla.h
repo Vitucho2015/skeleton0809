@@ -14,7 +14,7 @@ class Malla: public Objeto3D {
 
     //atributos
     protected:
-        int numVertices, numNormales, numCaras;
+        int numVertices, numNormales, numCaras, lados, vertLado;
         PV3D** vertices;
         PV3D** normales;
         Cara** caras;
@@ -22,12 +22,14 @@ class Malla: public Objeto3D {
     //métodos
     public:
         Malla();
-        Malla(int nVertices, PV3D** v, int nNormales, PV3D** n, int nCaras, Cara** c);
+        Malla(int numV, int numC);
         virtual ~Malla();
-        virtual void dibuja();
-        void Newell();
+        virtual void dibujar();
         void dibujaNormales();
-
+        void Newell();
+        void defineMalla();
 };
-//---------------------------------------------------------------------------
+
 #endif
+
+//---------------------------------------------------------------------------

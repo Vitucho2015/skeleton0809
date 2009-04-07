@@ -4,7 +4,9 @@
 #define VerticeNormalH
 #include <gl\gl.h>
 #include <gl\glu.h>
+
 //---------------------------------------------------------------------------
+
 class VerticeNormal{
     private:
         int vertice;
@@ -19,3 +21,5 @@ class VerticeNormal{
 };
 
 #endif
+
+//---------------------------------------------------------------------------

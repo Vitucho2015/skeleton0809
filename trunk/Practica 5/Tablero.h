@@ -14,10 +14,15 @@ class Tablero : public Malla {
           GLfloat largo, ancho, grueso;
           int divLargo, divAncho, divGrueso;
 
+
      public:
         Tablero(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG);
+        ~Tablero();
 };
 
 #endif
 
 //---------------------------------------------------------------------------
+
+
+ 

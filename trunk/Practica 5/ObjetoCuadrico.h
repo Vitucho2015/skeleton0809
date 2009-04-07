@@ -1,12 +1,17 @@
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
-
-#include "ObjetoCompuesto3D.h"
-
-//---------------------------------------------------------------------------
-
-#pragma package(smart_init)
+#ifndef ObjetoCuadricoH
+#define ObjetoCuadricoH
+#include <gl/glu.h>
+#include "Objeto3D.h"
 
 //---------------------------------------------------------------------------
+
+class ObjetoCuadrico : public Objeto3D {
+
+};
+
+#endif
+
+//---------------------------------------------------------------------------
+ 

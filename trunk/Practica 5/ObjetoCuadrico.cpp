@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "ObjetoCompuesto3D.h"
+#include "ObjetoCuadrico.h"
 
 //---------------------------------------------------------------------------
 

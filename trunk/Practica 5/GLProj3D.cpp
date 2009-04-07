@@ -4,18 +4,24 @@
 #pragma hdrstop
 USERES("GLProj3D.res");
 USEFORM("GLSkel3D.cpp", GLForm3D);
-USEUNIT("PV3D.cpp");
 USEUNIT("Camara.cpp");
-USEUNIT("Habitaciones.cpp");
+USEUNIT("PV3D.cpp");
 USEUNIT("Objeto3D.cpp");
-USEUNIT("ObjetoCompuesto3D.cpp");
 USEUNIT("TAfin.cpp");
 USEUNIT("Color.cpp");
-USEUNIT("Tablero.cpp");
+USEUNIT("ObjetoCompuesto3D.cpp");
+USEUNIT("ObjetoCuadrico.cpp");
+USEUNIT("Esfera.cpp");
+USEUNIT("Cilindro.cpp");
 USEUNIT("Malla.cpp");
-USEUNIT("VerticeNormal.cpp");
 USEUNIT("Cara.cpp");
+USEUNIT("VerticeNormal.cpp");
+USEUNIT("Tablero.cpp");
+USEUNIT("Muebles.cpp");
+USEUNIT("Habitaciones.cpp");
 USEUNIT("Escena.cpp");
+USEUNIT("Lista.cpp");
+USEUNIT("Nodo.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
