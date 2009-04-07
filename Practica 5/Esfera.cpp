@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "VerticeNormal.h"
+#include "Esfera.h"
 
 //---------------------------------------------------------------------------
 
@@ -11,31 +11,27 @@
 
 //---------------------------------------------------------------------------
 
-VerticeNormal::VerticeNormal(){}
-
-//---------------------------------------------------------------------------
-
-VerticeNormal::VerticeNormal(int v, int n) {
-    vertice = v;
-    normal = n;
+Esfera::Esfera(GLfloat radio,GLint nMeridianos, GLint nParalelos){
+    esfera= gluNewQuadric();
+    radio=radio;
+    Meridianos=nMeridianos;
+    Paralelos=nParalelos;
 }
 
 //---------------------------------------------------------------------------
 
-int VerticeNormal::getVertice(){
-    return vertice;
+Esfera::~Esfera(){
+   gluDeleteQuadric(esfera);
+   delete color;
+   delete matriz;
 }
 
 //---------------------------------------------------------------------------
 
-int VerticeNormal::getNormal(){
-    return normal;
+void Esfera::dibujar(){
+    gluQuadricDrawStyle(esfera,GLU_FILL);
+    glColor3d(color->getRojo(),color->getVerde(),color->getAzul());
+    gluSphere(esfera,radio,Meridianos,Paralelos);
 }
 
 //---------------------------------------------------------------------------
-
-VerticeNormal::~VerticeNormal(){}
-
-//---------------------------------------------------------------------------
-
-

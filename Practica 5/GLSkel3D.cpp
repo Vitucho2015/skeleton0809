@@ -4,7 +4,6 @@
 
 #include "GLSkel3D.h"
 
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -66,6 +65,9 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   //ClientHeight=400;
   RatioViewPort=1.0;
 
+  flag = 0;
+  mode = GL_LINE_LOOP;
+
   eye=new PV3D(eyeX,eyeY,eyeZ,1);
   look=new PV3D(lookX,lookY,lookZ,1);
   up=new PV3D(upX,upY,upZ,1);
@@ -74,13 +76,17 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   look2=new PV3D(2.5,0,0,1);
   up2=new PV3D(upX,upY,upZ,1);
 
-  camara1 = new Camara(eye,look,up);
+  camara1= new Camara(eye,look,up);
   camara2 = new Camara(eye2, look2, up2);
   camara = camara1;
   camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
   nCamara = 1;
   opcion = 0;
   escenario=new Escena();
+
+  //Comienzo pruebas
+
+  //Fin  pruebas
   GLScene();
 }
 //---------------------------------------------------------------------------
@@ -136,9 +142,8 @@ void __fastcall TGLForm3D::FormResize(TObject *Sender)
   glLoadIdentity();
   glOrtho(xLeft,xRight, yBot,yTop, N,F);
 
-  if(escenario != NULL){
+  if(escenario != NULL)
     GLScene();
-  }
 }
 //---------------------------------------------------------------------------
 void __fastcall TGLForm3D::GLScene()
@@ -169,6 +174,7 @@ void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
 
   delete escenario;
   escenario = NULL;
+  
 }
 //--------------------------------------------------------------------------
 
@@ -351,4 +357,5 @@ camara->ortogonal(xLeft, xRight, yBot, yTop, N, F);
 GLScene();
 }
 //---------------------------------------------------------------------------
+
 

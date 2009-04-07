@@ -9,56 +9,40 @@
 
 #pragma package(smart_init)
 
-Malla::Malla() {
-    numVertices = numCaras = numNormales = 0;
+//---------------------------------------------------------------------------
+
+Malla::Malla(){}
+
+//---------------------------------------------------------------------------
+
+Malla::Malla(int numV, int numC) {
+    lados = numC;
+    vertLado = numV;
+    numVertices = numC * numV;
+    numCaras = numNormales = numC*(numV-1);
+    vertices = new PV3D*[numVertices];
+    caras = new Cara*[numCaras];
+    normales = new PV3D*[numNormales];
 }
 
-//---------------------------------------------------------------------------
-
- Malla::Malla(int nVertices, PV3D** v, int nNormales, PV3D** n, int nCaras, Cara** c)
- {
-
-        numVertices = nVertices;
-        numNormales = nNormales;
-        numCaras = nCaras;
-        vertices = v;
-        normales = n;
-        caras = c;
- }
-
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------
 
 Malla::~Malla(){
-//Borramos el array de vértices
-    if (vertices!=NULL){
-        for (int i=0;i<numVertices;i++){
-            delete vertices[i];
-        }
-        delete []vertices;
-        vertices = NULL;
+    for(int i=0; i < numCaras; i++) {
+        delete caras[i];
+        delete normales[i];
     }
- //Borramos el array de normales
-    if (normales!=NULL){
-        for (int i=0;i<numNormales;i++){
-            delete normales[i];
-        }
-        delete []normales;
-        normales = NULL;
-    }
-//Borramos el array de caras
-    if (caras!=NULL){
-        for (int i=0;i<numCaras;i++){
-            delete caras[i];
-        }
-        delete []caras;
-        caras = NULL;
-    }
+    delete []caras;
+    delete []normales;
+    for(int i = 0; i < numVertices; i++)
+        delete vertices[i];
+    delete []vertices;
 }
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------
 
-void Malla::dibuja() {
-   glColor3d(color->getRojo(),color->getVerde(),color->getAzul());
+void Malla::dibujar() {
+    glColor3d(color->getRojo(),color->getVerde(),color->getAzul());
     for(int i = 0; i < numCaras; i++) {
         glBegin(GL_POLYGON);
         for(int j = 0; j < caras[i]->getNumVertices(); j++) {
@@ -67,6 +51,18 @@ void Malla::dibuja() {
             glNormal3f(normales[iN]->getX(),normales[iN]->getY(), normales[iN]->getZ());
             glVertex3f(vertices[iV]->getX(),vertices[iV]->getY(), vertices[iV]->getZ());
         }
+        glEnd();
+    }
+}
+
+//-------------------------------------------------------------------------
+
+void Malla::dibujaNormales() {
+    for(int i = 0; i < numCaras; i++) {
+        glBegin(GL_LINES);
+            glNormal3f(0.577,0.577, 0.577);
+            glVertex3f(0.0,0.0, 0.0);
+            glVertex3f(normales[i]->getX(),normales[i]->getY(), normales[i]->getZ());
         glEnd();
     }
 }
@@ -87,21 +83,36 @@ void Malla::Newell(){
             nY = nY + (vertI->getZ() - vertSucI->getZ())*(vertI->getX() + vertSucI->getX());
             nZ = nZ + (vertI->getX() - vertSucI->getX())*(vertI->getY() + vertSucI->getY());
         }
-       normales[i] = new PV3D(nX,nY,nZ,0);
-       normales[i]->normalizar();
+        normales[i] = new PV3D(nX,nY,nZ,0);
+        normales[i]->normalizar();
     }
 }
 
-//-------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
-void Malla::dibujaNormales() {
- for(int i = 0; i < numCaras; i++) {
-        glBegin(GL_LINES);
-            glNormal3f(0.577,0.577, 0.577);
-            glVertex3f(0.0,0.0, 0.0);
-            glVertex3f(normales[i]->getX(),normales[i]->getY(), normales[i]->getZ());
-        glEnd();
+void Malla::defineMalla() {
+    int v[4];
+    int cont = 0;
+    for(int i = 0; i < lados; i++) {
+        for(int j = 0; j < vertLado-1; j++) {
+            if (i == lados - 1) {
+                v[0] = j;
+                v[1] = j + 1;
+                v[2] = (i*vertLado) + j + 1;
+                v[3] = (i*vertLado) + j;
+            }
+            else{
+                v[0] = ((i+1)*vertLado) + j;
+                v[1] = ((i+1)*vertLado) + j + 1;
+                v[2] = (i*vertLado) + j + 1;
+                v[3] = (i*vertLado) + j;
+            }
+            caras[cont] = new Cara(4, v, cont);
+            cont++;
+        }
     }
 }
 
-//-------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
+

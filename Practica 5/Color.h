@@ -4,11 +4,13 @@
 #define ColorH
 
 //---------------------------------------------------------------------------
+
 class Color {
      private:
           float rojo, verde, azul;
 
      public:
+          Color();
           Color(float blue, float red, float green);
           void setRojo(float red);
           void setAzul(float blue);
@@ -21,3 +23,4 @@ class Color {
 #endif
 
 //---------------------------------------------------------------------------
+ 

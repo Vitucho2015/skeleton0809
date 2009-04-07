@@ -6,6 +6,7 @@
 #include "TAfin.h"
 
 //---------------------------------------------------------------------------
+
 class Objeto3D {
 
      protected:
@@ -14,7 +15,7 @@ class Objeto3D {
 
      public:
         virtual void dibujar(){};
-        virtual ~Objeto3D(){}; 
+        virtual ~Objeto3D(){};
         virtual void setColor(Color* color);
         virtual void setMatriz(TAfin* m);
         TAfin* getM();
@@ -25,3 +26,4 @@ class Objeto3D {
 #endif
 
 //---------------------------------------------------------------------------
+ 

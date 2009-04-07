@@ -1,65 +1,72 @@
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
-
-#include "Color.h"
+#ifndef NodoH
+#define NodoH
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
+template <class T> class Nodo{
+    private:
+        T* inf;
+        Nodo* sig;
+        Nodo* ant;
+
+    public:
+        Nodo(T* t, Nodo<T>* sig1, Nodo<T>* ant1);
+        ~Nodo();
+        Nodo<T>* getSig();
+        Nodo<T>* getAnt();
+        void setSig(Nodo<T>* n);
+        void setAnt(Nodo<T>* n);
+        T* getInf();
+};
 
 //---------------------------------------------------------------------------
 
-Color::Color(){
-    azul = 0;
-    rojo = 0;
-    verde = 0;
+template <class T> Nodo<T>::Nodo(T* t, Nodo<T>* sig1, Nodo<T>* ant1){
+    inf= t;
+    sig=sig1;
+    ant=ant1;
 }
 
 //---------------------------------------------------------------------------
 
-Color::Color(float blue, float red, float green){
-    azul = blue;
-    rojo = red;
-    verde = green;
+template <class T> Nodo<T>::~Nodo(){
+    delete inf;
 }
 
 //---------------------------------------------------------------------------
 
-float Color::getAzul() {
-    return azul;
+template <class T> Nodo<T>* Nodo<T>::getSig(){
+    return sig;
 }
 
 //---------------------------------------------------------------------------
 
-float Color::getVerde() {
-  return verde;
+template <class T> Nodo<T>* Nodo<T>::getAnt(){
+    return ant;
 }
 
 //---------------------------------------------------------------------------
 
-float Color::getRojo() {
-  return rojo;
+template <class T> T* Nodo<T>::getInf(){
+    return inf;
 }
 
 //---------------------------------------------------------------------------
 
-void Color::setAzul(float blue){
-    azul = blue;
+template <class T> void Nodo<T>::setSig(Nodo<T>* n){
+    sig=n;
 }
 
 //---------------------------------------------------------------------------
 
-void Color::setVerde(float green){
-    verde = green;
+template <class T> void Nodo<T>::setAnt(Nodo<T>* n){
+  ant=n;
 }
 
 //---------------------------------------------------------------------------
 
-void Color::setRojo(float red){
-    rojo = red;
-}
+#endif
 
 //---------------------------------------------------------------------------
-

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include <vcl.h>    
 #pragma hdrstop
 
 #include "Tablero.h"
@@ -161,3 +161,9 @@ Tablero::Tablero(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG) 
 
 //---------------------------------------------------------------------------
 
+Tablero::~Tablero(){
+    delete color;
+    delete matriz;
+}
+
+//---------------------------------------------------------------------------

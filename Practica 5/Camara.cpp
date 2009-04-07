@@ -9,6 +9,8 @@
 
 #pragma package(smart_init)
 
+//---------------------------------------------------------------------------
+
 Camara::Camara(PV3D* ojo,PV3D* direccion,PV3D* arriba){
     setView(ojo, direccion, arriba);
 	setModelViewMatrix();
@@ -17,24 +19,12 @@ Camara::Camara(PV3D* ojo,PV3D* direccion,PV3D* arriba){
 //------------------------------------------------------------------------
 
 Camara::~Camara(){
-    if(eye != NULL){
-        delete eye;
-    }
-    if(look != NULL){
-        delete look;
-    }
-    if(up != NULL){
-        delete up;
-    }
-    if(u != NULL){
-        delete u;
-    }
-    if(v != NULL){
-        delete v;
-    }
-    if(n != NULL){
-        delete n;
-    }
+    delete eye;
+    delete look;
+    delete up;
+    delete u;
+    delete v;
+    delete n;
 }
 
 //-----------------------------------------------------------------------
@@ -54,24 +44,12 @@ void Camara::setView(PV3D* ojo, PV3D* direccion, PV3D* arriba){
 //------------------------------------------------------------------------
 
 void Camara::cambiaPosicion(PV3D* ojo,PV3D* direccion,PV3D* arriba) {
-    if(eye != NULL){
-        delete eye;
-    }
-    if(look != NULL){
-        delete look;
-    }
-    if(up != NULL){
-        delete up;
-    }
-    if(u != NULL){
-        delete u;
-    }
-    if(v != NULL){
-        delete v;
-    }
-    if(n != NULL){
-        delete n;
-    }
+    delete eye;
+    delete look;
+    delete up;
+    delete u;
+    delete v;
+    delete n;
     setView(ojo, direccion, arriba);
 	setModelViewMatrix();
 }
@@ -79,10 +57,10 @@ void Camara::cambiaPosicion(PV3D* ojo,PV3D* direccion,PV3D* arriba) {
 //------------------------------------------------------------------------
 
 void Camara::Oblicua(GLfloat xLeft,GLfloat xRight,GLfloat yBot,GLfloat yTop,GLfloat N,GLfloat F,PV3D* direccion){
-  glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(xLeft,xRight, yBot,yTop, N,F);
-  float matriz[16];
+    float matriz[16];
 	matriz[0] = 1;
 	matriz[1] = 0;
 	matriz[2] = 0;
@@ -107,7 +85,7 @@ void Camara::Oblicua(GLfloat xLeft,GLfloat xRight,GLfloat yBot,GLfloat yTop,GLfl
 //---------------------------------------------------------------------------
 
 void Camara::setModelViewMatrix(){
-  GLdouble matriz[16];
+    GLdouble matriz[16];
 	matriz[0] = u->getX();
 	matriz[1] = v->getX();
 	matriz[2] = n->getX();
@@ -138,9 +116,7 @@ void Camara::roll(float angulo){
     u->setPV3D(cs*aux1->getX()+sn*aux2->getX(),cs*aux1->getY()+sn*aux2->getY(),cs*aux1->getZ()+sn*aux2->getZ(),1);
     v->setPV3D(-sn*aux1->getX()+cs*aux2->getX(),-sn*aux1->getY()+cs*aux2->getY(),-sn*aux1->getZ()+cs*aux2->getZ(),1);
     delete aux1;
-    aux1 = NULL;
     delete aux2;
-    aux2 = NULL;
     setModelViewMatrix();
 }
 
@@ -154,10 +130,8 @@ void Camara::yaw(float angulo){
     u->setPV3D(cs*aux1->getX()+sn*aux2->getX(),cs*aux1->getY()+sn*aux2->getY(),cs*aux1->getZ()+sn*aux2->getZ(),1);
     n->setPV3D(-sn*aux1->getX()+cs*aux2->getX(),-sn*aux1->getY()+cs*aux2->getY(),-sn*aux1->getZ()+cs*aux2->getZ(),1);
     delete aux1;
-    aux1 = NULL;
     delete aux2;
-    aux2 = NULL;
-  setModelViewMatrix();
+    setModelViewMatrix();
 }
 
 //------------------------------------------------------------------------
@@ -170,9 +144,7 @@ void Camara::pitch(float angulo){
     n->setPV3D(cs*aux1->getX()+sn*aux2->getX(),cs*aux1->getY()+sn*aux2->getY(),cs*aux1->getZ()+sn*aux2->getZ(),1);
     v->setPV3D(-sn*aux1->getX()+cs*aux2->getX(),-sn*aux1->getY()+cs*aux2->getY(),-sn*aux1->getZ()+cs*aux2->getZ(),1);
     delete aux1;
-    aux1 = NULL;
     delete aux2;
-    aux2 = NULL;
     setModelViewMatrix();
 }
 
@@ -188,7 +160,7 @@ void Camara::desplazar(GLfloat desU, GLfloat desV, GLfloat desN){
 //----------------------------------------------------------------------------
 
 void Camara::ortogonal(GLfloat xLeft,GLfloat xRight,GLfloat yBot,GLfloat yTop,GLfloat N,GLfloat F) {
-  glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(xLeft, xRight, yBot, yTop, N, F);
 	setModelViewMatrix();
@@ -197,7 +169,7 @@ void Camara::ortogonal(GLfloat xLeft,GLfloat xRight,GLfloat yBot,GLfloat yTop,GL
 //----------------------------------------------------------------------------
 
 void Camara::perspectiva(GLfloat angulo,GLfloat proporcion,GLfloat N,GLfloat F){
-  glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(angulo, proporcion, N, F);
 	setModelViewMatrix();
@@ -220,5 +192,5 @@ PV3D* Camara::getLook(){
 PV3D* Camara::getUp(){
     return up;
 }
-
 //---------------------------------------------------------------------------
+
