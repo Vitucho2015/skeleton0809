@@ -356,6 +356,24 @@ camara->Oblicua(xLeft, xRight, yBot, yTop, N, F, d);
 camara->ortogonal(xLeft, xRight, yBot, yTop, N, F);
 GLScene();
 }
+
 //---------------------------------------------------------------------------
 
+void __fastcall TGLForm3D::Encender1Click(TObject *Sender)
+{
+    if(escenario != NULL){
+        escenario->setTVEncendida(true,1);
+        GLScene();
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Apagar1Click(TObject *Sender)
+{
+    if(escenario != NULL){
+        escenario->setTVEncendida(false,1);
+        GLScene();
+    }
+}
+//---------------------------------------------------------------------------
 

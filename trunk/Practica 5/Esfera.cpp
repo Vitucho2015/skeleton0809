@@ -14,8 +14,8 @@
 Esfera::Esfera(GLfloat radio,GLint nMeridianos, GLint nParalelos){
     esfera= gluNewQuadric();
     radio=radio;
-    Meridianos=nMeridianos;
-    Paralelos=nParalelos;
+    meridianos=nMeridianos;
+    paralelos=nParalelos;
 }
 
 //---------------------------------------------------------------------------
@@ -29,9 +29,10 @@ Esfera::~Esfera(){
 //---------------------------------------------------------------------------
 
 void Esfera::dibujar(){
-    gluQuadricDrawStyle(esfera,GLU_FILL);
     glColor3d(color->getRojo(),color->getVerde(),color->getAzul());
-    gluSphere(esfera,radio,Meridianos,Paralelos);
+    gluQuadricDrawStyle(esfera,GLU_FILL);    
+    gluSphere(esfera,radio,meridianos,paralelos);
 }
 
 //---------------------------------------------------------------------------
+

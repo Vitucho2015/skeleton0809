@@ -32,6 +32,9 @@ __published:	// IDE-managed Components
   TMenuItem *oblicua1;
   TLabel *Label1;
     TMenuItem *Cambiardecmara1;
+    TMenuItem *Television1;
+    TMenuItem *Encender1;
+    TMenuItem *Apagar1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -50,6 +53,8 @@ __published:	// IDE-managed Components
     void __fastcall cenital1Click(TObject *Sender);
     void __fastcall lateral1Click(TObject *Sender);
     void __fastcall oblicua1Click(TObject *Sender);
+    void __fastcall Encender1Click(TObject *Sender);
+    void __fastcall Apagar1Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
