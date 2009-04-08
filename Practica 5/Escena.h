@@ -16,6 +16,7 @@ class Escena {
         Escena();
         ~Escena();
         void dibujar();
+        void setTVEncendida(bool estado, int numHabitacion);
 };
 
 #endif

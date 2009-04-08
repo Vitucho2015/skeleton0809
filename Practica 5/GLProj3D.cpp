@@ -22,6 +22,8 @@ USEUNIT("Habitaciones.cpp");
 USEUNIT("Escena.cpp");
 USEUNIT("Lista.cpp");
 USEUNIT("Nodo.cpp");
+USEUNIT("Television.cpp");
+USEUNIT("Puerta.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

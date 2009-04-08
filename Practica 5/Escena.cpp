@@ -28,17 +28,6 @@ void Escena::dibujar() {
 	 	glMultMatrixd(habitacion2->getM()->getMatriz());
 		habitacion2->dibujar();
 	glPopMatrix();
-    /*
-    glMatrixMode(GL_MODELVIEW);
- 	glPushMatrix();
-   		glMultMatrixd(habitacion1->getM()->getMatriz());
-		habitacion1->dibujar();
-	glPopMatrix();
-    glPushMatrix();
-	 	glMultMatrixd(habitacion2->getM()->getMatriz());
-		habitacion2->dibujar();
-	glPopMatrix();
-    */
 }
 
 //---------------------------------------------------------------------------
@@ -50,3 +39,13 @@ Escena::~Escena() {
 
 //---------------------------------------------------------------------------
 
+void Escena::setTVEncendida(bool estado, int numHabitacion) {
+    if(numHabitacion == 1){
+        habitacion1->setTVEncendida(estado);
+    }
+    else{
+        habitacion2->setTVEncendida(estado);
+    }
+}
+
+//---------------------------------------------------------------------------

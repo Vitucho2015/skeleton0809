@@ -1,26 +1,24 @@
 //---------------------------------------------------------------------------
 
-#ifndef EsferaH
-#define EsferaH
-#include "ObjetoCuadrico.h"
+#ifndef PuertaH
+#define PuertaH
+
+#include "ObjetoCompuesto3D.h"
+#include "Tablero.h"
+#include "Esfera.h"
 
 //---------------------------------------------------------------------------
 
-class Esfera : public ObjetoCuadrico {
+class Puerta: public ObjetoCompuesto3D{
 
     private:
-        GLUquadricObj* esfera;
-        GLfloat radio;
-        GLint meridianos;
-        GLint paralelos;
 
     public:
-        Esfera(GLfloat radio,GLint nMeridianos, GLint nParalelos);
-        ~Esfera();
+        Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG);
+        ~Puerta();
         void dibujar();
 };
 
 #endif
 
 //---------------------------------------------------------------------------
- 
