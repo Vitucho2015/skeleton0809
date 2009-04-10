@@ -7,8 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
 void Objeto3D::setColor(Color* color){
 	this->color=color;
 }
@@ -32,3 +30,5 @@ Color* Objeto3D::getColor(){
 }
 
 //---------------------------------------------------------------------------
+
+#pragma package(smart_init)

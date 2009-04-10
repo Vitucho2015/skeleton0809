@@ -24,6 +24,9 @@ USEUNIT("Lista.cpp");
 USEUNIT("Nodo.cpp");
 USEUNIT("Television.cpp");
 USEUNIT("Puerta.cpp");
+USEUNIT("Copa.cpp");
+USEUNIT("MallaPorSplineYRevolucion.cpp");
+USEUNIT("Mesa.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

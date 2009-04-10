@@ -11,7 +11,8 @@ class Color {
 
      public:
           Color();
-          Color(float blue, float red, float green);
+          Color(Color* c);
+          Color(float red, float blue, float green);
           void setRojo(float red);
           void setAzul(float blue);
           void setVerde(float green);
