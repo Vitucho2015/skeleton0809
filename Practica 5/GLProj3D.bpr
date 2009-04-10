@@ -7,7 +7,8 @@
     <OBJFILES value="GLProj3D.obj GLSkel3D.obj Camara.obj PV3D.obj Objeto3D.obj TAfin.obj 
       Color.obj ObjetoCompuesto3D.obj ObjetoCuadrico.obj Esfera.obj Cilindro.obj 
       Malla.obj Cara.obj VerticeNormal.obj Tablero.obj Muebles.obj 
-      Habitaciones.obj Escena.obj Lista.obj Nodo.obj Television.obj Puerta.obj"/>
+      Habitaciones.obj Escena.obj Lista.obj Nodo.obj Television.obj Puerta.obj 
+      Copa.obj MallaPorSplineYRevolucion.obj Mesa.obj"/>
     <RESFILES value="GLProj3D.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>

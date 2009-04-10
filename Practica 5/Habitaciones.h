@@ -9,6 +9,7 @@
 #include "Tablero.h"
 #include "Television.h"
 #include "Puerta.h"
+#include "Mesa.h"
 //#include "Estanteria.h"
 //#include "Silla.h"
 

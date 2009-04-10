@@ -19,6 +19,14 @@ Color::Color(){
 
 //---------------------------------------------------------------------------
 
+Color::Color(Color* c){
+    azul = c->azul;
+    rojo = c->rojo;
+    verde = c->verde;
+}
+
+//---------------------------------------------------------------------------
+
 Color::Color(float blue, float red, float green){
     azul = blue;
     rojo = red;
