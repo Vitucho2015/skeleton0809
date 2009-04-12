@@ -7,10 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
 Escena::Escena() {
     habitacion1 = new Habitacion(1);
     habitacion2 = new Habitacion(2);
@@ -39,13 +35,26 @@ Escena::~Escena() {
 
 //---------------------------------------------------------------------------
 
-void Escena::setTVEncendida(bool estado, int numHabitacion) {
+void Escena::cambiaTV(int numHabitacion) {
     if(numHabitacion == 1){
-        habitacion1->setTVEncendida(estado);
+        habitacion1->cambiaTV();
     }
     else{
-        habitacion2->setTVEncendida(estado);
+        habitacion2->cambiaTV();
     }
 }
 
 //---------------------------------------------------------------------------
+
+bool Escena::cambiaPuerta(int numHabitacion) {
+    if(numHabitacion == 1){
+        return (habitacion1->cambiaPuerta());
+    }
+    else{
+        return (habitacion2->cambiaPuerta());
+    }
+}
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)

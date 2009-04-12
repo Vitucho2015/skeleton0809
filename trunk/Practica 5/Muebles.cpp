@@ -7,13 +7,35 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
 Muebles::Muebles() {
     objetos = new Lista<Objeto3D>();
     this->matriz = new TAfin();
+
+    //Mesa
+    PV3D** perfil = new PV3D*[7];
+    perfil[0] = new PV3D(0.4, -0.3, 0.0, 1);
+    perfil[1] = new PV3D(0.3, 0.3, 0.0, 1);
+    perfil[2] = new PV3D(0.2, 0.4, 0.0, 1);
+    perfil[3] = new PV3D(0.2, 0.5, 0.0, 1);
+    perfil[4] = new PV3D(0.2, 0.6, 0.0, 1);
+    perfil[5] = new PV3D(0.3, 0.7, 0.0, 1);
+    perfil[6] = new PV3D(0.4, 0.8, 0.0, 1);
+    Mesa* mesa = new Mesa(1.0, 1.0, 0.1, 3, 3, 3,perfil, 7, 30, 20);
+
+    for(int i = 0; i < 7; i++){
+        delete perfil[i];
+    }
+    delete []perfil;
+    mesa->setMatriz(new TAfin());
+    PV3D* vector = new PV3D(1, 0.75, 2, 1);
+    mesa->getM()->trasladar(vector);
+    delete vector;
+    mesa->setColor(new Color(0, 0.502, 0.25));
+    vector = new PV3D(3.5,0,0,1);
+    mesa->getM()->rotar(180,vector);
+    delete vector;
+    objetos->inserta((Objeto3D*)mesa);
+    
     /*numObjetos = 0;
     PV3D* vector;
     mesa = new Mesa();
@@ -110,37 +132,6 @@ void Muebles::dibujar(){
         glPopMatrix();
         objetos->avanza();
     }
-    /*
-    glMatrixMode(GL_MODELVIEW);
-   	glPushMatrix();
-    	glMultMatrixd(mesa->getM()->getMatriz());
-        mesa->dibujar();
-    glPopMatrix();
-    glPushMatrix();
-    	glMultMatrixd(silla1->getM()->getMatriz());
-        silla1->dibujar();
-    glPopMatrix();
-    glPushMatrix();
-    	glMultMatrixd(silla2->getM()->getMatriz());
-        silla2->dibujar();
-    glPopMatrix();
-    glPushMatrix();
-    	glMultMatrixd(copa->getM()->getMatriz());
-        copa->dibujar();
-    glPopMatrix();
-    glPushMatrix();
-    	glMultMatrixd(botella->getM()->getMatriz());
-        botella->dibujar();
-    glPopMatrix();
-    glPushMatrix();
-    	glMultMatrixd(donut->getM()->getMatriz());
-        donut->dibujar();
-    glPopMatrix();
-    glPushMatrix();
-    	glMultMatrixd(plato->getM()->getMatriz());
-        plato->dibujar();
-    glPopMatrix();
-    */
 }
 
 //---------------------------------------------------------------------------
@@ -156,21 +147,8 @@ Muebles::~Muebles(){
         objetos = NULL;
         delete matriz;
     }
-    /*
-    delete mesa;
-    delete silla1;
-    delete silla2;
-    delete botella->getM();
-    delete botella->getColor();
-    delete botella;
-    delete copa->getM();
-    delete copa->getColor();
-    delete copa;
-    delete donut->getM();
-    delete donut->getColor();
-    delete donut;
-    delete plato;
-    */
 }
 
 //---------------------------------------------------------------------------
+
+#pragma package(smart_init)

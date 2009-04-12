@@ -7,8 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
 Tablero::Tablero(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG) {
     largo = l;
     ancho = a;
@@ -167,3 +165,5 @@ Tablero::~Tablero(){
 }
 
 //---------------------------------------------------------------------------
+
+#pragma package(smart_init)

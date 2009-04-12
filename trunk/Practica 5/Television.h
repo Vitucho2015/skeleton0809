@@ -5,6 +5,7 @@
 
 #include "ObjetoCompuesto3D.h"
 #include "Tablero.h"
+
 //---------------------------------------------------------------------------
 
 class Television : public ObjetoCompuesto3D {
@@ -15,8 +16,9 @@ class Television : public ObjetoCompuesto3D {
         Television(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG,bool estado);
         ~Television();
         void dibujar();
-        void setEncendida(bool estado);
+        void cambiaTV();
 };
 
 //---------------------------------------------------------------------------
+
 #endif

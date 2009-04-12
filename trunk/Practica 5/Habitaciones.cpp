@@ -7,10 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
 Habitacion::Habitacion(int h) {
     nHabitacion = h;
     PV3D* vector;
@@ -24,13 +20,20 @@ Habitacion::Habitacion(int h) {
         Cilindro* lampara = new Cilindro(0.3,0.1,0.2,20,20);
         lampara->setMatriz(new TAfin());
         lampara->setColor(new Color(1.0, 0, 1.0));
-        vector = new PV3D(1.1,2.2,1.0,1);
+        vector = new PV3D(1.1,2.2,1.5,1);
         (lampara->getM())->trasladar(vector);
         delete vector;
         vector = new PV3D(1.0,0.0,0.0,1);
         (lampara->getM())->rotar(270, vector);
         delete vector;
         objetos->inserta((Objeto3D*)lampara);
+        //Estanteria
+        Estanteria* estanteria = new Estanteria(4, 0.2, 4, 8);
+        estanteria->setMatriz(new TAfin());
+        vector = new PV3D(0.0, 1.0, 0.0, 1);
+        estanteria->getM()->trasladar(vector);
+        delete vector;
+        objetos->inserta((Objeto3D*)estanteria);
         //Suelo
         Tablero* suelo = new Tablero(2.5, 2.5, 0.01, 10, 2, 10);
         suelo->setColor(new Color(0.7, 0.2, 0.3));
@@ -42,7 +45,7 @@ Habitacion::Habitacion(int h) {
         paredIzq->setMatriz(new TAfin());
         objetos->inserta((Objeto3D*)paredIzq);
         //Pared Der1
-        Tablero* paredDer1 = new Tablero(0.9, 0.2, 2.5, 10, 2, 10);
+        Tablero* paredDer1 = new Tablero(1.3, 0.2, 2.5, 10, 2, 10);
         paredDer1->setColor(new Color(0.7, 0.5, 0.5));
         paredDer1->setMatriz(new TAfin());
         objetos->inserta((Objeto3D*)paredDer1);
@@ -74,30 +77,7 @@ Habitacion::Habitacion(int h) {
         tv->getM()->trasladar(vector);
         delete vector;
         objetos->inserta((Objeto3D*)tv);
-        //Mesa
-        PV3D** perfil = new PV3D*[7];
-        perfil[0] = new PV3D(0.4, -0.3, 0.0, 1);
-        perfil[1] = new PV3D(0.3, 0.3, 0.0, 1);
-        perfil[2] = new PV3D(0.2, 0.4, 0.0, 1);
-        perfil[3] = new PV3D(0.2, 0.5, 0.0, 1);
-        perfil[4] = new PV3D(0.2, 0.6, 0.0, 1);
-        perfil[5] = new PV3D(0.3, 0.7, 0.0, 1);
-        perfil[6] = new PV3D(0.4, 0.8, 0.0, 1);
-        Mesa* mesa = new Mesa(1.0, 1.0, 0.1, 3, 3, 3,perfil, 7, 30, 20);
-
-        for(int i = 0; i < 7; i++){
-            delete perfil[i];
-        }
-        delete []perfil;
-        mesa->setMatriz(new TAfin());
-        vector = new PV3D(0.75, 0.75, 1.5, 1);
-        mesa->getM()->trasladar(vector);
-        delete vector;
-        mesa->setColor(new Color(0, 0.502, 0.25));
-        vector = new PV3D(3.5,0,0,1);
-        mesa->getM()->rotar(180,vector);
-        delete vector;
-        objetos->inserta((Objeto3D*)mesa);
+                
     }
     else {
         this->matriz = new TAfin();
@@ -105,13 +85,11 @@ Habitacion::Habitacion(int h) {
         matriz->trasladar(vector);
         delete vector;
         objetos = new Lista<Objeto3D>();
-
         //Suelo
         Tablero* suelo = new Tablero(2.5, 2.5, 0.01, 10, 2, 10);
         suelo->setColor(new Color(0, 0.2, 0.3));
         suelo->setMatriz(new TAfin());
-        objetos->inserta((Objeto3D*)suelo);
-
+        objetos->inserta((Objeto3D*)suelo); 
         //Pared Der1
         Tablero* paredDer = new Tablero(0.9, 0.2, 2.5, 10, 2, 10);
         paredDer->setColor(new Color(0, 0.9, 0.5));
@@ -139,10 +117,10 @@ Habitacion::Habitacion(int h) {
         delete vector;
         objetos->inserta((Objeto3D*)paredDer4);
         //Pared Izq1
-        Tablero* paredIzq1 = new Tablero(0.2, 0.8, 2.5, 10, 2, 10);
+        Tablero* paredIzq1 = new Tablero(0.2, 0.4, 2.5, 10, 2, 10);
         paredIzq1->setColor(new Color(0, 0.9, 0.5));
         paredIzq1->setMatriz(new TAfin());
-        vector = new PV3D(0.0, 0.0,1.7,1);
+        vector = new PV3D(0.0,0.0,2.1,1);
         paredIzq1->getM()->trasladar(vector);
         delete vector;
         objetos->inserta((Objeto3D*)paredIzq1);
@@ -160,7 +138,7 @@ Habitacion::Habitacion(int h) {
         delete vector;
         objetos->inserta((Objeto3D*)paredIzq3);
         //Puerta
-        Puerta* puerta = new Puerta(0.2, 1.3, 2.2, 10, 2, 10);
+        Puerta* puerta = new Puerta(0.1, 1.3, 2.2, 10, 2, 10,true,0);
         puerta->setMatriz(new TAfin());
         vector = new PV3D(0.0, 0.0, 0.8, 1);
         puerta->getM()->trasladar(vector);
@@ -236,68 +214,6 @@ Habitacion::Habitacion(int h) {
         delete vector;
 
     }
-    else {
-        numObjetos =  9;
-        this->matriz = new TAfin();
-        vector = new PV3D(2.5, 0.0, 0.0, 1);
-        matriz->trasladar(vector);
-        delete vector;
-
-        objetos = new Objeto3D*[numObjetos];
-        //crear paredes
-        objetos[8] = new Tablero(2.5, 2.5, 0.01, 10, 2, 10); //suelo
-        objetos[8]->setColor(new Color(0.2, 0, 0.3));
-        objetos[8]->setMatriz(new TAfin());
-
-        objetos[1] = new Tablero(0.7, 0.2, 2.5, 10, 2, 10);
-        objetos[1]->setColor(new Color(0.2, 0, 0.3));
-        objetos[1]->setMatriz(new TAfin());
-
-        objetos[2] = new Tablero(0.7, 0.2, 2.5, 10, 2, 10);
-        objetos[2]->setColor(new Color(0.2, 0, 0.3));
-        objetos[2]->setMatriz(new TAfin());
-        vector = new PV3D(1.8, 0.0,0.0,1);
-        objetos[2]->getM()->trasladar(vector);
-        delete vector;
-
-        objetos[3] = new Tablero(2.5, 0.2, 0.7, 10, 2, 10);
-        objetos[3]->setColor(new Color(0.2, 0, 0.3));
-        objetos[3]->setMatriz(new TAfin());
-
-        objetos[4] = new Tablero(2.5, 0.2, 0.7, 10, 2, 10);
-        objetos[4]->setColor(new Color(0.2, 0, 0.3));
-        objetos[4]->setMatriz(new TAfin());
-        vector = new PV3D(0, 1.8,0.0,1);
-        objetos[4]->getM()->trasladar(vector);
-        delete vector;
-
-        objetos[5] = new Tablero(0.2, 0.8, 2.5, 10, 2, 10);
-        objetos[5]->setColor(new Color(0.2, 0, 0.3));
-        objetos[5]->setMatriz(new TAfin());
-
-        objetos[6] = new Tablero(0.2, 0.8, 2.5, 10, 2, 10);
-        objetos[6]->setColor(new Color(0.2, 0, 0.3));
-        objetos[6]->setMatriz(new TAfin());
-        vector = new PV3D(0.0, 0.0,1.7,1);
-        objetos[6]->getM()->trasladar(vector);
-        delete vector;
-
-        objetos[7] = new Tablero(0.2, 2.5, 0.3, 10, 2, 10);
-        objetos[7]->setColor(new Color(0.2, 0, 0.3));
-        objetos[7]->setMatriz(new TAfin());
-        vector = new PV3D(0.0, 2.2,0.0,1);
-        objetos[7]->getM()->trasladar(vector);
-        delete vector;
-
-        objetos[0] = new Puerta();
-        objetos[0]->setMatriz(new TAfin());
-        vector = new PV3D(0.0, 0.0, 0.8, 1);
-        objetos[0]->getM()->trasladar(vector);
-        delete vector;
-        vector = new PV3D(0.0, 1.0, 0.0, 1);
-        objetos[0]->getM()->rotar(45,vector);
-        delete vector;
-    }
     */
 }
 
@@ -334,22 +250,40 @@ Habitacion::~Habitacion() {
 
 //---------------------------------------------------------------------------
 
-void Habitacion::setTVEncendida(bool estado){
+void Habitacion::cambiaTV(){
      if(objetos != NULL){
         objetos->inicia();
-        Objeto3D* aux;        
+        Objeto3D* aux;
         for(int i=0;i<objetos->getLongitud();i++){
             aux = objetos->getActual();
             if( typeid(*aux) == typeid(Television)){
-                ((Television*)aux)->setEncendida(estado);
+                ((Television*)aux)->cambiaTV();
             }
             objetos->avanza();
         }
      }
 }
+
 //---------------------------------------------------------------------------
 
+bool Habitacion::cambiaPuerta(){
+     if(objetos != NULL){
+        objetos->inicia();
+        Objeto3D* aux;
+        for(int i=0;i<objetos->getLongitud();i++){
+            aux = objetos->getActual();
+            if( typeid(*aux) == typeid(Puerta)){
+                return (((Puerta*)aux)->cambiaPuerta());
+            }
+            objetos->avanza();
+        }
+     }
+    return false;
+}
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
 
 
 
- 

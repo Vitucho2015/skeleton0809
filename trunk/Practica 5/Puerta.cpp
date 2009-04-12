@@ -4,11 +4,12 @@
 #pragma hdrstop
 
 #include "Puerta.h"
+#define tope 18
 
 //---------------------------------------------------------------------------
 
-Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG){
-    double radioPomo = a/40;
+Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG, bool estado,int num){
+    double radioPomo = a/20;
     objetos = new Lista<Objeto3D>();
     //Madero
     Tablero* tablero = new Tablero(l,a,g,divL,divA,divG);
@@ -16,11 +17,11 @@ Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG){
     tablero->setMatriz(new TAfin());
     objetos->inserta((Objeto3D*)tablero);
     //Situamos los pomos
-    PV3D* translacion = new PV3D(l-0.3,a/2.0,0.3,1);
+    PV3D* translacion = new PV3D(0.15,g/2.0,a-0.2,1);
     TAfin* matrizPomo1 = new TAfin();
     matrizPomo1->trasladar(translacion);
     delete translacion;
-    translacion = new PV3D(l-0.3,a/2.0,-0.1,1);
+    translacion = new PV3D(-0.05,g/2.0,a-0.2,1);
     TAfin* matrizPomo2 = new TAfin();
     matrizPomo2->trasladar(translacion);
     delete translacion;
@@ -33,7 +34,8 @@ Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG){
     pomo2->setColor(new Color(1,1,0));
     pomo2->setMatriz(matrizPomo2);
     objetos->inserta((Objeto3D*)pomo2);
-
+    abierta = estado;
+    numPaso = num;
 }
 
 //---------------------------------------------------------------------------
@@ -69,6 +71,34 @@ void Puerta::dibujar(){
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
+bool Puerta::cambiaPuerta(){
+    if(!abierta){
+        PV3D* rotacion = new PV3D(0,1,0,1);
+        this->getM()->rotar(5, rotacion);
+        delete rotacion;
+        numPaso++;
+        if(numPaso == tope){
+            abierta = true;
+            numPaso = 0;
+            return false;
+        }
+    }
+    else{
+        PV3D* rotacion = new PV3D(0,1,0,1);
+        this->getM()->rotar(-5, rotacion);
+        delete rotacion;
+        numPaso++;
+        if(numPaso == tope){
+            abierta = false;
+            numPaso = 0;
+            return false;
+        }
+    }
+    return true;
+}
 
 //---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+

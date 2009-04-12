@@ -48,15 +48,15 @@ Television::~Television(){
 
 //---------------------------------------------------------------------------
 
-void Television::setEncendida(bool estado){
+void Television::cambiaTV(){
     delete pantalla->getColor();
-    if(estado){//Esta encendida
+    encendida = !encendida;
+    if(encendida){//Esta encendida
         pantalla->setColor(new Color(0.2, 0, 0.3));
     }
     else{
         pantalla->setColor(new Color(0.5, 0.5, 0.5));
     }
-    encendida = estado;
 }
 
 //---------------------------------------------------------------------------
@@ -76,6 +76,7 @@ void Television::dibujar() {
 }
 
 //---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 
 
