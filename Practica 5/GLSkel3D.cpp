@@ -152,7 +152,7 @@ void __fastcall TGLForm3D::GLScene()
   glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
 
   // Dibujar la escena
-    escenario->dibujar();
+  escenario->dibujar();
   //glFlush();
   SwapBuffers(hdc);
 }
@@ -362,18 +362,21 @@ GLScene();
 void __fastcall TGLForm3D::Encender1Click(TObject *Sender)
 {
     if(escenario != NULL){
-        escenario->setTVEncendida(true,1);
+        escenario->cambiaTV(1);
         GLScene();
     }
 }
+
 //---------------------------------------------------------------------------
 
-void __fastcall TGLForm3D::Apagar1Click(TObject *Sender)
+void __fastcall TGLForm3D::AbrirCerrar1Click(TObject *Sender)
 {
     if(escenario != NULL){
-        escenario->setTVEncendida(false,1);
-        GLScene();
+        while(escenario->cambiaPuerta(2)){
+            GLScene();
+        }
     }
 }
+
 //---------------------------------------------------------------------------
 

@@ -9,8 +9,8 @@
 #include "Tablero.h"
 #include "Television.h"
 #include "Puerta.h"
-#include "Mesa.h"
-//#include "Estanteria.h"
+//#include "Mesa.h"
+#include "Estanteria.h"
 //#include "Silla.h"
 
 
@@ -24,9 +24,12 @@ class Habitacion : public ObjetoCompuesto3D {
         Habitacion(int h);
         ~Habitacion();
         void dibujar();
-        void setTVEncendida(bool estado);
+        void cambiaTV();
+        bool cambiaPuerta();
 };
+
+//---------------------------------------------------------------------------
 
 #endif
 
-//---------------------------------------------------------------------------
+

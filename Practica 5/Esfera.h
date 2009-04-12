@@ -15,12 +15,14 @@ class Esfera : public ObjetoCuadrico {
         GLint paralelos;
 
     public:
-        Esfera(GLfloat radio,GLint nMeridianos, GLint nParalelos);
+        Esfera(GLfloat r,GLint nMeridianos, GLint nParalelos);
         ~Esfera();
         void dibujar();
 };
 
+//---------------------------------------------------------------------------
+
 #endif
 
-//---------------------------------------------------------------------------
+
  

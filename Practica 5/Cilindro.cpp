@@ -7,10 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
 Cilindro::Cilindro(GLfloat nRadioBase,GLfloat nRadioCima,GLfloat nAltura,GLint nNPlados, GLint nNQCapas){
     cilindro = gluNewQuadric();
     radioBase = nRadioBase;
@@ -37,3 +33,5 @@ void Cilindro::dibujar(){
 }
 
 //---------------------------------------------------------------------------
+
+#pragma package(smart_init)

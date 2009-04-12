@@ -27,6 +27,7 @@ USEUNIT("Puerta.cpp");
 USEUNIT("Copa.cpp");
 USEUNIT("MallaPorSplineYRevolucion.cpp");
 USEUNIT("Mesa.cpp");
+USEUNIT("Estanteria.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

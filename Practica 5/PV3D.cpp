@@ -7,10 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
 PV3D::PV3D(GLfloat coordX, GLfloat coordY, GLfloat coordZ, int valor){
     x = coordX;
     y = coordY;
@@ -133,3 +129,5 @@ void PV3D::normalizar() {
 }
 
 //---------------------------------------------------------------------------
+
+#pragma package(smart_init)

@@ -7,10 +7,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
 Camara::Camara(PV3D* ojo,PV3D* direccion,PV3D* arriba){
     setView(ojo, direccion, arriba);
 	setModelViewMatrix();
@@ -194,3 +190,4 @@ PV3D* Camara::getUp(){
 }
 //---------------------------------------------------------------------------
 
+#pragma package(smart_init)

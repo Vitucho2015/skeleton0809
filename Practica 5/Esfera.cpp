@@ -7,13 +7,9 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-
-//---------------------------------------------------------------------------
-
-Esfera::Esfera(GLfloat radio,GLint nMeridianos, GLint nParalelos){
+Esfera::Esfera(GLfloat r,GLint nMeridianos, GLint nParalelos){
     esfera= gluNewQuadric();
-    radio=radio;
+    radio=r;
     meridianos=nMeridianos;
     paralelos=nParalelos;
 }
@@ -29,10 +25,11 @@ Esfera::~Esfera(){
 //---------------------------------------------------------------------------
 
 void Esfera::dibujar(){
-    glColor3d(color->getRojo(),color->getVerde(),color->getAzul());
-    gluQuadricDrawStyle(esfera,GLU_FILL);    
+    gluQuadricDrawStyle(esfera,GLU_FILL);
+    glColor3d(color->getRojo(),color->getVerde(),color->getAzul());       
     gluSphere(esfera,radio,meridianos,paralelos);
 }
 
 //---------------------------------------------------------------------------
 
+#pragma package(smart_init)
