@@ -12,7 +12,8 @@ Muebles::Muebles() {
     this->matriz = new TAfin();
 
     //Mesa
-    PV3D** perfil = new PV3D*[7];
+    PV3D** perfil = new PV3D*[5];
+    /*
     perfil[0] = new PV3D(0.4, -0.3, 0.0, 1);
     perfil[1] = new PV3D(0.3, 0.3, 0.0, 1);
     perfil[2] = new PV3D(0.2, 0.4, 0.0, 1);
@@ -21,20 +22,42 @@ Muebles::Muebles() {
     perfil[5] = new PV3D(0.3, 0.7, 0.0, 1);
     perfil[6] = new PV3D(0.4, 0.8, 0.0, 1);
     Mesa* mesa = new Mesa(1.0, 1.0, 0.1, 3, 3, 3,perfil, 7, 30, 20);
+    */
 
-    for(int i = 0; i < 7; i++){
+
+    perfil[0] = new PV3D(0.2, 0, 0, 1);
+    perfil[1] = new PV3D(0.05, 0.1, 0, 1);
+    perfil[2] = new PV3D(0.05, 0.3, 0, 1);
+    perfil[3] = new PV3D(0.1, 0.4, 0, 1);
+    perfil[4] = new PV3D(0.15, 0.5, 0, 1);
+
+    Mesa* mesa = new Mesa(0.7, 0.5, 0.02, 1, 1, 1,perfil, 5, 50, 20);
+
+    for(int i = 0; i < 5; i++){
         delete perfil[i];
     }
     delete []perfil;
     mesa->setMatriz(new TAfin());
-    PV3D* vector = new PV3D(1, 0.75, 2, 1);
+    
+    mesa->setColor(new Color(0, 0.502, 0.25));
+    PV3D* vector = new PV3D(0.7, 0.45, 1.5, 1);
     mesa->getM()->trasladar(vector);
     delete vector;
-    mesa->setColor(new Color(0, 0.502, 0.25));
-    vector = new PV3D(3.5,0,0,1);
+    vector = new PV3D(1,0,0,1);
     mesa->getM()->rotar(180,vector);
     delete vector;
     objetos->inserta((Objeto3D*)mesa);
+
+    Cilindro* plato = new Cilindro(0.1, 0, 0.02, 20, 20);
+    plato->setColor(new Color(0.0,0.2, 1.0));
+    plato->setMatriz(new TAfin());
+    vector = new PV3D(1.05, 0.47,1.25, 1);
+    plato->getM()->trasladar(vector);
+    delete vector;
+    vector = new PV3D(1,0,0,1);
+    plato->getM()->rotar(90,vector);
+    delete vector;
+    objetos->inserta((Objeto3D*)plato);
     
     /*numObjetos = 0;
     PV3D* vector;

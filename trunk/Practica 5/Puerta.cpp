@@ -17,11 +17,11 @@ Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG, bo
     tablero->setMatriz(new TAfin());
     objetos->inserta((Objeto3D*)tablero);
     //Situamos los pomos
-    PV3D* translacion = new PV3D(0.15,g/2.0,a-0.2,1);
+    PV3D* translacion = new PV3D(0.06,g/2.0,a-0.2,1);
     TAfin* matrizPomo1 = new TAfin();
     matrizPomo1->trasladar(translacion);
     delete translacion;
-    translacion = new PV3D(-0.05,g/2.0,a-0.2,1);
+    translacion = new PV3D(-0.06,g/2.0,a-0.2,1);
     TAfin* matrizPomo2 = new TAfin();
     matrizPomo2->trasladar(translacion);
     delete translacion;

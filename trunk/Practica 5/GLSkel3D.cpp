@@ -375,8 +375,10 @@ void __fastcall TGLForm3D::AbrirCerrar1Click(TObject *Sender)
         while(escenario->cambiaPuerta(2)){
             GLScene();
         }
+        GLScene();
     }
 }
 
 //---------------------------------------------------------------------------
+
 
