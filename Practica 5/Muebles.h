@@ -4,6 +4,7 @@
 #define MueblesH
 #include "ObjetoCompuesto3D.h"
 #include "Mesa.h"
+#include "Cilindro.h"
 /*#include "Silla.h"
 #include "MallaPorSplineYRevolucion.h"
 #include "Toro.h"

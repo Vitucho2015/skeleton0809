@@ -15,9 +15,9 @@ Television::Television(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int 
     marco->setColor(new Color(0, 0, 0));
     objetos->inserta((Objeto3D*)marco);
 
-    pantalla = new Tablero(l*0.25, a*0.9, 0.6, divL, divA, divG);
+    pantalla = new Tablero(l*0.25, a*0.9,g*0.75, divL, divA, divG);
     pantalla->setMatriz(new TAfin());
-    PV3D* vector = new PV3D(0.1, 0.15, 0.1,1);
+    PV3D* vector = new PV3D(0.05, 0.1, 0.05,1);
     pantalla->getM()->trasladar(vector);
     delete vector;
     
