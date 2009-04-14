@@ -8,7 +8,8 @@
       Color.obj ObjetoCompuesto3D.obj ObjetoCuadrico.obj Esfera.obj Cilindro.obj 
       Malla.obj Cara.obj VerticeNormal.obj Tablero.obj Muebles.obj 
       Habitaciones.obj Escena.obj Lista.obj Nodo.obj Television.obj Puerta.obj 
-      Copa.obj MallaPorSplineYRevolucion.obj Mesa.obj Estanteria.obj"/>
+      Copa.obj MallaPorRevolucion.obj Mesa.obj Estanteria.obj Toro.obj Silla.obj 
+      Sofa.obj"/>
     <RESFILES value="GLProj3D.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>

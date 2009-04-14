@@ -1,23 +1,23 @@
 //---------------------------------------------------------------------------
 
-#ifndef CopaH
-#define CopaH
+#ifndef SillaH
+#define SillaH
 
 #include "ObjetoCompuesto3D.h"
-#include "MallaPorRevolucion.h"
+#include "Tablero.h"
+#include "Cilindro.h"
 
 //---------------------------------------------------------------------------
 
-class Copa : public ObjetoCompuesto3D{
+class Silla : public ObjetoCompuesto3D {
 
     public:
-        Copa(PV3D** perfil,int numPuntos, int numLados, int nCaras);
-        ~Copa();
+        Silla();
         void dibujar();
-        void setColor(Color* c);
+        ~Silla();
 };
 
 //---------------------------------------------------------------------------
 
 #endif
-
+ 

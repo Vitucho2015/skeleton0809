@@ -25,9 +25,12 @@ USEUNIT("Nodo.cpp");
 USEUNIT("Television.cpp");
 USEUNIT("Puerta.cpp");
 USEUNIT("Copa.cpp");
-USEUNIT("MallaPorSplineYRevolucion.cpp");
+USEUNIT("MallaPorRevolucion.cpp");
 USEUNIT("Mesa.cpp");
 USEUNIT("Estanteria.cpp");
+USEUNIT("Toro.cpp");
+USEUNIT("Silla.cpp");
+USEUNIT("Sofa.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

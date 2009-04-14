@@ -1,16 +1,17 @@
 //---------------------------------------------------------------------------
 
-#ifndef MallaPorSplineYRevolucionH
-#define MallaPorSplineYRevolucionH
+#ifndef MallaPorYRevolucionH
+#define MallaPorYRevolucionH
+
 #include "Malla.h"
 
 //---------------------------------------------------------------------------
 
-class MallaPorSplineYRevolucion : public Malla {
+class MallaPorRevolucion : public Malla {
 
   public:
-      MallaPorSplineYRevolucion(PV3D** perfil, int numPuntos, int numLados, int nCaras);
-      ~MallaPorSplineYRevolucion();
+      MallaPorRevolucion(PV3D** perfil, int numPuntos, int numLados, int nCaras);
+      ~MallaPorRevolucion();
 };
 
 //---------------------------------------------------------------------------
