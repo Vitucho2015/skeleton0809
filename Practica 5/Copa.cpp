@@ -10,7 +10,7 @@
 Copa::Copa(PV3D** perfil,int numPuntos, int numLados, int nCaras){
     objetos = new Lista<Objeto3D>();
     
-    MallaPorSplineYRevolucion* malla = new MallaPorSplineYRevolucion(perfil, numPuntos, numLados, nCaras);
+    MallaPorRevolucion* malla = new MallaPorRevolucion(perfil, numPuntos, numLados, nCaras);
 
     malla->setMatriz(new TAfin());
     objetos->inserta((Objeto3D*)malla);

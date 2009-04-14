@@ -3,11 +3,11 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "MallaPorSplineYRevolucion.h"
+#include "MallaPorRevolucion.h"
 
 //---------------------------------------------------------------------------
 
-MallaPorSplineYRevolucion::MallaPorSplineYRevolucion(PV3D** perfil, int numPuntos, int numLados, int nCaras):Malla(numLados+1,nCaras) {
+MallaPorRevolucion::MallaPorRevolucion(PV3D** perfil, int numPuntos, int numLados, int nCaras):Malla(numLados+1,nCaras) {
     GLfloat xAux, yAux, zAux, radio, grados, gradosTotales;
     int numV = numLados+1;
 
@@ -65,7 +65,7 @@ MallaPorSplineYRevolucion::MallaPorSplineYRevolucion(PV3D** perfil, int numPunto
 
 //---------------------------------------------------------------------------
 
-MallaPorSplineYRevolucion::~MallaPorSplineYRevolucion(){
+MallaPorRevolucion::~MallaPorRevolucion(){
     delete matriz;
     delete color;
 }
