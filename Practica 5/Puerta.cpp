@@ -4,7 +4,7 @@
 #pragma hdrstop
 
 #include "Puerta.h"
-#define tope 18
+#define tope 9
 
 //---------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ void Puerta::dibujar(){
 bool Puerta::cambiaPuerta(){
     if(!abierta){
         PV3D* rotacion = new PV3D(0,1,0,1);
-        this->getM()->rotar(5, rotacion);
+        this->getM()->rotar(10, rotacion);
         delete rotacion;
         numPaso++;
         if(numPaso == tope){
@@ -85,7 +85,7 @@ bool Puerta::cambiaPuerta(){
     }
     else{
         PV3D* rotacion = new PV3D(0,1,0,1);
-        this->getM()->rotar(-5, rotacion);
+        this->getM()->rotar(-10, rotacion);
         delete rotacion;
         numPaso++;
         if(numPaso == tope){

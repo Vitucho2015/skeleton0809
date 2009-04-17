@@ -3,6 +3,7 @@
 #pragma hdrstop
 
 #include "GLSkel3D.h"
+#include "UFDatos.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -65,9 +66,6 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   //ClientHeight=400;
   RatioViewPort=1.0;
 
-  flag = 0;
-  mode = GL_LINE_LOOP;
-
   eye=new PV3D(eyeX,eyeY,eyeZ,1);
   look=new PV3D(lookX,lookY,lookZ,1);
   up=new PV3D(upX,upY,upZ,1);
@@ -83,10 +81,6 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   nCamara = 1;
   opcion = 0;
   escenario=new Escena();
-
-  //Comienzo pruebas
-
-  //Fin  pruebas
   GLScene();
 }
 //---------------------------------------------------------------------------
@@ -275,12 +269,12 @@ void __fastcall TGLForm3D::esquina1Click(TObject *Sender)
 {
 PV3D *eyeAux, *lookAux, *upAux;
 if(nCamara ==1) {
-    eyeAux = new PV3D(4.0, 4.0, 3.0, 1);
+    eyeAux = new PV3D(20.0, 20.0, 20.0, 1);
     lookAux = new PV3D(0,0,0,1);
     upAux = new PV3D(0,1,0,1);
 }
 else{
-    eyeAux = new PV3D(4.0, 4.0, 3.0, 1);
+    eyeAux = new PV3D(20.0, 20.0, 20.0, 1);
     lookAux = new PV3D(2.5,0,0,1);
     upAux = new PV3D(0,1,0,1);
 }
@@ -294,12 +288,12 @@ void __fastcall TGLForm3D::frontal1Click(TObject *Sender)
 {
 PV3D *eyeAux, *lookAux, *upAux;
 if(nCamara == 1){
-    eyeAux = new PV3D(1.0, 1.0, 2.0, 1);
+    eyeAux = new PV3D(1.0, 1.0, 3.0, 1);
     lookAux = new PV3D(1,1,0,1);
     upAux = new PV3D(0,1,0,1);
 }
 else{
-    eyeAux = new PV3D(3.5, 1.0, 2.0, 1);
+    eyeAux = new PV3D(3.5, 1.0, 3.0, 1);
     lookAux = new PV3D(3.5,1,0,1);
     upAux = new PV3D(0,1,0,1);
 }
@@ -334,7 +328,7 @@ void __fastcall TGLForm3D::lateral1Click(TObject *Sender)
 {
 PV3D *eyeAux, *lookAux, *upAux;
 if(nCamara ==1) {
-    eyeAux = new PV3D(0.0, 1.0, 1.0, 1);
+    eyeAux = new PV3D(-0.9, 1.0, 1.0, 1);
     lookAux = new PV3D(1.0, 1.0, 1.0, 1);
     upAux = new PV3D(camara->getUp());
 }
@@ -381,4 +375,124 @@ void __fastcall TGLForm3D::AbrirCerrar1Click(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
+
+void __fastcall TGLForm3D::Escena1Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->escalar(v,1);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Lampara1Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->escalar(v,2);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Muebles1Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->escalar(v,3);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Escena2Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    int grados;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ,grados)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->rotar(v,grados,1);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Lampara2Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    int grados;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ,grados)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->rotar(v,grados,2);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Muebles2Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    int grados;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ,grados)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->rotar(v,grados,3);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Escena3Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->trasladar(v,1);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Lampara3Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->trasladar(v,2);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::Muebles3Click(TObject *Sender)
+{
+    double coorX,coorY,coorZ;
+    if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* v = new PV3D(coorX,coorY,coorZ,1);
+        escenario->trasladar(v,3);
+        delete v;
+        GLScene();
+    }
+}
+
+//---------------------------------------------------------------------------
 

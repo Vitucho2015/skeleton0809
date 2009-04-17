@@ -17,7 +17,7 @@ Mesa::Mesa(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG,PV3D** 
 
     Copa* copa = new Copa(perfil, numPuntos, numLados, nCaras);
     copa->setMatriz(new TAfin());
-    PV3D* vector = new PV3D(0.35, 0, 0.25, 1);
+    PV3D* vector = new PV3D(0.35, -0.03, 0.25, 1);
     copa->getM()->trasladar(vector);
     delete vector;
     objetos->inserta((Objeto3D*)copa);
