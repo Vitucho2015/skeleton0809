@@ -56,6 +56,15 @@ __published:	// IDE-managed Components
     void __fastcall oblicua1Click(TObject *Sender);
     void __fastcall AbrirCerrar1Click(TObject *Sender);
     void __fastcall Encender1Click(TObject *Sender);
+    void __fastcall Escena1Click(TObject *Sender);
+    void __fastcall Lampara1Click(TObject *Sender);
+    void __fastcall Muebles1Click(TObject *Sender);
+    void __fastcall Escena2Click(TObject *Sender);
+    void __fastcall Lampara2Click(TObject *Sender);
+    void __fastcall Muebles2Click(TObject *Sender);
+    void __fastcall Escena3Click(TObject *Sender);
+    void __fastcall Lampara3Click(TObject *Sender);
+    void __fastcall Muebles3Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
@@ -70,15 +79,8 @@ private:        // User declarations
 
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
-    Escena* escenario;
-    //Malla* mallaActual;
-    PV3D** perfil;
 
-    //b-splines
-    PV3D** puntos;
-    int numPuntos, numLados, contador, nCaras;
-    int flag;
-    GLenum mode;
+    Escena* escenario;
 
     //camara
     PV3D* eye, * up, * look;

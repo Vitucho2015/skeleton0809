@@ -57,4 +57,55 @@ bool Escena::cambiaPuerta(int numHabitacion) {
 
 //---------------------------------------------------------------------------
 
+void Escena::escalar(PV3D* v, int n) {
+    switch (n){
+        case 1:{ //Escena entera
+                habitacion1->escalar(v,n);
+                habitacion2->escalar(v,n);
+               }
+        case 2://Lampara
+                habitacion1->escalar(v,n);
+                break;
+        case 3://Muebles
+                habitacion1->escalar(v,n);
+            break;
+    };
+}
+
+//---------------------------------------------------------------------------
+
+void Escena::rotar(PV3D* v, int grados, int n) {
+    switch (n){
+        case 1:{ //Escena entera
+                habitacion1->rotar(v,grados,n);
+                habitacion2->rotar(v,grados,n);
+               }
+        case 2://Lampara
+                habitacion1->rotar(v,grados,n);
+                break;
+        case 3://Muebles
+                habitacion1->rotar(v,grados,n);
+            break;
+    };
+}
+
+//---------------------------------------------------------------------------
+
+void Escena::trasladar(PV3D* v, int n) {
+    switch (n){
+        case 1:{ //Escena entera
+                habitacion1->trasladar(v,n);
+                habitacion2->trasladar(v,n);
+               }
+        case 2://Lampara
+                habitacion1->trasladar(v,n);
+                break;
+        case 3://Muebles
+                habitacion1->trasladar(v,n);
+            break;
+    };
+}
+
+//---------------------------------------------------------------------------
+
 #pragma package(smart_init)

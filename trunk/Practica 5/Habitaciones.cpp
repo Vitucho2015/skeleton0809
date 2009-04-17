@@ -14,10 +14,6 @@ Habitacion::Habitacion(int h) {
         objetos = new Lista<Objeto3D>();
         this->matriz = new TAfin();
 
-        //Muebles
-        Muebles* muebles = new Muebles();
-        objetos->inserta((Objeto3D*)muebles);
-       
         //Estanteria
         Estanteria* estanteria = new Estanteria(4, 0.15, 1, 2);
         estanteria->setMatriz(new TAfin());
@@ -25,19 +21,7 @@ Habitacion::Habitacion(int h) {
         estanteria->getM()->trasladar(vector);
         delete vector;
         objetos->inserta((Objeto3D*)estanteria);
-        
-        //Lampara
-        Cilindro* lampara = new Cilindro(0.15,0.05,0.2,20,20);
-        lampara->setMatriz(new TAfin());
-        lampara->setColor(new Color(1.0, 0, 1.0));
-        vector = new PV3D(1.3,1.8,1,1);
-        (lampara->getM())->trasladar(vector);
-        delete vector;
-        vector = new PV3D(1.0,0.0,0.0,1);
-        (lampara->getM())->rotar(270, vector);
-        delete vector;
-        objetos->inserta((Objeto3D*)lampara);
-        
+
         //Suelo
         Tablero* suelo = new Tablero(2, 2, 0.01, 1, 1, 1);
         suelo->setColor(new Color(0.7, 0.2, 0.3));
@@ -85,6 +69,23 @@ Habitacion::Habitacion(int h) {
         tv->getM()->trasladar(vector);
         delete vector;
         objetos->inserta((Objeto3D*)tv);
+
+         //Lampara
+        Lampara* lampara = new Lampara(0.15,0.05,0.2,20,20);
+        lampara->setMatriz(new TAfin());
+        lampara->setColor(new Color(1.0, 0, 1.0));
+        vector = new PV3D(1.3,1.8,1,1);
+        (lampara->getM())->trasladar(vector);
+        delete vector;
+        vector = new PV3D(1.0,0.0,0.0,1);
+        (lampara->getM())->rotar(270, vector);
+        delete vector;
+        objetos->inserta((Objeto3D*)lampara);
+
+         //Muebles
+        Muebles* muebles = new Muebles();
+        objetos->inserta((Objeto3D*)muebles);
+        
     }
     else {
         this->matriz = new TAfin();
@@ -224,6 +225,129 @@ bool Habitacion::cambiaPuerta(){
         }
      }
     return false;
+}
+
+//---------------------------------------------------------------------------
+
+void Habitacion::escalar(PV3D* v, int n) {
+    switch (n){
+        case 1:{//La habitación entera
+                this->getM()->escalar(v);
+                break;
+               } 
+        case 2:{
+                //Lampara
+                if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Lampara)){
+                            aux->getM()->escalar(v);
+                        }
+                    }
+                    objetos->avanza();
+                }
+            break;
+            }
+        case 3://Muebles
+            {
+                if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Muebles)){
+                            aux->getM()->escalar(v);
+                        }
+                    }
+                    objetos->avanza();
+                }
+            break;
+            }
+    };
+}
+
+//---------------------------------------------------------------------------
+
+void Habitacion::rotar(PV3D* v, int grados, int n) {
+    switch (n){
+        case 1:{//La habitación entera
+                this->getM()->rotar(grados,v);
+                break;
+               } 
+        case 2:{
+                //Lampara
+                if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Lampara)){
+                            aux->getM()->rotar(grados,v);
+                        }
+                    }
+                    objetos->avanza();
+                }
+            break;
+            }
+        case 3://Muebles
+            {
+                if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Muebles)){
+                            aux->getM()->rotar(grados,v);
+                        }
+                    }
+                    objetos->avanza();
+                }
+            break;
+            }
+    };
+}
+
+//---------------------------------------------------------------------------
+
+void Habitacion::trasladar(PV3D* v, int n) {
+    switch (n){
+        case 1:{//La habitación entera
+                this->getM()->trasladar(v);
+                break;
+               } 
+        case 2:{
+                //Lampara
+                if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Lampara)){
+                            aux->getM()->trasladar(v);
+                        }
+                    }
+                    objetos->avanza();
+                }
+            break;
+            }
+        case 3://Muebles
+            {
+                if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Muebles)){
+                            aux->getM()->trasladar(v);
+                        }
+                    }
+                    objetos->avanza();
+                }
+            break;
+            }
+    };
 }
 
 //---------------------------------------------------------------------------

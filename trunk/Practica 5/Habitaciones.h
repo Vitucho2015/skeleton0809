@@ -9,9 +9,8 @@
 #include "Tablero.h"
 #include "Television.h"
 #include "Puerta.h"
-//#include "Mesa.h"
 #include "Estanteria.h"
-//#include "Silla.h"
+#include "Lampara.h"
 
 
 //---------------------------------------------------------------------------
@@ -26,6 +25,9 @@ class Habitacion : public ObjetoCompuesto3D {
         void dibujar();
         void cambiaTV();
         bool cambiaPuerta();
+        void escalar(PV3D* v,int n);
+        void rotar(PV3D* v,int grados,int n);
+        void trasladar(PV3D* v,int n);
 };
 
 //---------------------------------------------------------------------------
