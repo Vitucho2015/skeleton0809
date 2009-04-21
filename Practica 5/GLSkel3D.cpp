@@ -269,7 +269,7 @@ void __fastcall TGLForm3D::esquina1Click(TObject *Sender)
 {
 PV3D *eyeAux, *lookAux, *upAux;
 if(nCamara ==1) {
-    eyeAux = new PV3D(20.0, 20.0, 20.0, 1);
+    eyeAux = new PV3D(6.0, 6.0, 6.0, 1);
     lookAux = new PV3D(0,0,0,1);
     upAux = new PV3D(0,1,0,1);
 }
