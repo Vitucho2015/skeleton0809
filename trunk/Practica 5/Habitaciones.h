@@ -11,6 +11,7 @@
 #include "Puerta.h"
 #include "Estanteria.h"
 #include "Lampara.h"
+#include "Suelo.h"
 
 
 //---------------------------------------------------------------------------
@@ -28,6 +29,7 @@ class Habitacion : public ObjetoCompuesto3D {
         void escalar(PV3D* v,int n);
         void rotar(PV3D* v,int grados,int n);
         void trasladar(PV3D* v,int n);
+        float getAncho();
 };
 
 //---------------------------------------------------------------------------

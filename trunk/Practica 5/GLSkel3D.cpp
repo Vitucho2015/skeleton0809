@@ -46,9 +46,9 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   // crearObjetosEscena();
 
   // cámara
-  eyeX=20.0,
-  eyeY=20.0,
-  eyeZ=20.0,
+  eyeX=2.8,
+  eyeY=2.8,
+  eyeZ=2.8,
   lookX=0.0,
   lookY=0.0,
   lookZ=0.0,
@@ -70,7 +70,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   look=new PV3D(lookX,lookY,lookZ,1);
   up=new PV3D(upX,upY,upZ,1);
 
-  eye2=new PV3D(eyeX,eyeY,eyeZ,1);
+  eye2=new PV3D(eyeX+2.5,eyeY,eyeZ,1);
   look2=new PV3D(2.5,0,0,1);
   up2=new PV3D(upX,upY,upZ,1);
 
@@ -269,17 +269,18 @@ void __fastcall TGLForm3D::esquina1Click(TObject *Sender)
 {
 PV3D *eyeAux, *lookAux, *upAux;
 if(nCamara ==1) {
-    eyeAux = new PV3D(6.0, 6.0, 6.0, 1);
+    //eyeAux = new PV3D(2.8, 2.8, 2.8, 1);
+    eyeAux = new PV3D(2.8, 2.8, 2.8, 1);
     lookAux = new PV3D(0,0,0,1);
     upAux = new PV3D(0,1,0,1);
 }
 else{
-    eyeAux = new PV3D(20.0, 20.0, 20.0, 1);
+    eyeAux = new PV3D(5.3, 2.8,2.8 , 1);
     lookAux = new PV3D(2.5,0,0,1);
     upAux = new PV3D(0,1,0,1);
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
-camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
+//camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 }
 //---------------------------------------------------------------------------
@@ -298,7 +299,7 @@ else{
     upAux = new PV3D(0,1,0,1);
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
-camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
+//camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 
 }
@@ -319,7 +320,7 @@ else{
     upAux = new PV3D(0,1,0,1);
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
-camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
+//camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 }
 //---------------------------------------------------------------------------
@@ -338,17 +339,19 @@ else{
     upAux = new PV3D(camara->getUp());
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
-camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
+//camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TGLForm3D::oblicua1Click(TObject *Sender)
 {
-PV3D* d = new PV3D(0.7,0.7,1,1);
-camara->Oblicua(xLeft, xRight, yBot, yTop, N, F, d);
-camara->ortogonal(xLeft, xRight, yBot, yTop, N, F);
-GLScene();
+double coorX,coorY,coorZ;
+if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+        PV3D* d = new PV3D(coorX,coorY,coorZ,1);
+        camara->Oblicua(xLeft, xRight, yBot, yTop, N, F, d);
+        GLScene();
+}
 }
 
 //---------------------------------------------------------------------------

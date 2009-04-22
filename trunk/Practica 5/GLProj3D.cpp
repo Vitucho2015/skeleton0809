@@ -33,6 +33,7 @@ USEUNIT("Silla.cpp");
 USEUNIT("Sofa.cpp");
 USEFORM("UFDatos.cpp", FDatos);
 USEUNIT("Lampara.cpp");
+USEUNIT("\\alar\home\70064780\skeleton0809\trunk\Practica 5\Suelo.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -40,8 +41,8 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         {
                  Application->Initialize();
                  Application->CreateForm(__classid(TGLForm3D), &GLForm3D);
-         Application->CreateForm(__classid(TFDatos), &FDatos);
-         Application->Run();
+                 Application->CreateForm(__classid(TFDatos), &FDatos);
+                 Application->Run();
         }
         catch (Exception &exception)
         {

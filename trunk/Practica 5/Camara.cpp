@@ -47,7 +47,7 @@ void Camara::cambiaPosicion(PV3D* ojo,PV3D* direccion,PV3D* arriba) {
     delete v;
     delete n;
     setView(ojo, direccion, arriba);
-	setModelViewMatrix();
+    setModelViewMatrix();
 }
 
 //------------------------------------------------------------------------

@@ -60,15 +60,22 @@ bool Escena::cambiaPuerta(int numHabitacion) {
 void Escena::escalar(PV3D* v, int n) {
     switch (n){
         case 1:{ //Escena entera
+                float anchoAnt = habitacion1->getAncho();
                 habitacion1->escalar(v,n);
+                float anchoNue = v->getX()*anchoAnt;
+                float dif = anchoNue - anchoAnt;
+                PV3D* vector = new PV3D(dif,0,0,1);
+                habitacion2->trasladar(vector,1);
+                delete vector;
                 habitacion2->escalar(v,n);
+                break;
                }
         case 2://Lampara
                 habitacion1->escalar(v,n);
                 break;
         case 3://Muebles
                 habitacion1->escalar(v,n);
-            break;
+                break;
     };
 }
 
@@ -79,6 +86,7 @@ void Escena::rotar(PV3D* v, int grados, int n) {
         case 1:{ //Escena entera
                 habitacion1->rotar(v,grados,n);
                 habitacion2->rotar(v,grados,n);
+                break;
                }
         case 2://Lampara
                 habitacion1->rotar(v,grados,n);
@@ -96,6 +104,7 @@ void Escena::trasladar(PV3D* v, int n) {
         case 1:{ //Escena entera
                 habitacion1->trasladar(v,n);
                 habitacion2->trasladar(v,n);
+                break;
                }
         case 2://Lampara
                 habitacion1->trasladar(v,n);
