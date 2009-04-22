@@ -23,7 +23,7 @@ Habitacion::Habitacion(int h) {
         objetos->inserta((Objeto3D*)estanteria);
 
         //Suelo
-        Tablero* suelo = new Tablero(2, 2, 0.01, 1, 1, 1);
+        Suelo* suelo = new Suelo(2, 2, 0.01, 1, 1, 1);
         suelo->setColor(new Color(0.7, 0.2, 0.3));
         suelo->setMatriz(new TAfin());
         objetos->inserta((Objeto3D*)suelo);
@@ -95,7 +95,7 @@ Habitacion::Habitacion(int h) {
         objetos = new Lista<Objeto3D>();
 
         //Suelo
-        Tablero* suelo = new Tablero(2, 2, 0.01, 10, 2, 10);
+        Suelo* suelo = new Suelo(2, 2, 0.01, 10, 2, 10);
         suelo->setColor(new Color(0, 0.2, 0.3));
         suelo->setMatriz(new TAfin());
         objetos->inserta((Objeto3D*)suelo);
@@ -242,11 +242,17 @@ void Habitacion::escalar(PV3D* v, int n) {
                     Objeto3D* aux;
                     for(int i=0;i<objetos->getLongitud();i++){
                         aux = objetos->getActual();
+
+                        AnsiString a = typeid(&aux).name();
+                        AnsiString a1 = typeid(aux).name();
+                        AnsiString a2 = typeid(*aux).name();
+
                         if( typeid(*aux) == typeid(Lampara)){
                             aux->getM()->escalar(v);
                         }
+                        objetos->avanza();
                     }
-                    objetos->avanza();
+                    
                 }
             break;
             }
@@ -260,8 +266,9 @@ void Habitacion::escalar(PV3D* v, int n) {
                         if( typeid(*aux) == typeid(Muebles)){
                             aux->getM()->escalar(v);
                         }
+                        objetos->avanza();
                     }
-                    objetos->avanza();
+                    
                 }
             break;
             }
@@ -286,8 +293,9 @@ void Habitacion::rotar(PV3D* v, int grados, int n) {
                         if( typeid(*aux) == typeid(Lampara)){
                             aux->getM()->rotar(grados,v);
                         }
+                        objetos->avanza();
                     }
-                    objetos->avanza();
+                    
                 }
             break;
             }
@@ -301,8 +309,9 @@ void Habitacion::rotar(PV3D* v, int grados, int n) {
                         if( typeid(*aux) == typeid(Muebles)){
                             aux->getM()->rotar(grados,v);
                         }
+                        objetos->avanza();
                     }
-                    objetos->avanza();
+                    
                 }
             break;
             }
@@ -327,8 +336,9 @@ void Habitacion::trasladar(PV3D* v, int n) {
                         if( typeid(*aux) == typeid(Lampara)){
                             aux->getM()->trasladar(v);
                         }
+                        objetos->avanza();
                     }
-                    objetos->avanza();
+
                 }
             break;
             }
@@ -342,12 +352,29 @@ void Habitacion::trasladar(PV3D* v, int n) {
                         if( typeid(*aux) == typeid(Muebles)){
                             aux->getM()->trasladar(v);
                         }
-                    }
-                    objetos->avanza();
+                        objetos->avanza();
+                    }                     
                 }
             break;
             }
     };
+}
+
+//---------------------------------------------------------------------------
+
+float Habitacion::getAncho(){
+        if(objetos != NULL){
+                    objetos->inicia();
+                    Objeto3D* aux;
+                    for(int i=0;i<objetos->getLongitud();i++){
+                        aux = objetos->getActual();
+                        if( typeid(*aux) == typeid(Suelo)){
+                            return ((Suelo*)aux)->getAncho();
+                        }
+                        objetos->avanza();
+                    }
+                }
+        return -1;
 }
 
 //---------------------------------------------------------------------------

@@ -9,7 +9,7 @@
       Malla.obj Cara.obj VerticeNormal.obj Tablero.obj Muebles.obj 
       Habitaciones.obj Escena.obj Lista.obj Nodo.obj Television.obj Puerta.obj 
       Copa.obj MallaPorRevolucion.obj Mesa.obj Estanteria.obj Toro.obj Silla.obj 
-      Sofa.obj UFDatos.obj Lampara.obj"/>
+      Sofa.obj UFDatos.obj Lampara.obj &quot;\\alar\home\70064780\skeleton0809\trunk\Practica 5\Suelo.obj&quot;"/>
     <RESFILES value="GLProj3D.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
@@ -20,7 +20,7 @@
     <SPARELIBS value="VCL50.lib"/>
     <PACKAGES value="VCL50.bpi VCLDB50.bpi VCLX50.bpi VCLBDE50.bpi VCLDBX50.bpi TEEUI50.bpi 
       TEEDB50.bpi TEE50.bpi"/>
-    <PATHCPP value=".;"/>
+    <PATHCPP value=".;\\alar\home\70064780\skeleton0809\trunk\Practica 5"/>
     <PATHPAS value=".;"/>
     <PATHRC value=".;"/>
     <PATHASM value=".;"/>
@@ -30,8 +30,8 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
     <MAINSOURCE value="GLProj3D.cpp"/>
-    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl"/>
-    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib"/>
+    <INCLUDEPATH value="&quot;\\alar\home\70064780\skeleton0809\trunk\Practica 5&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="&quot;\\alar\home\70064780\skeleton0809\trunk\Practica 5&quot;;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
   </MACROS>
   <OPTIONS>
