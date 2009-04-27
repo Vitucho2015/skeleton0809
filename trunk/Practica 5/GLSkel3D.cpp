@@ -346,12 +346,15 @@ GLScene();
 
 void __fastcall TGLForm3D::oblicua1Click(TObject *Sender)
 {
-double coorX,coorY,coorZ;
-if(FDatos->pedirDatos(coorX,coorY,coorZ)){
-        PV3D* d = new PV3D(coorX,coorY,coorZ,1);
+//double coorX,coorY,coorZ;
+//if(FDatos->pedirDatos(coorX,coorY,coorZ)){
+    //
+
+    //tPV* direccion = new tPV(0.7,0.7,1);
+        PV3D* d = new PV3D(0.5,2,5,1);
         camara->Oblicua(xLeft, xRight, yBot, yTop, N, F, d);
         GLScene();
-}
+//}
 }
 
 //---------------------------------------------------------------------------
