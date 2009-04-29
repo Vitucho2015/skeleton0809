@@ -26,10 +26,13 @@ class Habitacion : public ObjetoCompuesto3D {
         void dibujar();
         void cambiaTV();
         bool cambiaPuerta();
-        void escalar(PV3D* v,int n);
-        void rotar(PV3D* v,int grados,int n);
-        void trasladar(PV3D* v,int n);
         float getAncho();
+        void escalarLampara(PV3D* v);
+        void escalarMuebles(PV3D* v);
+        void trasladarLampara(PV3D* v);
+        void trasladarMuebles(PV3D* v);
+        void rotarLampara(PV3D* v,int grados);
+        void rotarMuebles(PV3D* v,int grados);
 };
 
 //---------------------------------------------------------------------------

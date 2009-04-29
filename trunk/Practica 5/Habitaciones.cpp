@@ -229,135 +229,110 @@ bool Habitacion::cambiaPuerta(){
 
 //---------------------------------------------------------------------------
 
-void Habitacion::escalar(PV3D* v, int n) {
-    switch (n){
-        case 1:{//La habitación entera
-                this->getM()->escalar(v);
-                break;
-               } 
-        case 2:{
-                //Lampara
-                if(objetos != NULL){
-                    objetos->inicia();
-                    Objeto3D* aux;
-                    for(int i=0;i<objetos->getLongitud();i++){
-                        aux = objetos->getActual();
+void Habitacion::escalarLampara(PV3D* v) {
 
-                        AnsiString a = typeid(&aux).name();
-                        AnsiString a1 = typeid(aux).name();
-                        AnsiString a2 = typeid(*aux).name();
-
-                        if( typeid(*aux) == typeid(Lampara)){
-                            aux->getM()->escalar(v);
-                        }
-                        objetos->avanza();
-                    }
-                    
-                }
-            break;
-            }
-        case 3://Muebles
-            {
-                if(objetos != NULL){
-                    objetos->inicia();
-                    Objeto3D* aux;
-                    for(int i=0;i<objetos->getLongitud();i++){
-                        aux = objetos->getActual();
-                        if( typeid(*aux) == typeid(Muebles)){
-                            aux->getM()->escalar(v);
-                        }
-                        objetos->avanza();
-                    }
-                    
-                }
-            break;
-            }
-    };
+if(objetos != NULL){
+	objetos->inicia();
+	Objeto3D* aux;
+	for(int i=0;i<objetos->getLongitud();i++){
+		aux = objetos->getActual();
+		if( typeid(*aux) == typeid(Lampara)){
+			aux->getM()->escalar(v);
+		}
+		objetos->avanza();
+	}
+}
+          
 }
 
 //---------------------------------------------------------------------------
 
-void Habitacion::rotar(PV3D* v, int grados, int n) {
-    switch (n){
-        case 1:{//La habitación entera
-                this->getM()->rotar(grados,v);
-                break;
-               } 
-        case 2:{
-                //Lampara
-                if(objetos != NULL){
-                    objetos->inicia();
-                    Objeto3D* aux;
-                    for(int i=0;i<objetos->getLongitud();i++){
-                        aux = objetos->getActual();
-                        if( typeid(*aux) == typeid(Lampara)){
-                            aux->getM()->rotar(grados,v);
-                        }
-                        objetos->avanza();
-                    }
-                    
-                }
-            break;
-            }
-        case 3://Muebles
-            {
-                if(objetos != NULL){
-                    objetos->inicia();
-                    Objeto3D* aux;
-                    for(int i=0;i<objetos->getLongitud();i++){
-                        aux = objetos->getActual();
-                        if( typeid(*aux) == typeid(Muebles)){
-                            aux->getM()->rotar(grados,v);
-                        }
-                        objetos->avanza();
-                    }
-                    
-                }
-            break;
-            }
-    };
+void Habitacion::escalarMuebles(PV3D* v) {
+
+if(objetos != NULL){
+	objetos->inicia();
+	Objeto3D* aux;
+	for(int i=0;i<objetos->getLongitud();i++){
+		aux = objetos->getActual();
+		if( typeid(*aux) == typeid(Muebles)){
+			aux->getM()->escalar(v);
+		}
+		objetos->avanza();
+	}
+}
+          
 }
 
 //---------------------------------------------------------------------------
 
-void Habitacion::trasladar(PV3D* v, int n) {
-    switch (n){
-        case 1:{//La habitación entera
-                this->getM()->trasladar(v);
-                break;
-               } 
-        case 2:{
-                //Lampara
-                if(objetos != NULL){
-                    objetos->inicia();
-                    Objeto3D* aux;
-                    for(int i=0;i<objetos->getLongitud();i++){
-                        aux = objetos->getActual();
-                        if( typeid(*aux) == typeid(Lampara)){
-                            aux->getM()->trasladar(v);
-                        }
-                        objetos->avanza();
-                    }
+void Habitacion::trasladarLampara(PV3D* v) {
 
-                }
-            break;
-            }
-        case 3://Muebles
-            {
-                if(objetos != NULL){
-                    objetos->inicia();
-                    Objeto3D* aux;
-                    for(int i=0;i<objetos->getLongitud();i++){
-                        aux = objetos->getActual();
-                        if( typeid(*aux) == typeid(Muebles)){
-                            aux->getM()->trasladar(v);
-                        }
-                        objetos->avanza();
-                    }                     
-                }
-            break;
-            }
-    };
+if(objetos != NULL){
+	objetos->inicia();
+	Objeto3D* aux;
+	for(int i=0;i<objetos->getLongitud();i++){
+		aux = objetos->getActual();
+		if( typeid(*aux) == typeid(Lampara)){
+			aux->getM()->trasladar(v);
+		}
+		objetos->avanza();
+	}
+}
+          
+}
+
+//---------------------------------------------------------------------------
+
+void Habitacion::trasladarMuebles(PV3D* v) {
+
+if(objetos != NULL){
+	objetos->inicia();
+	Objeto3D* aux;
+	for(int i=0;i<objetos->getLongitud();i++){
+		aux = objetos->getActual();
+		if( typeid(*aux) == typeid(Muebles)){
+			aux->getM()->trasladar(v);
+		}
+		objetos->avanza();
+	}
+}
+          
+}
+
+//---------------------------------------------------------------------------
+
+void Habitacion::rotarLampara(PV3D* v,int grados) {
+
+if(objetos != NULL){
+	objetos->inicia();
+	Objeto3D* aux;
+	for(int i=0;i<objetos->getLongitud();i++){
+		aux = objetos->getActual();
+		if( typeid(*aux) == typeid(Lampara)){
+			aux->getM()->rotar(grados,v);
+		}
+		objetos->avanza();
+	}
+}
+
+}
+
+//---------------------------------------------------------------------------
+
+void Habitacion::rotarMuebles(PV3D* v,int grados) {
+
+if(objetos != NULL){
+	objetos->inicia();
+	Objeto3D* aux;
+	for(int i=0;i<objetos->getLongitud();i++){
+		aux = objetos->getActual();
+		if( typeid(*aux) == typeid(Muebles)){
+			aux->getM()->rotar(grados,v);
+		}
+		objetos->avanza();
+	}
+}
+
 }
 
 //---------------------------------------------------------------------------

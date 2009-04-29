@@ -6,12 +6,10 @@
 
 //---------------------------------------------------------------------------
 
-class Escena {
+class Escena : public ObjetoCompuesto3D{
 
     private:
-        Habitacion *habitacion1;
-        Habitacion *habitacion2;
-
+        
     public:
         Escena();
         ~Escena();
