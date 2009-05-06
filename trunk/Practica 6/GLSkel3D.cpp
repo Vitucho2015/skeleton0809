@@ -26,16 +26,37 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
 
   glClearColor(0.6,0.7,0.8,1.0);
   glEnable(GL_LIGHTING);
-  glEnable(GL_LIGHT0);
-   // luz0
-  glEnable(GL_LIGHT0);
-  GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
-  glLightfv(GL_LIGHT0,GL_DIFFUSE,LuzDifusa);
-  GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
-  glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmbiente);
-  PosicionLuz0[0]=25.0; PosicionLuz0[1]=25.0;
-  PosicionLuz0[2]=0.0; PosicionLuz0[3]=1.0;
-  glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+ //luz lampara
+  //glEnable(GL_LIGHT0);
+  anguloLuz = 25.0;
+  PosicionLuz0[0]=1.1; PosicionLuz0[1]=2.2;
+  PosicionLuz0[2]=1.0; PosicionLuz0[3]=1.0;
+
+  luzLampara = false;
+
+  // luzVentanas
+  //glEnable(GL_LIGHT1);
+  GLfloat LuzDifusa1[]={0.0,0.0,0.0,1.0};
+  glLightfv(GL_LIGHT1,GL_DIFFUSE,LuzDifusa1);
+  GLfloat LuzAmbiente1[]={0.3,0.3,0.3,1.0};
+  glLightfv(GL_LIGHT1,GL_AMBIENT,LuzAmbiente1);
+  PosicionLuz2[0]=0.0; PosicionLuz2[1]=0.0;
+  PosicionLuz2[2]=-1.0; PosicionLuz2[3]=0.0;
+  glLightfv(GL_LIGHT1, GL_POSITION, PosicionLuz1);
+  //glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
+
+  luzVentana = false;
+
+   // luzAmbiente
+  glEnable(GL_LIGHT2);
+  GLfloat LuzDifusa2[]={0.0,0.0,0.0,1.0};
+  glLightfv(GL_LIGHT2,GL_DIFFUSE,LuzDifusa2);
+  GLfloat LuzAmbiente2[]={0.3,0.3,0.3,1.0};
+  glLightfv(GL_LIGHT2,GL_AMBIENT,LuzAmbiente2);
+  PosicionLuz2[0]=25.0; PosicionLuz2[1]=25.0;
+  PosicionLuz2[2]=0.0; PosicionLuz2[3]=1.0;
+  glLightfv(GL_LIGHT2, GL_POSITION, PosicionLuz2);
+
 
   glEnable(GL_COLOR_MATERIAL);
   glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
@@ -44,7 +65,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   glShadeModel(GL_SMOOTH);   //defecto
 
   // crearObjetosEscena();
-
+  
   // cámara
   eyeX=2.8,
   eyeY=2.8,
@@ -144,6 +165,8 @@ void __fastcall TGLForm3D::GLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
+  glLightfv(GL_LIGHT1,GL_POSITION,PosicionLuz1);
+  glLightfv(GL_LIGHT2,GL_POSITION,PosicionLuz2);
 
   // Dibujar la escena
   escenario->dibujar();
@@ -500,5 +523,20 @@ void __fastcall TGLForm3D::Muebles3Click(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::ApagarEncenderLmpara1Click(TObject *Sender)
+{
+if(luzLampara) {
+    luzLampara = false;
+    glDisable(GL_LIGHT0);
+}
+else {
+    luzLampara = true;
+    glEnable(GL_LIGHT0);
+    glDisable(GL_LIGHT1);
+}
+GLScene();
+}
 //---------------------------------------------------------------------------
 

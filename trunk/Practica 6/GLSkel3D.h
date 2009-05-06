@@ -36,6 +36,8 @@ __published:	// IDE-managed Components
     TMenuItem *Encender1;
     TMenuItem *Puerta1;
     TMenuItem *AbrirCerrar1;
+    TMenuItem *Luces1;
+    TMenuItem *ApagarEncenderLmpara1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -65,6 +67,7 @@ __published:	// IDE-managed Components
     void __fastcall Escena3Click(TObject *Sender);
     void __fastcall Lampara3Click(TObject *Sender);
     void __fastcall Muebles3Click(TObject *Sender);
+    void __fastcall ApagarEncenderLmpara1Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
@@ -72,6 +75,10 @@ private:        // User declarations
     GLfloat eyeX,eyeY,eyeZ, lookX,lookY,lookZ, upX,upY,upZ; // cámara
     GLdouble RatioViewPort, xLeft,xRight, yBot,yTop, N,F;  // volumen de vista
     GLfloat PosicionLuz0[4];  // luz0
+    GLfloat PosicionLuz1[4];
+    GLfloat PosicionLuz2[4];
+    bool luzLampara,luzVentana;
+    float anguloLuz;
     void __fastcall SetPixelFormatDescriptor();
     void __fastcall GLScene();
     //void crearObjetosEscena();
