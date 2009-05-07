@@ -11,7 +11,7 @@
 #include <gl\glu.h>
 #include "Camara.h"
 #include "Escena.h"
-
+#include "BMPRGB.h"
 
 //---------------------------------------------------------------------------
 class TGLForm3D : public TForm
@@ -38,6 +38,8 @@ __published:	// IDE-managed Components
     TMenuItem *AbrirCerrar1;
     TMenuItem *Luces1;
     TMenuItem *ApagarEncenderLmpara1;
+    TMenuItem *ApagarEncederVentana1;
+    TMenuItem *ActivarDesactivarNiebla1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -68,6 +70,8 @@ __published:	// IDE-managed Components
     void __fastcall Lampara3Click(TObject *Sender);
     void __fastcall Muebles3Click(TObject *Sender);
     void __fastcall ApagarEncenderLmpara1Click(TObject *Sender);
+    void __fastcall ApagarEncederVentana1Click(TObject *Sender);
+    void __fastcall ActivarDesactivarNiebla1Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
@@ -77,12 +81,16 @@ private:        // User declarations
     GLfloat PosicionLuz0[4];  // luz0
     GLfloat PosicionLuz1[4];
     GLfloat PosicionLuz2[4];
-    bool luzLampara,luzVentana;
+    bool luzLampara,luzVentana,niebla;
     float anguloLuz;
+    int numTexturas;
+    ColorRGB** texturas;
+    BMPRGB** listaBmp;
     void __fastcall SetPixelFormatDescriptor();
     void __fastcall GLScene();
     //void crearObjetosEscena();
     //void liberarObjetosEscena();
+    void cargarTexturas();
 
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);
