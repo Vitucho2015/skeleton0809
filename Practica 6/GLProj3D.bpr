@@ -9,7 +9,7 @@
       Malla.obj Cara.obj VerticeNormal.obj Tablero.obj Muebles.obj 
       Habitaciones.obj Escena.obj Lista.obj Nodo.obj Television.obj Puerta.obj 
       Copa.obj MallaPorRevolucion.obj Mesa.obj Estanteria.obj Toro.obj Silla.obj 
-      Sofa.obj UFDatos.obj Lampara.obj Suelo.obj"/>
+      Sofa.obj UFDatos.obj Lampara.obj Suelo.obj BMPRGB.obj"/>
     <RESFILES value="GLProj3D.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>

@@ -34,6 +34,7 @@ USEUNIT("Sofa.cpp");
 USEFORM("UFDatos.cpp", FDatos);
 USEUNIT("Lampara.cpp");
 USEUNIT("Suelo.cpp");
+USEUNIT("BMPRGB.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

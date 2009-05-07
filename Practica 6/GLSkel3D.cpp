@@ -26,6 +26,12 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
 
   glClearColor(0.6,0.7,0.8,1.0);
   glEnable(GL_LIGHTING);
+  glEnable(GL_COLOR_MATERIAL);
+  glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_NORMALIZE);
+  glShadeModel(GL_SMOOTH);   //defecto
+
  //luz lampara
   //glEnable(GL_LIGHT0);
   anguloLuz = 25.0;
@@ -38,7 +44,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   //glEnable(GL_LIGHT1);
   GLfloat LuzDifusa1[]={0.0,0.0,0.0,1.0};
   glLightfv(GL_LIGHT1,GL_DIFFUSE,LuzDifusa1);
-  GLfloat LuzAmbiente1[]={0.3,0.3,0.3,1.0};
+  GLfloat LuzAmbiente1[]={0.0,0.0,0.0,1.0};
   glLightfv(GL_LIGHT1,GL_AMBIENT,LuzAmbiente1);
   PosicionLuz2[0]=0.0; PosicionLuz2[1]=0.0;
   PosicionLuz2[2]=-1.0; PosicionLuz2[3]=0.0;
@@ -51,18 +57,13 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   glEnable(GL_LIGHT2);
   GLfloat LuzDifusa2[]={0.0,0.0,0.0,1.0};
   glLightfv(GL_LIGHT2,GL_DIFFUSE,LuzDifusa2);
-  GLfloat LuzAmbiente2[]={0.3,0.3,0.3,1.0};
+  GLfloat LuzAmbiente2[]={0.0,0.0,0.0,1.0};
   glLightfv(GL_LIGHT2,GL_AMBIENT,LuzAmbiente2);
   PosicionLuz2[0]=25.0; PosicionLuz2[1]=25.0;
   PosicionLuz2[2]=0.0; PosicionLuz2[3]=1.0;
   glLightfv(GL_LIGHT2, GL_POSITION, PosicionLuz2);
 
-
-  glEnable(GL_COLOR_MATERIAL);
-  glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
-  glEnable(GL_DEPTH_TEST);
-  glEnable(GL_NORMALIZE);
-  glShadeModel(GL_SMOOTH);   //defecto
+  niebla = false;
 
   // crearObjetosEscena();
   
@@ -527,6 +528,7 @@ void __fastcall TGLForm3D::Muebles3Click(TObject *Sender)
 
 void __fastcall TGLForm3D::ApagarEncenderLmpara1Click(TObject *Sender)
 {
+//Cambia de estado la luz de la lámpara
 if(luzLampara) {
     luzLampara = false;
     glDisable(GL_LIGHT0);
@@ -534,9 +536,57 @@ if(luzLampara) {
 else {
     luzLampara = true;
     glEnable(GL_LIGHT0);
-    glDisable(GL_LIGHT1);
 }
 GLScene();
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TGLForm3D::ApagarEncederVentana1Click(TObject *Sender)
+{
+//Cambia de estado la luz de las ventanas
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::ActivarDesactivarNiebla1Click(TObject *Sender)
+{
+//Cambia de estado la niebla
+if(niebla) {
+    niebla = false;
+    glDisable(GL_FOG);
+}
+else {
+    GLfloat density = 0.5;
+    GLfloat fogColor[4] = {0.5, 0.5, 0.5, 1.0};
+    niebla = true;
+    glEnable (GL_DEPTH_TEST);
+    glEnable (GL_FOG);
+    glFogi (GL_FOG_MODE, GL_EXP2);
+    glFogfv (GL_FOG_COLOR, fogColor);
+    glFogf (GL_FOG_DENSITY, density);
+    glHint (GL_FOG_HINT, GL_NICEST);
+}
+GLScene();
+}
+
+//---------------------------------------------------------------------------
+
+void TGLForm3D::cargarTexturas(){
+     numTexturas = 1;
+     texturas = new ColorRGB*[numTexturas];
+
+     listaBmp = new BMPRGB*[numTexturas];
+     BMPRGB* bmp1 = new BMPRGB();
+     bmp1->cargarBMP("./Texturas/texturaMadera.bmp");
+     texturas[0] = bmp1->getBMP();
+     listaBmp[0] = bmp1;
+    for(int i=0; i<numTexturas; i++){
+        glBindTexture(GL_TEXTURE_2D,i);
+        glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);//Hay que ponerlo después de cada glBindText
+        glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB,listaBmp[i]->getCols(),listaBmp[i]->getRows(),
+                     0,GL_RGB,GL_UNSIGNED_BYTE,texturas[i]);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    }
+}
+
+//---------------------------------------------------------------------------
