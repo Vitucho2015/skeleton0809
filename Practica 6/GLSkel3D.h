@@ -40,6 +40,7 @@ __published:	// IDE-managed Components
     TMenuItem *ApagarEncenderLmpara1;
     TMenuItem *ApagarEncederVentana1;
     TMenuItem *ActivarDesactivarNiebla1;
+    TMenuItem *ApagarEncenderAmbiente1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -72,6 +73,7 @@ __published:	// IDE-managed Components
     void __fastcall ApagarEncenderLmpara1Click(TObject *Sender);
     void __fastcall ApagarEncederVentana1Click(TObject *Sender);
     void __fastcall ActivarDesactivarNiebla1Click(TObject *Sender);
+    void __fastcall ApagarEncenderAmbiente1Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
@@ -81,7 +83,7 @@ private:        // User declarations
     GLfloat PosicionLuz0[4];  // luz0
     GLfloat PosicionLuz1[4];
     GLfloat PosicionLuz2[4];
-    bool luzLampara,luzVentana,niebla;
+    bool luzVentana,niebla;
     float anguloLuz;
     int numTexturas;
     ColorRGB** texturas;
@@ -91,6 +93,9 @@ private:        // User declarations
     //void crearObjetosEscena();
     //void liberarObjetosEscena();
     void cargarTexturas();
+    void configurarIluminacion();
+
+    bool luzAmbiente,luzLampara;
 
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);

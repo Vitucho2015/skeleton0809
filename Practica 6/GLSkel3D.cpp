@@ -26,12 +26,16 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
 
   glClearColor(0.6,0.7,0.8,1.0);
   glEnable(GL_LIGHTING);
+
   glEnable(GL_COLOR_MATERIAL);
   glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_NORMALIZE);
   glShadeModel(GL_SMOOTH);   //defecto
 
+  configurarIluminacion();
+
+/*
  //luz lampara
   //glEnable(GL_LIGHT0);
   anguloLuz = 25.0;
@@ -62,6 +66,8 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   PosicionLuz2[0]=25.0; PosicionLuz2[1]=25.0;
   PosicionLuz2[2]=0.0; PosicionLuz2[3]=1.0;
   glLightfv(GL_LIGHT2, GL_POSITION, PosicionLuz2);
+
+*/
 
   niebla = false;
 
@@ -531,11 +537,11 @@ void __fastcall TGLForm3D::ApagarEncenderLmpara1Click(TObject *Sender)
 //Cambia de estado la luz de la lámpara
 if(luzLampara) {
     luzLampara = false;
-    glDisable(GL_LIGHT0);
+    glDisable(GL_LIGHT1);
 }
 else {
     luzLampara = true;
-    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
 }
 GLScene();
 }
@@ -590,3 +596,48 @@ void TGLForm3D::cargarTexturas(){
 }
 
 //---------------------------------------------------------------------------
+
+void TGLForm3D::configurarIluminacion(){
+
+    //Luz ambiente
+    glDisable(GL_LIGHT0);
+    GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,LuzDifusa);
+    GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
+    glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmbiente);
+    PosicionLuz0[0]=25.0; PosicionLuz0[1]=25.0;
+    PosicionLuz0[2]=0.0; PosicionLuz0[3]=1.0;
+    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+    luzAmbiente = false;
+
+    //Luz lampara
+    glEnable(GL_LIGHT1);
+    GLfloat LuzDifusa1[] = {1.0,1.0,1.0,1.0};
+    glLightfv(GL_LIGHT1,GL_DIFFUSE,LuzDifusa1);
+    PosicionLuz1[0] = 1.5;
+    PosicionLuz1[1] = 1.0;
+    PosicionLuz1[2] = 2.0;
+    PosicionLuz1[3] = 1.0;
+    glLightfv(GL_LIGHT1, GL_POSITION, PosicionLuz1);
+    
+    luzLampara = true;
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TGLForm3D::ApagarEncenderAmbiente1Click(TObject *Sender)
+{
+
+    if(!luzAmbiente){
+        glEnable(GL_LIGHT0);
+        luzAmbiente = true;
+    }
+    else{
+        glDisable(GL_LIGHT0);
+        luzAmbiente = false;
+    }
+    GLScene();
+}
+//---------------------------------------------------------------------------
+
