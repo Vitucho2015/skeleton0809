@@ -23,24 +23,6 @@ Television::Television(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int 
     
     if(estado){//Esta encendida
         pantalla->setColor(new Color(1, 0, 0.3));
-                glEnable(GL_TEXTURE_2D);
-          glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-          glBindTexture(GL_TEXTURE_2D, 0);
-          glBegin(GL_QUADS);
-            glTexCoord2f(0.0,0.0);
-            //glVertex3f(origen->getX(),origen->getY()+tablero->getGrueso(),origen->getZ());
-            glVertex3f(0,0,0);
-            glTexCoord2f(0.0,1.0);
-            //glVertex3f(origen->getX(),origen->getY()+tablero->getGrueso(),origen->getZ()+tablero->getLargo());
-             glVertex3f(0,1,1);
-            glTexCoord2f(1.0,1.0);
-            //glVertex3f(origen->getX()+tablero->getAncho(),origen->getY()+tablero->getGrueso(),origen->getZ()+tablero->getLargo());
-             glVertex3f(1,1,1);
-            glTexCoord2f(1.0,0.0);
-            //glVertex3f(origen->getX()+tablero->getAncho(),origen->getY()+tablero->getGrueso(),origen->getZ());
-             glVertex3f(1,0,1);
-          glEnd();
-          glDisable(GL_TEXTURE_2D);
     }
     else{
         pantalla->setColor(new Color(0.5, 0.5, 0.5));
@@ -71,24 +53,6 @@ void Television::cambiaTV(){
     encendida = !encendida;
     if(encendida){//Esta encendida
         pantalla->setColor(new Color(0.2, 0, 0.3));
-        glEnable(GL_TEXTURE_2D);
-          glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-          glBindTexture(GL_TEXTURE_2D, 0);
-          glBegin(GL_QUADS);
-            glTexCoord2f(0.0,0.0);
-            //glVertex3f(origen->getX(),origen->getY()+tablero->getGrueso(),origen->getZ());
-            glVertex3f(0,0,0);
-            glTexCoord2f(0.0,1.0);
-            //glVertex3f(origen->getX(),origen->getY()+tablero->getGrueso(),origen->getZ()+tablero->getLargo());
-             glVertex3f(0,1,1);
-            glTexCoord2f(1.0,1.0);
-            //glVertex3f(origen->getX()+tablero->getAncho(),origen->getY()+tablero->getGrueso(),origen->getZ()+tablero->getLargo());
-             glVertex3f(1,1,1);
-            glTexCoord2f(1.0,0.0);
-            //glVertex3f(origen->getX()+tablero->getAncho(),origen->getY()+tablero->getGrueso(),origen->getZ());
-             glVertex3f(1,0,1);
-          glEnd();
-          glDisable(GL_TEXTURE_2D);
     }
     else{
         pantalla->setColor(new Color(0.5, 0.5, 0.5));

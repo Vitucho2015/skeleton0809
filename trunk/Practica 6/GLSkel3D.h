@@ -86,8 +86,7 @@ private:        // User declarations
     bool luzVentana,niebla;
     float anguloLuz;
     int numTexturas;
-    ColorRGB** texturas;
-    BMPRGB** listaBmp;
+    BMPRGB** texturas;
     void __fastcall SetPixelFormatDescriptor();
     void __fastcall GLScene();
     //void crearObjetosEscena();
