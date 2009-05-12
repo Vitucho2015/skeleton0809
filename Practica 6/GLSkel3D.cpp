@@ -578,21 +578,13 @@ GLScene();
 
 void TGLForm3D::cargarTexturas(){
      numTexturas = 1;
-     texturas = new ColorRGB*[numTexturas];
-
-     listaBmp = new BMPRGB*[numTexturas];
-     BMPRGB* bmp1 = new BMPRGB();
-     bmp1->cargarBMP("./Texturas/texturaMadera.bmp");
-     texturas[0] = bmp1->getBMP();
-     listaBmp[0] = bmp1;
-    for(int i=0; i<numTexturas; i++){
-        glBindTexture(GL_TEXTURE_2D,i);
-        glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);//Hay que ponerlo después de cada glBindText
-        glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB,listaBmp[i]->getCols(),listaBmp[i]->getRows(),
-                     0,GL_RGB,GL_UNSIGNED_BYTE,texturas[i]);
-        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    }
+     texturas = new BMPRGB*[numTexturas];
+     texturas[0] = new BMPRGB();
+     texturas[0]->cargarBMP("./Texturas/homer.bmp");
+     glBindTexture(GL_TEXTURE_2D,0);
+     glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+     glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,texturas[0]->getCols(),texturas[0]->getRows(),0,GL_RGB,GL_UNSIGNED_BYTE,*texturas[0]->getBMP());
 }
 
 //---------------------------------------------------------------------------

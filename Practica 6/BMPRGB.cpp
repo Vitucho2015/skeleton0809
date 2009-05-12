@@ -21,7 +21,7 @@ BMPRGB::~BMPRGB(){
 
 //---------------------------------------------------------------------------
 
-bool BMPRGB::cargarBMP(AnsiString ruta){
+bool BMPRGB::cargarBMP(String ruta){
     Graphics::TBitmap* AuxBMP = new Graphics::TBitmap();
     AuxBMP->LoadFromFile(ruta);
     if(AuxBMP->Empty){
