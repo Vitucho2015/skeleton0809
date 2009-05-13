@@ -83,10 +83,14 @@ private:        // User declarations
     GLfloat PosicionLuz0[4];  // luz0
     GLfloat PosicionLuz1[4];
     GLfloat PosicionLuz2[4];
+
     bool luzVentana,niebla;
     float anguloLuz;
     int numTexturas;
-    BMPRGB** texturas;
+
+    ColorRGB** texturas;
+    BMPRGB** listaBmp;
+
     void __fastcall SetPixelFormatDescriptor();
     void __fastcall GLScene();
     //void crearObjetosEscena();

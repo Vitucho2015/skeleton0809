@@ -7,13 +7,15 @@
 
 //---------------------------------------------------------------------------
 
-Suelo::Suelo(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG) {
+Suelo::Suelo(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG,bool b) {
     largo = l;
     ancho = a;
     grueso = g;
     divLargo = divL;
     divAncho = divA;
     divGrueso = divG;
+
+    lado = b;
 
     numVertices = (divGrueso+1)*(divLargo+1)+(2*divAncho*(divLargo+1))+(divGrueso*(divLargo+1))+(2*(divGrueso+1)*(divAncho+1))- (divL+1);
     numCaras = numNormales = 2*((divLargo*divGrueso) + (divAncho*divGrueso) + (divLargo*divAncho));

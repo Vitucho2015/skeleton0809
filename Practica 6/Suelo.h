@@ -13,12 +13,13 @@ class Suelo : public Malla {
      private:
           GLfloat largo, ancho, grueso;
           int divLargo, divAncho, divGrueso;
-
+          bool lado;
 
      public:
-        Suelo(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG);
+        Suelo(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG,bool b);
         ~Suelo();
         float getAncho(){return ancho;}
+        bool getLado(){return lado;}
 };
 
 //---------------------------------------------------------------------------
