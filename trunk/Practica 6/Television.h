@@ -17,6 +17,7 @@ class Television : public ObjetoCompuesto3D {
         ~Television();
         void dibujar();
         void cambiaTV();
+        bool getEncendida(){return encendida;}
 };
 
 //---------------------------------------------------------------------------

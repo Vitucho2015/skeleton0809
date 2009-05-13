@@ -34,6 +34,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   glShadeModel(GL_SMOOTH);   //defecto
 
   configurarIluminacion();
+  cargarTexturas();
 
 /*
  //luz lampara
@@ -198,6 +199,12 @@ void __fastcall TGLForm3D::FormDestroy(TObject *Sender)
 
   delete escenario;
   escenario = NULL;
+
+  delete []texturas;
+  for(int i=0;i<numTexturas;i++){
+    delete listaBmp[i];
+  }
+  delete []listaBmp;
   
 }
 //--------------------------------------------------------------------------
@@ -577,14 +584,42 @@ GLScene();
 //---------------------------------------------------------------------------
 
 void TGLForm3D::cargarTexturas(){
-     numTexturas = 1;
-     texturas = new BMPRGB*[numTexturas];
-     texturas[0] = new BMPRGB();
-     texturas[0]->cargarBMP("./Texturas/homer.bmp");
-     glBindTexture(GL_TEXTURE_2D,0);
-     glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-     glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,texturas[0]->getCols(),texturas[0]->getRows(),0,GL_RGB,GL_UNSIGNED_BYTE,*texturas[0]->getBMP());
+    numTexturas = 6;
+    texturas = new ColorRGB*[numTexturas];
+    listaBmp = new BMPRGB*[numTexturas];
+
+    BMPRGB* bmp1 = new BMPRGB();
+    bmp1->cargarBMP("./Texturas/moqueta.bmp");
+    texturas[0] = bmp1->getBMP();
+    listaBmp[0] = bmp1;
+    BMPRGB* bmp2 = new BMPRGB();
+    bmp2->cargarBMP("./Texturas/parquet.bmp");
+    texturas[1] = bmp2->getBMP();
+    listaBmp[1] = bmp2;
+    BMPRGB* bmp3 = new BMPRGB();
+    bmp3->cargarBMP("./Texturas/homer.bmp");
+    texturas[2] = bmp3->getBMP();
+    listaBmp[2] = bmp3;
+    BMPRGB* bmp4 = new BMPRGB();
+    bmp4->cargarBMP("./Texturas/ruido.bmp");
+    texturas[3] = bmp4->getBMP();
+    listaBmp[3] = bmp4;
+    BMPRGB* bmp5 = new BMPRGB();
+    bmp5->cargarBMP("./Texturas/puerta.bmp");
+    texturas[4] = bmp5->getBMP();
+    listaBmp[4] = bmp5;
+    BMPRGB* bmp6 = new BMPRGB();
+    bmp6->cargarBMP("./Texturas/puerta2.bmp");
+    texturas[5] = bmp6->getBMP();
+    listaBmp[5] = bmp6;
+    for(int i=0; i<numTexturas; i++){
+        glBindTexture(GL_TEXTURE_2D,i);
+        glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);//Hay que ponerlo después de cada glBindText
+        glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB,listaBmp[i]->getCols(),listaBmp[i]->getRows(),
+                     0,GL_RGB,GL_UNSIGNED_BYTE,texturas[i]);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    }
 }
 
 //---------------------------------------------------------------------------

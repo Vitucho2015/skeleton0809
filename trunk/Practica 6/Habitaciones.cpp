@@ -23,7 +23,7 @@ Habitacion::Habitacion(int h) {
         objetos->inserta((Objeto3D*)estanteria);
 
         //Suelo
-        Suelo* suelo = new Suelo(2, 2, 0.01, 1, 1, 1);
+        Suelo* suelo = new Suelo(2, 2, 0.01, 1, 1, 1,true);
         suelo->setColor(new Color(0.7, 0.2, 0.3));
         suelo->setMatriz(new TAfin());
         objetos->inserta((Objeto3D*)suelo);
@@ -95,7 +95,7 @@ Habitacion::Habitacion(int h) {
         objetos = new Lista<Objeto3D>();
 
         //Suelo
-        Suelo* suelo = new Suelo(2, 2, 0.01, 10, 2, 10);
+        Suelo* suelo = new Suelo(2, 2, 0.01, 10, 2, 10,false);
         suelo->setColor(new Color(0, 0.2, 0.3));
         suelo->setMatriz(new TAfin());
         objetos->inserta((Objeto3D*)suelo);
@@ -171,6 +171,123 @@ void Habitacion::dibujar() {
     Objeto3D* aux;
     for(int i=0;i<objetos->getLongitud();i++){
         aux = objetos->getActual();
+        if( typeid(*aux) == typeid(Suelo)){
+            if(((Suelo*)aux)->getLado()){// Es el suelo de la izquierda
+                glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 0);
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.0,0.01,2.0);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(2.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(2.0,0.01,2.0);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
+            }
+            else{ // Es el suelo de la derecha
+                glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 1);
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.0,0.01,2.0);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(2.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(2.0,0.01,2.0);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
+            }
+        }
+        if( typeid(*aux) == typeid(Television)){
+            if(((Television*)aux)->getEncendida()){ // televisión encendida
+                glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 2);
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.13,1.0,1.6);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.13,1.39,1.6);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(0.13,1.39,0.85);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(0.13,1.0,0.85);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
+            }
+            else{// televisión apagada
+                glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 3);
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.13,1.0,1.6);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.13,1.39,1.6);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(0.13,1.39,0.85);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(0.13,1.0,0.85);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
+            }
+        }
+        if( typeid(*aux) == typeid(Puerta)){
+        /*
+            glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 4);   //puerta por delante
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.0,0.01,2.0);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(2.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(2.0,0.01,2.0);
+                glEnd();
+                
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 5); //puerta por detrás
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.0,0.01,2.0);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(2.0,0.01,0.0);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(2.0,0.01,2.0);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
+            */
+        }
         glPushMatrix();
     	    glMultMatrixd(aux->getM()->getMatriz());
             aux->dibujar();
