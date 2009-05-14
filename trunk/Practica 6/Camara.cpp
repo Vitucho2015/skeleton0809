@@ -10,6 +10,7 @@
 Camara::Camara(PV3D* ojo,PV3D* direccion,PV3D* arriba){
     setView(ojo, direccion, arriba);
 	setModelViewMatrix();
+    estado = 0;
 }
 
 //------------------------------------------------------------------------

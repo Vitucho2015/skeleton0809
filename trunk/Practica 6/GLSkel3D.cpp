@@ -84,7 +84,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   upX=0;upY=1;upZ=0;
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(eyeX,eyeY,eyeZ, lookX,lookY,lookZ, upX,upY,upZ);
+  gluLookAt(eyeX,eyeY,eyeZ,lookX,lookY,lookZ, upX,upY,upZ);
 
   // volumen de vista
   N=1; F=1000;
@@ -103,13 +103,14 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   look2=new PV3D(2.5,0,0,1);
   up2=new PV3D(upX,upY,upZ,1);
 
-  camara1= new Camara(eye,look,up);
-  camara2 = new Camara(eye2, look2, up2);
+  camara1 = new Camara(eye,look,up);
+  camara2 = new Camara(eye2,look2,up2);
   camara = camara1;
   camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
   nCamara = 1;
   opcion = 0;
   escenario=new Escena();
+
   GLScene();
 }
 //---------------------------------------------------------------------------
@@ -274,6 +275,21 @@ opcion = 4;
 
 void __fastcall TGLForm3D::ortogonal1Click(TObject *Sender)
 {
+if(camara->getEstado() == 0){
+	PV3D *eyeAux, *lookAux, *upAux;
+	if(nCamara ==1) {
+		eyeAux = new PV3D(2.8, 2.8, 2.8, 1);
+		lookAux = new PV3D(0,0,0,1);
+		upAux = new PV3D(0,1,0,1);
+	}
+	else{
+		eyeAux = new PV3D(5.3, 2.8,2.8 , 1);
+		lookAux = new PV3D(2.5,0.0,0.0,1);
+		upAux = new PV3D(0,1,0,1);
+	}
+	camara->cambiaPosicion(eyeAux, lookAux, upAux);
+}
+
 camara->ortogonal(xLeft, xRight, yBot, yTop, N, F);
 GLScene();
 }
@@ -281,6 +297,22 @@ GLScene();
 
 void __fastcall TGLForm3D::perspectiva1Click(TObject *Sender)
 {
+
+if (camara->getEstado() == 0){
+	PV3D *eyeAux, *lookAux, *upAux;
+	if(nCamara ==1) {
+		eyeAux = new PV3D(2.2, 2.0, 2.0, 1);
+		lookAux = new PV3D(0.0, 0.0, 0.0, 1);
+		upAux = new PV3D(camara->getUp());
+	}
+	else{
+		eyeAux = new PV3D(4.0, 2.0, 2.0, 1);
+		lookAux = new PV3D(2.0,0.0,0.0,1);
+		upAux = new PV3D(camara->getUp());
+	}
+	camara->cambiaPosicion(eyeAux, lookAux, upAux);
+}
+
 camara->perspectiva(90, 1, N,F);
 GLScene();
 }
@@ -306,17 +338,17 @@ void __fastcall TGLForm3D::esquina1Click(TObject *Sender)
 {
 PV3D *eyeAux, *lookAux, *upAux;
 if(nCamara ==1) {
-    //eyeAux = new PV3D(2.8, 2.8, 2.8, 1);
     eyeAux = new PV3D(2.8, 2.8, 2.8, 1);
     lookAux = new PV3D(0,0,0,1);
     upAux = new PV3D(0,1,0,1);
 }
 else{
     eyeAux = new PV3D(5.3, 2.8,2.8 , 1);
-    lookAux = new PV3D(2.5,0,0,1);
+    lookAux = new PV3D(2.5,0.0,0.0,1);
     upAux = new PV3D(0,1,0,1);
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
+camara->setEstado(0);
 //camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 }
@@ -336,6 +368,7 @@ else{
     upAux = new PV3D(0,1,0,1);
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
+camara->setEstado(2);
 //camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 
@@ -357,6 +390,7 @@ else{
     upAux = new PV3D(0,1,0,1);
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
+camara->setEstado(3);
 //camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 }
@@ -376,6 +410,7 @@ else{
     upAux = new PV3D(camara->getUp());
 }
 camara->cambiaPosicion(eyeAux, lookAux, upAux);
+camara->setEstado(1);
 //camara->ortogonal(xLeft,xRight,yBot,yTop,N,F);
 GLScene();
 }
@@ -388,9 +423,24 @@ void __fastcall TGLForm3D::oblicua1Click(TObject *Sender)
     //
 
     //tPV* direccion = new tPV(0.7,0.7,1);
+if(camara->getEstado() == 0){
+	PV3D *eyeAux, *lookAux, *upAux;
+	if(nCamara ==1) {
+		eyeAux = new PV3D(2.8, 2.8, 2.8, 1);
+		lookAux = new PV3D(0,0,0,1);
+		upAux = new PV3D(0,1,0,1);
+	}
+	else{
+		eyeAux = new PV3D(5.3, 2.8,2.8 , 1);
+		lookAux = new PV3D(2.5,0.0,0.0,1);
+		upAux = new PV3D(0,1,0,1);
+	}
+	camara->cambiaPosicion(eyeAux, lookAux, upAux);
+}
         PV3D* d = new PV3D(0.5,2,5,1);
         camara->Oblicua(xLeft, xRight, yBot, yTop, N, F, d);
         GLScene();
+
 //}
 }
 

@@ -12,6 +12,7 @@ class Camara {
     PV3D* eye, * look, * up, * u, * v, * n;
     void setModelViewMatrix();
     void setView(PV3D* ojo, PV3D* direccion, PV3D* arriba);
+    int estado;//0 esquina, 1 lateral, 2 frontal, 3 cenital
 
   public:
     Camara(PV3D* ojo,PV3D* direccion,PV3D* arriba);
@@ -27,6 +28,8 @@ class Camara {
     PV3D* getEye();
     PV3D* getLook();
     PV3D* getUp();
+    void setEstado(int e){estado = e;}
+    int getEstado(){return estado;}
 };
 
 //---------------------------------------------------------------------------

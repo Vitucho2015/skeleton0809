@@ -56,6 +56,40 @@ Puerta::~Puerta(){
 //---------------------------------------------------------------------------
 
 void Puerta::dibujar(){
+
+    glEnable(GL_TEXTURE_2D);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 4);
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.0,0.0,0.0);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.0,1.7,0.0);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(0.0,1.7,0.9);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(0.0,0.0,0.9);
+                glEnd();
+                
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glBindTexture(GL_TEXTURE_2D, 4);
+                glBegin(GL_QUADS);
+                    glTexCoord2f(0.0,0.0);
+                    glVertex3f(0.05,0.0,0.0);
+
+                    glTexCoord2f(0.0,1.0);
+                    glVertex3f(0.05,1.7,0.0);
+
+                    glTexCoord2f(1.0,1.0);
+                    glVertex3f(0.05,1.7,0.9);
+
+                    glTexCoord2f(1.0,0.0);
+                    glVertex3f(0.05,0.0,0.9);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
     glMatrixMode(GL_MODELVIEW);
     objetos->inicia();
     Objeto3D* aux;
