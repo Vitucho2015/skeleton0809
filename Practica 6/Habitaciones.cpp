@@ -251,43 +251,6 @@ void Habitacion::dibujar() {
                 glDisable(GL_TEXTURE_2D);
             }
         }
-        if( typeid(*aux) == typeid(Puerta)){
-        /*
-            glEnable(GL_TEXTURE_2D);
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-                glBindTexture(GL_TEXTURE_2D, 4);   //puerta por delante
-                glBegin(GL_QUADS);
-                    glTexCoord2f(0.0,0.0);
-                    glVertex3f(0.0,0.01,2.0);
-
-                    glTexCoord2f(0.0,1.0);
-                    glVertex3f(0.0,0.01,0.0);
-
-                    glTexCoord2f(1.0,1.0);
-                    glVertex3f(2.0,0.01,0.0);
-
-                    glTexCoord2f(1.0,0.0);
-                    glVertex3f(2.0,0.01,2.0);
-                glEnd();
-                
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
-                glBindTexture(GL_TEXTURE_2D, 5); //puerta por detrás
-                glBegin(GL_QUADS);
-                    glTexCoord2f(0.0,0.0);
-                    glVertex3f(0.0,0.01,2.0);
-
-                    glTexCoord2f(0.0,1.0);
-                    glVertex3f(0.0,0.01,0.0);
-
-                    glTexCoord2f(1.0,1.0);
-                    glVertex3f(2.0,0.01,0.0);
-
-                    glTexCoord2f(1.0,0.0);
-                    glVertex3f(2.0,0.01,2.0);
-                glEnd();
-                glDisable(GL_TEXTURE_2D);
-            */
-        }
         glPushMatrix();
     	    glMultMatrixd(aux->getM()->getMatriz());
             aux->dibujar();
