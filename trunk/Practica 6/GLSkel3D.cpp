@@ -634,7 +634,7 @@ GLScene();
 //---------------------------------------------------------------------------
 
 void TGLForm3D::cargarTexturas(){
-    numTexturas = 6;
+    numTexturas = 5;
     texturas = new ColorRGB*[numTexturas];
     listaBmp = new BMPRGB*[numTexturas];
 
@@ -658,10 +658,6 @@ void TGLForm3D::cargarTexturas(){
     bmp5->cargarBMP("./Texturas/puerta.bmp");
     texturas[4] = bmp5->getBMP();
     listaBmp[4] = bmp5;
-    BMPRGB* bmp6 = new BMPRGB();
-    bmp6->cargarBMP("./Texturas/puerta2.bmp");
-    texturas[5] = bmp6->getBMP();
-    listaBmp[5] = bmp6;
     for(int i=0; i<numTexturas; i++){
         glBindTexture(GL_TEXTURE_2D,i);
         glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);//Hay que ponerlo después de cada glBindText
