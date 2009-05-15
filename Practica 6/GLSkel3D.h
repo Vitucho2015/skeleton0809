@@ -83,9 +83,10 @@ private:        // User declarations
     GLfloat PosicionLuz0[4];  // luz0
     GLfloat PosicionLuz1[4];
     GLfloat PosicionLuz2[4];
+    GLfloat PosicionLuz3[4];
 
-    bool luzVentana,niebla;
-    float anguloLuz;
+    bool luzVentana,niebla,luzAmbiente,luzLampara;
+    float anguloLuz,anguloVentana;
     int numTexturas;
 
     ColorRGB** texturas;
@@ -97,8 +98,6 @@ private:        // User declarations
     //void liberarObjetosEscena();
     void cargarTexturas();
     void configurarIluminacion();
-
-    bool luzAmbiente,luzLampara;
 
 public:		// User declarations
     __fastcall TGLForm3D(TComponent* Owner);

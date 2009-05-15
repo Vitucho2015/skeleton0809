@@ -12,13 +12,8 @@ Escena::Escena() {
     objetos = new Lista<Objeto3D>();
     this->matriz = new TAfin();
     Habitacion *habitacion1 = new Habitacion(1);
-    //habitacion1->setMatriz(new TAfin());
     objetos->inserta((Objeto3D*)habitacion1);
     Habitacion *habitacion2 = new Habitacion(2);
-    //habitacion2->setMatriz(new TAfin());
-    //PV3D* vector = new PV3D(2, 0.0, 0.0, 1);
-    //habitacion2->getM()->trasladar(vector);
-    //delete vector;
     objetos->inserta((Objeto3D*)habitacion2);
 }
 
