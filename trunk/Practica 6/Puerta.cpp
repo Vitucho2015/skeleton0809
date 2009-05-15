@@ -9,13 +9,14 @@
 //---------------------------------------------------------------------------
 
 Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG, bool estado,int num){
-    double radioPomo = a/20;
+    //double radioPomo = a/20;
     objetos = new Lista<Objeto3D>();
     //Madero
     Tablero* tablero = new Tablero(l,a,g,divL,divA,divG);
     tablero->setColor(new Color(0.4,0.2,0));
     tablero->setMatriz(new TAfin());
     objetos->inserta((Objeto3D*)tablero);
+    /*
     //Situamos los pomos
     PV3D* translacion = new PV3D(0.06,g/2.0,a-0.2,1);
     TAfin* matrizPomo1 = new TAfin();
@@ -34,6 +35,7 @@ Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG, bo
     pomo2->setColor(new Color(1,1,0));
     pomo2->setMatriz(matrizPomo2);
     objetos->inserta((Objeto3D*)pomo2);
+    */
     abierta = estado;
     numPaso = num;
 }
