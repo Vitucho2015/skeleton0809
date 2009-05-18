@@ -676,13 +676,13 @@ void TGLForm3D::configurarIluminacion(){
     GLfloat LuzDifusa1[] = {1.0,1.0,1.0,1.0};
     PosicionLuz1[0] = 1.3;PosicionLuz1[1] = 1.8;
     PosicionLuz1[2] = 1.0;PosicionLuz1[3] = 1.0;
-    GLfloat d1[] = {0.0,-1.0,0.0,1.0};
+    GLfloat d1[] = {0.0,-1.0,-1.0,1.0};
 
     glLightfv(GL_LIGHT1,GL_DIFFUSE,LuzDifusa1);
-    glLightfv(GL_LIGHT1,GL_POSITION, PosicionLuz1);
+    glLightfv(GL_LIGHT1,GL_POSITION,PosicionLuz1);
     glLightfv(GL_LIGHT1,GL_SPOT_DIRECTION,d1);
     glLightf(GL_LIGHT1,GL_SPOT_CUTOFF,anguloLuz);
-    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);
+    glLightf(GL_LIGHT1,GL_SPOT_EXPONENT,2.0);
 
     luzLampara = false;
 
@@ -696,14 +696,14 @@ void TGLForm3D::configurarIluminacion(){
 
     GLfloat LuzDifusa2[] = {1.0,1.0,1.0,1.0};
     GLfloat LuzAmbiente2[] = {0.3,0.3,0.3,1.0};
-    PosicionLuz2[0] = 1.0;PosicionLuz2[1] = 1.0;
+    PosicionLuz2[0] = 1.0;PosicionLuz2[1] = 1.5;
     PosicionLuz2[2] = 0.0;PosicionLuz2[3] = 1.0;
-    GLfloat d2[] = {0,-1,1};
+    GLfloat d2[] = {0.0,-1.0,-1.0,1.0};
 
     glLightfv(GL_LIGHT2,GL_DIFFUSE,LuzDifusa2);
-    glLightfv(GL_LIGHT2, GL_POSITION, PosicionLuz2);
+    glLightfv(GL_LIGHT2,GL_POSITION,PosicionLuz2);
     glLightfv(GL_LIGHT2,GL_AMBIENT,LuzAmbiente2);
-    glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, d2);
+    glLightfv(GL_LIGHT2,GL_SPOT_DIRECTION,d2);
     glLightf(GL_LIGHT2,GL_SPOT_CUTOFF,anguloVentana);
 
     //ventana Habitacion Derecha
@@ -711,11 +711,11 @@ void TGLForm3D::configurarIluminacion(){
 
     GLfloat LuzDifusa3[] = {1.0,1.0,1.0,1.0};
     GLfloat LuzAmbiente3[] = {0.3,0.3,0.3,1.0};
-    PosicionLuz3[0] = 3.0;PosicionLuz3[1] = 1.0;
+    PosicionLuz3[0] = 3.0;PosicionLuz3[1] = 1.5;
     PosicionLuz3[2] = 0.0;PosicionLuz3[3] = 1.0;
-    GLfloat d3[] = {0,-1,1};
+    GLfloat d3[] = {0.0,-1.0,-1.0,0.0};
 
-    glLightfv(GL_LIGHT3, GL_POSITION, PosicionLuz3);
+    glLightfv(GL_LIGHT3, GL_POSITION,PosicionLuz3);
     glLightfv(GL_LIGHT3,GL_DIFFUSE,LuzDifusa3);
     glLightfv(GL_LIGHT3,GL_AMBIENT,LuzAmbiente3);
     glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, d3);
