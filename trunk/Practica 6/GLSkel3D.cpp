@@ -33,6 +33,7 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   glShadeModel(GL_SMOOTH);   //defecto
 
   configurarIluminacion();
+  texturasActivadas=false;
   cargarTexturas();
 
   // crearObjetosEscena();
@@ -136,12 +137,13 @@ void __fastcall TGLForm3D::FormResize(TObject *Sender)
 void __fastcall TGLForm3D::GLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
-  glLightfv(GL_LIGHT1,GL_POSITION,PosicionLuz1);
-  glLightfv(GL_LIGHT2,GL_POSITION,PosicionLuz2);
+  //glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
+  //glLightfv(GL_LIGHT1,GL_POSITION,PosicionLuz1);
+  //glLightfv(GL_LIGHT2,GL_POSITION,PosicionLuz2);
 
   // Dibujar la escena
   escenario->dibujar();
+ // configurarIluminacion();
   //glFlush();
   SwapBuffers(hdc);
 }
@@ -614,7 +616,10 @@ GLScene();
 //---------------------------------------------------------------------------
 
 void TGLForm3D::cargarTexturas(){
-    numTexturas = 5;
+
+
+    if (texturasActivadas){
+        numTexturas = 5;
     texturas = new ColorRGB*[numTexturas];
     listaBmp = new BMPRGB*[numTexturas];
 
@@ -645,12 +650,14 @@ void TGLForm3D::cargarTexturas(){
                      0,GL_RGB,GL_UNSIGNED_BYTE,texturas[i]);
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    }
+    }}
 }
 
 //---------------------------------------------------------------------------
 
 void TGLForm3D::configurarIluminacion(){
+
+
 
     glEnable(GL_LIGHTING);
 
@@ -658,10 +665,14 @@ void TGLForm3D::configurarIluminacion(){
 
     glDisable(GL_LIGHT0);
 
-    GLfloat LuzDifusa[] = {1.0,1.0,1.0,1.0};
-    GLfloat LuzAmbiente[] = {0.1,0.1,0.1,1.0};
-    PosicionLuz0[0]= 25.0;PosicionLuz0[1]= 25.0;
-    PosicionLuz0[2]= 0.0;PosicionLuz0[3]= 1.0;
+    GLfloat LuzDifusa[] = {0.2,0.2,0.2,1.0};
+
+    GLfloat LuzAmbiente[] = {0.5,0.5,0.5,1};
+
+    PosicionLuz0[0]= 0.0;
+    PosicionLuz0[1]= 0.0;
+    PosicionLuz0[2]= 25.0;
+    PosicionLuz0[3]= 0.0;
 
     glLightfv(GL_LIGHT0,GL_DIFFUSE,LuzDifusa);
     glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmbiente);
@@ -674,15 +685,24 @@ void TGLForm3D::configurarIluminacion(){
 
     anguloLuz = 45.0;
     GLfloat LuzDifusa1[] = {1.0,1.0,1.0,1.0};
-    PosicionLuz1[0] = 1.3;PosicionLuz1[1] = 1.8;
-    PosicionLuz1[2] = 1.0;PosicionLuz1[3] = 1.0;
-    GLfloat d1[] = {0.0,-1.0,-1.0,1.0};
+    //PosicionLuz1[0] = 1.3;
+    //PosicionLuz1[1] = 1.8;
+    //PosicionLuz1[2] = 1.0;
+    //PosicionLuz1[3] = 1.0;
+    PosicionLuz1[0] = 1.3;
+    PosicionLuz1[1] = 1.8;
+    PosicionLuz1[2] = 1;
+    PosicionLuz1[3] = 1.0;
 
+
+    GLfloat d1[] = {0,-1,0};
+
+   // glLightfv(GL_LIGHT1,GL_AMBIENT,LuzAmbiente);
     glLightfv(GL_LIGHT1,GL_DIFFUSE,LuzDifusa1);
     glLightfv(GL_LIGHT1,GL_POSITION,PosicionLuz1);
     glLightfv(GL_LIGHT1,GL_SPOT_DIRECTION,d1);
     glLightf(GL_LIGHT1,GL_SPOT_CUTOFF,anguloLuz);
-    glLightf(GL_LIGHT1,GL_SPOT_EXPONENT,2.0);
+    //glLightf(GL_LIGHT1,GL_SPOT_EXPONENT,0.0);
 
     luzLampara = false;
 
@@ -696,8 +716,10 @@ void TGLForm3D::configurarIluminacion(){
 
     GLfloat LuzDifusa2[] = {1.0,1.0,1.0,1.0};
     GLfloat LuzAmbiente2[] = {0.3,0.3,0.3,1.0};
-    PosicionLuz2[0] = 1.0;PosicionLuz2[1] = 1.5;
-    PosicionLuz2[2] = 0.0;PosicionLuz2[3] = 1.0;
+    PosicionLuz2[0] = 1.0;
+    PosicionLuz2[1] = 1.5;
+    PosicionLuz2[2] = 0.0;
+    PosicionLuz2[3] = 1.0;
     GLfloat d2[] = {0.0,-1.0,-1.0,1.0};
 
     glLightfv(GL_LIGHT2,GL_DIFFUSE,LuzDifusa2);
@@ -727,6 +749,7 @@ void TGLForm3D::configurarIluminacion(){
 
     niebla = false;
 
+    glPopMatrix();
 }
 
 //---------------------------------------------------------------------------
@@ -742,6 +765,16 @@ void __fastcall TGLForm3D::ApagarEncenderAmbiente1Click(TObject *Sender)
         luzAmbiente = false;
     }
     GLScene();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TGLForm3D::Activardesactivar1Click(TObject *Sender)
+{
+    if (texturasActivadas==true) texturasActivadas=false;
+         else texturasActivadas=true;
+         cargarTexturas();
+         GLScene();
 }
 //---------------------------------------------------------------------------
 
