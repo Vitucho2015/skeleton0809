@@ -88,10 +88,12 @@ Muebles::Muebles() {
     Toro* donut = new Toro(50, 50, 0.9, 0.5);
     donut->setColor(new Color(0,0.8,0.3));
     donut->setMatriz(new TAfin());
+    //vector = new PV3D(1.05, 0.47, 1.55,1);
     vector = new PV3D(1.05, 0.47, 1.55,1);
     donut->getM()->trasladar(vector);
     delete vector;
     vector = new PV3D(0.05, 0.05, 0.05,1);
+
     donut->getM()->escalar(vector);
     delete vector;
     objetos->inserta((Objeto3D*)donut);
