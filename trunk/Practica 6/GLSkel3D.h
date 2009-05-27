@@ -41,8 +41,6 @@ __published:	// IDE-managed Components
     TMenuItem *ApagarEncederVentana1;
     TMenuItem *ActivarDesactivarNiebla1;
     TMenuItem *ApagarEncenderAmbiente1;
-        TMenuItem *t1;
-        TMenuItem *Activardesactivar1;
     void __fastcall FormResize(TObject *Sender);
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
@@ -76,7 +74,6 @@ __published:	// IDE-managed Components
     void __fastcall ApagarEncederVentana1Click(TObject *Sender);
     void __fastcall ActivarDesactivarNiebla1Click(TObject *Sender);
     void __fastcall ApagarEncenderAmbiente1Click(TObject *Sender);
-        void __fastcall Activardesactivar1Click(TObject *Sender);
 
 private:        // User declarations
     HDC hdc;
@@ -85,13 +82,10 @@ private:        // User declarations
     GLfloat eyeX,eyeY,eyeZ, lookX,lookY,lookZ, upX,upY,upZ; // cámara
     GLdouble RatioViewPort, xLeft,xRight, yBot,yTop, N,F;  // volumen de vista
     GLfloat PosicionLuz0[4];  // luz0
-    GLfloat PosicionLuz1[4];
     GLfloat PosicionLuz2[4];
-    GLfloat PosicionLuz3[4];
 
-    bool texturasActivadas;
     bool luzVentana,niebla,luzAmbiente,luzLampara;
-    float anguloLuz,anguloVentana;
+    float anguloLuz;
     int numTexturas;
 
     ColorRGB** texturas;

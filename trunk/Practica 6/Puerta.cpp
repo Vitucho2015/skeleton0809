@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 
 Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG, bool estado,int num){
-    //double radioPomo = a/20;
+
     objetos = new Lista<Objeto3D>();
     //Madero
     Tablero* tablero = new Tablero(l,a,g,divL,divA,divG);
@@ -18,6 +18,7 @@ Puerta::Puerta(GLfloat l, GLfloat a, GLfloat g, int divL, int divA, int divG, bo
     objetos->inserta((Objeto3D*)tablero);
     /*
     //Situamos los pomos
+    double radioPomo = a/20;
     PV3D* translacion = new PV3D(0.06,g/2.0,a-0.2,1);
     TAfin* matrizPomo1 = new TAfin();
     matrizPomo1->trasladar(translacion);

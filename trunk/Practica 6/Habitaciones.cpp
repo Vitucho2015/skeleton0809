@@ -72,9 +72,14 @@ Habitacion::Habitacion(int h) {
 
          //Lampara
         Lampara* lampara = new Lampara(0.15,0.05,0.2,20,20);
+
+        GLfloat p [] = {1.0 , 1.0 , 1.0, 1.0};
+        glLightfv(GL_LIGHT1, GL_POSITION, p);
+        GLfloat d [] = {0.0, -1.0, 0.0, 1.0};
+        glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, d);
+
         lampara->setMatriz(new TAfin());
-        lampara->setColor(new Color(1.0, 0, 1.0));
-        vector = new PV3D(1.3,1.8,1,1);
+        vector = new PV3D(1.3,1.8,1.0,1);
         (lampara->getM())->trasladar(vector);
         delete vector;
         vector = new PV3D(1.0,0.0,0.0,1);

@@ -23,17 +23,19 @@ void __fastcall TGLForm3D::FormCreate(TObject *Sender)
   hrc=wglCreateContext(hdc);
   if(hrc==NULL) ShowMessage("Error CreateContex");
   if(wglMakeCurrent(hdc, hrc)==false) ShowMessage("Error MakeCurrent");
-
-  glClearColor(0.6,0.7,0.8,1.0);
   
+  glClearColor(0.6,0.7,0.8,1.0);
+  GLfloat amb[] = {0.0,0.0,0.0,1.0};
+  glLightModelfv(GL_LIGHT_MODEL_AMBIENT,amb);
+
+  configurarIluminacion();
+
   glEnable(GL_COLOR_MATERIAL);
   glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_NORMALIZE);
   glShadeModel(GL_SMOOTH);   //defecto
 
-  configurarIluminacion();
-  texturasActivadas=false;
   cargarTexturas();
 
   // crearObjetosEscena();
@@ -534,11 +536,6 @@ void __fastcall TGLForm3D::Lampara3Click(TObject *Sender)
     double coorX,coorY,coorZ;
     if(FDatos->pedirDatos(coorX,coorY,coorZ)){
         PV3D* v = new PV3D(coorX,coorY,coorZ,1);
-        PosicionLuz1[0] = PosicionLuz1[0] + coorX;
-        PosicionLuz1[1] = PosicionLuz1[1] + coorY;
-        PosicionLuz1[2] = PosicionLuz1[2] + coorZ;
-        PosicionLuz1[3] = 1.0;
-        glLightfv(GL_LIGHT1, GL_POSITION, PosicionLuz1);
         escenario->trasladar(v,2);
         delete v;
         GLScene();
@@ -581,12 +578,10 @@ void __fastcall TGLForm3D::ApagarEncederVentana1Click(TObject *Sender)
 if(luzVentana) {
     luzVentana = false;
     glDisable(GL_LIGHT2);
-    glDisable(GL_LIGHT3);
 }
 else {
     luzVentana = true;
     glEnable(GL_LIGHT2);
-    glEnable(GL_LIGHT3);
 }
 GLScene();
 }
@@ -617,9 +612,7 @@ GLScene();
 
 void TGLForm3D::cargarTexturas(){
 
-
-    if (texturasActivadas){
-        numTexturas = 5;
+    numTexturas = 5;
     texturas = new ColorRGB*[numTexturas];
     listaBmp = new BMPRGB*[numTexturas];
 
@@ -650,14 +643,12 @@ void TGLForm3D::cargarTexturas(){
                      0,GL_RGB,GL_UNSIGNED_BYTE,texturas[i]);
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    }}
+    }
 }
 
 //---------------------------------------------------------------------------
 
 void TGLForm3D::configurarIluminacion(){
-
-
 
     glEnable(GL_LIGHTING);
 
@@ -676,72 +667,34 @@ void TGLForm3D::configurarIluminacion(){
 
     glLightfv(GL_LIGHT0,GL_DIFFUSE,LuzDifusa);
     glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmbiente);
-    glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+    glLightfv(GL_LIGHT0,GL_POSITION, PosicionLuz0);
 
     luzAmbiente = false;
 
     //Luz lampara
     glDisable(GL_LIGHT1);
 
-    anguloLuz = 45.0;
+    anguloLuz = 25.0;
     GLfloat LuzDifusa1[] = {1.0,1.0,1.0,1.0};
-    //PosicionLuz1[0] = 1.3;
-    //PosicionLuz1[1] = 1.8;
-    //PosicionLuz1[2] = 1.0;
-    //PosicionLuz1[3] = 1.0;
-    PosicionLuz1[0] = 1.3;
-    PosicionLuz1[1] = 1.8;
-    PosicionLuz1[2] = 1;
-    PosicionLuz1[3] = 1.0;
-
-
-    GLfloat d1[] = {0,-1,0};
-
-   // glLightfv(GL_LIGHT1,GL_AMBIENT,LuzAmbiente);
     glLightfv(GL_LIGHT1,GL_DIFFUSE,LuzDifusa1);
-    glLightfv(GL_LIGHT1,GL_POSITION,PosicionLuz1);
-    glLightfv(GL_LIGHT1,GL_SPOT_DIRECTION,d1);
     glLightf(GL_LIGHT1,GL_SPOT_CUTOFF,anguloLuz);
-    //glLightf(GL_LIGHT1,GL_SPOT_EXPONENT,0.0);
 
     luzLampara = false;
 
     //Luz Ventanas
 
-    anguloVentana = 45.0;
-
-    //ventana Habitacion Izquierda
-
     glDisable(GL_LIGHT2);
 
-    GLfloat LuzDifusa2[] = {1.0,1.0,1.0,1.0};
-    GLfloat LuzAmbiente2[] = {0.3,0.3,0.3,1.0};
+    GLfloat LuzDifusa2[] = {0.5,0.5,0.5,1.0};
+    GLfloat LuzAmbiente2[] = {0.5,0.5,0.5,1.0};
     PosicionLuz2[0] = 1.0;
-    PosicionLuz2[1] = 1.5;
+    PosicionLuz2[1] = 1.0;
     PosicionLuz2[2] = 0.0;
-    PosicionLuz2[3] = 1.0;
-    GLfloat d2[] = {0.0,-1.0,-1.0,1.0};
+    PosicionLuz2[3] = 0.0;
 
     glLightfv(GL_LIGHT2,GL_DIFFUSE,LuzDifusa2);
     glLightfv(GL_LIGHT2,GL_POSITION,PosicionLuz2);
     glLightfv(GL_LIGHT2,GL_AMBIENT,LuzAmbiente2);
-    glLightfv(GL_LIGHT2,GL_SPOT_DIRECTION,d2);
-    glLightf(GL_LIGHT2,GL_SPOT_CUTOFF,anguloVentana);
-
-    //ventana Habitacion Derecha
-    glDisable(GL_LIGHT3);
-
-    GLfloat LuzDifusa3[] = {1.0,1.0,1.0,1.0};
-    GLfloat LuzAmbiente3[] = {0.3,0.3,0.3,1.0};
-    PosicionLuz3[0] = 3.0;PosicionLuz3[1] = 1.5;
-    PosicionLuz3[2] = 0.0;PosicionLuz3[3] = 1.0;
-    GLfloat d3[] = {0.0,-1.0,-1.0,0.0};
-
-    glLightfv(GL_LIGHT3, GL_POSITION,PosicionLuz3);
-    glLightfv(GL_LIGHT3,GL_DIFFUSE,LuzDifusa3);
-    glLightfv(GL_LIGHT3,GL_AMBIENT,LuzAmbiente3);
-    glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, d3);
-    glLightf(GL_LIGHT3,GL_SPOT_CUTOFF,anguloVentana);
 
     luzVentana = false;
 
@@ -749,7 +702,6 @@ void TGLForm3D::configurarIluminacion(){
 
     niebla = false;
 
-    glPopMatrix();
 }
 
 //---------------------------------------------------------------------------
@@ -765,16 +717,6 @@ void __fastcall TGLForm3D::ApagarEncenderAmbiente1Click(TObject *Sender)
         luzAmbiente = false;
     }
     GLScene();
-}
-//---------------------------------------------------------------------------
-
-
-void __fastcall TGLForm3D::Activardesactivar1Click(TObject *Sender)
-{
-    if (texturasActivadas==true) texturasActivadas=false;
-         else texturasActivadas=true;
-         cargarTexturas();
-         GLScene();
 }
 //---------------------------------------------------------------------------
 
