@@ -638,7 +638,7 @@ void TGLForm3D::cargarTexturas(){
     listaBmp[4] = bmp5;
     for(int i=0; i<numTexturas; i++){
         glBindTexture(GL_TEXTURE_2D,i);
-        glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);//Hay que ponerlo después de cada glBindText
+        glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);//Hay que ponerlo después de cada glBindText
         glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB,listaBmp[i]->getCols(),listaBmp[i]->getRows(),
                      0,GL_RGB,GL_UNSIGNED_BYTE,texturas[i]);
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);

@@ -179,7 +179,7 @@ void Habitacion::dibujar() {
         if( typeid(*aux) == typeid(Suelo)){
             if(((Suelo*)aux)->getLado()){// Es el suelo de la izquierda
                 glEnable(GL_TEXTURE_2D);
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, 0);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0,0.0);
@@ -198,7 +198,7 @@ void Habitacion::dibujar() {
             }
             else{ // Es el suelo de la derecha
                 glEnable(GL_TEXTURE_2D);
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, 1);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0,0.0);
@@ -219,7 +219,7 @@ void Habitacion::dibujar() {
         if( typeid(*aux) == typeid(Television)){
             if(((Television*)aux)->getEncendida()){ // televisión encendida
                 glEnable(GL_TEXTURE_2D);
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, 2);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0,0.0);
@@ -238,7 +238,7 @@ void Habitacion::dibujar() {
             }
             else{// televisión apagada
                 glEnable(GL_TEXTURE_2D);
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, 3);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0,0.0);
