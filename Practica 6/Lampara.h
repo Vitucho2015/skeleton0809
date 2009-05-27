@@ -3,20 +3,16 @@
 #ifndef LamparaH
 #define LamparaH
 
-#include "ObjetoCuadrico.h"
+#include "Cilindro.h"
+#include "ObjetoCompuesto3D.h"
 
 //---------------------------------------------------------------------------
 
-class Lampara : public ObjetoCuadrico{
+class Lampara : public ObjetoCompuesto3D{
 
     private:
-        GLUquadricObj* Lampara;
-        GLfloat radioBase;
-        GLfloat radioCima;
-        GLfloat altura;
-        GLint nLados;
-        GLint nCapas;
-   public:
+
+    public:
        Lampara(GLfloat nRadioBase,GLfloat nRadioCima,GLfloat nAltura,GLint nNPlados, GLint nNQCapas);
        ~Lampara();
        void dibujar();
