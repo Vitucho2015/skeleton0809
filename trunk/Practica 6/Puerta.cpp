@@ -61,7 +61,7 @@ Puerta::~Puerta(){
 void Puerta::dibujar(){
 
     glEnable(GL_TEXTURE_2D);
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, 4);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0,0.0);
@@ -77,7 +77,7 @@ void Puerta::dibujar(){
                     glVertex3f(0.0,0.0,0.9);
                 glEnd();
                 
-                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+                glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
                 glBindTexture(GL_TEXTURE_2D, 4);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0,0.0);
